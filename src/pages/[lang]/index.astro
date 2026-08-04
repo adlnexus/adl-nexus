@@ -52,15 +52,6 @@ const href = (route: string) => routeFor(lang, route);
     </div>
   </section>
 
-  <section class="section localized-insights" id="insights">
-    <div class="container">
-      <p class="eyebrow">{copy.insights.eyebrow}</p>
-      <h2 class="section-title">{copy.insights.title}</h2>
-      <p>{copy.insights.text}</p>
-      <a class="text-link" href={href('/insights')}>{copy.insights.link}</a>
-    </div>
-  </section>
-
   <section class="localized-contact" id="contact">
     <div class="container">
       <p class="eyebrow">{copy.closing.eyebrow}</p>
@@ -90,8 +81,6 @@ const href = (route: string) => routeFor(lang, route);
   .products a:last-child { background: #f1eafb; color: #492077; }
   .products strong { font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.07em; }
   .products span { font-size: .8rem; font-weight: 800; line-height: 1.4; text-transform: uppercase; }
-  .localized-insights { background: var(--white); }
-  .localized-insights > .container > p:not(.eyebrow) { max-width: 620px; margin: 2rem 0; color: var(--muted); font-size: 1.15rem; line-height: 1.6; }
   .localized-contact { padding: clamp(7rem, 14vw, 13rem) 0; background: var(--ink); color: var(--white); text-align: center; }
   .localized-contact h2 { max-width: 13ch; margin: 1rem auto 3rem; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .93; }
   @media (max-width: 750px) { .localized-grid, .localized-three, .products { grid-template-columns: 1fr; } }
