@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { enquiryRecipients } from '../data/contact';
+import { localizedPagesCopy } from '../data/localized-pages';
+import type { LocalizedLandingCode, SiteLocale } from '../data/localization';
+interface Props { lang?: SiteLocale }
+const { lang = 'en' } = Astro.props;
+const english = {
+  title: 'Insights — ADL Nexus', eyebrow: 'Insights', heroFirst: 'Useful thinking.', heroAccent: 'No noise.', lead: 'Perspectives on software, sales, market entry and the long-term partnerships that make growth sustainable.', readTime: 'min read', request: 'Request the full insight',
+  articles: [
+    { label: 'Market entry', title: 'Entering new markets: five principles for sustainable growth', text: 'Expansion succeeds when commercial focus, local context and patient relationship-building work together.' },
+    { label: 'Sales', title: 'Why local presence still matters in software sales', text: 'Digital reach opens doors, but trust, nuance and consistent local follow-through still close complex deals.' },
+    { label: 'Partnerships', title: 'Your network is a force multiplier for expansion', text: 'The right partner ecosystem helps technology companies learn faster and reach further without losing focus.' },
+    { label: 'Customer success', title: 'Growth begins after the first signature', text: 'Onboarding, adoption and account development turn a promising sale into durable customer value.' },
+    { label: 'Software selection', title: 'A selective portfolio is better for everyone', text: 'Why recommending one strong solution creates more trust than presenting a catalogue of near-identical choices.' },
+    { label: 'Learning', title: 'The knowledge your organisation cannot afford to lose', text: 'A practical look at capturing experience before it walks out the door.' },
+  ], closing: { eyebrow: 'Start a conversation', title: 'Bring us the question behind your next move.', text: 'The most useful insight is the one grounded in your actual market, team and ambition.', button: 'Contact us' },
+};
+const copy = lang === 'en' ? english : localizedPagesCopy[lang as LocalizedLandingCode].insights;
+---
+<BaseLayout darkHeader lang={lang} title={copy.title} description={copy.lead}>
+  <section class="page-hero"><div class="container"><p class="eyebrow">{copy.eyebrow}</p><h1 class="page-title">{copy.heroFirst}<br /><span class="red">{copy.heroAccent}</span></h1><p class="lead">{copy.lead}</p></div></section>
+  <section class="section"><div class="container article-grid">{copy.articles.map((article, i) => <article class:list={{featured: i === 0}}><div class="article-meta"><span>{article.label}</span><span>{i + 4} {copy.readTime}</span></div><h2>{article.title}</h2><p>{article.text}</p><a href={`mailto:${enquiryRecipients}?subject=ADL%20Insight%20request`}>{copy.request} ↗</a></article>)}</div></section>
+  <ClosingCta lang={lang} eyebrow={copy.closing.eyebrow} title={copy.closing.title} text={copy.closing.text} buttonLabel={copy.closing.button} />
+</BaseLayout>
+<style>
+  .article-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .article-grid article { min-height: 410px; display: flex; flex-direction: column; padding: clamp(2rem, 4vw, 4rem); background: var(--white); }
+  .article-grid .featured { grid-column: 1 / -1; min-height: 540px; background: var(--red); color: var(--white); }
+  .article-meta { display: flex; justify-content: space-between; color: var(--red); font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .featured .article-meta { color: var(--white); }
+  .article-grid h2 { max-width: 16ch; margin: auto 0 1.4rem; font-size: clamp(2rem, 4vw, 4.5rem); letter-spacing: -.055em; line-height: .98; }
+  .article-grid p { max-width: 580px; color: var(--muted); line-height: 1.55; }
+  .featured p { color: rgba(255,255,255,.78); }
+  .article-grid a { width: fit-content; margin-top: 1rem; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  @media (max-width: 700px) { .article-grid { grid-template-columns: 1fr; } .article-grid .featured { grid-column: auto; } }
+</style>

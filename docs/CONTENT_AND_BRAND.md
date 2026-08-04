@@ -1,0 +1,89 @@
+# Content and brand reference
+
+Use this document when reviewing or changing copy, visual identity, product positioning, languages, or contact details.
+
+## Brand position
+
+ADL Nexus connects two sides of the same commercial relationship:
+
+- It helps organisations choose carefully selected software.
+- It helps technology companies enter and grow in the right markets.
+
+Core line:
+
+> Carefully selected software. One trusted partner.
+
+Supporting statement:
+
+> We help organisations find the right software solutions and help technology companies enter and grow in new markets.
+
+## Voice
+
+Write with calm confidence. Keep sentences clear, direct, commercially informed, and free of inflated claims.
+
+Prefer:
+
+- specific benefits;
+- short headings;
+- partnership, focus, fit, clarity, and long-term value;
+- British English spelling where applicable (`organisations`, `optimise`).
+
+Avoid:
+
+- “revolutionary”, “world-class”, “game-changing”, and similar unsupported superlatives;
+- vague claims about global reach or performance;
+- generic corporate filler;
+- suggesting ADL represents products or partners not explicitly approved;
+- claiming official partner status without evidence.
+
+## Visual system
+
+Primary colours are defined in `src/styles/global.css`:
+
+- Ink: `#111113`
+- ADL red: `#e10b24`
+- Warm paper: `#f5f3ef`
+- White: `#ffffff`
+
+The direction is editorial and architectural: generous spacing, large type, fine borders, selective red accents, and simple geometric forms. Reference imagery originally supplied by the client was inspired by the Hunch navigation and closing call-to-action, but the site must remain recognisably ADL rather than copying another brand.
+
+Do not create a permanent logo. Replace the temporary text mark only with owner-approved files. Put approved assets in `public/brand/` and include useful formats such as SVG and PNG when supplied.
+
+## Approved solution descriptions
+
+### Pipedrive
+
+The easy and effective CRM for closing deals. It helps teams track pipelines, optimise leads, manage deals, and automate sales processes.
+
+Primary action: **Book a demo**
+Secondary action: **Learn more**
+
+### Learnie
+
+A mobile-first learning platform that helps organisations preserve valuable experience, improve onboarding, and support continuous learning without complex traditional training systems.
+
+Primary action: **Book a demo**
+Secondary action: **Learn more**
+
+## Contact and privacy
+
+The current public enquiry recipients are `andjelkalz@gmail.com` and `danilo.labovic1@gmail.com`; treat the long-term contact list as provisional until the owner confirms it.
+
+The current form opens the visitor’s email application. It does not store or transmit data through a website backend. Do not add a form processor, CRM, newsletter tool, analytics platform, cookie banner, or tracking pixel without explicit owner approval and a privacy review.
+
+## Languages
+
+English is the default language. Equivalent routes are available in:
+
+- Serbian: `/sr/`
+- Spanish: `/es/`
+- German: `/de/`
+- Russian: `/ru/`
+
+Translated homepages use `src/pages/[lang]/index.astro`. Translated subpages are generated through `src/pages/[lang]/[...slug].astro` using the same page components as English, so navigation, layouts and calls to action remain equivalent. Homepage copy and shared labels live in `src/data/localization.ts`; subpage copy lives in `src/data/localized-pages.ts`.
+
+Whenever important English positioning or route behaviour changes, update and verify every locale or flag each translation as needing owner review. Do not silently machine-translate sensitive commercial or legal copy and present it as approved. All current translations require native-speaker review before launch.
+
+## Draft content
+
+Insights titles and summaries are editorial placeholders until full articles are approved. Do not fabricate authors, publication dates, case studies, customer logos, testimonials, revenue figures, or performance statistics.

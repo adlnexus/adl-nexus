@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain ADL Website"
+  short_description: "Safely update and verify the ADL website"
+  default_prompt: "Use $adl-site-maintainer to update the ADL Nexus website and verify the result."

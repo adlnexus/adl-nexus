@@ -1,0 +1,22 @@
+---
+import { routeFor, type SiteLocale } from '../data/localization';
+interface Props { title?: string; text?: string; eyebrow?: string; buttonLabel?: string; lang?: SiteLocale; }
+const { title = 'Ready to find the right fit?', text = 'One focused conversation can clarify the software you need or the market you should enter next.', eyebrow = 'Start a conversation', buttonLabel = 'Contact us', lang = 'en' } = Astro.props;
+---
+<section class="closing">
+  <div class="closing-shape" aria-hidden="true"></div>
+  <div class="container closing-inner">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <a class="button button--red" href={routeFor(lang, '/contact')}>{buttonLabel}</a>
+  </div>
+</section>
+
+<style>
+  .closing { position: relative; overflow: hidden; padding: clamp(6rem, 13vw, 12rem) 0; background: var(--ink); color: var(--white); text-align: center; }
+  .closing-inner { position: relative; z-index: 2; display: grid; justify-items: center; }
+  .closing h2 { max-width: 12ch; margin: 0; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .92; }
+  .closing p:not(.eyebrow) { max-width: 580px; margin: 2rem 0; color: #bdbdc2; line-height: 1.55; }
+  .closing-shape { position: absolute; left: -13vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid var(--red); opacity: .65; transform: rotate(25deg); }
+</style>

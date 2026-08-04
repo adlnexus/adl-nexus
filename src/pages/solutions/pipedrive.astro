@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ClosingCta from '../../components/ClosingCta.astro';
+import { localizedPagesCopy } from '../../data/localized-pages';
+import { routeFor, type LocalizedLandingCode, type SiteLocale } from '../../data/localization';
+interface Props { lang?: SiteLocale }
+const { lang = 'en' } = Astro.props;
+const english = {
+  title: 'Pipedrive CRM — ADL Nexus', eyebrow: 'Featured solution · CRM', headline: 'The easy and effective CRM for closing deals.', lead: 'Track your sales pipeline, optimise leads, manage deals and automate your entire sales process—so your team can focus on selling.', demo: 'Book a demo',
+  visual: ['New lead', 'Contact made', 'Proposal', 'Won', '', ''] as [string, string, string, string, string, string], introTitle: 'Built around the way sales actually happens.', intro: ['Pipedrive turns complex sales activity into a clear, actionable pipeline. It helps teams build consistent habits, prioritise the right opportunities and know exactly what needs to happen next.', 'ADL Nexus helps you assess fit, see the platform in context and make a confident decision before implementation.'] as [string, string], why: 'Why Pipedrive',
+  benefits: [
+    { label: '01', title: 'See every deal clearly', text: 'A visual pipeline gives your team one shared view of priorities, next steps and momentum.' },
+    { label: '02', title: 'Keep selling focused', text: 'Automate repetitive admin while preserving the personal work that moves opportunities forward.' },
+    { label: '03', title: 'Improve with evidence', text: 'Use activity and conversion insights to understand what works and where deals slow down.' },
+  ], closing: { eyebrow: 'Start a conversation', title: 'See your sales process with fresh clarity.', text: 'Book a focused Pipedrive demo shaped around your team, pipeline and goals.', button: 'Contact us' },
+};
+const copy = lang === 'en' ? english : localizedPagesCopy[lang as LocalizedLandingCode].pipedrive;
+const demoHref = `${routeFor(lang, '/contact')}?solution=pipedrive`;
+---
+<BaseLayout lang={lang} title={copy.title} description={copy.lead}>
+  <section class="product-hero pipedrive"><div class="container product-grid"><div><p class="eyebrow">{copy.eyebrow}</p><div class="wordmark">pipedrive</div><h1>{copy.headline}</h1><p>{copy.lead}</p><a class="button" href={demoHref}>{copy.demo}</a></div><div class="pipeline" aria-hidden="true">{copy.visual.slice(0, 4).map((label) => <span>{label}</span>)}<i></i><i></i><i></i></div></div></section>
+  <section class="section"><div class="container split-intro"><h2 class="section-title">{copy.introTitle}</h2><div class="copy"><p>{copy.intro[0]}</p><p>{copy.intro[1]}</p></div></div></section>
+  <section class="section benefits"><div class="container"><p class="eyebrow">{copy.why}</p><div class="card-grid">{copy.benefits.map((benefit) => <article class="plain-card"><span class="num">{benefit.label}</span><h3>{benefit.title}</h3><p>{benefit.text}</p></article>)}</div></div></section>
+  <ClosingCta lang={lang} eyebrow={copy.closing.eyebrow} title={copy.closing.title} text={copy.closing.text} buttonLabel={copy.closing.button} />
+</BaseLayout>
+<style>
+  .product-hero { min-height: 88vh; display: flex; align-items: center; padding: 9rem 0 5rem; background: #dff0e8; }
+  .product-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 6rem; }
+  .wordmark { color: #0a6241; font-size: clamp(4rem, 9vw, 9rem); font-weight: 800; letter-spacing: -.085em; line-height: .85; }
+  .product-hero h1 { max-width: 14ch; margin: 2rem 0 1rem; font-size: clamp(2.3rem, 4vw, 4.4rem); letter-spacing: -.055em; line-height: .98; }
+  .product-hero p:not(.eyebrow) { max-width: 590px; color: #40524a; line-height: 1.6; }
+  .product-hero .button { margin-top: 1.5rem; }
+  .pipeline { min-width: 0; min-height: 460px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-content: center; gap: .7rem; padding: 2rem; border: 1px solid rgba(10,98,65,.25); background: rgba(255,255,255,.45); }
+  .pipeline span { min-width: 0; min-height: 250px; padding: 1rem; overflow-wrap: anywhere; border-top: 3px solid #0a6241; background: var(--white); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+  .pipeline span:last-of-type { background: #0a6241; color: var(--white); }
+  .benefits { background: var(--white); }
+  @media (max-width: 850px) { .product-grid { grid-template-columns: minmax(0, 1fr); gap: 3rem; } .pipeline { min-height: 300px; } .pipeline span { min-height: 160px; } }
+  @media (max-width: 500px) { .pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 1rem; } .pipeline span { min-height: 120px; } }
+</style>

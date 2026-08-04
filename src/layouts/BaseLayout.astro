@@ -1,0 +1,49 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { equivalentLocaleRoute, localeCodes, type SiteLocale } from '../data/localization';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  darkHeader?: boolean;
+  lang?: SiteLocale;
+}
+
+const {
+  title = 'ADL Nexus — Software solutions and market growth',
+  description = 'We help organisations find the right software and help technology companies enter and grow in new markets.',
+  darkHeader = false,
+  lang = 'en',
+} = Astro.props;
+const alternateFor = (locale: SiteLocale) => equivalentLocaleRoute(Astro.url.pathname, locale);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#111113" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="ADL Nexus" />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1774" />
+    <meta property="og:image:height" content="887" />
+    <meta property="og:image:alt" content="ADL Nexus — Carefully selected software. One trusted partner." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og.png" />
+    {localeCodes.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale)} />)}
+    <link rel="alternate" hreflang="x-default" href={alternateFor('en')} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header dark={darkHeader} lang={lang} />
+    <main><slot /></main>
+    <Footer lang={lang} />
+  </body>
+</html>

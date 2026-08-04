@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+---
+<BaseLayout darkHeader>
+  <section class="hero">
+    <div class="hero-grid container">
+      <div class="hero-copy">
+        <p class="eyebrow">Software solutions · Market growth</p>
+        <h1 class="display">Carefully selected software.<br /><span>One trusted partner.</span></h1>
+        <p class="hero-lead">We help organisations find the right software solutions and help technology companies enter and grow in new markets.</p>
+        <a class="button button--red" href="/contact">Contact us</a>
+      </div>
+      <div class="hero-mark" aria-hidden="true"><span>A</span><i></i><b>DL</b></div>
+    </div>
+    <div class="hero-foot container"><span>Belgrade</span><span>Working internationally</span><span>Independent representation</span></div>
+  </section>
+
+  <section class="audiences section">
+    <div class="container">
+      <p class="eyebrow">Two sides of one partnership</p>
+      <div class="audience-grid">
+        <article class="audience-card">
+          <span class="audience-num">01 / Organisations</span>
+          <h2>Find software<br />that fits.</h2>
+          <p>We carefully select one strong solution for each organisational need, rather than offering a catalogue of competing products. Our portfolio is deliberately selective. We partner only with solutions we believe in.</p>
+          <a class="button" href="/contact">Let’s chat</a>
+        </article>
+        <article class="audience-card audience-card--dark">
+          <span class="audience-num">02 / Tech companies</span>
+          <h2>Grow in the<br />right markets.</h2>
+          <p>Business development, sales representation and support backed by extensive market experience and a strong international network.</p>
+          <p class="principle">We work as a dedicated extension of your team and do not represent competing solutions that address the same need.</p>
+          <div class="card-actions"><a class="button" href="/services">Read more</a><a class="text-link" href="/contact">Let’s chat</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why section">
+    <div class="container">
+      <p class="eyebrow">Why ADL?</p>
+      <h2 class="section-title">Selective by design. Committed by nature.</h2>
+      <div class="why-grid">
+        <article><span>01</span><h3>We choose carefully.</h3><p>We partner only with solutions we believe in and do not represent direct competitors.</p></article>
+        <article><span>02</span><h3>We know the markets.</h3><p>Our approach is grounded in extensive international sales experience and a strong professional network.</p></article>
+        <article><span>03</span><h3>We think long term.</h3><p>We build transparent, long-term relationships with tech companies and the organisations they serve.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="solutions section">
+    <div class="container">
+      <div class="solutions-head"><div><p class="eyebrow">Featured solutions</p><h2 class="section-title">One strong solution for every real need.</h2></div><p>Our portfolio is small on purpose. Every product earns its place through usefulness, fit and long-term value.</p></div>
+      <div class="solution-list">
+        <article class="solution solution--pipedrive">
+          <div class="solution-name">pipedrive</div><div><span>Customer relationship management</span><h3>The easy and effective CRM for closing deals.</h3><p>Track your sales pipeline, optimise leads, manage deals and automate your sales process so you can focus on selling.</p><div class="solution-actions"><a class="button" href="/contact?solution=pipedrive">Book a demo</a><a class="text-link" href="/solutions/pipedrive">Learn more</a></div></div>
+        </article>
+        <article class="solution solution--learnie">
+          <div class="solution-name">Learnie<sup>•</sup></div><div><span>Learning and knowledge sharing</span><h3>Learning that feels natural, not like a system.</h3><p>A mobile-first learning platform that preserves valuable experience, improves onboarding and supports continuous learning without complex traditional training systems.</p><div class="solution-actions"><a class="button" href="/contact?solution=learnie">Book a demo</a><a class="text-link" href="/solutions/learnie">Learn more</a></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights-preview section">
+    <div class="container">
+      <div class="insights-title"><div><p class="eyebrow">Insights</p><h2 class="section-title">Ideas for better decisions.</h2></div><a class="text-link" href="/insights">View all insights</a></div>
+      <div class="insight-grid">
+        <a href="/insights"><span>Market entry · 6 min</span><h3>Entering new markets: five principles for sustainable growth</h3><b>Read insight ↗</b></a>
+        <a href="/insights"><span>Sales · 4 min</span><h3>Why local presence still matters in software sales</h3><b>Read insight ↗</b></a>
+        <a href="/insights"><span>Partnerships · 5 min</span><h3>Your network is a force multiplier for expansion</h3><b>Read insight ↗</b></a>
+      </div>
+    </div>
+  </section>
+
+  <ClosingCta title="The right software. The right market. Let’s find it." text="Tell us where you want to go. We’ll bring focus, clarity and a partnership built to last." />
+</BaseLayout>
+
+<style>
+  .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: 9rem 0 2rem; background: var(--ink); color: var(--white); }
+  .hero-grid { flex: 1; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 2rem; padding-top: 5rem; }
+  .hero-copy { position: relative; z-index: 2; }
+  .hero .display { max-width: 10.5ch; }
+  .hero .display span { color: var(--red); }
+  .hero-lead { max-width: 650px; margin: 2rem 0; color: #bdbdc2; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.55; }
+  .hero-mark { position: relative; height: min(65vh, 670px); display: grid; place-items: center; color: var(--white); }
+  .hero-mark::before { position: absolute; width: 74%; aspect-ratio: 1; border: clamp(2rem, 5.3vw, 5.5rem) solid var(--red); content: ""; transform: rotate(34deg); }
+  .hero-mark span { position: relative; z-index: 1; font-size: clamp(12rem, 28vw, 31rem); font-weight: 900; letter-spacing: -.15em; line-height: 1; opacity: .08; }
+  .hero-mark i { position: absolute; right: 4%; bottom: 15%; width: 44%; height: 2px; background: var(--white); }
+  .hero-mark b { position: absolute; right: 2%; bottom: 18%; font-size: 1.1rem; letter-spacing: .42em; }
+  .hero-foot { display: flex; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid #353539; color: #8c8c92; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 2.5rem; background: var(--line); border: 1px solid var(--line); }
+  .audience-card { min-height: 600px; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
+  .audience-card--dark { background: var(--ink); color: var(--white); }
+  .audience-num { color: var(--red); font-size: .71rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .audience-card h2 { margin: auto 0 2rem; font-size: clamp(2.8rem, 5.5vw, 5.6rem); letter-spacing: -.065em; line-height: .92; }
+  .audience-card p { max-width: 540px; margin: 0 0 2rem; color: var(--muted); line-height: 1.65; }
+  .audience-card--dark p { color: #bdbdc2; }
+  .audience-card .principle { padding-left: 1rem; border-left: 2px solid var(--red); color: var(--white); font-size: .85rem; }
+  .audience-card--dark .button { border-color: var(--white); color: var(--white); }
+  .audience-card--dark .button:hover { background: var(--white); color: var(--ink); }
+  .card-actions, .solution-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .why { background: var(--red); color: var(--white); }
+  .why .eyebrow { color: var(--white); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 5rem; border-top: 1px solid rgba(255,255,255,.4); }
+  .why-grid article { min-height: 310px; padding: 2rem 2.5rem 0 0; border-right: 1px solid rgba(255,255,255,.35); }
+  .why-grid article + article { padding-left: 2.5rem; }
+  .why-grid article:last-child { border-right: 0; }
+  .why-grid span { font-size: .7rem; font-weight: 800; letter-spacing: .14em; }
+  .why-grid h3 { margin: 6rem 0 1rem; font-size: 1.65rem; letter-spacing: -.035em; }
+  .why-grid p { max-width: 330px; line-height: 1.55; }
+  .solutions-head, .insights-title { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; }
+  .solutions-head > p { max-width: 430px; margin: 0; color: var(--muted); line-height: 1.6; }
+  .solution-list { margin-top: 5rem; border-top: 1px solid var(--line); }
+  .solution { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 6vw, 7rem); padding: clamp(3rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
+  .solution--pipedrive { background: #e8f3ee; }
+  .solution--learnie { background: #f1eafb; }
+  .solution-name { align-self: center; color: #0a6241; font-size: clamp(3.3rem, 7vw, 7.2rem); font-weight: 800; letter-spacing: -.075em; }
+  .solution--learnie .solution-name { color: #492077; }
+  .solution-name sup { color: #c346ef; }
+  .solution > div:last-child > span { color: var(--red); font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .solution h3 { max-width: 15ch; margin: 1rem 0; font-size: clamp(2rem, 3.7vw, 3.8rem); letter-spacing: -.05em; line-height: 1; }
+  .solution p { max-width: 580px; color: var(--muted); line-height: 1.65; }
+  .solution-actions { margin-top: 2rem; }
+  .insights-preview { background: var(--white); }
+  .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 4rem; background: var(--line); border: 1px solid var(--line); }
+  .insight-grid a { min-height: 330px; display: flex; flex-direction: column; padding: clamp(1.5rem, 3vw, 2.6rem); background: var(--white); }
+  .insight-grid a:hover { background: var(--paper); }
+  .insight-grid span { color: var(--red); font-size: .67rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+  .insight-grid h3 { margin: auto 0; font-size: clamp(1.5rem, 2.4vw, 2.25rem); letter-spacing: -.045em; line-height: 1.08; }
+  .insight-grid b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-mark { position: absolute; right: -20%; width: 70vw; opacity: .45; }
+    .audience-grid, .solution, .insight-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.35); }
+    .why-grid h3 { margin-top: 3rem; }
+    .solutions-head, .insights-title { align-items: flex-start; flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    .hero { min-height: 900px; }
+    .hero-foot span:nth-child(2) { display: none; }
+    .audience-card { min-height: 540px; }
+  }
+</style>

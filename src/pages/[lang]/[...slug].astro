@@ -1,0 +1,30 @@
+---
+import AboutPage from '../about.astro';
+import ContactPage from '../contact.astro';
+import InsightsPage from '../insights.astro';
+import ServicesPage from '../services.astro';
+import LearniePage from '../solutions/learnie.astro';
+import PipedrivePage from '../solutions/pipedrive.astro';
+import { localizedLandingCodes, type LocalizedLandingCode } from '../../data/localization';
+
+const localizedRoutes = ['services', 'about', 'insights', 'contact', 'solutions/pipedrive', 'solutions/learnie'] as const;
+type LocalizedRoute = (typeof localizedRoutes)[number];
+
+export function getStaticPaths() {
+  const localizedRoutes = ['services', 'about', 'insights', 'contact', 'solutions/pipedrive', 'solutions/learnie'] as const;
+  return localizedLandingCodes.flatMap((lang) => localizedRoutes.map((slug) => ({ params: { lang, slug }, props: { lang, slug } })));
+}
+
+interface Props { lang: LocalizedLandingCode; slug: LocalizedRoute }
+const { lang, slug } = Astro.props;
+const pages = {
+  services: ServicesPage,
+  about: AboutPage,
+  insights: InsightsPage,
+  contact: ContactPage,
+  'solutions/pipedrive': PipedrivePage,
+  'solutions/learnie': LearniePage,
+};
+const Page = pages[slug];
+---
+<Page lang={lang} />
