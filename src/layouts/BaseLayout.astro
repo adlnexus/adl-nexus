@@ -23,6 +23,17 @@ const alternateFor = (locale: SiteLocale) => equivalentLocaleRoute(Astro.url.pat
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      (() => {
+        try {
+          const homePath = /^\/(?:(?:sr|es|de|ru)\/?)?$/;
+          const previous = new URL(document.referrer);
+          const cameFromHome = previous.origin === window.location.origin && homePath.test(previous.pathname);
+          const currentIsHome = homePath.test(window.location.pathname);
+          if (cameFromHome && !currentIsHome) document.documentElement.classList.add('from-home');
+        } catch {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -32,8 +43,8 @@ const alternateFor = (locale: SiteLocale) => equivalentLocaleRoute(Astro.url.pat
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="ADL Nexus" />
     <meta property="og:image" content="/og.png" />
-    <meta property="og:image:width" content="1774" />
-    <meta property="og:image:height" content="887" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ADL Nexus — Carefully selected software. One trusted partner." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="/og.png" />

@@ -18,5 +18,61 @@ const { title = 'Ready to find the right fit?', text = 'One focused conversation
   .closing-inner { position: relative; z-index: 2; display: grid; justify-items: center; }
   .closing h2 { max-width: 12ch; margin: 0; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .92; }
   .closing p:not(.eyebrow) { max-width: 580px; margin: 2rem 0; color: #bdbdc2; line-height: 1.55; }
-  .closing-shape { position: absolute; left: -13vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid var(--red); opacity: .65; transform: rotate(25deg); }
+  .closing-shape { --shape-y: 0px; --shape-rotation: 25deg; position: absolute; left: -13vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid var(--red); opacity: .65; transform: translate3d(0, var(--shape-y), 0) rotate(var(--shape-rotation)); }
+  .closing-shape.is-scroll-animated { will-change: transform; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .closing-shape { transform: rotate(25deg); }
+  }
 </style>
+
+<script>
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const closingSections = Array.from(document.querySelectorAll<HTMLElement>('.closing'));
+  let frameRequested = false;
+  let motionEnabled = false;
+
+  const updateClosingShapes = () => {
+    frameRequested = false;
+    closingSections.forEach((section) => {
+      const shape = section.querySelector<HTMLElement>('.closing-shape');
+      if (!shape) return;
+      const rect = section.getBoundingClientRect();
+      const travel = window.innerHeight + rect.height;
+      const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / travel));
+      shape.style.setProperty('--shape-y', `${(36 - (progress * 72)).toFixed(2)}px`);
+      shape.style.setProperty('--shape-rotation', `${(18 + (progress * 14)).toFixed(2)}deg`);
+    });
+  };
+
+  const requestShapeUpdate = () => {
+    if (frameRequested) return;
+    frameRequested = true;
+    requestAnimationFrame(updateClosingShapes);
+  };
+
+  const enableMotion = () => {
+    if (motionEnabled || motionPreference.matches) return;
+    motionEnabled = true;
+    closingSections.forEach((section) => section.querySelector('.closing-shape')?.classList.add('is-scroll-animated'));
+    window.addEventListener('scroll', requestShapeUpdate, { passive: true });
+    window.addEventListener('resize', requestShapeUpdate);
+    requestShapeUpdate();
+  };
+
+  const disableMotion = () => {
+    if (!motionEnabled) return;
+    motionEnabled = false;
+    window.removeEventListener('scroll', requestShapeUpdate);
+    window.removeEventListener('resize', requestShapeUpdate);
+    closingSections.forEach((section) => {
+      const shape = section.querySelector<HTMLElement>('.closing-shape');
+      shape?.classList.remove('is-scroll-animated');
+      shape?.style.removeProperty('--shape-y');
+      shape?.style.removeProperty('--shape-rotation');
+    });
+  };
+
+  motionPreference.addEventListener('change', () => motionPreference.matches ? disableMotion() : enableMotion());
+  enableMotion();
+</script>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ClosingCta from '../components/ClosingCta.astro';
+import HeroMark from '../components/HeroMark.astro';
 ---
 <BaseLayout darkHeader>
   <section class="hero">
@@ -11,7 +12,7 @@ import ClosingCta from '../components/ClosingCta.astro';
         <p class="hero-lead">We help organisations find the right software solutions and help technology companies enter and grow in new markets.</p>
         <a class="button button--red" href="/contact">Contact us</a>
       </div>
-      <div class="hero-mark" aria-hidden="true"><span>A</span><i></i><b>DL</b></div>
+      <HeroMark />
     </div>
     <div class="hero-foot container"><span>Belgrade</span><span>Working internationally</span><span>Independent representation</span></div>
   </section>
@@ -73,11 +74,6 @@ import ClosingCta from '../components/ClosingCta.astro';
   .hero .display { max-width: 10.5ch; font-size: clamp(3.15rem, min(6.2vw, 9.5svh), 6.6rem); }
   .hero .display span { color: var(--red); }
   .hero-lead { max-width: 650px; margin: 2rem 0; color: #bdbdc2; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.55; }
-  .hero-mark { position: relative; z-index: 1; height: min(65vh, 670px); display: grid; place-items: center; color: var(--white); opacity: .78; pointer-events: none; }
-  .hero-mark::before { position: absolute; width: 74%; aspect-ratio: 1; border: clamp(2rem, 5.3vw, 5.5rem) solid var(--red); content: ""; transform: rotate(34deg); }
-  .hero-mark span { position: relative; z-index: 1; font-size: clamp(12rem, 28vw, 31rem); font-weight: 900; letter-spacing: -.15em; line-height: 1; opacity: .22; }
-  .hero-mark i { position: absolute; right: 4%; bottom: 15%; width: 44%; height: 2px; background: var(--white); }
-  .hero-mark b { position: absolute; right: 2%; bottom: 18%; font-size: 1.1rem; letter-spacing: .42em; }
   .hero-foot { display: flex; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid #353539; color: #8c8c92; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
   .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 2.5rem; background: var(--line); border: 1px solid var(--line); }
   .audience-card { min-height: 600px; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
@@ -114,7 +110,6 @@ import ClosingCta from '../components/ClosingCta.astro';
   .solution-actions { margin-top: 2rem; }
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
-    .hero-mark { position: absolute; right: -24%; width: 76vw; opacity: .48; }
     .audience-grid, .solution { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
     .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.35); }
