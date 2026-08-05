@@ -62,8 +62,8 @@ const href = (route: string) => routeFor(lang, route);
 </BaseLayout>
 
 <style>
-  .localized-hero { min-height: 100svh; display: flex; align-items: center; padding: 10rem 0 6rem; background: var(--ink); color: var(--white); }
-  .localized-hero .display { max-width: 12ch; }
+  .localized-hero { min-height: 100svh; display: flex; align-items: center; padding: 7.5rem 0 4rem; background-color: var(--ink); background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.78) 48%, rgba(17,17,19,.28) 100%), url('/hero-professional.webp'); background-position: center; background-size: cover; color: var(--white); }
+  .localized-hero .display { max-width: 12ch; font-size: clamp(3.15rem, min(6.2vw, 9.5svh), 6.6rem); }
   .localized-hero .display span { color: var(--red); }
   .localized-hero p:not(.eyebrow) { max-width: 680px; margin: 2rem 0; color: #bdbdc2; font-size: clamp(1.05rem, 1.5vw, 1.2rem); line-height: 1.55; }
   .localized-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 3rem; background: var(--line); }
@@ -83,5 +83,8 @@ const href = (route: string) => routeFor(lang, route);
   .products span { font-size: .8rem; font-weight: 800; line-height: 1.4; text-transform: uppercase; }
   .localized-contact { padding: clamp(7rem, 14vw, 13rem) 0; background: var(--ink); color: var(--white); text-align: center; }
   .localized-contact h2 { max-width: 13ch; margin: 1rem auto 3rem; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .93; }
-  @media (max-width: 750px) { .localized-grid, .localized-three, .products { grid-template-columns: 1fr; } }
+  @media (max-width: 750px) {
+    .localized-hero { background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.76) 70%, rgba(17,17,19,.48) 100%), url('/hero-professional.webp'); background-position: 62% center; }
+    .localized-grid, .localized-three, .products { grid-template-columns: 1fr; }
+  }
 </style>

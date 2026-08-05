@@ -67,15 +67,15 @@ import ClosingCta from '../components/ClosingCta.astro';
 </BaseLayout>
 
 <style>
-  .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: 9rem 0 2rem; background: var(--ink); color: var(--white); }
-  .hero-grid { flex: 1; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 2rem; padding-top: 5rem; }
+  .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: 7.5rem 0 1.5rem; background-color: var(--ink); background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.78) 48%, rgba(17,17,19,.28) 100%), url('/hero-professional.webp'); background-position: center; background-size: cover; color: var(--white); }
+  .hero-grid { flex: 1; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 2rem; padding-top: 1rem; }
   .hero-copy { position: relative; z-index: 2; }
-  .hero .display { max-width: 10.5ch; }
+  .hero .display { max-width: 10.5ch; font-size: clamp(3.15rem, min(6.2vw, 9.5svh), 6.6rem); }
   .hero .display span { color: var(--red); }
   .hero-lead { max-width: 650px; margin: 2rem 0; color: #bdbdc2; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.55; }
-  .hero-mark { position: relative; height: min(65vh, 670px); display: grid; place-items: center; color: var(--white); }
+  .hero-mark { position: relative; z-index: 1; height: min(65vh, 670px); display: grid; place-items: center; color: var(--white); opacity: .78; pointer-events: none; }
   .hero-mark::before { position: absolute; width: 74%; aspect-ratio: 1; border: clamp(2rem, 5.3vw, 5.5rem) solid var(--red); content: ""; transform: rotate(34deg); }
-  .hero-mark span { position: relative; z-index: 1; font-size: clamp(12rem, 28vw, 31rem); font-weight: 900; letter-spacing: -.15em; line-height: 1; opacity: .08; }
+  .hero-mark span { position: relative; z-index: 1; font-size: clamp(12rem, 28vw, 31rem); font-weight: 900; letter-spacing: -.15em; line-height: 1; opacity: .22; }
   .hero-mark i { position: absolute; right: 4%; bottom: 15%; width: 44%; height: 2px; background: var(--white); }
   .hero-mark b { position: absolute; right: 2%; bottom: 18%; font-size: 1.1rem; letter-spacing: .42em; }
   .hero-foot { display: flex; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid #353539; color: #8c8c92; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
@@ -114,7 +114,7 @@ import ClosingCta from '../components/ClosingCta.astro';
   .solution-actions { margin-top: 2rem; }
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
-    .hero-mark { position: absolute; right: -20%; width: 70vw; opacity: .45; }
+    .hero-mark { position: absolute; right: -24%; width: 76vw; opacity: .48; }
     .audience-grid, .solution { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
     .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.35); }
@@ -122,7 +122,7 @@ import ClosingCta from '../components/ClosingCta.astro';
     .solutions-head { align-items: flex-start; flex-direction: column; }
   }
   @media (max-width: 600px) {
-    .hero { min-height: 900px; }
+    .hero { min-height: 900px; background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.76) 70%, rgba(17,17,19,.48) 100%), url('/hero-professional.webp'); background-position: 62% center; }
     .hero-foot span:nth-child(2) { display: none; }
     .audience-card { min-height: 540px; }
   }

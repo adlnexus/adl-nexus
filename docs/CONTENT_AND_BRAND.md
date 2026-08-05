@@ -41,7 +41,7 @@ Avoid:
 Primary colours are defined in `src/styles/global.css`:
 
 - Ink: `#111113`
-- ADL red: `#e10b24`
+- ADL red: `#c53243`
 - Warm paper: `#f5f3ef`
 - White: `#ffffff`
 
