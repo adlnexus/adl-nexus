@@ -16,6 +16,7 @@ const { title = 'Ready to find the right fit?', text = 'One focused conversation
 <style>
   .closing { position: relative; overflow: hidden; padding: clamp(6rem, 13vw, 12rem) 0; background: var(--ink); color: var(--white); text-align: center; }
   .closing-inner { position: relative; z-index: 2; display: grid; justify-items: center; }
+  .closing .eyebrow { color: var(--red-on-dark); }
   .closing h2 { max-width: 12ch; margin: 0; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .92; }
   .closing p:not(.eyebrow) { max-width: 580px; margin: 2rem 0; color: #bdbdc2; line-height: 1.55; }
   .closing-shape { --shape-y: 0px; --shape-rotation: 25deg; position: absolute; left: -13vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid var(--red); opacity: .65; transform: translate3d(0, var(--shape-y), 0) rotate(var(--shape-rotation)); }

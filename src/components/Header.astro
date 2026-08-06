@@ -13,7 +13,7 @@ const routeActive = (route: string) => active(href(route));
 ---
 <header class:list={["site-header", { "site-header--dark": dark }]}>
   <div class="header-inner">
-    <a class="brand" href={home} aria-label={`ADL Nexus — ${ui.nav.home}`}>
+    <a class="brand" href={home}>
       <span class="brand-main">ADL</span>
       <span class="brand-sub">Nexus</span>
     </a>
@@ -35,7 +35,7 @@ const routeActive = (route: string) => active(href(route));
 
     <div class="header-actions">
       <details class="language">
-        <summary aria-label={ui.languageLabel}>{lang.toUpperCase()} <span>⌄</span></summary>
+        <summary aria-label={`${lang.toUpperCase()} — ${ui.languageLabel}`}>{lang.toUpperCase()} <span aria-hidden="true">⌄</span></summary>
         <div>{localeCodes.map((locale) => <a class:list={{selected: locale === lang}} href={localeHref(locale)} hreflang={locale}>{languageNames[locale]}</a>)}</div>
       </details>
       <a class="header-cta" href={href('/contact')}>{ui.cta} <span>↗</span></a>
