@@ -9,11 +9,13 @@
     "start": "astro dev",
     "dev": "astro dev",
     "build": "astro build",
-    "verify": "astro build",
+    "verify": "npm run build && npm run seo:verify",
+    "seo:verify": "node scripts/verify-seo.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.1.6"
   }
 }

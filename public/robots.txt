@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adlnexus.com/sitemap-index.xml

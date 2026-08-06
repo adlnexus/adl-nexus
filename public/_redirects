@@ -1,0 +1,16 @@
+# Keep public page URLs on the canonical trailing-slash form.
+/about /about/ 301
+/contact /contact/ 301
+/insights /insights/ 301
+/services /services/ 301
+/solutions/learnie /solutions/learnie/ 301
+/solutions/pipedrive /solutions/pipedrive/ 301
+/sr /sr/ 301
+/es /es/ 301
+/de /de/ 301
+/ru /ru/ 301
+/:lang/about /:lang/about/ 301
+/:lang/contact /:lang/contact/ 301
+/:lang/insights /:lang/insights/ 301
+/:lang/services /:lang/services/ 301
+/:lang/solutions/:product /:lang/solutions/:product/ 301

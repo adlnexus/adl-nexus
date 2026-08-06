@@ -54,10 +54,13 @@ The central positioning is: **Carefully selected software. One trusted partner.*
 
 Do not deploy, connect external services, send enquiries, publish to GitHub, or change DNS unless the user explicitly requests that action.
 
+## Confirmed owner decisions
+
+- Production domain: `adlnexus.com`
+
 ## Current owner decisions pending
 
 - Final logo assets
-- Final domain
 - Public contact email confirmation
 - Native-speaker review of Serbian, Spanish, German and Russian copy
 - Final Insights copy

@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { equivalentLocaleRoute, localeCodes, type SiteLocale } from '../data/localization';
+import { equivalentLocaleRoute, localeCodes, socialMetadata, type SiteLocale } from '../data/localization';
 import '../styles/global.css';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   darkHeader?: boolean;
   lang?: SiteLocale;
+  robots?: string;
 }
 
 const {
@@ -16,8 +17,35 @@ const {
   description = 'We help organisations find the right software and help technology companies enter and grow in new markets.',
   darkHeader = false,
   lang = 'en',
+  robots = 'index, follow, max-image-preview:large',
 } = Astro.props;
-const alternateFor = (locale: SiteLocale) => equivalentLocaleRoute(Astro.url.pathname, locale);
+if (!Astro.site) throw new Error('Astro site URL is required for canonical SEO metadata.');
+const site = Astro.site;
+const canonicalPath = Astro.url.pathname === '/' ? '/' : `${Astro.url.pathname.replace(/\/+$/, '')}/`;
+const canonicalUrl = new URL(canonicalPath, site);
+const socialImageUrl = new URL('/og.png', site);
+const sitemapUrl = new URL('/sitemap-index.xml', site);
+const alternateFor = (locale: SiteLocale) => new URL(equivalentLocaleRoute(canonicalPath, locale), site);
+const social = socialMetadata[lang];
+const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${site.href}#organization`,
+    name: 'ADL Nexus',
+    url: site.href,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${site.href}#website`,
+    name: 'ADL Nexus',
+    url: site.href,
+    publisher: { '@id': `${site.href}#organization` },
+    inLanguage: [...localeCodes],
+  },
+]).replace(/</g, '\\u003c') : undefined;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -37,19 +65,32 @@ const alternateFor = (locale: SiteLocale) => equivalentLocaleRoute(Astro.url.pat
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
     <meta name="theme-color" content="#111113" />
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="sitemap" href={sitemapUrl.href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="ADL Nexus" />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:locale" content={social.openGraphLocale} />
+    {localeCodes.filter((locale) => locale !== lang).map((locale) => <meta property="og:locale:alternate" content={socialMetadata[locale].openGraphLocale} />)}
+    <meta property="og:image" content={socialImageUrl.href} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="ADL Nexus — Carefully selected software. One trusted partner." />
+    <meta property="og:image:alt" content={social.imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og.png" />
-    {localeCodes.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale)} />)}
-    <link rel="alternate" hreflang="x-default" href={alternateFor('en')} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl.href} />
+    <meta name="twitter:image:alt" content={social.imageAlt} />
+    {localeCodes.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale).href} />)}
+    <link rel="alternate" hreflang="x-default" href={alternateFor('en').href} />
+    {structuredData && <script type="application/ld+json" set:html={structuredData} />}
     <title>{title}</title>
   </head>
   <body>

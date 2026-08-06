@@ -5,8 +5,9 @@ export type SiteLocale = (typeof localeCodes)[number];
 export type LocalizedLandingCode = (typeof localizedLandingCodes)[number];
 
 export function routeFor(locale: SiteLocale, route = '/') {
-  if (locale === 'en') return route;
-  return route === '/' ? `/${locale}/` : `/${locale}${route}`;
+  const routePath = route === '/' ? '/' : `/${route.replace(/^\/+|\/+$/g, '')}/`;
+  if (locale === 'en') return routePath;
+  return routePath === '/' ? `/${locale}/` : `/${locale}${routePath}`;
 }
 
 export function equivalentLocaleRoute(pathname: string, locale: SiteLocale) {
@@ -150,3 +151,26 @@ export const landingCopy = {
   insights: { eyebrow: string; title: string; text: string; link: string };
   closing: { eyebrow: string; title: string; cta: string };
 }>;
+
+export const socialMetadata = {
+  en: {
+    openGraphLocale: 'en_GB',
+    imageAlt: 'ADL Nexus — Carefully selected software. One trusted partner.',
+  },
+  sr: {
+    openGraphLocale: 'sr_RS',
+    imageAlt: `ADL Nexus — ${landingCopy.sr.hero.first} ${landingCopy.sr.hero.accent}`,
+  },
+  es: {
+    openGraphLocale: 'es_ES',
+    imageAlt: `ADL Nexus — ${landingCopy.es.hero.first} ${landingCopy.es.hero.accent}`,
+  },
+  de: {
+    openGraphLocale: 'de_DE',
+    imageAlt: `ADL Nexus — ${landingCopy.de.hero.first} ${landingCopy.de.hero.accent}`,
+  },
+  ru: {
+    openGraphLocale: 'ru_RU',
+    imageAlt: `ADL Nexus — ${landingCopy.ru.hero.first} ${landingCopy.ru.hero.accent}`,
+  },
+} satisfies Record<SiteLocale, { openGraphLocale: string; imageAlt: string }>;

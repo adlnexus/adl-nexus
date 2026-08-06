@@ -1,6 +1,6 @@
 # ADL Nexus SEO improvement plan
 
-Status: planned
+Status: in progress
 
 Last updated: 2026-08-06
 
@@ -22,20 +22,22 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 
 ## Phase 1 — Canonical URL and crawl foundation
 
-- [ ] Set `site: 'https://adlnexus.com'` in `astro.config.mjs`.
-- [ ] Add an absolute, self-referencing canonical link to every indexable page.
-- [ ] Canonicalise contact variants such as `/contact?solution=pipedrive` and their localized equivalents to the clean contact URL.
-- [ ] Generate fully qualified `hreflang` URLs for `en`, `sr`, `es`, `de`, `ru` and `x-default`.
-- [ ] Keep every `hreflang` cluster self-referencing and reciprocal across all five languages.
-- [ ] Add an automatically generated XML sitemap containing only canonical, indexable production URLs.
-- [ ] Add `robots.txt` and reference `https://adlnexus.com/sitemap.xml`.
-- [ ] Add an explicit favicon link in the document head.
+- [x] Set `site: 'https://adlnexus.com'` in `astro.config.mjs`.
+- [x] Add an absolute, self-referencing canonical link to every indexable page.
+- [x] Canonicalise contact variants such as `/contact?solution=pipedrive` and their localized equivalents to the clean contact URL.
+- [x] Generate fully qualified `hreflang` URLs for `en`, `sr`, `es`, `de`, `ru` and `x-default`.
+- [x] Keep every `hreflang` cluster self-referencing and reciprocal across all five languages.
+- [x] Add an automatically generated XML sitemap containing only canonical, indexable production URLs.
+- [x] Add `robots.txt` and reference `https://adlnexus.com/sitemap-index.xml`.
+- [x] Add an explicit favicon link in the document head.
 - [ ] Add a custom 404 page and verify missing URLs return HTTP 404.
 - [ ] Redirect all HTTP traffic to HTTPS.
 - [ ] Redirect `www.adlnexus.com` to `adlnexus.com`.
-- [ ] Choose and enforce one trailing-slash policy consistently.
+- [x] Choose and enforce one trailing-slash policy consistently.
 - [ ] Prevent Cloudflare preview deployments from being indexed, while leaving production indexable.
-- [ ] Verify that no canonical, sitemap or language-alternate URL points to a preview deployment.
+- [x] Verify that no canonical, sitemap or language-alternate URL points to a preview deployment.
+
+Implementation note: Cloudflare Pages currently adds `X-Robots-Tag: noindex` to preview deployments by default. Verify the response header after the first preview deployment. The custom 404 page is intentionally deferred because the current implementation scope excludes new pages.
 
 ## Phase 2 — Page titles, descriptions and search intent
 
@@ -84,7 +86,7 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 - [ ] Include practical frameworks, original observations, examples and sources where relevant.
 - [ ] Link every article contextually to the most relevant service or solution page.
 - [ ] Add related-article links where they genuinely help the reader.
-- [ ] If launch precedes finished articles, clearly mark the section as forthcoming or keep placeholder Insights routes out of the index.
+- [x] If launch precedes finished articles, clearly mark the section as forthcoming or keep placeholder Insights routes out of the index.
 - [ ] Translate articles only after the English source is approved and native review is available.
 
 ## Phase 5 — Entity, credibility and structured data
@@ -97,7 +99,7 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 - [ ] Do not claim official partner status unless it is documented and owner-approved.
 - [ ] Add authentic case studies, testimonials or outcomes only when permission and evidence exist.
 - [ ] Link to authoritative professional and company profiles where appropriate.
-- [ ] Add accurate `Organization` and `WebSite` JSON-LD to the homepage or About page.
+- [x] Add accurate `Organization` and `WebSite` JSON-LD to the homepage or About page.
 - [ ] Add the final owner-approved logo to structured data when available; do not use the temporary text mark as a final logo.
 - [ ] Add `BreadcrumbList` structured data to nested solution, service and article pages.
 - [ ] Add service-level structured data only when it accurately represents visible page content.
@@ -110,16 +112,16 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 - [ ] Add contextual links between related services, solutions and articles.
 - [ ] Add visible breadcrumbs to nested pages if they improve orientation.
 - [ ] Keep every priority page linked from at least one relevant page beyond global navigation.
-- [ ] Re-run the broken-link and orphan-route audit after every route change.
+- [x] Re-run the broken-link and orphan-route audit after every route change.
 - [ ] Preserve keyboard access, visible focus states and mobile navigation behaviour.
 
 ## Phase 7 — Social and image metadata
 
-- [ ] Add an absolute `og:url` to every page.
-- [ ] Generate absolute Open Graph and Twitter image URLs from `https://adlnexus.com`.
-- [ ] Add localized `og:locale` and `og:locale:alternate` values.
-- [ ] Localize the Open Graph image alternative text.
-- [ ] Add explicit Twitter title and description metadata.
+- [x] Add an absolute `og:url` to every page.
+- [x] Generate absolute Open Graph and Twitter image URLs from `https://adlnexus.com`.
+- [x] Add localized `og:locale` and `og:locale:alternate` values.
+- [x] Localize the Open Graph image alternative text.
+- [x] Add explicit Twitter title and description metadata.
 - [ ] Compress `public/og.png` without materially reducing quality.
 - [ ] Consider page-specific social images for approved articles and major landing pages.
 - [ ] Use meaningful alt text for future informative images and empty alt text for purely decorative images.
@@ -130,10 +132,10 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 - [ ] Measure real LCP, INP and CLS after the domain is live.
 - [ ] Check whether preloading the homepage hero improves LCP before implementing it.
 - [ ] Verify Cloudflare caching and compression for HTML, CSS, JavaScript and image assets.
-- [ ] Keep remote fonts, heavy frameworks and unnecessary client-side JavaScript out of the site.
+- [x] Keep remote fonts, heavy frameworks and unnecessary client-side JavaScript out of the site.
 - [ ] Check desktop and phone layouts after every visual or content change.
 - [ ] Check every language for horizontal overflow and long-word wrapping.
-- [ ] Verify that important content and navigation remain available without JavaScript.
+- [x] Verify that important content and navigation remain available without JavaScript.
 
 ## Phase 9 — Search measurement and launch
 
@@ -157,7 +159,7 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 - [ ] `robots.txt` is reachable and references the production sitemap.
 - [ ] All language clusters contain valid, absolute and reciprocal alternatives.
 - [ ] Titles, descriptions and H1s are approved and localized appropriately.
-- [ ] Placeholder Insights content is either replaced or intentionally excluded from indexing.
+- [x] Placeholder Insights content is either replaced or intentionally excluded from indexing.
 - [ ] Structured data validates and contains only visible, verified information.
 - [ ] Desktop and phone layouts have no horizontal overflow.
 - [ ] Contact details and product-relationship wording are owner-approved.
@@ -181,3 +183,4 @@ Make the ADL Nexus presentation reliably discoverable, understandable and measur
 Add dated entries below when a phase is completed, materially changed or blocked.
 
 - 2026-08-06: SEO audit completed; production domain confirmed as `adlnexus.com`; implementation not yet started.
+- 2026-08-06: Implemented the non-content SEO foundation: production canonicals, absolute language and social metadata, five-language sitemap generation, robots and favicon discovery, trailing-slash redirects, minimal verified entity structured data, draft Insights `noindex`, and automated SEO verification. New pages and new SEO content were intentionally deferred.

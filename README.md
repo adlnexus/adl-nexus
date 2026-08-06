@@ -60,18 +60,20 @@ Changes normally appear in the browser as soon as a file is saved. Press `Ctrl+C
 | Footer and contact details | `src/components/Footer.astro` |
 | Shared colours, type and buttons | `src/styles/global.css` |
 | Public images and social card | `public/` |
+| SEO implementation checklist | `docs/plans/seo-improvement-plan.md` |
+| Generated SEO verification | `scripts/verify-seo.mjs` |
 
 See [`docs/CONTENT_AND_BRAND.md`](./docs/CONTENT_AND_BRAND.md) before changing visual identity, product claims, languages, or contact information.
 
 ## Check a change before publishing
 
-Run:
+Run the complete production and SEO check:
 
 ```sh
-npm run build
+npm run verify
 ```
 
-A successful build ends with `Complete!` and creates the publishable site in `dist/`. Do not edit `dist/`; Astro recreates it on every build.
+A successful verification builds the publishable site in `dist/`, checks all generated routes, validates canonical and language metadata, checks internal links, and verifies the sitemap and robots file. Do not edit `dist/`; Astro recreates it on every build.
 
 For important visual changes, check at least:
 
@@ -130,7 +132,7 @@ The following items still need owner confirmation:
 
 - Replace the temporary text-based ADL mark when the final logo arrives.
 - Confirm the long-term public contact list. Current enquiries are addressed to `andjelkalz@gmail.com` and `danilo.labovic1@gmail.com`.
-- Confirm the final domain and add it to `astro.config.mjs` for fully qualified social-sharing metadata.
+- Verify the confirmed `adlnexus.com` custom domain, HTTPS and canonical redirects after the first production deployment.
 - Review the Serbian, Spanish, German and Russian translations with native speakers before launch.
 - Replace draft Insights entries with approved articles or remove the section until articles are ready.
 - Review privacy requirements before adding analytics, cookies, form processors, or tracking pixels.
