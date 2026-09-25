@@ -14,7 +14,7 @@ After cloning and opening this folder, try prompts such as:
 
 > Add this new team biography to the About page. Keep the existing tone and layout.
 
-> Replace the temporary ADL wordmark with the logo files in `public/brand/`, then verify every page.
+> Update an approved logo treatment from `public/brand/`, then verify every page.
 
 > Prepare this site for Cloudflare Pages and explain any steps I must complete myself.
 
@@ -52,6 +52,7 @@ Changes normally appear in the browser as soon as a file is saved. Press `Ctrl+C
 | Insights | `src/pages/insights.astro` |
 | Contact page and enquiry email | `src/pages/contact.astro` |
 | Pipedrive page | `src/pages/solutions/pipedrive.astro` |
+| Detailed English and Serbian Pipedrive copy | `src/data/pipedrive.ts` |
 | Learnie page | `src/pages/solutions/learnie.astro` |
 | Serbian, Spanish, German and Russian routes | `src/pages/[lang]/` |
 | Homepage translations and language labels | `src/data/localization.ts` |
@@ -59,6 +60,7 @@ Changes normally appear in the browser as soon as a file is saved. Press `Ctrl+C
 | Header and navigation | `src/components/Header.astro` |
 | Footer and contact details | `src/components/Footer.astro` |
 | Shared colours, type and buttons | `src/styles/global.css` |
+| Approved ADL Nexus identity assets | `public/brand/` |
 | Public images and social card | `public/` |
 | SEO implementation checklist | `docs/plans/seo-improvement-plan.md` |
 | Generated SEO verification | `scripts/verify-seo.mjs` |
@@ -130,7 +132,6 @@ Cloudflare creates preview deployments for non-production branches. Use those pr
 
 The following items still need owner confirmation:
 
-- Replace the temporary text-based ADL mark when the final logo arrives.
 - Confirm the long-term public contact list. Current enquiries are addressed to `andjelkalz@gmail.com` and `danilo.labovic1@gmail.com`.
 - Verify the confirmed `adlnexus.com` custom domain, HTTPS and canonical redirects after the first production deployment.
 - Review the Serbian, Spanish, German and Russian translations with native speakers before launch.

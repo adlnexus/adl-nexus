@@ -8,6 +8,7 @@ interface Props {
   title?: string;
   description?: string;
   darkHeader?: boolean;
+  brandVariant?: 'default' | 'green';
   lang?: SiteLocale;
   robots?: string;
 }
@@ -16,6 +17,7 @@ const {
   title = 'ADL Nexus — Software solutions and market growth',
   description = 'We help organisations find the right software and help technology companies enter and grow in new markets.',
   darkHeader = false,
+  brandVariant = 'default',
   lang = 'en',
   robots = 'index, follow, max-image-preview:large',
 } = Astro.props;
@@ -34,6 +36,7 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     '@id': `${site.href}#organization`,
     name: 'ADL Nexus',
     url: site.href,
+    logo: new URL('/brand/adl-nexus-logo.svg', site).href,
     description,
   },
   {
@@ -66,11 +69,15 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
-    <meta name="theme-color" content="#111113" />
+    <meta name="theme-color" content="#004a98" />
     <link rel="canonical" href={canonicalUrl.href} />
     <link rel="sitemap" href={sitemapUrl.href} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -94,7 +101,7 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <title>{title}</title>
   </head>
   <body>
-    <Header dark={darkHeader} lang={lang} />
+    <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} />
     <main><slot /></main>
     <Footer lang={lang} />
   </body>

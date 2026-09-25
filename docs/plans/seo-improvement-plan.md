@@ -95,12 +95,12 @@ Implementation note: Cloudflare Pages currently adds `X-Robots-Tag: noindex` to 
 - [ ] Confirm the long-term public contact email and move from provisional Gmail addresses to a domain-based address if available.
 - [ ] Add named leadership biographies with relevant, verifiable experience.
 - [ ] State the markets, languages and engagement types ADL actually supports.
-- [ ] Confirm how the Pipedrive and Learnie relationships may be described publicly.
+- [ ] Confirm how the Learnie relationship may be described publicly. The supplied Pipedrive Premier Partner wording is owner-approved.
 - [ ] Do not claim official partner status unless it is documented and owner-approved.
 - [ ] Add authentic case studies, testimonials or outcomes only when permission and evidence exist.
 - [ ] Link to authoritative professional and company profiles where appropriate.
 - [x] Add accurate `Organization` and `WebSite` JSON-LD to the homepage or About page.
-- [ ] Add the final owner-approved logo to structured data when available; do not use the temporary text mark as a final logo.
+- [x] Add the final owner-approved logo to structured data.
 - [ ] Add `BreadcrumbList` structured data to nested solution, service and article pages.
 - [ ] Add service-level structured data only when it accurately represents visible page content.
 - [ ] Validate structured data before launch and recheck it after deployment.
@@ -169,13 +169,14 @@ Implementation note: Cloudflare Pages currently adds `X-Robots-Tag: noindex` to 
 ## Owner decisions still required
 
 - [x] Production domain: `adlnexus.com`.
-- [ ] Final logo assets.
+- [x] Final logo assets.
 - [ ] Public domain-based contact email.
 - [ ] Native-speaker approval of Serbian, Spanish, German and Russian copy.
 - [ ] Final Insights copy, authorship and publishing order.
 - [ ] Exact geographic markets ADL will target.
 - [ ] Publishable organisation and leadership details.
-- [ ] Approved wording for Pipedrive and Learnie relationships.
+- [x] Approved wording for the Pipedrive relationship.
+- [ ] Approved wording for the Learnie relationship.
 - [ ] Privacy and behavioural analytics approach.
 
 ## Progress notes

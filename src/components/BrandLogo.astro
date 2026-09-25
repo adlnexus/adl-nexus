@@ -1,0 +1,43 @@
+---
+type LogoVariant =
+  | 'full'
+  | 'blue'
+  | 'white'
+  | 'green'
+  | 'tagline'
+  | 'tagline-white'
+  | 'symbol-blue'
+  | 'symbol-white';
+
+interface Props {
+  variant?: LogoVariant;
+  alt?: string;
+  decorative?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'full',
+  alt = 'ADL Nexus',
+  decorative = false,
+  class: className,
+} = Astro.props;
+
+const sources: Record<LogoVariant, string> = {
+  full: '/brand/adl-nexus-logo.svg',
+  blue: '/brand/adl-nexus-logo-blue.svg',
+  white: '/brand/adl-nexus-logo-white.svg',
+  green: '/brand/adl-nexus-logo-green.svg',
+  tagline: '/brand/adl-nexus-logo-tagline.svg',
+  'tagline-white': '/brand/adl-nexus-logo-tagline-white.svg',
+  'symbol-blue': '/brand/adl-nexus-symbol-blue.svg',
+  'symbol-white': '/brand/adl-nexus-symbol-white.svg',
+};
+---
+<img
+  class={className}
+  src={sources[variant]}
+  alt={decorative ? '' : alt}
+  aria-hidden={decorative ? 'true' : undefined}
+  decoding="async"
+/>

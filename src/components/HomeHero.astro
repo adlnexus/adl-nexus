@@ -1,0 +1,264 @@
+---
+import { routeFor, type SiteLocale } from '../data/localization';
+
+interface Props {
+  lang?: SiteLocale;
+  eyebrow: string;
+  first: string;
+  accent: string;
+  support: string;
+  cta: string;
+}
+
+const {
+  lang = 'en',
+  eyebrow,
+  first,
+  accent,
+  support,
+  cta,
+} = Astro.props;
+
+const footCopy: Record<SiteLocale, [string, string, string]> = {
+  en: ['Belgrade', 'Working internationally', 'Independent representation'],
+  sr: ['Beograd', 'Radimo međunarodno', 'Nezavisno zastupanje'],
+  es: ['Belgrado', 'Trabajamos internacionalmente', 'Representación independiente'],
+  de: ['Belgrad', 'International tätig', 'Unabhängige Vertretung'],
+  ru: ['Белград', 'Работаем на международных рынках', 'Независимое представительство'],
+};
+
+const heroImageAlt: Record<SiteLocale, string> = {
+  en: 'Abstract layered blue and mint forms suggesting connection and a clear path.',
+  sr: 'Apstraktne slojevite forme u plavoj i mint boji koje predstavljaju povezivanje i jasan put.',
+  es: 'Formas abstractas superpuestas en azul y menta que sugieren conexión y un camino claro.',
+  de: 'Abstrakte geschichtete Formen in Blau und Mint, die Verbindung und einen klaren Weg andeuten.',
+  ru: 'Абстрактные многослойные формы в синих и мятных тонах, символизирующие связь и ясный путь.',
+};
+---
+<section class="home-hero">
+  <div class="home-hero-visual">
+    <img
+      class="home-hero-image"
+      src="/brand/adl-nexus-hero-abstract.webp"
+      alt={heroImageAlt[lang]}
+      width="1672"
+      height="941"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+
+  <div class="home-hero-grid container">
+    <div class="home-hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="display">
+        <span>{first}</span>
+        <strong>{accent}</strong>
+      </h1>
+      <p class="home-hero-lead">{support}</p>
+      <a class="button button--primary" href={`${routeFor(lang, '/contact')}#start-a-conversation`}>{cta}</a>
+    </div>
+
+    <div class="home-hero-emblem" aria-hidden="true"></div>
+  </div>
+
+  <div class="home-hero-foot container">
+    {footCopy[lang].map((item) => <span>{item}</span>)}
+  </div>
+</section>
+
+<style>
+  .home-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 7.5rem 0 1.5rem;
+    background: #f8f8f5;
+    color: var(--ink);
+  }
+
+  .home-hero::before {
+    position: absolute;
+    z-index: 2;
+    inset: 104px 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 74, 152, .24), transparent);
+    content: "";
+    pointer-events: none;
+  }
+
+  .home-hero-visual {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    background: #f8f8f5;
+  }
+
+  .home-hero-visual::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(248, 248, 245, .99) 0%, rgba(248, 248, 245, .97) 30%, rgba(248, 248, 245, .82) 45%, rgba(248, 248, 245, .22) 69%, rgba(248, 248, 245, .04) 100%),
+      linear-gradient(180deg, rgba(248, 248, 245, .3) 0%, transparent 38%, rgba(248, 248, 245, .2) 100%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .home-hero-visual::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background:
+      radial-gradient(circle at 74% 44%, rgba(145, 205, 195, .13), transparent 28%),
+      linear-gradient(135deg, rgba(0, 74, 152, .025), transparent 55%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .home-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .home-hero-grid {
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    padding-block: clamp(2.5rem, 6vh, 5rem);
+  }
+
+  .home-hero-copy {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .home-hero .eyebrow { color: var(--blue); }
+
+  .home-hero .display {
+    max-width: 10.5ch;
+    font-size: var(--hero-title-size);
+  }
+
+  .home-hero .display > span,
+  .home-hero .display > strong { display: block; }
+
+  .home-hero .display strong {
+    color: var(--blue);
+    font-weight: inherit;
+  }
+
+  .home-hero-lead {
+    max-width: 650px;
+    margin: 2rem 0;
+    color: color-mix(in srgb, var(--ink) 72%, transparent);
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    line-height: 1.55;
+  }
+
+  .home-hero .button--primary {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: var(--white);
+  }
+
+  .home-hero .button--primary:hover,
+  .home-hero .button--primary:focus-visible {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .home-hero-emblem {
+    position: relative;
+    z-index: 1;
+    min-height: min(68vh, 700px);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  .home-hero-emblem::before {
+    position: absolute;
+    width: min(78%, 590px);
+    aspect-ratio: 1.08;
+    border: clamp(2.75rem, 5.2vw, 5rem) solid rgba(0, 74, 152, .25);
+    border-top-color: rgba(145, 205, 195, .42);
+    border-right-color: rgba(0, 74, 152, .36);
+    background: rgba(255, 255, 255, .035);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
+    content: "";
+    transform: rotate(36deg);
+  }
+
+  .home-hero-emblem::after {
+    position: absolute;
+    right: 1%;
+    bottom: 13%;
+    width: 43%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 74, 152, .5), rgba(145, 205, 195, .72));
+    content: "";
+  }
+
+  .home-hero-foot {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 74, 152, .22);
+    color: color-mix(in srgb, var(--ink) 56%, transparent);
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .home-hero { min-height: 100svh; padding-top: 6.5rem; }
+    .home-hero::before { top: 84px; }
+    .home-hero-visual::before {
+      background:
+        linear-gradient(90deg, rgba(248, 248, 245, .98), rgba(248, 248, 245, .72)),
+        linear-gradient(180deg, rgba(248, 248, 245, .3), transparent 34%, rgba(248, 248, 245, .54));
+    }
+    .home-hero-image { object-position: 66% center; }
+    .home-hero-grid {
+      flex: 1 1 auto;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-block: 2rem;
+    }
+    .home-hero-emblem {
+      position: absolute;
+      right: -27vw;
+      bottom: -6rem;
+      width: 80vw;
+      min-height: 80vw;
+      opacity: 1;
+    }
+    .home-hero-emblem::before { border-width: clamp(1.6rem, 7vw, 3rem); opacity: .48; }
+    .home-hero-emblem::after { opacity: .48; }
+  }
+
+  @media (max-width: 600px) {
+    .home-hero-grid { padding-block: 1.5rem; }
+    .home-hero-lead { max-width: 31rem; }
+    .home-hero-foot { justify-content: space-between; }
+    .home-hero-foot span:nth-child(2) { display: none; }
+  }
+</style>

@@ -1,21 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ClosingCta from '../components/ClosingCta.astro';
-import HeroMark from '../components/HeroMark.astro';
+import FeaturedSolutions from '../components/FeaturedSolutions.astro';
+import HomeHero from '../components/HomeHero.astro';
 ---
-<BaseLayout darkHeader>
-  <section class="hero">
-    <div class="hero-grid container">
-      <div class="hero-copy">
-        <p class="eyebrow">Software solutions · Market growth</p>
-        <h1 class="display">Carefully selected software.<br /><span>One trusted partner.</span></h1>
-        <p class="hero-lead">We help organisations find the right software solutions and help technology companies enter and grow in new markets.</p>
-        <a class="button button--red" href="/contact/">Contact us</a>
-      </div>
-      <HeroMark />
-    </div>
-    <div class="hero-foot container"><span>Belgrade</span><span>Working internationally</span><span>Independent representation</span></div>
-  </section>
+<BaseLayout>
+  <HomeHero
+    eyebrow="Software solutions · Market growth"
+    first="Carefully selected software."
+    accent="One trusted partner."
+    support="We help organisations find the right software solutions and help technology companies enter and grow in new markets."
+    cta="Contact us"
+  />
 
   <section class="audiences section">
     <div class="container">
@@ -25,14 +21,14 @@ import HeroMark from '../components/HeroMark.astro';
           <span class="audience-num">01 / Organisations</span>
           <h2>Find software<br />that fits.</h2>
           <p>We carefully select one strong solution for each organisational need, rather than offering a catalogue of competing products. Our portfolio is deliberately selective. We partner only with solutions we believe in.</p>
-          <a class="button" href="/contact/">Let’s chat</a>
+          <a class="button" href="/contact/#start-a-conversation">Let’s chat</a>
         </article>
         <article class="audience-card audience-card--dark">
           <span class="audience-num">02 / Tech companies</span>
           <h2>Grow in the<br />right markets.</h2>
           <p>Business development, sales representation and support backed by extensive market experience and a strong international network.</p>
           <p class="principle">We work as a dedicated extension of your team and do not represent competing solutions that address the same need.</p>
-          <div class="card-actions"><a class="button" href="/services/">Explore our services</a><a class="text-link" href="/contact/">Let’s chat</a></div>
+          <div class="card-actions"><a class="button" href="/services/">Explore our services</a><a class="text-link" href="/contact/?solution=market-entry#start-a-conversation">Let’s chat</a></div>
         </article>
       </div>
     </div>
@@ -50,76 +46,40 @@ import HeroMark from '../components/HeroMark.astro';
     </div>
   </section>
 
-  <section class="solutions section">
-    <div class="container">
-      <div class="solutions-head"><div><p class="eyebrow">Featured solutions</p><h2 class="section-title">One strong solution for every real need.</h2></div><p>Our portfolio is small on purpose. Every product earns its place through usefulness, fit and long-term value.</p></div>
-      <div class="solution-list">
-        <article class="solution solution--pipedrive">
-          <div class="solution-name">pipedrive</div><div><span>Customer relationship management</span><h3>The easy and effective CRM for closing deals.</h3><p>Track your sales pipeline, optimise leads, manage deals and automate your sales process so you can focus on selling.</p><div class="solution-actions"><a class="button" href="/contact/?solution=pipedrive">Book a demo</a><a class="text-link" href="/solutions/pipedrive/">Explore Pipedrive</a></div></div>
-        </article>
-        <article class="solution solution--learnie">
-          <div class="solution-name">Learnie<sup>•</sup></div><div><span>Learning and knowledge sharing</span><h3>Learning that feels natural, not like a system.</h3><p>A mobile-first learning platform that preserves valuable experience, improves onboarding and supports continuous learning without complex traditional training systems.</p><div class="solution-actions"><a class="button" href="/contact/?solution=learnie">Book a demo</a><a class="text-link" href="/solutions/learnie/">Explore Learnie</a></div></div>
-        </article>
-      </div>
-    </div>
-  </section>
+  <FeaturedSolutions />
 
   <ClosingCta title="The right software. The right market. Let’s find it." text="Tell us where you want to go. We’ll bring focus, clarity and a partnership built to last." />
 </BaseLayout>
 
 <style>
-  .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: 7.5rem 0 1.5rem; background-color: var(--ink); background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.78) 48%, rgba(17,17,19,.28) 100%), url('/hero-professional.webp'); background-position: center; background-size: cover; color: var(--white); }
-  .hero-grid { flex: 1; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 2rem; padding-top: 1rem; }
-  .hero-copy { position: relative; z-index: 2; }
-  .hero .display { max-width: 10.5ch; font-size: clamp(3.15rem, min(6.2vw, 9.5svh), 6.6rem); }
-  .hero .display span { color: var(--red); }
-  .hero-lead { max-width: 650px; margin: 2rem 0; color: #bdbdc2; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.55; }
-  .hero-foot { display: flex; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid #353539; color: #8c8c92; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
   .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 2.5rem; background: var(--line); border: 1px solid var(--line); }
   .audience-card { min-height: 600px; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
-  .audience-card--dark { background: var(--ink); color: var(--white); }
-  .audience-num { color: var(--red); font-size: .71rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  .audience-card--dark .audience-num { color: var(--red-on-dark); }
+  .audience-card--dark { background: var(--blue); color: var(--white); }
+  .audience-num { color: var(--accent); font-size: .71rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .audience-card--dark .audience-num { color: var(--accent-on-dark); }
   .audience-card h2 { margin: auto 0 2rem; font-size: clamp(2.8rem, 5.5vw, 5.6rem); letter-spacing: -.065em; line-height: .92; }
   .audience-card p { max-width: 540px; margin: 0 0 2rem; color: var(--muted); line-height: 1.65; }
   .audience-card--dark p { color: #bdbdc2; }
-  .audience-card .principle { padding-left: 1rem; border-left: 2px solid var(--red); color: var(--white); font-size: .85rem; }
+  .audience-card .principle { padding-left: 1rem; border-left: 2px solid var(--accent); color: var(--white); font-size: .85rem; }
   .audience-card--dark .button { border-color: var(--white); color: var(--white); }
   .audience-card--dark .button:hover { background: var(--white); color: var(--ink); }
-  .card-actions, .solution-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-  .why { background: var(--red); color: var(--white); }
-  .why .eyebrow { color: var(--white); }
-  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 5rem; border-top: 1px solid rgba(255,255,255,.4); }
-  .why-grid article { min-height: 310px; padding: 2rem 2.5rem 0 0; border-right: 1px solid rgba(255,255,255,.35); }
+  .card-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .why { background: var(--mint); color: var(--ink); }
+  .why .eyebrow { color: var(--blue); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 5rem; border-top: 1px solid rgba(0,74,152,.35); }
+  .why-grid article { min-height: 310px; padding: 2rem 2.5rem 0 0; border-right: 1px solid rgba(0,74,152,.28); }
   .why-grid article + article { padding-left: 2.5rem; }
   .why-grid article:last-child { border-right: 0; }
   .why-grid span { font-size: .7rem; font-weight: 800; letter-spacing: .14em; }
   .why-grid h3 { margin: 6rem 0 1rem; font-size: 1.65rem; letter-spacing: -.035em; }
   .why-grid p { max-width: 330px; line-height: 1.55; }
-  .solutions-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; }
-  .solutions-head > p { max-width: 430px; margin: 0; color: var(--muted); line-height: 1.6; }
-  .solution-list { margin-top: 5rem; border-top: 1px solid var(--line); }
-  .solution { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 6vw, 7rem); padding: clamp(3rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
-  .solution--pipedrive { background: #e8f3ee; }
-  .solution--learnie { background: #f1eafb; }
-  .solution-name { align-self: center; color: #0a6241; font-size: clamp(3.3rem, 7vw, 7.2rem); font-weight: 800; letter-spacing: -.075em; }
-  .solution--learnie .solution-name { color: #492077; }
-  .solution-name sup { color: #c346ef; }
-  .solution > div:last-child > span { color: var(--red); font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-  .solution h3 { max-width: 15ch; margin: 1rem 0; font-size: clamp(2rem, 3.7vw, 3.8rem); letter-spacing: -.05em; line-height: 1; }
-  .solution p { max-width: 580px; color: var(--muted); line-height: 1.65; }
-  .solution-actions { margin-top: 2rem; }
   @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .audience-grid, .solution { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
-    .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.35); }
+    .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(0,74,152,.28); }
     .why-grid h3 { margin-top: 3rem; }
-    .solutions-head { align-items: flex-start; flex-direction: column; }
   }
   @media (max-width: 600px) {
-    .hero { min-height: 900px; background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.76) 70%, rgba(17,17,19,.48) 100%), url('/hero-professional.webp'); background-position: 62% center; }
-    .hero-foot span:nth-child(2) { display: none; }
     .audience-card { min-height: 540px; }
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import HeroMark from '../../components/HeroMark.astro';
+import FeaturedSolutions from '../../components/FeaturedSolutions.astro';
+import HomeHero from '../../components/HomeHero.astro';
 import { landingCopy, localizedLandingCodes, routeFor, type LocalizedLandingCode } from '../../data/localization';
 
 export function getStaticPaths() {
@@ -15,18 +16,15 @@ interface Props {
 const { lang, copy } = Astro.props;
 const href = (route: string) => routeFor(lang, route);
 ---
-<BaseLayout darkHeader lang={lang} title={copy.title} description={copy.description}>
-  <section class="localized-hero">
-    <div class="localized-hero-grid container">
-      <div class="localized-hero-copy">
-        <p class="eyebrow">{copy.hero.eyebrow}</p>
-        <h1 class="display">{copy.hero.first}<br /><span>{copy.hero.accent}</span></h1>
-        <p>{copy.hero.support}</p>
-        <a class="button button--red" href={href('/contact')}>{copy.hero.cta}</a>
-      </div>
-      <HeroMark />
-    </div>
-  </section>
+<BaseLayout lang={lang} title={copy.title} description={copy.description}>
+  <HomeHero
+    lang={lang}
+    eyebrow={copy.hero.eyebrow}
+    first={copy.hero.first}
+    accent={copy.hero.accent}
+    support={copy.hero.support}
+    cta={copy.hero.cta}
+  />
 
   <section class="section" id="about">
     <div class="container">
@@ -46,54 +44,30 @@ const href = (route: string) => routeFor(lang, route);
     </div>
   </section>
 
-  <section class="section" id="solutions">
-    <div class="container">
-      <p class="eyebrow">{copy.products.eyebrow}</p>
-      <div class="products">
-        <a href={href('/solutions/pipedrive')}><strong>pipedrive</strong><span>{copy.products.pipedrive} ↗</span></a>
-        <a href={href('/solutions/learnie')}><strong>Learnie•</strong><span>{copy.products.learnie} ↗</span></a>
-      </div>
-    </div>
-  </section>
+  <FeaturedSolutions lang={lang} />
 
   <section class="localized-contact" id="contact">
     <div class="container">
       <p class="eyebrow">{copy.closing.eyebrow}</p>
       <h2>{copy.closing.title}</h2>
-      <a class="button button--red" href={href('/contact')}>{copy.closing.cta}</a>
+      <a class="button button--primary" href={`${href('/contact')}#start-a-conversation`}>{copy.closing.cta}</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .localized-hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding: 7.5rem 0 4rem; background-color: var(--ink); background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.78) 48%, rgba(17,17,19,.28) 100%), url('/hero-professional.webp'); background-position: center; background-size: cover; color: var(--white); }
-  .localized-hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 2rem; }
-  .localized-hero-copy { position: relative; z-index: 2; }
-  .localized-hero .display { max-width: 12ch; font-size: clamp(3.15rem, min(6.2vw, 9.5svh), 6.6rem); }
-  .localized-hero .display span { color: var(--red); }
-  .localized-hero p:not(.eyebrow) { max-width: 680px; margin: 2rem 0; color: #bdbdc2; font-size: clamp(1.05rem, 1.5vw, 1.2rem); line-height: 1.55; }
   .localized-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 3rem; background: var(--line); }
   .localized-grid article { min-height: 440px; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
-  .localized-grid span { color: var(--red); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .localized-grid span { color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
   .localized-grid h2 { max-width: 13ch; margin: 2rem 0; font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -.06em; line-height: .95; }
   .localized-grid p { color: var(--muted); line-height: 1.6; }
-  .localized-why { background: var(--red); color: var(--white); }
-  .localized-why .eyebrow { color: var(--white); }
-  .localized-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.4); }
+  .localized-why { background: var(--mint); color: var(--ink); }
+  .localized-why .eyebrow { color: var(--blue); }
+  .localized-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(0,74,152,.35); }
   .localized-three p { max-width: 340px; line-height: 1.55; }
-  .products { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
-  .products a { min-height: 330px; display: flex; flex-direction: column; justify-content: space-between; padding: 3rem; background: var(--white); }
-  .products a:first-child { background: #e8f3ee; color: #0a6241; }
-  .products a:last-child { background: #f1eafb; color: #492077; }
-  .products strong { font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.07em; }
-  .products span { font-size: .8rem; font-weight: 800; line-height: 1.4; text-transform: uppercase; }
   .localized-contact { padding: clamp(7rem, 14vw, 13rem) 0; background: var(--ink); color: var(--white); text-align: center; }
   .localized-contact h2 { max-width: 13ch; margin: 1rem auto 3rem; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .93; }
-  @media (max-width: 900px) {
-    .localized-hero-grid { grid-template-columns: 1fr; }
-  }
   @media (max-width: 750px) {
-    .localized-hero { background-image: linear-gradient(90deg, rgba(17,17,19,.96) 0%, rgba(17,17,19,.76) 70%, rgba(17,17,19,.48) 100%), url('/hero-professional.webp'); background-position: 62% center; }
-    .localized-grid, .localized-three, .products { grid-template-columns: 1fr; }
+    .localized-grid, .localized-three { grid-template-columns: 1fr; }
   }
 </style>

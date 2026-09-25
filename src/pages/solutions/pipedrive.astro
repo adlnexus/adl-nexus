@@ -1,39 +1,277 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ClosingCta from '../../components/ClosingCta.astro';
-import { localizedPagesCopy } from '../../data/localized-pages';
-import { routeFor, type LocalizedLandingCode, type SiteLocale } from '../../data/localization';
+import { routeFor, type SiteLocale } from '../../data/localization';
+import { pipedriveDetailedCopy, pipedriveTrialHref } from '../../data/pipedrive';
+
 interface Props { lang?: SiteLocale }
 const { lang = 'en' } = Astro.props;
-const english = {
-  title: 'Pipedrive CRM — ADL Nexus', eyebrow: 'Featured solution · CRM', headline: 'The easy and effective CRM for closing deals.', lead: 'Track your sales pipeline, optimise leads, manage deals and automate your entire sales process—so your team can focus on selling.', demo: 'Book a demo',
-  visual: ['New lead', 'Contact made', 'Proposal', 'Won', '', ''] as [string, string, string, string, string, string], introTitle: 'Built around the way sales actually happens.', intro: ['Pipedrive turns complex sales activity into a clear, actionable pipeline. It helps teams build consistent habits, prioritise the right opportunities and know exactly what needs to happen next.', 'ADL Nexus helps you assess fit, see the platform in context and make a confident decision before implementation.'] as [string, string], why: 'Why Pipedrive',
-  benefits: [
-    { label: '01', title: 'See every deal clearly', text: 'A visual pipeline gives your team one shared view of priorities, next steps and momentum.' },
-    { label: '02', title: 'Keep selling focused', text: 'Automate repetitive admin while preserving the personal work that moves opportunities forward.' },
-    { label: '03', title: 'Improve with evidence', text: 'Use activity and conversion insights to understand what works and where deals slow down.' },
-  ], closing: { eyebrow: 'Start a conversation', title: 'See your sales process with fresh clarity.', text: 'Book a focused Pipedrive demo shaped around your team, pipeline and goals.', button: 'Contact us' },
-};
-const copy = lang === 'en' ? english : localizedPagesCopy[lang as LocalizedLandingCode].pipedrive;
-const demoHref = `${routeFor(lang, '/contact')}?solution=pipedrive`;
+const detail = pipedriveDetailedCopy[lang];
+const demoHref = `${routeFor(lang, '/contact')}?solution=pipedrive#start-a-conversation`;
+const pageTitle = detail.title;
+const pageDescription = detail.description;
 ---
-<BaseLayout lang={lang} title={copy.title} description={copy.lead}>
-  <section class="product-hero pipedrive"><div class="container product-grid"><div><p class="eyebrow">{copy.eyebrow}</p><div class="wordmark">pipedrive</div><h1>{copy.headline}</h1><p>{copy.lead}</p><a class="button" href={demoHref}>{copy.demo}</a></div><div class="pipeline" aria-hidden="true">{copy.visual.slice(0, 4).map((label) => <span>{label}</span>)}<i></i><i></i><i></i></div></div></section>
-  <section class="section"><div class="container split-intro"><h2 class="section-title">{copy.introTitle}</h2><div class="copy"><p>{copy.intro[0]}</p><p>{copy.intro[1]}</p></div></div></section>
-  <section class="section benefits"><div class="container"><p class="eyebrow">{copy.why}</p><div class="card-grid">{copy.benefits.map((benefit) => <article class="plain-card"><span class="num">{benefit.label}</span><h3>{benefit.title}</h3><p>{benefit.text}</p></article>)}</div></div></section>
-  <ClosingCta lang={lang} eyebrow={copy.closing.eyebrow} title={copy.closing.title} text={copy.closing.text} buttonLabel={copy.closing.button} />
+
+<BaseLayout lang={lang} title={pageTitle} description={pageDescription} brandVariant="green">
+  {detail && (
+    <div class="pd-page">
+      <section class="pd-hero">
+        <div class="container pd-hero-grid">
+          <div>
+            <p class="eyebrow">{detail.hero.eyebrow}</p>
+            <h1>{detail.hero.headline}</h1>
+            <p class="pd-lead">{detail.hero.lead}</p>
+            <p class="pd-support">{detail.hero.support}</p>
+            <div class="pd-actions">
+              <a class="button pd-outline" href={demoHref}>{detail.hero.demo}</a>
+              <div class="pd-trial-wrap">
+                <a class="button pd-trial" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a>
+                <small>{detail.hero.trialNote}</small>
+              </div>
+            </div>
+          </div>
+          <div class="pd-pipeline" aria-hidden="true">
+            <div class="pd-pipeline-top"><span>{detail.pipeline.title}</span><strong>{detail.pipeline.addDeal}</strong></div>
+            {detail.pipeline.stages.map((label, index) => (
+              <div class:list={['pd-column', { won: index === 3 }]}><span>{label}</span><b></b><b></b></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <aside class="pd-trust"><div class="container"><p>{detail.trust}</p></div></aside>
+
+      <section class="pd-section pd-pain">
+        <div class="container">
+          <p class="eyebrow">{detail.pain.eyebrow}</p><h2>{detail.pain.title}</h2>
+          <div class="pd-three">{detail.pain.items.map((item, index) => <article class="pd-card"><span class="pd-index">0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+          <p class="pd-summary">{detail.pain.summary}</p>
+        </div>
+      </section>
+
+      <section class="pd-section pd-audiences">
+        <div class="container">
+          <div class="pd-heading-row"><div><p class="eyebrow">{detail.audiences.eyebrow}</p><h2>{detail.audiences.title}</h2></div><p>{detail.audiences.lead}</p></div>
+          <div class="pd-industry-grid">{detail.audiences.cards.map((card, index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{card}</h3></article>)}</div>
+        </div>
+      </section>
+
+      <section class="pd-section pd-why">
+        <div class="container pd-split">
+          <div><p class="eyebrow">{detail.why.eyebrow}</p><h2>{detail.why.title}</h2><p class="pd-intro">{detail.why.lead}</p></div>
+          <div class="pd-long-copy">{detail.why.paragraphs.map((paragraph) => <p>{paragraph}</p>)}<p class="pd-partner">{detail.why.closing}</p></div>
+        </div>
+        <div class="container pd-three pd-outcomes">{detail.outcomes.map((item, index) => <article class="pd-card"><span class="pd-index">0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+      </section>
+
+      <section class="pd-section pd-workflow">
+        <div class="container">
+          <p class="eyebrow">{detail.workflow.eyebrow}</p><h2>{detail.workflow.title}</h2>
+          <div class="pd-steps">{detail.workflow.items.map((item, index) => <article><div class="pd-step-number">{String(index + 1).padStart(2, '0')}</div><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
+        </div>
+      </section>
+
+      <section class="pd-section pd-features">
+        <div class="container"><p class="eyebrow">{detail.features.eyebrow}</p><h2>{detail.features.title}</h2><div class="pd-feature-grid">{detail.features.items.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div>
+      </section>
+
+      <section class="pd-section pd-integrations">
+        <div class="container pd-split">
+          <div><p class="eyebrow">{detail.integrations.eyebrow}</p><h2>{detail.integrations.title}</h2><p class="pd-intro">{detail.integrations.lead}</p></div>
+          <div><ul>{detail.integrations.points.map((point) => <li>{point}</li>)}</ul><p class="pd-integration-closing">{detail.integrations.closing}</p><div class="pd-actions"><a class="button pd-light" href={demoHref}>{detail.hero.demo}</a><a class="button pd-mint" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a></div></div>
+        </div>
+      </section>
+
+      <section class="pd-section pd-faq">
+        <div class="container pd-faq-grid">
+          <div><p class="eyebrow">{detail.faq.eyebrow}</p><h2>{detail.faq.title}</h2></div>
+          <div class="pd-faq-list">{detail.faq.items.map((item) => <details><summary>{item.question}<span aria-hidden="true">+</span></summary><div class="pd-faq-answer"><div><p>{item.answer}</p></div></div></details>)}</div>
+        </div>
+      </section>
+
+      <section class="pd-closing"><div class="container"><p class="eyebrow">{detail.closing.eyebrow}</p><h2>{detail.closing.title}</h2><p>{detail.closing.text}</p><div class="pd-actions pd-actions-center"><a class="button pd-light" href={demoHref}>{detail.closing.demo}</a><a class="button pd-mint" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.closing.trial}</a></div></div></section>
+    </div>
+  )}
 </BaseLayout>
+
+<script>
+  const faqCloseDuration = 350;
+  const reduceFaqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll<HTMLDetailsElement>('.pd-faq details').forEach((details) => {
+    const summary = details.querySelector('summary');
+    let closeTimer: number | undefined;
+
+    summary?.addEventListener('click', (event) => {
+      if (!details.open) return;
+
+      event.preventDefault();
+      if (details.classList.contains('is-closing')) return;
+
+      details.classList.add('is-closing');
+      window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(() => {
+        details.open = false;
+        details.classList.remove('is-closing');
+      }, reduceFaqMotion.matches ? 0 : faqCloseDuration);
+    });
+  });
+</script>
+
 <style>
-  .product-hero { min-height: 88vh; display: flex; align-items: center; padding: 9rem 0 5rem; background: #dff0e8; }
-  .product-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 6rem; }
-  .wordmark { color: #0a6241; font-size: clamp(4rem, 9vw, 9rem); font-weight: 800; letter-spacing: -.085em; line-height: .85; }
-  .product-hero h1 { max-width: 14ch; margin: 2rem 0 1rem; font-size: clamp(2.3rem, 4vw, 4.4rem); letter-spacing: -.055em; line-height: .98; }
-  .product-hero p:not(.eyebrow) { max-width: 590px; color: #40524a; line-height: 1.6; }
-  .product-hero .button { margin-top: 1.5rem; }
-  .pipeline { min-width: 0; min-height: 460px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-content: center; gap: .7rem; padding: 2rem; border: 1px solid rgba(10,98,65,.25); background: rgba(255,255,255,.45); }
-  .pipeline span { min-width: 0; min-height: 250px; padding: 1rem; overflow-wrap: anywhere; border-top: 3px solid #0a6241; background: var(--white); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
-  .pipeline span:last-of-type { background: #0a6241; color: var(--white); }
-  .benefits { background: var(--white); }
-  @media (max-width: 850px) { .product-grid { grid-template-columns: minmax(0, 1fr); gap: 3rem; } .pipeline { min-height: 300px; } .pipeline span { min-height: 160px; } }
-  @media (max-width: 500px) { .pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 1rem; } .pipeline span { min-height: 120px; } }
+  .pd-page {
+    --pd-green: #017737;
+    --pd-mint: #d7f9d3;
+    --pd-mint-strong: #aee9b4;
+    --pd-purple: #6861f2;
+    --pd-purple-dark: #413d99;
+    --pd-navy: #192435;
+    --pd-dark-purple: #211c52;
+    --pd-surface: #f8f8fe;
+    --pd-lavender: #cfd0f9;
+    --focus-color: var(--pd-purple);
+    background: var(--white);
+    color: var(--pd-navy);
+  }
+  .pd-page .eyebrow { color: var(--pd-green); }
+  .pd-page h2 { max-width: 15ch; margin: 0; font-size: clamp(2.45rem, 4.5vw, 4.8rem); letter-spacing: -.055em; line-height: .98; }
+  .pd-page h3 { letter-spacing: -.03em; }
+  .pd-section { padding: clamp(5.5rem, 10vw, 9.5rem) 0; }
+
+  .pd-hero { min-height: 100svh; display: flex; align-items: center; padding: 10rem 0 6rem; overflow: hidden; background: linear-gradient(120deg, var(--pd-mint) 0 62%, var(--pd-lavender) 100%); }
+  .pd-hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(3rem, 6vw, 6rem); align-items: center; }
+  .pd-hero h1 { max-width: 14ch; margin: 0; color: var(--pd-green); font-size: var(--hero-title-size); letter-spacing: -.055em; line-height: 1.02; }
+  .pd-lead { max-width: 670px; margin: 2rem 0 1rem; color: rgba(25,36,53,.82); font-size: clamp(1.05rem, 1.45vw, 1.23rem); line-height: 1.62; }
+  .pd-support { max-width: 590px; margin: 0; color: var(--pd-navy); font-weight: 750; line-height: 1.5; }
+  .pd-actions { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+  .pd-trial-wrap { display: grid; gap: .5rem; }
+  .pd-trial-wrap small { color: rgba(25,36,53,.72); font-size: .76rem; }
+  .pd-outline { border-color: var(--pd-navy); color: var(--pd-navy); }
+  .pd-outline:hover, .pd-outline:focus-visible { border-color: var(--pd-navy); background: var(--pd-navy); color: white; }
+  .pd-trial { border-color: var(--pd-purple); background: var(--pd-purple); color: white; }
+  .pd-trial:hover, .pd-trial:focus-visible { border-color: var(--pd-purple-dark); background: var(--pd-purple-dark); color: white; }
+
+  .pd-pipeline { min-width: 0; min-height: 470px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-content: center; gap: .65rem; padding: clamp(1.2rem, 2.7vw, 2rem); border: 1px solid rgba(25,36,53,.1); border-radius: .75rem; background: rgba(255,255,255,.92); box-shadow: 0 2rem 5rem rgba(25,36,53,.14); }
+  .pd-pipeline-top { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(25,36,53,.12); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .pd-pipeline-top strong { padding: .55rem .7rem; border-radius: .25rem; background: var(--pd-purple); color: white; font-size: .61rem; letter-spacing: .05em; }
+  .pd-column { min-height: 285px; display: flex; flex-direction: column; gap: .65rem; padding: .85rem .65rem; border-radius: .35rem; background: var(--pd-surface); }
+  .pd-column > span { min-height: 2.5rem; color: rgba(25,36,53,.74); font-size: .64rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; overflow-wrap: anywhere; }
+  .pd-column b { flex: 1; min-height: 3.5rem; border: 1px solid rgba(25,36,53,.08); border-radius: .25rem; background: white; box-shadow: 0 .3rem .9rem rgba(25,36,53,.07); }
+  .pd-column b + b { flex: .62; border-left: 3px solid var(--pd-mint-strong); }
+  .pd-column.won { background: var(--pd-mint); }
+  .pd-column.won b { border-left: 3px solid var(--pd-green); }
+
+  .pd-trust { padding: 1.5rem 0; border-bottom: 1px solid rgba(25,36,53,.1); background: white; text-align: center; }
+  .pd-trust p { margin: 0; font-size: clamp(.9rem, 1.4vw, 1.05rem); font-weight: 800; letter-spacing: .025em; }
+
+  .pd-pain, .pd-features { background: white; }
+  .pd-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin-top: clamp(3rem, 6vw, 5rem); }
+  .pd-card { min-width: 0; padding: clamp(1.6rem, 3vw, 2.8rem); border: 1px solid rgba(25,36,53,.08); border-radius: .55rem; background: var(--pd-surface); }
+  .pd-index { display: block; margin-bottom: 4rem; color: var(--pd-green); font-size: .72rem; font-weight: 850; letter-spacing: .16em; }
+  .pd-card h3 { margin: 0 0 1rem; font-size: clamp(1.45rem, 2vw, 2rem); }
+  .pd-card p { margin: 0; color: rgba(25,36,53,.74); line-height: 1.65; }
+  .pd-summary { max-width: 920px; margin: 3.5rem 0 0 auto; padding-left: clamp(1.5rem, 4vw, 3rem); border-left: 4px solid var(--pd-purple); font-size: clamp(1.25rem, 2.3vw, 2rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.35; }
+
+  .pd-audiences { background: var(--pd-surface); }
+  .pd-heading-row { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(2rem, 8vw, 8rem); align-items: end; }
+  .pd-heading-row > p { margin: 0; color: rgba(25,36,53,.72); line-height: 1.65; }
+  .pd-industry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 4rem; }
+  .pd-industry-grid article { min-height: 170px; padding: 1.35rem; border: 1px solid rgba(25,36,53,.08); border-radius: .45rem; background: white; box-shadow: 0 .7rem 2rem rgba(25,36,53,.04); }
+  .pd-industry-grid span { color: var(--pd-green); font-size: .68rem; font-weight: 850; letter-spacing: .13em; }
+  .pd-industry-grid h3 { max-width: 16ch; margin: 3.4rem 0 0; font-size: 1.05rem; line-height: 1.2; }
+
+  .pd-why { --focus-color: var(--pd-mint-strong); background: var(--pd-navy); color: white; }
+  .pd-why h2 { color: white; }
+  .pd-why .eyebrow, .pd-closing .eyebrow { color: var(--pd-mint-strong); }
+  .pd-split { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(3rem, 8vw, 8rem); }
+  .pd-intro { max-width: 600px; color: rgba(255,255,255,.72); font-size: 1.1rem; line-height: 1.65; }
+  .pd-long-copy p { margin: 0 0 1.4rem; color: rgba(255,255,255,.82); font-size: 1.05rem; line-height: 1.72; }
+  .pd-long-copy .pd-partner { margin-top: 2.2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.2); color: white; font-weight: 750; }
+  .pd-outcomes { margin-top: 5rem; }
+  .pd-outcomes .pd-card { border-color: rgba(255,255,255,.1); background: #252745; color: white; }
+  .pd-outcomes .pd-card p { color: rgba(255,255,255,.72); }
+  .pd-outcomes .pd-index { color: var(--pd-mint-strong); }
+
+  .pd-workflow { background: var(--pd-mint); }
+  .pd-workflow .eyebrow { color: var(--pd-green); }
+  .pd-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 4rem; }
+  .pd-steps article { padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: .55rem; background: white; box-shadow: 0 .8rem 2.4rem rgba(25,36,53,.06); }
+  .pd-step-number { width: 3.2rem; height: 3.2rem; display: grid; place-items: center; margin-bottom: 3rem; border-radius: 50%; background: var(--pd-purple); color: white; font-size: .8rem; font-weight: 800; letter-spacing: .05em; }
+  .pd-steps h3 { margin: 0 0 .8rem; font-size: clamp(1.45rem, 2.2vw, 2rem); }
+  .pd-steps p { margin: 0; color: rgba(25,36,53,.74); line-height: 1.65; }
+
+  .pd-feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin-top: 4rem; }
+  .pd-feature-grid article { min-height: 250px; padding: clamp(1.4rem, 2.5vw, 2.2rem); overflow: hidden; border: 1px solid rgba(25,36,53,.08); border-radius: .55rem; background: var(--pd-surface); position: relative; }
+  .pd-feature-grid article::before { position: absolute; inset: 0 0 auto; height: .3rem; background: linear-gradient(90deg, var(--pd-green), var(--pd-purple)); content: ''; }
+  .pd-feature-grid h3 { margin: .6rem 0 1rem; font-size: 1.28rem; }
+  .pd-feature-grid p { margin: 0; color: rgba(25,36,53,.72); line-height: 1.62; }
+
+  .pd-integrations { background: linear-gradient(112deg, #f5f6fe 12%, var(--pd-mint) 70%, var(--pd-mint-strong) 115%); color: var(--pd-navy); }
+  .pd-integrations .eyebrow { color: var(--pd-green); }
+  .pd-integrations .pd-intro { color: rgba(25,36,53,.72); }
+  .pd-integrations ul { display: grid; margin: 0; padding: 0; list-style: none; }
+  .pd-integrations li { padding: 1.35rem 0 1.35rem 2rem; border-bottom: 1px solid rgba(25,36,53,.16); line-height: 1.55; position: relative; }
+  .pd-integrations li::before { position: absolute; left: 0; color: var(--pd-green); content: '✓'; font-weight: 900; }
+  .pd-integration-closing { margin: 2rem 0 0; font-weight: 800; }
+  .pd-integrations .pd-light { border-color: var(--pd-navy); color: var(--pd-navy); }
+  .pd-integrations .pd-light:hover, .pd-integrations .pd-light:focus-visible { background: var(--pd-navy); color: white; }
+  .pd-integrations .pd-mint { border-color: var(--pd-purple); background: var(--pd-purple); color: white; }
+  .pd-integrations .pd-mint:hover, .pd-integrations .pd-mint:focus-visible { border-color: var(--pd-purple-dark); background: var(--pd-purple-dark); }
+
+  .pd-faq { background: var(--pd-surface); }
+  .pd-faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(3rem, 8vw, 8rem); }
+  .pd-faq-list { border-top: 1px solid rgba(25,36,53,.18); }
+  .pd-faq details { border-bottom: 1px solid rgba(25,36,53,.18); }
+  .pd-faq summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1.5rem 0; cursor: pointer; font-size: 1.08rem; font-weight: 780; line-height: 1.35; list-style: none; transition: color .2s ease; }
+  .pd-faq summary::-webkit-details-marker { display: none; }
+  .pd-faq summary:hover, .pd-faq details[open] summary { color: var(--pd-purple-dark); }
+  .pd-faq summary span { flex: 0 0 auto; color: var(--pd-purple); font-size: 1.5rem; transition: color .2s ease, transform .3s cubic-bezier(.2,.8,.2,1); }
+  .pd-faq details[open] summary span { color: var(--pd-purple-dark); transform: rotate(45deg); }
+  .pd-faq-answer { display: grid; grid-template-rows: 0fr; opacity: 0; transform: translateY(-.4rem); transition: grid-template-rows .35s cubic-bezier(.2,.8,.2,1), opacity .25s ease, transform .35s cubic-bezier(.2,.8,.2,1); }
+  .pd-faq-answer > div { min-height: 0; overflow: hidden; }
+  .pd-faq details[open] .pd-faq-answer { grid-template-rows: 1fr; opacity: 1; transform: translateY(0); }
+  .pd-faq details.is-closing .pd-faq-answer { grid-template-rows: 0fr; opacity: 0; transform: translateY(-.4rem); }
+  .pd-faq details.is-closing summary { color: var(--pd-navy); }
+  .pd-faq details.is-closing summary span { color: var(--pd-purple); transform: rotate(0); }
+  .pd-faq details p { margin: 0 2.5rem 1.7rem 0; color: rgba(25,36,53,.72); line-height: 1.68; }
+  .pd-faq summary:focus-visible { outline: 3px solid var(--pd-purple); outline-offset: 4px; }
+
+  .pd-closing { --focus-color: var(--pd-mint-strong); padding: clamp(6rem, 12vw, 11rem) 0; overflow: hidden; background: var(--pd-dark-purple); color: white; text-align: center; position: relative; }
+  .pd-closing::before { position: absolute; right: -8vw; bottom: -26vw; width: 52vw; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(135deg, rgba(215,249,211,.16), rgba(104,97,242,.28)); content: ''; }
+  .pd-closing .container { position: relative; z-index: 1; display: grid; justify-items: center; }
+  .pd-closing h2 { max-width: 12ch; color: white; }
+  .pd-closing > .container > p:not(.eyebrow) { max-width: 590px; margin: 2rem 0 0; color: rgba(255,255,255,.72); font-size: 1.08rem; line-height: 1.6; }
+  .pd-closing .pd-light { border-color: white; color: white; }
+  .pd-closing .pd-light:hover, .pd-closing .pd-light:focus-visible { background: white; color: var(--pd-dark-purple); }
+  .pd-closing .pd-mint { border-color: var(--pd-mint-strong); background: var(--pd-mint-strong); color: var(--pd-navy); }
+  .pd-closing .pd-mint:hover, .pd-closing .pd-mint:focus-visible { border-color: white; background: white; }
+  .pd-actions-center { justify-content: center; }
+
+  @media (max-width: 980px) {
+    .pd-hero-grid, .pd-split, .pd-faq-grid { grid-template-columns: 1fr; }
+    .pd-hero { background: linear-gradient(160deg, var(--pd-mint) 0 70%, var(--pd-lavender) 100%); }
+    .pd-pipeline { width: min(100%, 680px); min-height: 390px; }
+    .pd-column { min-height: 230px; }
+    .pd-feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .pd-industry-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .pd-hero { min-height: 100svh; padding-top: 8.5rem; }
+    .pd-three, .pd-heading-row, .pd-steps { grid-template-columns: 1fr; }
+    .pd-index { margin-bottom: 2.5rem; }
+    .pd-industry-grid, .pd-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pd-pipeline { min-height: 300px; padding: 1rem; }
+    .pd-column { min-height: 170px; }
+  }
+  @media (max-width: 480px) {
+    .pd-actions, .pd-actions .button, .pd-trial-wrap { width: 100%; }
+    .pd-industry-grid, .pd-feature-grid { grid-template-columns: 1fr; }
+    .pd-industry-grid article, .pd-feature-grid article { min-height: auto; }
+    .pd-industry-grid h3 { margin-top: 2rem; }
+    .pd-pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pd-column { min-height: 145px; }
+    .pd-column b { min-height: 2.8rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pd-faq summary, .pd-faq summary span, .pd-faq-answer { transition: none; }
+  }
 </style>

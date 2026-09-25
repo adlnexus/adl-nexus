@@ -21,12 +21,12 @@ The central positioning is: **Carefully selected software. One trusted partner.*
 
 ## Non-negotiable design rules
 
-- Preserve the restrained red, black, white, and warm-neutral visual system.
+- Preserve the approved blue, mint, grey, black, white, and warm-neutral visual system.
 - Prefer typography, spacing, borders, and geometric forms over generic corporate imagery.
 - Keep the homepage hero simple: one primary contact action, no autoplay media, intrusive animation, or competing messages.
 - Maintain strong contrast, keyboard access, visible focus states, and reduced-motion support.
 - Check desktop and mobile layouts after visual changes.
-- Treat the current text-based ADL mark as temporary. Do not invent a final logo.
+- Use only the approved ADL Nexus logo assets in `public/brand/`; do not redraw or distort the mark.
 - Do not introduce new fonts, frameworks, icon libraries, analytics, cookies, or remote services without a clear requirement.
 
 ## Technical rules
@@ -57,11 +57,14 @@ Do not deploy, connect external services, send enquiries, publish to GitHub, or 
 ## Confirmed owner decisions
 
 - Production domain: `adlnexus.com`
+- The final ADL Nexus identity uses blue `#004A98`, mint `#91CDC3`, grey `#7A97AB`, black `#1A171B`, and white.
+- “GLOBAL CONNECTIONS” is the secondary logo tagline for footer and social treatments. It does not replace the primary site positioning.
+- ADL Nexus may publish the approved Pipedrive Premier Partner claim and supplied affiliate trial link on the English and Serbian Pipedrive pages.
 
 ## Current owner decisions pending
 
-- Final logo assets
 - Public contact email confirmation
+- Owner review of the newly adapted British-English Pipedrive sections
 - Native-speaker review of Serbian, Spanish, German and Russian copy
 - Final Insights copy
 - Privacy/analytics choices

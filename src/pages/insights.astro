@@ -19,16 +19,16 @@ const english = {
 };
 const copy = lang === 'en' ? english : localizedPagesCopy[lang as LocalizedLandingCode].insights;
 ---
-<BaseLayout darkHeader lang={lang} title={copy.title} description={copy.lead} robots="noindex, follow">
-  <section class="page-hero"><div class="container"><p class="eyebrow">{copy.eyebrow}</p><h1 class="page-title">{copy.heroFirst}<br /><span class="red">{copy.heroAccent}</span></h1><p class="lead">{copy.lead}</p></div></section>
+<BaseLayout lang={lang} title={copy.title} description={copy.lead} robots="noindex, follow">
+  <section class="page-hero"><div class="container"><p class="eyebrow">{copy.eyebrow}</p><h1 class="page-title">{copy.heroFirst}<br /><span class="accent">{copy.heroAccent}</span></h1><p class="lead">{copy.lead}</p></div></section>
   <section class="section"><div class="container article-grid">{copy.articles.map((article, i) => <article class:list={{featured: i === 0}}><div class="article-meta"><span>{article.label}</span><span>{i + 4} {copy.readTime}</span></div><h2>{article.title}</h2><p>{article.text}</p><a href={`mailto:${enquiryRecipients}?subject=ADL%20Insight%20request`}>{copy.request} ↗</a></article>)}</div></section>
   <ClosingCta lang={lang} eyebrow={copy.closing.eyebrow} title={copy.closing.title} text={copy.closing.text} buttonLabel={copy.closing.button} />
 </BaseLayout>
 <style>
   .article-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .article-grid article { min-height: 410px; display: flex; flex-direction: column; padding: clamp(2rem, 4vw, 4rem); background: var(--white); }
-  .article-grid .featured { grid-column: 1 / -1; min-height: 540px; background: var(--red); color: var(--white); }
-  .article-meta { display: flex; justify-content: space-between; color: var(--red); font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .article-grid .featured { grid-column: 1 / -1; min-height: 540px; background: var(--accent); color: var(--white); }
+  .article-meta { display: flex; justify-content: space-between; color: var(--accent); font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
   .featured .article-meta { color: var(--white); }
   .article-grid h2 { max-width: 16ch; margin: auto 0 1.4rem; font-size: clamp(2rem, 4vw, 4.5rem); letter-spacing: -.055em; line-height: .98; }
   .article-grid p { max-width: 580px; color: var(--muted); line-height: 1.55; }

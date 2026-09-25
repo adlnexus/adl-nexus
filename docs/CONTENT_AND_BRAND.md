@@ -40,14 +40,19 @@ Avoid:
 
 Primary colours are defined in `src/styles/global.css`:
 
-- Ink: `#111113`
-- ADL red: `#c53243`
-- Warm paper: `#f5f3ef`
+- ADL blue: `#004A98`
+- ADL mint: `#91CDC3`
+- ADL grey: `#7A97AB`
+- Ink: `#1A171B`
 - White: `#ffffff`
 
-The direction is editorial and architectural: generous spacing, large type, fine borders, selective red accents, and simple geometric forms. Reference imagery originally supplied by the client was inspired by the Hunch navigation and closing call-to-action, but the site must remain recognisably ADL rather than copying another brand.
+Warm cream `#F5F3EF` may be used as a supporting page background. The direction is editorial and architectural: generous spacing, large type, fine borders, selective blue and mint accents, and simple geometric forms.
 
-Do not create a permanent logo. Replace the temporary text mark only with owner-approved files. Put approved assets in `public/brand/` and include useful formats such as SVG and PNG when supplied.
+Approved logo assets live in `public/brand/`. Use the no-tagline wordmark in headers, the “GLOBAL CONNECTIONS” lockup in the footer and social artwork, and the standalone symbol for decoration and favicons. Do not redraw, distort, recolour, or combine the mark with new elements. The green ADL logo variant is reserved for the Pipedrive experience and uses `#073F3B`, `#176B59`, and `#55A995` on the approved master geometry; these logo colours are not the page palette.
+
+“GLOBAL CONNECTIONS” is a secondary logo tagline. The primary site positioning remains:
+
+> Carefully selected software. One trusted partner.
 
 ## Approved solution descriptions
 
@@ -56,11 +61,21 @@ Do not create a permanent logo. Replace the temporary text mark only with owner-
 The easy and effective CRM for closing deals. It helps teams track pipelines, optimise leads, manage deals, and automate sales processes.
 
 Primary action: **Book a demo**
-Secondary action: **Learn more**
+Secondary action on every detailed Pipedrive page: **Try it free for 30 days** via the owner-supplied affiliate link, translated for each locale.
+
+All five locales use the shared detailed page schema in `src/data/pipedrive.ts`. The approved “official Pipedrive Premier Partner in the Adria region” claim appears only in English and Serbian; Spanish, German, and Russian use neutral ADL Nexus implementation wording until that claim is approved for those locales.
+
+The detailed Pipedrive experience uses a product-specific system aligned with Pipedrive’s current public identity: green `#017737`, mint `#D7F9D3`, violet `#6861F2`, dark navy `#192435`, pale lavender and white. ADL navigation and footer remain recognisably ADL. Use only partner-approved Pipedrive logos, screenshots, badges or photography; until those assets are supplied, retain the local abstract product visual rather than copying website imagery.
+
+The homepage product cards use the official Pipedrive wordmark SVG and primary green displayed on Pipedrive’s public homepage, stored locally at `public/partners/pipedrive-logo.svg` without altering its vector geometry.
+
+The supplied English wording is approved where present. British-English adaptations and the Serbian, Spanish, German and Russian detailed-page translations remain flagged for owner or native-speaker review.
 
 ### Learnie
 
 A mobile-first learning platform that helps organisations preserve valuable experience, improve onboarding, and support continuous learning without complex traditional training systems.
+
+The Learnie experience uses the current public identity from `mylearnie.com`: the official “Learnie — Community Microlearning” logo stored locally at `public/partners/learnie-logo.png`, logo green `#0E8B44`, live-site accent green `#008A12`, white, and neutral grey `#717171`. Use pale tints of the approved greens for backgrounds, while retaining ADL navigation, typography, spacing, and accessibility conventions.
 
 Primary action: **Book a demo**
 Secondary action: **Learn more**

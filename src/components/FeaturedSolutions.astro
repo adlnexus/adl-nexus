@@ -1,0 +1,100 @@
+---
+import { localizedPagesCopy } from '../data/localized-pages';
+import { routeFor, type LocalizedLandingCode, type SiteLocale } from '../data/localization';
+
+interface Props { lang?: SiteLocale }
+const { lang = 'en' } = Astro.props;
+
+const englishProducts = {
+  pipedrive: {
+    eyebrow: 'Customer relationship management',
+    headline: 'The easy and effective CRM for closing deals.',
+    lead: 'Track your sales pipeline, optimise leads, manage deals and automate your sales process so you can focus on selling.',
+    demo: 'Book a demo',
+  },
+  learnie: {
+    eyebrow: 'Learning and knowledge sharing',
+    headline: 'Learning that feels natural, not like a system.',
+    lead: 'A mobile-first learning platform that preserves valuable experience, improves onboarding and supports continuous learning without complex traditional training systems.',
+    demo: 'Book a demo',
+  },
+};
+
+const products = lang === 'en' ? englishProducts : localizedPagesCopy[lang as LocalizedLandingCode];
+const sectionCopy = {
+  en: { eyebrow: 'Featured solutions', title: 'One strong solution for every real need.', lead: 'Our portfolio is small on purpose. Every product earns its place through usefulness, fit and long-term value.', pipedrive: 'Explore Pipedrive', learnie: 'Explore Learnie' },
+  sr: { eyebrow: 'Odabrana rešenja', title: 'Jedno snažno rešenje za svaku stvarnu potrebu.', lead: 'Naš portfolio je namerno mali. Svaki proizvod zaslužuje svoje mesto kroz korisnost, usklađenost i dugoročnu vrednost.', pipedrive: 'Istražite Pipedrive', learnie: 'Istražite Learnie' },
+  es: { eyebrow: 'Soluciones seleccionadas', title: 'Una solución sólida para cada necesidad real.', lead: 'Nuestra cartera es pequeña a propósito. Cada producto se gana su lugar por su utilidad, adecuación y valor a largo plazo.', pipedrive: 'Explorar Pipedrive', learnie: 'Explorar Learnie' },
+  de: { eyebrow: 'Ausgewählte Lösungen', title: 'Eine starke Lösung für jeden echten Bedarf.', lead: 'Unser Portfolio ist bewusst klein. Jedes Produkt verdient seinen Platz durch Nutzen, Passgenauigkeit und langfristigen Wert.', pipedrive: 'Pipedrive entdecken', learnie: 'Learnie entdecken' },
+  ru: { eyebrow: 'Отобранные решения', title: 'Одно сильное решение для каждой реальной задачи.', lead: 'Наш портфель намеренно небольшой. Каждый продукт занимает свое место благодаря пользе, соответствию задачам и долгосрочной ценности.', pipedrive: 'Подробнее о Pipedrive', learnie: 'Подробнее о Learnie' },
+} satisfies Record<SiteLocale, { eyebrow: string; title: string; lead: string; pipedrive: string; learnie: string }>;
+const section = sectionCopy[lang];
+const href = (route: string) => routeFor(lang, route);
+---
+
+<section class="solutions section" id="solutions">
+  <div class="container">
+    <div class="solutions-head">
+      <div><p class="eyebrow">{section.eyebrow}</p><h2 class="section-title">{section.title}</h2></div>
+      <p>{section.lead}</p>
+    </div>
+    <div class="solution-list">
+      <article class="solution solution--pipedrive">
+        <div class="solution-name solution-logo solution-logo--pipedrive"><img src="/partners/pipedrive-logo.svg" width="121" height="26" alt="Pipedrive" /></div>
+        <div>
+          <span>{products.pipedrive.eyebrow}</span>
+          <h3>{products.pipedrive.headline}</h3>
+          <p>{products.pipedrive.lead}</p>
+          <div class="solution-actions"><a class="button" href={`${href('/contact')}?solution=pipedrive#start-a-conversation`}>{products.pipedrive.demo}</a><a class="text-link" href={href('/solutions/pipedrive')}>{section.pipedrive}</a></div>
+        </div>
+      </article>
+      <article class="solution solution--learnie">
+        <div class="solution-name solution-logo solution-logo--learnie">
+          <img src="/partners/learnie-logo.png" width="350" height="125" alt="Learnie — Community Microlearning" />
+        </div>
+        <div>
+          <span>{products.learnie.eyebrow}</span>
+          <h3>{products.learnie.headline}</h3>
+          <p>{products.learnie.lead}</p>
+          <div class="solution-actions"><a class="button" href={`${href('/contact')}?solution=learnie#start-a-conversation`}>{products.learnie.demo}</a><a class="text-link" href={href('/solutions/learnie')}>{section.learnie}</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; }
+  .solutions-head > p { max-width: 430px; margin: 0; color: var(--muted); line-height: 1.6; }
+  .solution-list { margin-top: 5rem; border-top: 1px solid var(--line); }
+  .solution { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 4.5vw, 5rem); padding: clamp(3rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
+  .solution--pipedrive { position: relative; overflow: hidden; background: radial-gradient(circle at 102% 112%, rgba(104,97,242,.2) 0 26%, transparent 26.2%), linear-gradient(118deg, #d7f9d3 0 62%, #cfd0f9 100%); color: #192435; }
+  .solution--pipedrive::before { position: absolute; top: 0; right: 0; left: 0; height: .35rem; background: linear-gradient(90deg, #017737, #6861f2); content: ""; }
+  .solution--learnie { position: relative; overflow: hidden; background: radial-gradient(circle at 102% -16%, rgba(0,138,18,.12) 0 28%, transparent 28.2%), linear-gradient(118deg, #f5faf4 0 62%, #def1dc 100%); color: #24432b; }
+  .solution--learnie::before { position: absolute; top: 0; right: 0; left: 0; height: .35rem; background: linear-gradient(90deg, #008a12, #0e8b44); content: ""; }
+  .solution-name { align-self: center; color: #0a6241; font-size: clamp(3.3rem, 7vw, 7.2rem); font-weight: 800; letter-spacing: -.075em; }
+  .solution-logo img { width: min(100%, clamp(19rem, 33vw, 31rem)); height: auto; display: block; }
+  .solution-logo--pipedrive img { width: min(80%, 288px); }
+  .solution--pipedrive > div:last-child > span { color: #017737; }
+  .solution--pipedrive p { color: rgba(25,36,53,.76); }
+  .solution--pipedrive .button { border-color: #6861f2; background: #6861f2; color: var(--white); }
+  .solution--pipedrive .button:hover, .solution--pipedrive .button:focus-visible { border-color: #413d99; background: #413d99; color: var(--white); }
+  .solution--pipedrive .text-link { color: #413d99; }
+  .solution-logo--learnie img { width: min(80%, 288px); }
+  .solution--learnie > div:last-child > span { color: #008a12; }
+  .solution--learnie p { color: #536657; }
+  .solution--learnie .button { border-color: #008a12; background: #008a12; color: var(--white); }
+  .solution--learnie .button:hover, .solution--learnie .button:focus-visible { border-color: #006e0e; background: #006e0e; color: var(--white); }
+  .solution--learnie .text-link { color: #006e0e; }
+  .solution > div:last-child > span { color: var(--accent); font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .solution h3 { max-width: 15ch; margin: 1rem 0; font-size: clamp(2rem, 3.7vw, 3.8rem); letter-spacing: -.05em; line-height: 1; }
+  .solution p { max-width: 580px; color: var(--muted); line-height: 1.65; }
+  .solution-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+  @media (max-width: 900px) {
+    .solution { grid-template-columns: 1fr; }
+    .solutions-head { align-items: flex-start; flex-direction: column; }
+    .solution-logo img { width: min(100%, 27rem); }
+    .solution-logo--pipedrive img { width: min(100%, 230px); }
+    .solution-logo--learnie img { width: min(100%, 230px); }
+  }
+</style>
