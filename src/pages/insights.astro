@@ -31,12 +31,12 @@ const copy = lang === 'en' ? english : localizedPagesCopy[lang as LocalizedLandi
 <style>
   .article-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .article-grid article { min-height: 410px; display: flex; flex-direction: column; padding: clamp(2rem, 4vw, 4rem); background: var(--white); }
-  .article-grid .featured { grid-column: 1 / -1; min-height: 540px; background: var(--accent); color: var(--white); }
+  .article-grid .featured { --focus-color: var(--white); grid-column: 1 / -1; min-height: 540px; background: var(--accent); color: var(--white); }
   .article-meta { display: flex; justify-content: space-between; color: var(--accent); font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
   .featured .article-meta { color: var(--white); }
   .article-grid h2 { max-width: 16ch; margin: auto 0 1.4rem; font-size: clamp(2rem, 4vw, 4.5rem); letter-spacing: -.055em; line-height: .98; }
   .article-grid p { max-width: 580px; color: var(--muted); line-height: 1.55; }
-  .featured p { color: rgba(255,255,255,.78); }
+  .featured p { color: rgba(255,255,255,.9); }
   .article-grid a { width: fit-content; margin-top: 1rem; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
   @media (max-width: 700px) { .article-grid { grid-template-columns: 1fr; } .article-grid .featured { grid-column: auto; } }
 </style>

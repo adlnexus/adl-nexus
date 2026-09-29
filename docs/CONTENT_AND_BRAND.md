@@ -38,7 +38,7 @@ Avoid:
 
 ## Visual system
 
-Primary colours are defined in `src/styles/global.css`:
+The approved logo identity remains:
 
 - ADL blue: `#004A98`
 - ADL mint: `#91CDC3`
@@ -46,15 +46,19 @@ Primary colours are defined in `src/styles/global.css`:
 - Ink: `#1A171B`
 - White: `#ffffff`
 
-Warm cream `#F5F3EF` may be used as a supporting page background. The direction is editorial and architectural: generous spacing, large type, fine borders, selective blue and mint accents, and simple geometric forms.
+The owner-approved website finish (29 September 2026) follows the client's stronger reference palette, defined separately in `src/styles/global.css`: golden yellow `#FFCA45`, orange `#FF8A3D`, coral `#F16858`, and neutral grey `#969696`. Do not mute these into beige, dusty pink or brown. Near-white `#FFFDFB` remains the primary background. Saturated orange-red `#C04416` supports readable small accents; `#E65018` is reserved for large highlighted hero text. Primary ADL buttons match the supplied reference with a clearly visible light-orange-to-coral-to-red gradient (`#FF8A3D` → `#F45D3E` → `#D32F23`), white labels, a soft warm glow and a faint top-edge highlight. Keep normal text contrast at least 4.5:1 and large headings at least 3:1 where possible, using local background softening behind overlapping copy rather than desaturating the entire palette. Accessibility review: the specifically requested brighter CTA treatment does not provide 4.5:1 contrast for white labels across its light-orange portion; do not describe these buttons as WCAG AA compliant without revisiting the label or fill treatment.
 
-The shared ADL hero uses original, static directional bands inspired by vintage blank-video packaging (`public/brand/adl-nexus-hero-bands.svg`). Keep the blue, mint, grey and ink bands on warm cream as a full-hero, softened background on desktop and phones, fading towards the copy for readability. This artwork is decoration, not a logo; do not add VHS labels, borrowed brand marks or rainbow colours. Partner-specific Pipedrive and Learnie heroes retain their own visual systems.
+This is a colour-and-finish treatment, not a redesign: preserve the existing structure, typography, spacing, sizing, responsive behaviour and geometric paths. Soft, large-scale peach and lavender flowing fields (`public/brand/adl-nexus-hero-ambient.svg`) add abstract depth behind the directional ribbons. Avoid glossy, bevelled, extruded, glass-like or strongly shadowed treatments. The approved logo source assets and partner-specific colours are unchanged. At the owner's explicit request, the light ADL header renders its existing wordmark in near-black grayscale using a presentation filter; the dark drawer keeps its white wordmark and Pipedrive keeps its green variant.
 
-The mobile navigation uses a dark ink background, the approved white wordmark, mint active/focus accents and the same subdued directional bands. Keep links comfortably tappable and allow scrolling on short screens.
+The shared ADL hero uses original, static directional bands inspired by vintage blank-video packaging (`public/brand/adl-nexus-hero-bands.svg`). Preserve the four paths and their placement; use yellow, amber/orange, coral/red and grey with understated tonal gradients. Keep them as a full-hero, softened background on desktop and phones, fading towards the copy for readability. This artwork is decoration, not a logo; do not add VHS labels or borrowed brand marks. Partner-specific Pipedrive and Learnie heroes retain their own visual systems.
+
+CTA buttons, including the header's “Let’s talk” action, use fully rounded pill edges to match the client's reference. Preserve their existing dimensions, padding and typography; the owner explicitly approved changing their corner treatment.
+
+The mobile navigation uses a dark ink background, the approved white wordmark, warm peach active/focus accents and the same subdued directional bands. The owner requested a more dimensional menu toggle: keep its 48-pixel footprint and rounded corners. When closed, use a subtle charcoal gradient with white lines and a shallow shadow, tying it to the black wordmark and headline rather than adding another warm colour block over the ribbons. The open state keeps its approved amber gradient and raised finish on the dark drawer. Pressing it reduces the shadow. Keep links comfortably tappable and allow scrolling on short screens.
 
 Hero footers share the homepage's thin divider and compact labels. Services, About Us, Insights and Contact use page-specific themes from `src/data/hero-footer.ts`; the homepage keeps its location and representation labels. Show three labels on desktop and the outer two on phones. New translated labels remain subject to native-speaker review.
 
-Approved logo assets live in `public/brand/`. Use the no-tagline wordmark in headers, the “GLOBAL CONNECTIONS” lockup in the footer and social artwork, and the standalone symbol for decoration and favicons. Do not redraw, distort, recolour, or combine the mark with new elements. The green ADL logo variant is reserved for the Pipedrive experience and uses `#073F3B`, `#176B59`, and `#55A995` on the approved master geometry; these logo colours are not the page palette.
+Approved logo assets live in `public/brand/`. Use the no-tagline wordmark in headers, the “GLOBAL CONNECTIONS” lockup in the footer and social artwork, and the standalone symbol for decoration and favicons. Do not redraw, distort, modify the source colours, or combine the mark with new elements. The neutral light-header presentation described above is owner-approved. The green ADL logo variant is reserved for the Pipedrive experience and uses `#073F3B`, `#176B59`, and `#55A995` on the approved master geometry; these logo colours are not the page palette.
 
 “GLOBAL CONNECTIONS” is a secondary logo tagline. The primary site positioning remains:
 

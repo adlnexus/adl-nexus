@@ -14,12 +14,12 @@ const { title = 'Ready to find the right fit?', text = 'One focused conversation
 </section>
 
 <style>
-  .closing { --focus-color: var(--mint); position: relative; overflow: hidden; padding: clamp(6rem, 13vw, 12rem) 0; background: var(--ink); color: var(--white); text-align: center; }
+  .closing { --focus-color: var(--accent-on-dark); position: relative; overflow: hidden; padding: clamp(6rem, 13vw, 12rem) 0; background: var(--ink); color: var(--white); text-align: center; }
   .closing-inner { position: relative; z-index: 2; display: grid; justify-items: center; }
   .closing .eyebrow { color: var(--accent-on-dark); }
   .closing h2 { max-width: 12ch; margin: 0; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .92; }
   .closing p:not(.eyebrow) { max-width: 580px; margin: 2rem 0; color: #bdbdc2; line-height: 1.55; }
-  .closing-shape { --shape-y: 0px; --shape-rotation: 25deg; position: absolute; left: -18vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid rgba(0, 74, 152, .72); border-top-color: rgba(145, 205, 195, .68); border-right-color: rgba(0, 74, 152, .92); background: rgba(255, 255, 255, .015); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); opacity: .78; transform: translate3d(0, var(--shape-y), 0) rotate(var(--shape-rotation)); }
+  .closing-shape { --shape-y: 0px; --shape-rotation: 25deg; position: absolute; left: -18vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid color-mix(in srgb, var(--coral) 72%, transparent); border-top-color: color-mix(in srgb, var(--gold) 68%, transparent); border-right-color: color-mix(in srgb, var(--coral) 92%, transparent); background: rgba(255, 255, 255, .015); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); opacity: .78; transform: translate3d(0, var(--shape-y), 0) rotate(var(--shape-rotation)); }
   .closing-shape.is-scroll-animated { will-change: transform; }
 
   @media (prefers-reduced-motion: reduce) {

@@ -54,7 +54,7 @@ import HomeHero from '../components/HomeHero.astro';
 <style>
   .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 2.5rem; background: var(--line); border: 1px solid var(--line); }
   .audience-card { min-height: 600px; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
-  .audience-card--dark { background: var(--blue); color: var(--white); }
+  .audience-card--dark { background: linear-gradient(125deg, #38302d, #292526); color: var(--white); }
   .audience-num { color: var(--accent); font-size: .71rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
   .audience-card--dark .audience-num { color: var(--accent-on-dark); }
   .audience-card h2 { margin: auto 0 2rem; font-size: clamp(2.8rem, 5.5vw, 5.6rem); letter-spacing: -.065em; line-height: .92; }
@@ -64,10 +64,10 @@ import HomeHero from '../components/HomeHero.astro';
   .audience-card--dark .button { border-color: var(--white); color: var(--white); }
   .audience-card--dark .button:hover { background: var(--white); color: var(--ink); }
   .card-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-  .why { background: var(--mint); color: var(--ink); }
-  .why .eyebrow { color: var(--blue); }
-  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 5rem; border-top: 1px solid rgba(0,74,152,.35); }
-  .why-grid article { min-height: 310px; padding: 2rem 2.5rem 0 0; border-right: 1px solid rgba(0,74,152,.28); }
+  .why { background: var(--warm-surface); color: var(--ink); }
+  .why .eyebrow { color: var(--accent); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 5rem; border-top: 1px solid var(--accent-line); }
+  .why-grid article { min-height: 310px; padding: 2rem 2.5rem 0 0; border-right: 1px solid var(--accent-line); }
   .why-grid article + article { padding-left: 2.5rem; }
   .why-grid article:last-child { border-right: 0; }
   .why-grid span { font-size: .7rem; font-weight: 800; letter-spacing: .14em; }
@@ -76,7 +76,7 @@ import HomeHero from '../components/HomeHero.astro';
   @media (max-width: 900px) {
     .audience-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
-    .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid rgba(0,74,152,.28); }
+    .why-grid article, .why-grid article + article { min-height: auto; padding: 2rem 0; border-right: 0; border-bottom: 1px solid var(--accent-line); }
     .why-grid h3 { margin-top: 3rem; }
   }
   @media (max-width: 600px) {

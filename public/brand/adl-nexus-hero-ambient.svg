@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <!-- Soft original flowing fields behind the existing directional bands. -->
+  <defs>
+    <radialGradient id="warm" cx=".43" cy=".39" r=".48">
+      <stop stop-color="#FF955F" stop-opacity=".32"/>
+      <stop offset=".55" stop-color="#FFC99A" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#FBF9F6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sweep" x1="480" y1="60" x2="1450" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B6C6EC" stop-opacity=".22"/>
+      <stop offset=".42" stop-color="#FCFBF9" stop-opacity=".1"/>
+      <stop offset=".73" stop-color="#B3A6E5" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#FF927E" stop-opacity=".34"/>
+    </linearGradient>
+    <radialGradient id="peach" cx=".82" cy=".85" r=".7">
+      <stop stop-color="#FF9A70" stop-opacity=".32"/>
+      <stop offset=".6" stop-color="#FFD3A0" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#FBF9F6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#warm)" d="M0 0H1600V1000H0z"/>
+  <path d="M340-100C370 180 590 240 905 360S1460 620 1700 810V-100Z" fill="url(#sweep)"/>
+  <path d="M340-100C370 180 590 240 905 360S1460 620 1700 810" stroke="#FFF" stroke-opacity=".55" stroke-width="1.5"/>
+  <path d="M-150 1000C70 830 240 550 580 480S1260 530 1730 1000Z" fill="url(#peach)"/>
+  <path d="M100 1040C240 730 365 540 580 480S1110 430 1380 620" stroke="#FFF" stroke-opacity=".68" stroke-width="2"/>
+</svg>

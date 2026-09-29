@@ -61,11 +61,12 @@ const href = (route: string) => routeFor(lang, route);
   .localized-grid span { color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
   .localized-grid h2 { max-width: 13ch; margin: 2rem 0; font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -.06em; line-height: .95; }
   .localized-grid p { color: var(--muted); line-height: 1.6; }
-  .localized-why { background: var(--mint); color: var(--ink); }
-  .localized-why .eyebrow { color: var(--blue); }
-  .localized-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(0,74,152,.35); }
+  .localized-why { background: var(--warm-surface); color: var(--ink); }
+  .localized-why .eyebrow { color: var(--accent); }
+  .localized-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--accent-line); }
   .localized-three p { max-width: 340px; line-height: 1.55; }
   .localized-contact { padding: clamp(7rem, 14vw, 13rem) 0; background: var(--ink); color: var(--white); text-align: center; }
+  .localized-contact .eyebrow { color: var(--accent-on-dark); }
   .localized-contact h2 { max-width: 13ch; margin: 1rem auto 3rem; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .93; overflow-wrap: anywhere; }
   @media (max-width: 750px) {
     .localized-grid, .localized-three { grid-template-columns: 1fr; }

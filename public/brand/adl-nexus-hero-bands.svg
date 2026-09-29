@@ -1,9 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" fill="none">
-  <!-- Original geometric artwork inspired by the directional bands of analogue media packaging. -->
+  <!-- Original geometry retained; restrained warm tonal shifts, not logo artwork. -->
+  <defs>
+    <linearGradient id="gold" x1="0" y1="900" x2="446" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD56B"/><stop offset=".52" stop-color="#FFCA45"/><stop offset="1" stop-color="#FFC234"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="900" x2="506" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9C58"/><stop offset=".52" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF7D30"/>
+    </linearGradient>
+    <linearGradient id="coral" x1="0" y1="900" x2="566" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F47C68"/><stop offset=".52" stop-color="#F16858"/><stop offset="1" stop-color="#ED5C50"/>
+    </linearGradient>
+    <linearGradient id="grey" x1="0" y1="900" x2="626" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AAAAAA"/><stop offset=".52" stop-color="#969696"/><stop offset="1" stop-color="#888888"/>
+    </linearGradient>
+  </defs>
   <g stroke-width="48" stroke-linejoin="miter">
-    <path d="M-100 660H138L446 352V-80" stroke="#91CDC3"/>
-    <path d="M-100 720H163L506 377V-80" stroke="#7A97AB"/>
-    <path d="M-100 780H188L566 402V-80" stroke="#004A98"/>
-    <path d="M-100 840H213L626 427V-80" stroke="#1A171B"/>
+    <path d="M-100 660H138L446 352V-80" stroke="url(#gold)"/>
+    <path d="M-100 720H163L506 377V-80" stroke="url(#amber)"/>
+    <path d="M-100 780H188L566 402V-80" stroke="url(#coral)"/>
+    <path d="M-100 840H213L626 427V-80" stroke="url(#grey)"/>
   </g>
 </svg>
