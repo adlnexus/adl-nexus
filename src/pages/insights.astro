@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroFooter from '../components/HeroFooter.astro';
 import ClosingCta from '../components/ClosingCta.astro';
 import { enquiryRecipients } from '../data/contact';
 import { localizedPagesCopy } from '../data/localized-pages';
@@ -20,7 +21,10 @@ const english = {
 const copy = lang === 'en' ? english : localizedPagesCopy[lang as LocalizedLandingCode].insights;
 ---
 <BaseLayout lang={lang} title={copy.title} description={copy.lead} robots="noindex, follow">
-  <section class="page-hero"><div class="container"><p class="eyebrow">{copy.eyebrow}</p><h1 class="page-title">{copy.heroFirst}<br /><span class="accent">{copy.heroAccent}</span></h1><p class="lead">{copy.lead}</p></div></section>
+  <section class="page-hero">
+    <div class="page-hero-copy container"><p class="eyebrow">{copy.eyebrow}</p><h1 class="page-title">{copy.heroFirst}<br /><span class="accent">{copy.heroAccent}</span></h1><p class="lead">{copy.lead}</p></div>
+    <HeroFooter lang={lang} context="insights" />
+  </section>
   <section class="section"><div class="container article-grid">{copy.articles.map((article, i) => <article class:list={{featured: i === 0}}><div class="article-meta"><span>{article.label}</span><span>{i + 4} {copy.readTime}</span></div><h2>{article.title}</h2><p>{article.text}</p><a href={`mailto:${enquiryRecipients}?subject=ADL%20Insight%20request`}>{copy.request} ↗</a></article>)}</div></section>
   <ClosingCta lang={lang} eyebrow={copy.closing.eyebrow} title={copy.closing.title} text={copy.closing.text} buttonLabel={copy.closing.button} />
 </BaseLayout>

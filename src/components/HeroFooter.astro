@@ -1,0 +1,36 @@
+---
+import { heroFooterCopy, type HeroFooterContext } from '../data/hero-footer';
+import type { SiteLocale } from '../data/localization';
+
+interface Props { lang?: SiteLocale; context: HeroFooterContext }
+const { lang = 'en', context } = Astro.props;
+---
+<div class="hero-foot container">
+  {heroFooterCopy[lang][context].map((label) => <span>{label}</span>)}
+</div>
+
+<style>
+  .hero-foot {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 74, 152, .22);
+    color: var(--muted);
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+  span { min-width: 0; overflow-wrap: anywhere; }
+  span:nth-child(2) { text-align: center; }
+  span:last-child { text-align: right; }
+  @media (max-width: 600px) {
+    .hero-foot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    span:nth-child(2) { display: none; }
+  }
+</style>

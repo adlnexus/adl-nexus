@@ -49,12 +49,50 @@ img { display: block; max-width: 100%; }
 .text-link::after { content: "↗"; }
 .section { padding: clamp(5rem, 10vw, 9rem) 0; }
 
-.page-hero { position: relative; isolation: isolate; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; padding: clamp(10rem, 17vw, 13rem) 0 clamp(5rem, 9vw, 8rem); background: #f8f8f5; color: var(--ink); }
-.page-hero::before { position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg, rgba(248, 248, 245, .99) 0%, rgba(248, 248, 245, .96) 35%, rgba(248, 248, 245, .74) 54%, rgba(248, 248, 245, .18) 100%), linear-gradient(180deg, rgba(248, 248, 245, .42), transparent 44%, rgba(248, 248, 245, .28)), url('/brand/adl-nexus-hero-abstract.webp') center / cover no-repeat; content: ""; }
-.page-hero::after { position: absolute; z-index: -1; top: clamp(7rem, 10vw, 10rem); right: -8vw; width: min(48vw, 650px); aspect-ratio: 1.08; border: clamp(2.75rem, 5.2vw, 5rem) solid rgba(0, 74, 152, .25); border-top-color: rgba(145, 205, 195, .42); border-right-color: rgba(0, 74, 152, .36); background: rgba(255, 255, 255, .035); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); content: ""; transform: rotate(36deg); pointer-events: none; }
+.page-hero { position: relative; isolation: isolate; min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; padding: calc(7.5rem + clamp(2.5rem, 6vh, 5rem)) 0 1.5rem; background: var(--cream); color: var(--ink); }
+/* Keep the ADL hero copy in the same column on home and standard pages. */
+.home-hero-grid, .page-hero-copy {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+}
+.page-hero-copy { margin-bottom: clamp(2.5rem, 6vh, 5rem); }
+.page-hero-copy > * { grid-column: 1; min-width: 0; }
+.home-hero .display, .page-hero .page-title {
+  max-width: 10.5ch;
+  overflow-wrap: anywhere;
+  font-size: var(--hero-title-size);
+  font-weight: 760;
+  letter-spacing: -.066em;
+  line-height: .92;
+}
+.home-hero-lead, .page-hero .lead {
+  max-width: 650px;
+  margin: 2rem 0;
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
+}
+/* One static, original vector composition shared by the ADL opening sections. */
+.hero-bands, .page-hero::before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/brand/adl-nexus-hero-bands.svg') 58% center / cover no-repeat;
+  opacity: .24;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3), #000 75%);
+  pointer-events: none;
+}
+/* The SVG's outer band ends at 81.25%: sit just inside the header's right edge. */
+@media (min-width: 901px) {
+  .hero-bands, .page-hero::before {
+    transform: translateX(calc(18.75vw - max(var(--pad), (100vw - var(--max)) / 2) - clamp(1.5rem, 3vw, 3rem)));
+  }
+}
+.page-hero::before { z-index: -1; content: ""; }
 .page-hero .container { position: relative; z-index: 1; }
 .page-hero .eyebrow, .page-hero .accent { color: var(--blue); }
-.page-hero .lead { margin-top: 2rem; color: color-mix(in srgb, var(--ink) 72%, transparent); }
 
 .split-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 7rem); align-items: start; }
 .copy h2, .copy h3 { margin: 0 0 1.25rem; letter-spacing: -.035em; }
@@ -77,14 +115,16 @@ img { display: block; max-width: 100%; }
 .form-note { color: var(--muted); font-size: .82rem; line-height: 1.5; }
 
 @media (max-width: 800px) {
-  .page-hero { min-height: 100svh; align-items: flex-start; padding-top: clamp(9rem, 22svh, 11rem); }
-  .page-hero::before { background: linear-gradient(90deg, rgba(248, 248, 245, .98), rgba(248, 248, 245, .76)), linear-gradient(180deg, rgba(248, 248, 245, .26), transparent 36%, rgba(248, 248, 245, .5)), url('/brand/adl-nexus-hero-abstract.webp') 66% center / cover no-repeat; }
-  .page-hero::after { top: auto; right: -30vw; bottom: -12vw; width: min(82vw, 430px); border-width: clamp(1.8rem, 9vw, 3.2rem); opacity: .62; }
   .split-intro, .stat-grid, .card-grid { grid-template-columns: 1fr; }
   .plain-card { min-height: auto; }
   .plain-card .num { margin-bottom: 2.5rem; }
   .contact-form { grid-template-columns: 1fr; }
   .field--wide { grid-column: auto; }
+}
+
+@media (max-width: 900px) {
+  .page-hero { padding-top: 12rem; }
+  .home-hero-grid, .page-hero-copy { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
 }
 
 @media (max-width: 600px) {

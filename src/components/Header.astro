@@ -15,8 +15,9 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
 ---
 <header class:list={["site-header", { "site-header--dark": dark, "site-header--green": brandVariant === 'green' }]}>
   <div class="header-inner">
-    <a class="brand" href={home}>
-      <BrandLogo class="brand-logo" variant={logoVariant} />
+    <a class="brand" href={home} aria-label="ADL Nexus">
+      <BrandLogo class="brand-logo brand-logo--page" variant={logoVariant} />
+      <BrandLogo class="brand-logo brand-logo--menu" variant="white" />
     </a>
 
     <nav class="desktop-nav" aria-label={ui.navLabel}>
@@ -42,17 +43,17 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
       <a class="header-cta" href={`${href('/contact')}#start-a-conversation`}>{ui.cta} <span>↗</span></a>
       <details class="mobile-menu">
         <summary aria-label={ui.menuLabel} aria-controls="mobile-navigation" aria-expanded="false"><span></span><span></span></summary>
-        <div class="mobile-panel" id="mobile-navigation">
-          <a href={home}>{ui.nav.home}</a>
+        <nav class="mobile-panel" id="mobile-navigation" aria-label={ui.navLabel}>
+          <a href={home} aria-current={path === home ? 'page' : undefined}>{ui.nav.home}</a>
           <span class="mobile-label">{ui.nav.solutions}</span>
-          <a href={href('/solutions/pipedrive')}>Pipedrive</a>
-          <a href={href('/solutions/learnie')}>Learnie</a>
-          <a href={href('/services')}>{ui.nav.services}</a>
-          <a href={href('/about')}>{ui.nav.about}</a>
-          <a href={href('/insights')}>{ui.nav.insights}</a>
-          <a href={href('/contact')}>{ui.nav.contact}</a>
+          <a href={href('/solutions/pipedrive')} aria-current={routeActive('/solutions/pipedrive') ? 'page' : undefined}>Pipedrive</a>
+          <a href={href('/solutions/learnie')} aria-current={routeActive('/solutions/learnie') ? 'page' : undefined}>Learnie</a>
+          <a href={href('/services')} aria-current={routeActive('/services') ? 'page' : undefined}>{ui.nav.services}</a>
+          <a href={href('/about')} aria-current={routeActive('/about') ? 'page' : undefined}>{ui.nav.about}</a>
+          <a href={href('/insights')} aria-current={routeActive('/insights') ? 'page' : undefined}>{ui.nav.insights}</a>
+          <a href={href('/contact')} aria-current={routeActive('/contact') ? 'page' : undefined}>{ui.nav.contact}</a>
           <div class="mobile-languages" aria-label={ui.languageLabel}>{localeCodes.map((locale) => <a class:list={{selected: locale === lang}} href={localeHref(locale)} hreflang={locale}>{locale.toUpperCase()}</a>)}</div>
-        </div>
+        </nav>
       </details>
     </div>
   </div>
@@ -65,6 +66,7 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   .header-inner { width: min(calc(100% - (2 * var(--pad))), var(--max)); height: 104px; display: grid; grid-template-columns: 165px 1fr auto; align-items: center; gap: 2rem; margin: auto; border-bottom: 1px solid currentColor; border-bottom-color: color-mix(in srgb, currentColor 20%, transparent); }
   .brand { width: max-content; display: block; }
   :global(.brand-logo) { width: 108px; height: auto; display: block; transition: filter .2s ease; }
+  :global(.brand-logo--menu) { display: none; }
   .desktop-nav { display: flex; align-items: center; justify-content: center; gap: clamp(1.1rem, 2.5vw, 2.6rem); }
   .desktop-nav > a, .nav-dropdown summary { position: relative; padding: .7rem 0; font-size: .79rem; font-weight: 650; cursor: pointer; list-style: none; }
   .desktop-nav > a::after, .nav-dropdown summary::after { position: absolute; right: 100%; bottom: 0; left: 0; height: 2px; background: var(--accent); content: ""; transition: right .2s ease; }
@@ -90,36 +92,39 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   .site-header--dark .header-cta:hover, .site-header--dark .header-cta:focus-visible { background: var(--white); }
   .mobile-menu { display: none; }
   @media (max-width: 1000px) {
-    .header-inner { grid-template-columns: 1fr auto; height: 84px; }
+    .header-inner { grid-template-columns: 1fr auto; height: 84px; transition: color .28s ease, border-color .28s ease; }
+    .brand { display: grid; }
+    :global(.brand-logo--page), :global(.brand-logo--menu) { grid-area: 1 / 1; transition: opacity .28s ease, visibility 0s linear .28s; }
+    :global(.brand-logo--menu) { display: block; opacity: 0; visibility: hidden; }
     .desktop-nav, .language { display: none; }
-    .mobile-menu { --focus-color: var(--mint); display: block; }
-    .mobile-menu > summary { position: relative; z-index: 2; width: 48px; height: 48px; display: grid; place-content: center; gap: 7px; border: 1px solid currentColor; cursor: pointer; list-style: none; transition: border-color .25s ease, background-color .25s ease; }
-    .mobile-menu > summary span { width: 20px; height: 1px; background: currentColor; transform-origin: center; transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
-    .mobile-menu.is-open > summary { border-color: color-mix(in srgb, var(--mint) 72%, transparent); background: color-mix(in srgb, var(--blue) 24%, transparent); color: var(--white); }
-    .mobile-menu.is-open > summary span:first-child { transform: translateY(4px) rotate(45deg); }
-    .mobile-menu.is-open > summary span:last-child { transform: translateY(-4px) rotate(-45deg); }
-    .mobile-panel { position: fixed; z-index: -1; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: .25rem; overflow-y: auto; padding: 6rem var(--pad) 2rem; background: linear-gradient(145deg, var(--ink) 0%, color-mix(in srgb, var(--ink) 74%, var(--blue)) 100%); color: var(--white); clip-path: inset(0 0 100% 0); opacity: 0; pointer-events: none; visibility: hidden; transition: clip-path .48s cubic-bezier(.76, 0, .24, 1), opacity .3s ease, visibility 0s linear .48s; }
-    .mobile-panel::before { position: fixed; right: -30vw; bottom: -38vw; width: min(96vw, 600px); aspect-ratio: 1.08; border: clamp(2.2rem, 10vw, 5rem) solid rgba(0, 74, 152, .72); border-top-color: rgba(145, 205, 195, .68); border-right-color: rgba(0, 74, 152, .92); background: rgba(255, 255, 255, .015); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); content: ""; opacity: .78; transform: rotate(25deg); pointer-events: none; }
-    .mobile-menu.is-open .mobile-panel { clip-path: inset(0); opacity: 1; pointer-events: auto; visibility: visible; transition-delay: 0s; }
-    .mobile-panel > * { position: relative; z-index: 1; opacity: 0; transform: translateY(18px); transition: opacity .28s ease, transform .38s cubic-bezier(.2, .8, .2, 1); }
+    .mobile-menu { display: block; }
+    .mobile-menu[open] { --focus-color: var(--mint); }
+    .mobile-menu > summary { position: relative; z-index: 2; width: 48px; height: 48px; border: 1px solid currentColor; cursor: pointer; list-style: none; transition: color .28s ease, border-color .28s ease, background-color .28s ease; }
+    .mobile-menu > summary span { position: absolute; top: calc(50% - .5px); left: calc(50% - 10px); width: 20px; height: 1px; background: currentColor; transform-origin: center; transition: transform .28s cubic-bezier(.2, .8, .2, 1); }
+    .mobile-menu > summary span:first-child { transform: translateY(-4px); }
+    .mobile-menu > summary span:last-child { transform: translateY(4px); }
+    .mobile-menu.is-open > summary { border-color: var(--mint); background: var(--mint); color: var(--ink); }
+    .mobile-menu.is-open > summary span:first-child { transform: rotate(45deg); }
+    .mobile-menu.is-open > summary span:last-child { transform: rotate(-45deg); }
+    .mobile-panel { position: fixed; z-index: -1; inset: 0; display: flex; flex-direction: column; justify-content: flex-start; gap: .15rem; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding: 7rem var(--pad) max(2rem, env(safe-area-inset-bottom)); background: var(--ink); color: var(--white); opacity: 0; pointer-events: none; visibility: hidden; transition: opacity .28s ease, visibility 0s linear .28s; }
+    .mobile-panel::before { position: fixed; inset: 0; background: url('/brand/adl-nexus-hero-bands.svg') 58% center / cover no-repeat; content: ""; opacity: .28; mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3), #000 75%); pointer-events: none; }
+    .mobile-menu.is-open .mobile-panel { opacity: 1; pointer-events: auto; visibility: visible; transition-delay: 0s; }
+    .mobile-panel > * { position: relative; z-index: 1; opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .28s cubic-bezier(.2, .8, .2, 1); }
     .mobile-menu.is-open .mobile-panel > * { opacity: 1; transform: translateY(0); }
-    .mobile-menu.is-open .mobile-panel > :nth-child(1) { transition-delay: .16s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(2) { transition-delay: .19s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(3) { transition-delay: .22s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(4) { transition-delay: .25s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(5) { transition-delay: .28s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(6) { transition-delay: .31s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(7) { transition-delay: .34s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(8) { transition-delay: .37s; }
-    .mobile-menu.is-open .mobile-panel > :nth-child(9) { transition-delay: .4s; }
-    .mobile-panel a { width: fit-content; font-size: clamp(1.8rem, 7vw, 3.5rem); font-weight: 700; letter-spacing: -.045em; }
-    .mobile-panel a:hover, .mobile-panel a:focus-visible { color: var(--mint); }
-    .mobile-panel .mobile-label { margin-top: 1rem; color: color-mix(in srgb, var(--grey) 72%, var(--white)); font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
-    .mobile-panel .mobile-label + a, .mobile-panel .mobile-label + a + a { margin-left: 1rem; font-size: clamp(1.3rem, 5vw, 2.4rem); }
+    .mobile-panel a { width: fit-content; max-width: 100%; min-height: 44px; display: flex; align-items: center; flex-shrink: 0; padding-block: .2rem; font-size: clamp(1.8rem, 7vw, 3rem); font-weight: 760; letter-spacing: -.055em; line-height: 1.1; overflow-wrap: anywhere; }
+    .mobile-panel a:hover, .mobile-panel a:focus-visible, .mobile-panel a[aria-current="page"] { color: var(--mint); }
+    .mobile-panel a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--mint); text-decoration-thickness: 3px; text-underline-offset: .2em; }
+    .mobile-panel .mobile-label { margin-top: .8rem; color: var(--mint); font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    .mobile-panel .mobile-label + a, .mobile-panel .mobile-label + a + a { margin-left: .15rem; padding-left: 1rem; border-left: 2px solid var(--mint); font-size: clamp(1.25rem, 5vw, 2rem); }
     .mobile-languages { display: flex; gap: .5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid color-mix(in srgb, var(--grey) 42%, transparent); }
-    .mobile-panel .mobile-languages a { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid color-mix(in srgb, var(--grey) 55%, transparent); color: color-mix(in srgb, var(--grey) 62%, var(--white)); font-size: .7rem; letter-spacing: .08em; }
-    .mobile-panel .mobile-languages a.selected { border-color: var(--mint); background: color-mix(in srgb, var(--blue) 28%, transparent); color: var(--white); }
-    :global(body.menu-open .brand-logo) { filter: brightness(0) invert(1); }
+    .mobile-panel .mobile-languages a { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid color-mix(in srgb, var(--grey) 55%, transparent); background: var(--ink); color: var(--white); font-size: .7rem; letter-spacing: .08em; }
+    .mobile-panel .mobile-languages a.selected, .mobile-panel .mobile-languages a:hover { border-color: var(--mint); background: var(--mint); color: var(--ink); }
+    .header-inner:has(.mobile-menu.is-open) { color: var(--white); border-bottom-color: rgba(255, 255, 255, .2); }
+    .header-inner:has(.mobile-menu.is-open) :global(.brand-logo--page) { opacity: 0; visibility: hidden; }
+    .header-inner:has(.mobile-menu.is-open) :global(.brand-logo--menu) { opacity: 1; visibility: visible; transition-delay: 0s; }
+    .header-inner:not(:has(.mobile-menu.is-open)) :global(.brand-logo--page) { transition-delay: 0s; }
+    .header-cta { transition: background-color .28s ease, color .28s ease; }
+    .header-inner:has(.mobile-menu.is-open) .header-cta { background: var(--mint); color: var(--ink); }
   }
   @media (max-width: 1000px) and (max-height: 720px) {
     .mobile-panel { justify-content: flex-start; }
@@ -128,7 +133,7 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   }
   @media (max-width: 520px) { .header-cta { display: none; } :global(.brand-logo) { width: 92px; } }
   @media (prefers-reduced-motion: reduce) {
-    .mobile-panel, .mobile-panel > *, .mobile-menu > summary span { transition: none; }
+    .header-inner, .header-cta, :global(.brand-logo), .mobile-panel, .mobile-panel > *, .mobile-menu > summary, .mobile-menu > summary span { transition: none; }
   }
 </style>
 
@@ -142,6 +147,8 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   }
   const mobileMenu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
   const mobileSummary = mobileMenu?.querySelector<HTMLElement>(':scope > summary');
+  const mobilePanel = mobileMenu?.querySelector<HTMLElement>('.mobile-panel');
+  const backgroundState = new Map<HTMLElement, boolean>();
   const mobileBreakpoint = window.matchMedia('(max-width: 1000px)');
   let closeTimer: number | undefined;
 
@@ -156,10 +163,12 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
       mobileMenu.open = false;
       mobileMenu.classList.remove('is-closing');
       document.body.classList.remove('menu-open');
+      backgroundState.forEach((wasInert, element) => { element.inert = wasInert; });
+      backgroundState.clear();
     };
 
     if (immediate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) finish();
-    else closeTimer = window.setTimeout(finish, 480);
+    else closeTimer = window.setTimeout(finish, 280);
   };
 
   mobileSummary?.addEventListener('click', (event) => {
@@ -177,14 +186,34 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
     mobileMenu.open = true;
     mobileSummary.setAttribute('aria-expanded', 'true');
     document.body.classList.add('menu-open');
+    document.querySelectorAll<HTMLElement>('main, footer').forEach((element) => {
+      backgroundState.set(element, element.inert);
+      element.inert = true;
+    });
     requestAnimationFrame(() => mobileMenu.classList.add('is-open'));
   });
 
   document.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab' && mobileMenu?.open && mobileSummary && mobilePanel) {
+      const controls = [mobileSummary, ...mobilePanel.querySelectorAll<HTMLAnchorElement>('a[href]')];
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
     if (event.key === 'Escape' && mobileMenu?.open) {
       closeMobileMenu();
       mobileSummary?.focus();
     }
+  });
+
+  mobilePanel?.addEventListener('click', (event) => {
+    if ((event.target as Element).closest('a[href]')) closeMobileMenu(true);
   });
 
   mobileBreakpoint.addEventListener('change', (event) => {

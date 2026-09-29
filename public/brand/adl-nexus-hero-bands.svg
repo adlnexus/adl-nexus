@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" fill="none">
+  <!-- Original geometric artwork inspired by the directional bands of analogue media packaging. -->
+  <g stroke-width="48" stroke-linejoin="miter">
+    <path d="M-100 660H138L446 352V-80" stroke="#91CDC3"/>
+    <path d="M-100 720H163L506 377V-80" stroke="#7A97AB"/>
+    <path d="M-100 780H188L566 402V-80" stroke="#004A98"/>
+    <path d="M-100 840H213L626 427V-80" stroke="#1A171B"/>
+  </g>
+</svg>

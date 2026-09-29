@@ -48,6 +48,12 @@ Primary colours are defined in `src/styles/global.css`:
 
 Warm cream `#F5F3EF` may be used as a supporting page background. The direction is editorial and architectural: generous spacing, large type, fine borders, selective blue and mint accents, and simple geometric forms.
 
+The shared ADL hero uses original, static directional bands inspired by vintage blank-video packaging (`public/brand/adl-nexus-hero-bands.svg`). Keep the blue, mint, grey and ink bands on warm cream as a full-hero, softened background on desktop and phones, fading towards the copy for readability. This artwork is decoration, not a logo; do not add VHS labels, borrowed brand marks or rainbow colours. Partner-specific Pipedrive and Learnie heroes retain their own visual systems.
+
+The mobile navigation uses a dark ink background, the approved white wordmark, mint active/focus accents and the same subdued directional bands. Keep links comfortably tappable and allow scrolling on short screens.
+
+Hero footers share the homepage's thin divider and compact labels. Services, About Us, Insights and Contact use page-specific themes from `src/data/hero-footer.ts`; the homepage keeps its location and representation labels. Show three labels on desktop and the outer two on phones. New translated labels remain subject to native-speaker review.
+
 Approved logo assets live in `public/brand/`. Use the no-tagline wordmark in headers, the “GLOBAL CONNECTIONS” lockup in the footer and social artwork, and the standalone symbol for decoration and favicons. Do not redraw, distort, recolour, or combine the mark with new elements. The green ADL logo variant is reserved for the Pipedrive experience and uses `#073F3B`, `#176B59`, and `#55A995` on the approved master geometry; these logo colours are not the page palette.
 
 “GLOBAL CONNECTIONS” is a secondary logo tagline. The primary site positioning remains:
