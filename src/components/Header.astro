@@ -108,7 +108,7 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
     .mobile-menu.is-open > summary span:first-child { transform: rotate(45deg); }
     .mobile-menu.is-open > summary span:last-child { transform: rotate(-45deg); }
     .mobile-panel { position: fixed; z-index: -1; inset: 0; display: flex; flex-direction: column; justify-content: flex-start; gap: .15rem; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding: 7rem var(--pad) max(2rem, env(safe-area-inset-bottom)); background: var(--ink); color: var(--white); opacity: 0; pointer-events: none; visibility: hidden; transition: opacity .28s ease, visibility 0s linear .28s; }
-    .mobile-panel::before { position: fixed; inset: 0; background: url('/brand/adl-nexus-hero-bands.svg') 58% center / cover no-repeat; content: ""; opacity: .28; mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3), #000 75%); pointer-events: none; }
+    .mobile-panel::before { position: fixed; inset: 0; background-image: var(--menu-ribbons, url('/brand/adl-nexus-hero-bands.svg')); background-position: var(--menu-ribbon-position, 58% center); background-size: var(--menu-ribbon-size, cover); background-repeat: no-repeat; content: ""; opacity: .28; mask-image: linear-gradient(90deg, rgba(0, 0, 0, .3), #000 75%); pointer-events: none; }
     .mobile-menu.is-open .mobile-panel { opacity: 1; pointer-events: auto; visibility: visible; transition-delay: 0s; }
     .mobile-panel > * { position: relative; z-index: 1; opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .28s cubic-bezier(.2, .8, .2, 1); }
     .mobile-menu.is-open .mobile-panel > * { opacity: 1; transform: translateY(0); }
@@ -152,6 +152,31 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   const backgroundState = new Map<HTMLElement, boolean>();
   const mobileBreakpoint = window.matchMedia('(max-width: 1000px)');
   let closeTimer: number | undefined;
+  const alignMenuRibbons = () => {
+    if (!mobilePanel) return;
+    const ribbons = document.querySelector<SVGSVGElement>('.home-ribbons-ready .home-ribbons svg');
+    if (ribbons) {
+      // Reuse the actual responsive homepage geometry, not the older static art.
+      const copy = ribbons.cloneNode(true) as SVGSVGElement;
+      copy.querySelector('g')?.removeAttribute('mask');
+      const rect = ribbons.getBoundingClientRect();
+      mobilePanel.style.setProperty('--menu-ribbons', `url("data:image/svg+xml,${encodeURIComponent(new XMLSerializer().serializeToString(copy))}")`);
+      mobilePanel.style.setProperty('--menu-ribbon-size', `${rect.width}px ${rect.height}px`);
+      mobilePanel.style.setProperty('--menu-ribbon-position', `${rect.left}px ${rect.top}px`);
+    } else {
+      const hero = document.querySelector<HTMLElement>('.page-hero, .home-hero');
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      const scale = Math.max(rect.width / 800, rect.height / 900);
+      const art = getComputedStyle(hero, '::before');
+      const shift = art.transform === 'none' ? 0 : new DOMMatrixReadOnly(art.transform).m41;
+      mobilePanel.style.setProperty('--menu-ribbon-size', `${800 * scale}px ${900 * scale}px`);
+      mobilePanel.style.setProperty('--menu-ribbon-position', `${rect.left + (rect.width - 800 * scale) * .58 + shift}px ${rect.top + (rect.height - 900 * scale) / 2}px`);
+    }
+  };
+  window.addEventListener('resize', () => {
+    if (mobileMenu?.open) requestAnimationFrame(alignMenuRibbons);
+  });
 
   const closeMobileMenu = (immediate = false) => {
     if (!mobileMenu?.open) return;
@@ -184,6 +209,7 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
     document.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((detail) => {
       if (detail !== mobileMenu) detail.open = false;
     });
+    alignMenuRibbons();
     mobileMenu.open = true;
     mobileSummary.setAttribute('aria-expanded', 'true');
     document.body.classList.add('menu-open');
