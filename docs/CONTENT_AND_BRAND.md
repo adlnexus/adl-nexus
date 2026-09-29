@@ -64,7 +64,13 @@ Approved logo assets live in `public/brand/`. Use the no-tagline wordmark in hea
 
 > Carefully selected software. One trusted partner.
 
+### Homepage layout update
+
+The subsequently approved homepage refresh applies only below the existing hero, across all five locales. Keep the header, drawer, hero proportions, artwork and mobile opacity unchanged. `HomeContent.astro` shares the audience and value sections while preserving the existing copy and actions for each locale. Use compact white rounded cards, smaller below-hero headings, and static warm/lavender flowing backgrounds. Featured solutions use two side-by-side cards with the real partner logos and existing demo/exploration links; no fabricated product screenshots or additional claims. The homepage closing CTA and footer use opt-in compact variants; interior-page variants stay unchanged. Preserve existing footer contact details and do not add unavailable social or legal links.
+
 ## Approved solution descriptions
+
+The homepage Featured solutions cards now form a manual, scroll-snapping carousel, with a neighbouring-card preview, two position indicators and previous/next buttons. Keep the light ADL surfaces and partner accents, all existing copy and actions, and no autoplay. Support native touch scrolling, keyboard navigation and reduced motion; retain scrollable content without JavaScript. New control labels are localised in all five languages and remain subject to the usual native-speaker review.
 
 ### Pipedrive
 

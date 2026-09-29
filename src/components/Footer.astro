@@ -3,12 +3,12 @@ import BrandLogo from './BrandLogo.astro';
 import { routeFor, uiCopy, type SiteLocale } from '../data/localization';
 import { contactEmails } from '../data/contact';
 
-interface Props { lang?: SiteLocale }
-const { lang = 'en' } = Astro.props;
+interface Props { lang?: SiteLocale; variant?: 'default' | 'home' }
+const { lang = 'en', variant = 'default' } = Astro.props;
 const ui = uiCopy[lang];
 const href = (route: string) => routeFor(lang, route);
 ---
-<footer class="footer">
+<footer class:list={['footer', { 'footer--home': variant === 'home' }]}>
   <div class="footer-grid container">
     <div class="footer-brand"><BrandLogo class="footer-logo" variant="tagline-white" alt="ADL Nexus — Global Connections" /><p>{ui.footer.tagline}</p></div>
     <div><h2>{ui.footer.explore}</h2><a href={href('/services')}>{ui.nav.services}</a><a href={href('/solutions/pipedrive')}>Pipedrive</a><a href={href('/solutions/learnie')}>Learnie</a></div>
@@ -28,6 +28,15 @@ const href = (route: string) => routeFor(lang, route);
   .footer a:hover { color: var(--white); }
   .footer-brand p { max-width: 260px; margin-top: 1rem; }
   .footer-bottom { display: flex; justify-content: space-between; margin-top: 5rem; padding-top: 1.5rem; border-top: 1px solid #28282b; color: #888; font-size: .7rem; }
+  .footer--home { padding: 2.75rem 0 1.5rem; border-top: 1px solid rgba(255,255,255,.1); background: #17191c; }
+  .footer--home .footer-grid { grid-template-columns: 1.4fr .8fr .8fr 1.4fr; gap: 2rem; }
+  .footer--home .footer-grid > div { min-width: 0; gap: .5rem; }
+  .footer--home :global(.footer-logo) { width: 104px; }
+  .footer--home .footer-brand p { max-width: 235px; margin-top: .5rem; }
+  .footer--home a { overflow-wrap: anywhere; }
+  .footer--home .footer-bottom { margin-top: 2rem; padding-top: 1rem; }
+  @media (max-width: 800px) { .footer--home .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .footer--home .footer-grid { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: .7rem; } }
 </style>

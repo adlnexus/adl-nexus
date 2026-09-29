@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import FeaturedSolutions from '../../components/FeaturedSolutions.astro';
+import HomeContent from '../../components/HomeContent.astro';
 import HomeHero from '../../components/HomeHero.astro';
-import { landingCopy, localizedLandingCodes, routeFor, type LocalizedLandingCode } from '../../data/localization';
+import { landingCopy, localizedLandingCodes, type LocalizedLandingCode } from '../../data/localization';
 
 export function getStaticPaths() {
   return localizedLandingCodes.map((lang) => ({ params: { lang }, props: { lang, copy: landingCopy[lang] } }));
@@ -14,9 +14,8 @@ interface Props {
 }
 
 const { lang, copy } = Astro.props;
-const href = (route: string) => routeFor(lang, route);
 ---
-<BaseLayout lang={lang} title={copy.title} description={copy.description}>
+<BaseLayout lang={lang} title={copy.title} description={copy.description} footerVariant="home">
   <HomeHero
     lang={lang}
     eyebrow={copy.hero.eyebrow}
@@ -25,50 +24,5 @@ const href = (route: string) => routeFor(lang, route);
     support={copy.hero.support}
     cta={copy.hero.cta}
   />
-
-  <section class="section" id="about">
-    <div class="container">
-      <p class="eyebrow">{copy.audiences.eyebrow}</p>
-      <div class="localized-grid">
-        <article><span>{copy.audiences.organisations}</span><h2>{copy.audiences.organisationsTitle}</h2><p>{copy.audiences.organisationsText}</p></article>
-        <article><span>{copy.audiences.tech}</span><h2>{copy.audiences.techTitle}</h2><p>{copy.audiences.techText}</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section localized-why" id="services">
-    <div class="container">
-      <p class="eyebrow">{copy.why.eyebrow}</p>
-      <h2 class="section-title">{copy.why.title}</h2>
-      <div class="localized-three">{copy.why.points.map((point) => <p>{point}</p>)}</div>
-    </div>
-  </section>
-
-  <FeaturedSolutions lang={lang} />
-
-  <section class="localized-contact" id="contact">
-    <div class="container">
-      <p class="eyebrow">{copy.closing.eyebrow}</p>
-      <h2>{copy.closing.title}</h2>
-      <a class="button button--primary" href={`${href('/contact')}#start-a-conversation`}>{copy.closing.cta}</a>
-    </div>
-  </section>
+  <HomeContent lang={lang} />
 </BaseLayout>
-
-<style>
-  .localized-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 3rem; background: var(--line); }
-  .localized-grid article { min-width: 0; min-height: 440px; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(2rem, 5vw, 5rem); background: var(--white); overflow-wrap: anywhere; }
-  .localized-grid span { color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .localized-grid h2 { max-width: 13ch; margin: 2rem 0; font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -.06em; line-height: .95; }
-  .localized-grid p { color: var(--muted); line-height: 1.6; }
-  .localized-why { background: var(--warm-surface); color: var(--ink); }
-  .localized-why .eyebrow { color: var(--accent); }
-  .localized-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--accent-line); }
-  .localized-three p { max-width: 340px; line-height: 1.55; }
-  .localized-contact { padding: clamp(7rem, 14vw, 13rem) 0; background: var(--ink); color: var(--white); text-align: center; }
-  .localized-contact .eyebrow { color: var(--accent-on-dark); }
-  .localized-contact h2 { max-width: 13ch; margin: 1rem auto 3rem; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -.065em; line-height: .93; overflow-wrap: anywhere; }
-  @media (max-width: 750px) {
-    .localized-grid, .localized-three { grid-template-columns: 1fr; }
-  }
-</style>

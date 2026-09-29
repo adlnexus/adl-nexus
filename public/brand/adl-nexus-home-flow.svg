@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 2000" preserveAspectRatio="none" fill="none">
+  <defs>
+    <radialGradient id="peach"><stop stop-color="#FFC39E" stop-opacity=".24"/><stop offset="1" stop-color="#FFFDFB" stop-opacity="0"/></radialGradient>
+    <radialGradient id="lavender"><stop stop-color="#BEB2DF" stop-opacity=".18"/><stop offset="1" stop-color="#FFFDFB" stop-opacity="0"/></radialGradient>
+    <linearGradient id="wash" x2="1" y2="1"><stop stop-color="#FFF1D6" stop-opacity=".5"/><stop offset="1" stop-color="#FFE7DE" stop-opacity=".12"/></linearGradient>
+  </defs>
+  <ellipse cx="300" cy="410" rx="800" ry="480" fill="url(#peach)"/>
+  <ellipse cx="1350" cy="640" rx="620" ry="590" fill="url(#lavender)"/>
+  <ellipse cx="200" cy="1640" rx="850" ry="640" fill="url(#peach)"/>
+  <path d="M-100 90C380-80 860 240 1540 90V-50H-100Z" fill="url(#wash)"/>
+  <path d="M-100 620C530 980 1000 450 1540 870M-100 1530C470 1820 1000 1240 1540 1560" stroke="#FFF" stroke-opacity=".8" stroke-width="2"/>
+  <path d="M-180 310 150 535H400M1570 635 1190 915H995M-190 1320 170 1580H400M1600 1620 1200 1950H890" stroke="#FFCA45" stroke-opacity=".13" stroke-width="40"/>
+  <path d="M-180 368 150 593H400M1570 693 1190 973H995M-190 1378 170 1638H400M1600 1678 1200 2008H890" stroke="#FF8A3D" stroke-opacity=".12" stroke-width="40"/>
+  <path d="M-180 426 150 651H400M1570 751 1190 1031H995M-190 1436 170 1696H400M1600 1736 1200 2066H890" stroke="#F16858" stroke-opacity=".11" stroke-width="40"/>
+  <path d="M-180 484 150 709H400M1570 809 1190 1089H995M-190 1494 170 1754H400M1600 1794 1200 2124H890" stroke="#969696" stroke-opacity=".09" stroke-width="40"/>
+</svg>

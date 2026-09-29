@@ -2,8 +2,8 @@
 import { localizedPagesCopy } from '../data/localized-pages';
 import { routeFor, type LocalizedLandingCode, type SiteLocale } from '../data/localization';
 
-interface Props { lang?: SiteLocale }
-const { lang = 'en' } = Astro.props;
+interface Props { lang?: SiteLocale; variant?: 'default' | 'cards' }
+const { lang = 'en', variant = 'default' } = Astro.props;
 
 const englishProducts = {
   pipedrive: {
@@ -29,17 +29,24 @@ const sectionCopy = {
   ru: { eyebrow: 'Отобранные решения', title: 'Одно сильное решение для каждой реальной задачи.', lead: 'Наш портфель намеренно небольшой. Каждый продукт занимает свое место благодаря пользе, соответствию задачам и долгосрочной ценности.', pipedrive: 'Подробнее о Pipedrive', learnie: 'Подробнее о Learnie' },
 } satisfies Record<SiteLocale, { eyebrow: string; title: string; lead: string; pipedrive: string; learnie: string }>;
 const section = sectionCopy[lang];
+const controls = {
+  en: ['Previous solution', 'Next solution'],
+  sr: ['Prethodno rešenje', 'Sledeće rešenje'],
+  es: ['Solución anterior', 'Siguiente solución'],
+  de: ['Vorherige Lösung', 'Nächste Lösung'],
+  ru: ['Предыдущее решение', 'Следующее решение'],
+}[lang];
 const href = (route: string) => routeFor(lang, route);
 ---
 
-<section class="solutions section" id="solutions">
+<section class:list={['solutions section', { 'solutions--cards': variant === 'cards' }]} id="solutions">
   <div class="container">
     <div class="solutions-head">
       <div><p class="eyebrow">{section.eyebrow}</p><h2 class="section-title">{section.title}</h2></div>
       <p>{section.lead}</p>
     </div>
-    <div class="solution-list">
-      <article class="solution solution--pipedrive">
+    <div class="solution-list" id="featured-solutions-track" tabindex={variant === 'cards' ? '0' : undefined} role={variant === 'cards' ? 'region' : undefined} aria-label={variant === 'cards' ? section.eyebrow : undefined}>
+      <article class="solution solution--pipedrive" aria-label="Pipedrive">
         <div class="solution-name solution-logo solution-logo--pipedrive"><img src="/partners/pipedrive-logo.svg" width="121" height="26" alt="Pipedrive" /></div>
         <div>
           <span>{products.pipedrive.eyebrow}</span>
@@ -48,7 +55,7 @@ const href = (route: string) => routeFor(lang, route);
           <div class="solution-actions"><a class="button" href={`${href('/contact')}?solution=pipedrive#start-a-conversation`}>{products.pipedrive.demo}</a><a class="text-link" href={href('/solutions/pipedrive')}>{section.pipedrive}</a></div>
         </div>
       </article>
-      <article class="solution solution--learnie">
+      <article class="solution solution--learnie" aria-label="Learnie">
         <div class="solution-name solution-logo solution-logo--learnie">
           <img src="/partners/learnie-logo.png" width="350" height="125" alt="Learnie — Community Microlearning" />
         </div>
@@ -60,8 +67,50 @@ const href = (route: string) => routeFor(lang, route);
         </div>
       </article>
     </div>
+    {variant === 'cards' && <div class="carousel-controls" hidden>
+      <button type="button" class="carousel-arrow" data-step="-1" aria-label={controls[0]} aria-controls="featured-solutions-track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7" /></svg></button>
+      <div class="carousel-dots">
+        <button type="button" class="carousel-dot" data-slide="0" aria-label="Pipedrive" aria-current="true" aria-controls="featured-solutions-track"><span /></button>
+        <button type="button" class="carousel-dot" data-slide="1" aria-label="Learnie" aria-controls="featured-solutions-track"><span /></button>
+      </div>
+      <button type="button" class="carousel-arrow" data-step="1" aria-label={controls[1]} aria-controls="featured-solutions-track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7" /></svg></button>
+      <span class="carousel-status" aria-live="polite" aria-atomic="true"></span>
+    </div>}
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.solutions--cards').forEach(section => {
+    const track = section.querySelector<HTMLElement>('.solution-list')!;
+    const slides = Array.from(track.querySelectorAll<HTMLElement>('.solution'));
+    const controls = section.querySelector<HTMLElement>('.carousel-controls')!;
+    const dots = Array.from(controls.querySelectorAll<HTMLButtonElement>('[data-slide]'));
+    const arrows = Array.from(controls.querySelectorAll<HTMLButtonElement>('[data-step]'));
+    const status = controls.querySelector<HTMLElement>('.carousel-status')!;
+    let active = 0;
+    const position = (index: number) => Math.min(slides[index].offsetLeft - slides[0].offsetLeft, track.scrollWidth - track.clientWidth);
+    const update = () => {
+      active = slides.reduce((nearest, _, index) => Math.abs(position(index) - track.scrollLeft) < Math.abs(position(nearest) - track.scrollLeft) ? index : nearest, 0);
+      dots.forEach((dot, index) => index === active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current'));
+      arrows[0].disabled = active === 0;
+      arrows[1].disabled = active === slides.length - 1;
+    };
+    const go = (index: number) => track.scrollTo({ left: position(Math.max(0, Math.min(index, slides.length - 1))), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    dots.forEach((dot, index) => dot.addEventListener('click', () => go(index)));
+    arrows.forEach(button => button.addEventListener('click', () => go(active + Number(button.dataset.step))));
+    track.addEventListener('keydown', event => {
+      if (event.target !== track) return;
+      const target = { ArrowLeft: active - 1, ArrowRight: active + 1, Home: 0, End: slides.length - 1 }[event.key];
+      if (target !== undefined) { event.preventDefault(); go(target); }
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    track.addEventListener('scrollend', () => { status.textContent = `${slides[active].getAttribute('aria-label')} · ${active + 1} / ${slides.length}`; });
+    new ResizeObserver(update).observe(track);
+    track.classList.add('is-enhanced');
+    controls.hidden = false;
+    update();
+  });
+</script>
 
 <style>
   .solutions-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; }
@@ -97,4 +146,47 @@ const href = (route: string) => routeFor(lang, route);
     .solution-logo--pipedrive img { width: min(100%, 230px); }
     .solution-logo--learnie img { width: min(100%, 230px); }
   }
+  .solutions--cards { padding: clamp(3.5rem, 6vw, 5.5rem) 0; }
+  .solutions--cards .solutions-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 6vw, 6rem); }
+  .solutions--cards .section-title { max-width: 23ch; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.02; }
+  .solutions--cards .solution-list { position: relative; display: flex; gap: 1.5rem; margin-top: 2.5rem; border: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; padding: 4px 4px 18px; }
+  .solutions--cards .solution-list:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 20px; }
+  .solutions--cards .solution-list.is-enhanced { scrollbar-width: none; }
+  .solutions--cards .solution-list.is-enhanced::-webkit-scrollbar { display: none; }
+  .solutions--cards .solution { flex: 0 0 74%; scroll-snap-align: start; }
+  .carousel-controls:not([hidden]) { display: flex; align-items: center; justify-content: center; width: fit-content; margin: 1.5rem auto 0; padding: 5px 10px; border: 1px solid rgba(192,68,22,.2); border-radius: 999px; background: linear-gradient(135deg, #fff, #fff3e9); box-shadow: 0 4px 16px rgba(93,57,40,.07); }
+  .carousel-controls button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+  .carousel-controls button:hover:not(:disabled) { background: #ffe5d3; }
+  .carousel-controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .carousel-controls button:disabled { opacity: .3; cursor: default; }
+  .carousel-arrow svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .carousel-dots { display: flex; margin: 0 8px; }
+  .carousel-dot span { width: 9px; height: 9px; border-radius: 50%; background: #a39791; }
+  .carousel-dot[aria-current] span { background: var(--accent); box-shadow: 0 0 0 4px rgba(192,68,22,.1); }
+  .carousel-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .solutions--cards .solution { display: flex; flex-direction: column; min-width: 0; gap: 1.75rem; padding: clamp(1.5rem, 3vw, 2.5rem); border: 1px solid rgba(255,255,255,.9); border-radius: 18px; box-shadow: 0 10px 35px rgba(93,57,40,.045); }
+  .solutions--cards .solution--pipedrive { background: radial-gradient(ellipse at 100% 0%, rgba(1,119,55,.09), transparent 60%), rgba(255,255,255,.95); }
+  .solutions--cards .solution--learnie { background: radial-gradient(ellipse at 100% 0%, rgba(0,138,18,.08), transparent 60%), rgba(255,255,255,.95); }
+  .solutions--cards .solution::before { content: none; }
+  .solutions--cards .solution-logo { display: flex; align-items: center; min-height: 72px; align-self: stretch; }
+  .solutions--cards .solution-logo--pipedrive img { width: min(100%, 190px); }
+  .solutions--cards .solution-logo--learnie img { width: min(100%, 210px); }
+  .solutions--cards .solution > div:last-child { display: flex; flex-direction: column; align-items: flex-start; flex: 1; min-width: 0; }
+  .solutions--cards .solution h3 { max-width: 24ch; margin: .75rem 0 1rem; font-size: clamp(1.6rem, 2.2vw, 2.1rem); line-height: 1.08; overflow-wrap: anywhere; }
+  .solutions--cards .solution p { margin: 0 0 1.5rem; line-height: 1.6; }
+  .solutions--cards .solution-actions { margin-top: auto; gap: 1rem; padding-top: .5rem; }
+  .solutions--cards .solution--pipedrive > div:last-child > span { color: #017737; }
+  .solutions--cards .solution--learnie > div:last-child > span { color: #006e0e; }
+  .solutions--cards .solution--pipedrive .button { background: #514ac4; border-color: #514ac4; }
+  .solutions--cards .solution--pipedrive .button:hover, .solutions--cards .solution--pipedrive .button:focus-visible { background: #413d99; border-color: #413d99; }
+  .solutions--cards .solution--learnie .button { background: #006e0e; border-color: #006e0e; }
+  .solutions--cards .solution--learnie .button:hover, .solutions--cards .solution--learnie .button:focus-visible { background: #00590b; border-color: #00590b; }
+  @media (max-width: 900px) {
+    .solutions--cards .solutions-head, .solutions--cards .solution-list { grid-template-columns: minmax(0, 1fr); }
+    .solutions--cards .solutions-head { gap: 1.5rem; }
+    .solutions--cards .solution-logo { min-height: 0; }
+    .solutions--cards .solution { flex-basis: 90%; }
+    .solutions--cards .solution-list { gap: 1rem; }
+  }
+  @media (max-width: 480px) { .solutions--cards .solution-actions { flex-direction: column; align-items: flex-start; } }
 </style>

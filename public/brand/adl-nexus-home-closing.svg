@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" fill="none">
+  <defs>
+    <linearGradient id="fold" x1="800" y1="40" x2="1300" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF" stop-opacity="0"/><stop offset=".6" stop-color="#FFF" stop-opacity=".06"/><stop offset="1" stop-color="#F16858" stop-opacity=".06"/></linearGradient>
+  </defs>
+  <path d="M-60 40C470 110 650 620 1660 20V500H-60Z" fill="url(#fold)"/>
+  <path d="M-60 40C470 110 650 620 1660 20" stroke="#FF8A3D" stroke-opacity=".2"/>
+  <path d="M150 600C390 290 790 410 1080-90M480 600C680 330 1060 390 1540-90" stroke="#FFCA45" stroke-opacity=".14"/>
+  <path d="M-80 190C540 720 900 0 1650 200" stroke="#FFF" stroke-opacity=".06"/>
+</svg>

@@ -1,15 +1,27 @@
 ---
 import { routeFor, type SiteLocale } from '../data/localization';
-interface Props { title?: string; text?: string; eyebrow?: string; buttonLabel?: string; lang?: SiteLocale; }
-const { title = 'Ready to find the right fit?', text = 'One focused conversation can clarify the software you need or the market you should enter next.', eyebrow = 'Start a conversation', buttonLabel = 'Contact us', lang = 'en' } = Astro.props;
+interface Props { title?: string; text?: string; eyebrow?: string; buttonLabel?: string; lang?: SiteLocale; variant?: 'default' | 'home'; accent?: string; id?: string; }
+const { title = 'Ready to find the right fit?', text = 'One focused conversation can clarify the software you need or the market you should enter next.', eyebrow = 'Start a conversation', buttonLabel = 'Contact us', lang = 'en', variant = 'default', accent = '', id } = Astro.props;
+const hasAccent = variant === 'home' && accent && title.endsWith(accent);
 ---
-<section class="closing">
-  <div class="closing-shape" aria-hidden="true"></div>
+<section class:list={['closing', { 'closing--home': variant === 'home' }]} id={id}>
+  {variant === 'default' && <div class="closing-shape" aria-hidden="true"></div>}
   <div class="container closing-inner">
+    {variant === 'home' ? <>
+      <div class="closing-heading">
+        <p class="eyebrow">{eyebrow}</p>
+        <h2>{hasAccent ? <>{title.slice(0, -accent.length).split('. ').filter(Boolean).map((sentence) => <span class="closing-line">{sentence}. </span>)}<span class="closing-accent">{accent}</span></> : title}</h2>
+      </div>
+      <div class="closing-action">
+        {text && <p>{text}</p>}
+        <a class="button button--primary" href={`${routeFor(lang, '/contact')}#start-a-conversation`}>{buttonLabel}</a>
+      </div>
+    </> : <>
     <p class="eyebrow">{eyebrow}</p>
     <h2>{title}</h2>
     <p>{text}</p>
     <a class="button button--primary" href={`${routeFor(lang, '/contact')}#start-a-conversation`}>{buttonLabel}</a>
+    </>}
   </div>
 </section>
 
@@ -21,6 +33,14 @@ const { title = 'Ready to find the right fit?', text = 'One focused conversation
   .closing p:not(.eyebrow) { max-width: 580px; margin: 2rem 0; color: #bdbdc2; line-height: 1.55; }
   .closing-shape { --shape-y: 0px; --shape-rotation: 25deg; position: absolute; left: -18vw; bottom: -25vw; width: 54vw; height: 54vw; border: clamp(2rem, 6vw, 6rem) solid color-mix(in srgb, var(--coral) 72%, transparent); border-top-color: color-mix(in srgb, var(--gold) 68%, transparent); border-right-color: color-mix(in srgb, var(--coral) 92%, transparent); background: rgba(255, 255, 255, .015); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); opacity: .78; transform: translate3d(0, var(--shape-y), 0) rotate(var(--shape-rotation)); }
   .closing-shape.is-scroll-animated { will-change: transform; }
+  .closing--home { padding: clamp(3.5rem, 6vw, 5.5rem) 0; background: #17191c; text-align: left; }
+  .closing--home::before { position: absolute; inset: 0; pointer-events: none; background: url('/brand/adl-nexus-home-closing.svg') center / cover no-repeat; content: ''; }
+  .closing--home .closing-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; justify-items: stretch; gap: clamp(2rem, 6vw, 6rem); }
+  .closing--home h2 { max-width: 20ch; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.04; letter-spacing: -.05em; overflow-wrap: anywhere; }
+  .closing--home h2 span { display: block; }
+  .closing--home h2 .closing-accent { color: var(--accent-on-dark); }
+  .closing--home p:not(.eyebrow) { max-width: 430px; margin: 0 0 1.5rem; color: #d0ced0; }
+  @media (max-width: 900px) { .closing--home .closing-inner { grid-template-columns: minmax(0, 1fr); } }
 
   @media (prefers-reduced-motion: reduce) {
     .closing-shape { transform: rotate(25deg); }
@@ -29,7 +49,7 @@ const { title = 'Ready to find the right fit?', text = 'One focused conversation
 
 <script>
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const closingSections = Array.from(document.querySelectorAll<HTMLElement>('.closing'));
+  const closingSections = Array.from(document.querySelectorAll<HTMLElement>('.closing:not(.closing--home)'));
   let frameRequested = false;
   let motionEnabled = false;
 
@@ -53,7 +73,7 @@ const { title = 'Ready to find the right fit?', text = 'One focused conversation
   };
 
   const enableMotion = () => {
-    if (motionEnabled || motionPreference.matches) return;
+    if (motionEnabled || motionPreference.matches || !closingSections.length) return;
     motionEnabled = true;
     closingSections.forEach((section) => section.querySelector('.closing-shape')?.classList.add('is-scroll-animated'));
     window.addEventListener('scroll', requestShapeUpdate, { passive: true });
