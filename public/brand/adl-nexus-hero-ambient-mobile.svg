@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1000" fill="none">
+  <!-- Portrait framing keeps the ambient curves visible behind mobile hero copy. -->
+  <defs>
+    <radialGradient id="warm" cx=".2" cy=".36" r=".64">
+      <stop stop-color="#FF955F" stop-opacity=".42"/>
+      <stop offset=".55" stop-color="#FFC99A" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#FBF9F6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sweep" x1="70" y1="0" x2="550" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B6C6EC" stop-opacity=".32"/>
+      <stop offset=".42" stop-color="#FCFBF9" stop-opacity=".12"/>
+      <stop offset=".73" stop-color="#B3A6E5" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#FF927E" stop-opacity=".4"/>
+    </linearGradient>
+    <radialGradient id="peach" cx=".8" cy=".87" r=".7">
+      <stop stop-color="#FF9A70" stop-opacity=".42"/>
+      <stop offset=".6" stop-color="#FFD3A0" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#FBF9F6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g opacity=".7">
+  <path fill="url(#warm)" d="M0 0H600V1000H0z"/>
+  <path d="M60-100C60 150 160 200 335 325S490 520 700 670V-100Z" fill="url(#sweep)"/>
+  <path d="M60-100C60 150 160 200 335 325S490 520 700 670" stroke="#FFF" stroke-opacity=".7" stroke-width="1.5"/>
+  <path d="M-100 1000C-25 765 50 550 235 510S475 640 700 850V1000Z" fill="url(#peach)"/>
+  <path d="M-100 1000C-25 765 50 550 235 510S475 640 700 850" stroke="#FFF" stroke-opacity=".8" stroke-width="2"/>
+  </g>
+</svg>

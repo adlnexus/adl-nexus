@@ -137,6 +137,7 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 900px) {
+  :root { --hero-surface: url('/brand/adl-nexus-hero-ambient-mobile.svg') center / cover no-repeat, var(--paper); }
   .page-hero { padding-top: 12rem; }
   .home-hero-grid, .page-hero-copy { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
   /* Keep richer colour at the edges, softened where mobile copy overlaps. */
