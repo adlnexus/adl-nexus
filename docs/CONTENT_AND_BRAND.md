@@ -110,18 +110,24 @@ The current form opens the visitor’s email application. It does not store or t
 
 ## Languages
 
-English is the default language. Equivalent routes are available in:
+English is the default language. Following the October 2026 owner decision, equivalent routes are available in:
 
 - Serbian: `/sr/`
 - Spanish: `/es/`
-- German: `/de/`
-- Russian: `/ru/`
+
+German and Russian translations and routes have been removed, not redirected. Old DE/RU addresses return 404. Spanish remains fully supported and visible. About Us and Insights links are hidden throughout navigation and footers, while their EN/SR/ES pages remain accessible directly. Insights stays noindex.
 
 Translated homepages use `src/pages/[lang]/index.astro`. Translated subpages are generated through `src/pages/[lang]/[...slug].astro` using the same page components as English, so navigation, layouts and calls to action remain equivalent. Homepage copy and shared labels live in `src/data/localization.ts`; subpage copy lives in `src/data/localized-pages.ts`.
 
 Whenever important English positioning or route behaviour changes, update and verify every locale or flag each translation as needing owner review. Do not silently machine-translate sensitive commercial or legal copy and present it as approved. All current translations require native-speaker review before launch.
 
 ## Draft content
+
+### Homepage final v2 — October 2026
+
+The written Home Page Final Developer Instructions v2 are authoritative over screenshot-only text. `src/data/home.ts` contains the new homepage-only EN/SR/ES copy; SR/ES translations require native-speaker review. Keep the existing hero title, support copy, artwork and minimum viewport height, but remove its location-label row and all homepage CTA arrows. Per the subsequent menu-consistency request, every page uses the same transparent-to-glass fixed header after 24px of scroll, pill-shaped floating surface, no top-state divider, arrow-free header CTA, glass Solutions dropdown and circular mobile toggle. Partner colours remain intact; mobile drawer links remain text-only on the dark surface. Section anchors allow space for the fixed header.
+
+The audience section has two simplified blocks with one solutions-anchor action and one Services action. Why ADL uses diagonal text placement on desktop and sequential blocks on mobile, without numbers or icons. Featured Solutions shows exactly one whole slide, Pipedrive then Learnie, using warm off-white surfaces, original logos, orange/red primary exploration buttons and secondary demo links. It has no autoplay or adjacent-card peek. Product screenshots and the Premier Partner mark are deferred pending official standalone assets; do not crop or redraw the PSH badge photograph. The closing CTA has a calm dark area behind the action, and the homepage footer omits its location line. This supersedes earlier homepage descriptions above; partner pages and Services retain their content and ribbon behavior.
 
 ### Services refresh — October 2026
 

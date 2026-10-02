@@ -2,18 +2,18 @@
 import BrandLogo from './BrandLogo.astro';
 import { equivalentLocaleRoute, languageNames, localeCodes, routeFor, uiCopy, type SiteLocale } from '../data/localization';
 
-interface Props { dark?: boolean; lang?: SiteLocale; brandVariant?: 'default' | 'green' }
-const { dark = false, lang = 'en', brandVariant = 'default' } = Astro.props;
+interface Props { dark?: boolean; lang?: SiteLocale; brandVariant?: 'default' | 'green'; homepage?: boolean; notFound?: boolean }
+const { dark = false, lang = 'en', brandVariant = 'default', homepage = false, notFound = false } = Astro.props;
 const path = Astro.url.pathname;
 const active = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
 const home = routeFor(lang);
 const ui = uiCopy[lang];
 const href = (route: string) => routeFor(lang, route);
-const localeHref = (locale: SiteLocale) => equivalentLocaleRoute(path, locale);
+const localeHref = (locale: SiteLocale) => notFound ? routeFor(locale) : equivalentLocaleRoute(path, locale);
 const routeActive = (route: string) => active(href(route));
 const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full';
 ---
-<header class:list={["site-header", { "site-header--dark": dark, "site-header--green": brandVariant === 'green' }]}>
+<header class:list={["site-header", { "site-header--dark": dark, "site-header--green": brandVariant === 'green', "site-header--home": homepage }]}>
   <div class="header-inner">
     <a class="brand" href={home} aria-label="ADL Nexus">
       <BrandLogo class="brand-logo brand-logo--page" variant={logoVariant} />
@@ -30,8 +30,6 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
         </div>
       </details>
       <a class:list={{ active: routeActive('/services') }} href={href('/services')}>{ui.nav.services}</a>
-      <a class:list={{ active: routeActive('/about') }} href={href('/about')}>{ui.nav.about}</a>
-      <a class:list={{ active: routeActive('/insights') }} href={href('/insights')}>{ui.nav.insights}</a>
       <a class:list={{ active: routeActive('/contact') }} href={href('/contact')}>{ui.nav.contact}</a>
     </nav>
 
@@ -40,7 +38,7 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
         <summary aria-label={`${lang.toUpperCase()} — ${ui.languageLabel}`}>{lang.toUpperCase()} <span aria-hidden="true">⌄</span></summary>
         <div>{localeCodes.map((locale) => <a class:list={{selected: locale === lang}} href={localeHref(locale)} hreflang={locale}>{languageNames[locale]}</a>)}</div>
       </details>
-      <a class="header-cta" href={`${href('/contact')}#start-a-conversation`}>{ui.cta} <span>↗</span></a>
+      <a class="header-cta" href={`${href('/contact')}#start-a-conversation`}>{ui.cta}</a>
       <details class="mobile-menu">
         <summary aria-label={ui.menuLabel} aria-controls="mobile-navigation" aria-expanded="false"><span></span><span></span></summary>
         <nav class="mobile-panel" id="mobile-navigation" aria-label={ui.navLabel}>
@@ -49,8 +47,6 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
           <a href={href('/solutions/pipedrive')} aria-current={routeActive('/solutions/pipedrive') ? 'page' : undefined}>Pipedrive</a>
           <a href={href('/solutions/learnie')} aria-current={routeActive('/solutions/learnie') ? 'page' : undefined}>Learnie</a>
           <a href={href('/services')} aria-current={routeActive('/services') ? 'page' : undefined}>{ui.nav.services}</a>
-          <a href={href('/about')} aria-current={routeActive('/about') ? 'page' : undefined}>{ui.nav.about}</a>
-          <a href={href('/insights')} aria-current={routeActive('/insights') ? 'page' : undefined}>{ui.nav.insights}</a>
           <a href={href('/contact')} aria-current={routeActive('/contact') ? 'page' : undefined}>{ui.nav.contact}</a>
           <div class="mobile-languages" aria-label={ui.languageLabel}>{localeCodes.map((locale) => <a class:list={{selected: locale === lang}} href={localeHref(locale)} hreflang={locale}>{locale.toUpperCase()}</a>)}</div>
         </nav>
@@ -60,7 +56,16 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
 </header>
 
 <style>
-  .site-header { position: absolute; z-index: 50; top: 0; left: 0; width: 100%; color: var(--ink); }
+  .site-header { position: fixed; z-index: 50; top: 0; left: 0; width: 100%; color: var(--ink); }
+  .site-header::before { content: ''; position: absolute; inset: 8px max(8px, calc((100% - var(--max)) / 2 - 20px)); border: 1px solid rgba(255,255,255,.6); border-radius: 999px; background: linear-gradient(135deg, rgba(255,253,251,.66), rgba(255,253,251,.46)); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 6px 24px rgba(26,23,27,.06); -webkit-backdrop-filter: blur(24px) saturate(135%); backdrop-filter: blur(24px) saturate(135%); opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header::before { background: rgba(255,253,251,.92); }
+  }
+  .site-header.is-scrolled::before { opacity: 1; }
+  .site-header:has(.mobile-menu[open])::before { opacity: 0; }
+  .site-header .header-inner { position: relative; border-bottom-color: transparent; }
+  .site-header--dark.is-scrolled:not(:has(.mobile-menu[open])) { color: var(--ink); }
+  .site-header--dark.is-scrolled :global(.brand-logo--page) { filter: brightness(.15); }
   .site-header--dark { --accent: var(--accent-on-dark); --accent-dark: var(--white); --focus-color: var(--accent-on-dark); color: var(--white); }
   .site-header--green { --accent: #6861f2; --accent-dark: #6150e1; --focus-color: #6861f2; --cta-fill: var(--accent); --cta-hover: var(--accent-dark); --cta-shadow: none; color: #192435; }
   .header-inner { width: min(calc(100% - (2 * var(--pad))), var(--max)); height: 104px; display: grid; grid-template-columns: 165px 1fr auto; align-items: center; gap: 2rem; margin: auto; border-bottom: 1px solid currentColor; border-bottom-color: color-mix(in srgb, currentColor 20%, transparent); }
@@ -75,7 +80,10 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   .nav-dropdown summary::-webkit-details-marker, .language summary::-webkit-details-marker, .mobile-menu summary::-webkit-details-marker { display: none; }
   .nav-dropdown { position: relative; }
   .nav-dropdown summary span, .language summary span { margin-left: .3rem; }
-  .dropdown-panel { position: absolute; top: calc(100% + 1rem); left: 50%; width: 560px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; padding: 1rem; border: 1px solid #eee7df; border-radius: 26px; background: #fffaf5; color: var(--ink); box-shadow: 0 16px 40px rgba(70,45,30,.13); transform: translateX(-50%); }
+  .dropdown-panel { position: absolute; top: calc(100% + 1rem); left: 50%; width: 560px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; padding: 1rem; border: 1px solid rgba(255,255,255,.6); border-radius: 26px; background: linear-gradient(135deg, rgba(255,253,251,.66), rgba(255,253,251,.46)); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 6px 24px rgba(26,23,27,.06); -webkit-backdrop-filter: blur(24px) saturate(135%); backdrop-filter: blur(24px) saturate(135%); transform: translateX(-50%); }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .dropdown-panel { background: rgba(255,253,251,.92); }
+  }
   .solution-link { --tile-tint: #d7f9d3; --tile-accent: #017737; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: .9rem; min-width: 0; min-height: 145px; padding: 1.5rem; border: 1px solid color-mix(in srgb, var(--tile-accent) 12%, white); border-radius: 20px; background: linear-gradient(135deg, #fffefa, var(--tile-tint)); color: #28342e; transition: box-shadow .2s ease, border-color .2s ease; }
   .solution-link--learnie { --tile-tint: #e3f1d4; --tile-accent: #0e8b44; }
   .solution-link::before { content: ''; position: absolute; inset: 0; background: color-mix(in srgb, var(--tile-accent) 9%, transparent); clip-path: polygon(100% 40%, 100% 100%, 52% 100%); pointer-events: none; }
@@ -100,7 +108,7 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
     .desktop-nav, .language { display: none; }
     .mobile-menu { display: block; }
     .mobile-menu[open] { --focus-color: var(--accent-on-dark); }
-    .mobile-menu > summary { position: relative; z-index: 2; width: 48px; height: 48px; border: 1px solid #656168; border-radius: 14px; background: linear-gradient(145deg, #747078, #55515a); color: var(--white); box-shadow: 0 1px 0 rgba(26, 23, 27, .18), 0 3px 8px rgba(26, 23, 27, .12), inset 0 1px 0 rgba(255, 255, 255, .12); cursor: pointer; list-style: none; transition: color .28s ease, border-color .28s ease, background-color .28s ease, box-shadow .2s ease; }
+    .mobile-menu > summary { position: relative; z-index: 2; width: 48px; height: 48px; border: 1px solid #656168; border-radius: 50%; background: linear-gradient(145deg, #747078, #55515a); color: var(--white); box-shadow: 0 1px 0 rgba(26, 23, 27, .18), 0 3px 8px rgba(26, 23, 27, .12), inset 0 1px 0 rgba(255, 255, 255, .12); cursor: pointer; list-style: none; transition: color .28s ease, border-color .28s ease, background-color .28s ease, box-shadow .2s ease; }
     .mobile-menu > summary:hover, .mobile-menu > summary:focus-visible { border-color: #817b86; box-shadow: 0 1px 0 rgba(26, 23, 27, .2), 0 4px 10px rgba(26, 23, 27, .16), inset 0 1px 0 rgba(255, 255, 255, .18); }
     .mobile-menu > summary span { position: absolute; top: calc(50% - .5px); left: calc(50% - 10px); width: 20px; height: 1px; background: currentColor; transform-origin: center; transition: transform .28s cubic-bezier(.2, .8, .2, 1); }
     .mobile-menu > summary span:first-child { transform: translateY(-4px); }
@@ -136,11 +144,18 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
   }
   @media (max-width: 520px) { .header-cta { display: none; } :global(.brand-logo) { width: 92px; } }
   @media (prefers-reduced-motion: reduce) {
+    .site-header::before { transition: none; }
     .header-inner, .header-cta, .solution-link, :global(.brand-logo), .mobile-panel, .mobile-panel > *, .mobile-menu > summary, .mobile-menu > summary span { transition: none; }
   }
 </style>
 
 <script>
+  const siteHeader = document.querySelector<HTMLElement>('.site-header');
+  if (siteHeader) {
+    const updateHeader = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 24);
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+  }
   if (window.location.search) {
     document.querySelectorAll<HTMLAnchorElement>('.language a[hreflang], .mobile-languages a[hreflang]').forEach((link) => {
       const target = new URL(link.href, window.location.origin);
@@ -255,6 +270,18 @@ const logoVariant = dark ? 'white' : brandVariant === 'green' ? 'green' : 'full'
       document.querySelectorAll<HTMLDetailsElement>('details').forEach((other) => {
         if (other !== detail && other !== mobileMenu) other.open = false;
       });
+    });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll<HTMLDetailsElement>('details[open]:not(.mobile-menu)').forEach(detail => {
+      detail.open = false;
+      detail.querySelector('summary')?.focus();
+    });
+  });
+  document.addEventListener('click', event => {
+    document.querySelectorAll<HTMLDetailsElement>('details[open]:not(.mobile-menu)').forEach(detail => {
+      if (!detail.contains(event.target as Node)) detail.open = false;
     });
   });
 </script>

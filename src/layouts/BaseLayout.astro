@@ -12,6 +12,8 @@ interface Props {
   brandVariant?: 'default' | 'green';
   footerVariant?: 'default' | 'home';
   ribbonVariant?: 'home' | 'services';
+  homepage?: boolean;
+  notFound?: boolean;
   lang?: SiteLocale;
   robots?: string;
 }
@@ -23,6 +25,8 @@ const {
   brandVariant = 'default',
   footerVariant = 'default',
   ribbonVariant = footerVariant === 'home' ? 'home' : undefined,
+  homepage = false,
+  notFound = false,
   lang = 'en',
   robots = 'index, follow, max-image-preview:large',
 } = Astro.props;
@@ -62,7 +66,7 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <script is:inline>
       (() => {
         try {
-          const homePath = /^\/(?:(?:sr|es|de|ru)\/?)?$/;
+          const homePath = /^\/(?:(?:sr|es)\/?)?$/;
           const previous = new URL(document.referrer);
           const cameFromHome = previous.origin === window.location.origin && homePath.test(previous.pathname);
           const currentIsHome = homePath.test(window.location.pathname);
@@ -100,13 +104,13 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl.href} />
     <meta name="twitter:image:alt" content={social.imageAlt} />
-    {localeCodes.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale).href} />)}
-    <link rel="alternate" hreflang="x-default" href={alternateFor('en').href} />
+    {!notFound && localeCodes.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale).href} />)}
+    {!notFound && <link rel="alternate" hreflang="x-default" href={alternateFor('en').href} />}
     {structuredData && <script type="application/ld+json" set:html={structuredData} />}
     <title>{title}</title>
   </head>
-  <body class:list={{ 'home-ribbon-page': !!ribbonVariant, 'services-ribbon-page': ribbonVariant === 'services' }}>
-    <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} />
+  <body class:list={{ 'homepage': homepage, 'home-ribbon-page': !!ribbonVariant, 'services-ribbon-page': ribbonVariant === 'services' }}>
+    <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} homepage={homepage} notFound={notFound} />
     <main><slot /></main>
     <Footer lang={lang} variant={footerVariant} />
     {ribbonVariant && <HomeRibbons variant={ribbonVariant} />}

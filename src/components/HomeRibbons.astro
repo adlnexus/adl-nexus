@@ -39,9 +39,8 @@ const colours = [
   :global(body.home-ribbons-ready .homepage-content) { isolation: auto; }
   :global(body.home-ribbons-ready .homepage-content::before) { z-index: 0; }
   :global(.home-ribbons-ready .homepage-content .container) { position: relative; z-index: 2; }
-  /* Keep the continuous path beneath a translucent footer surface. */
+  /* Keep the ribbon equally bright through the closing and footer. */
   :global(.home-ribbons-ready .footer--home) { position: relative; }
-  :global(.home-ribbons-ready .footer--home::before) { content: ''; position: absolute; inset: 0; z-index: 2; background: rgba(23, 25, 28, .82); pointer-events: none; }
   :global(.home-ribbons-ready .footer--home .container) { position: relative; z-index: 3; }
   /* A light, feathered surface lets the ribbons recede behind Why ADL. */
   :global(.home-ribbons-ready .home-why) { position: relative; }
@@ -57,12 +56,10 @@ const colours = [
   :global(.services-ribbon-page.home-ribbons-ready :is(.services-hero, .services-content, .services-closing, .footer) .container) { position: relative; z-index: 3; }
   :global(.services-ribbon-page.home-ribbons-ready :is(.services-intro, .services-approach, .footer)) { position: relative; }
   :global(.services-ribbon-page.home-ribbons-ready :is(.services-intro, .services-approach)::before) { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(transparent, rgba(255,253,251,.82) 16%, rgba(255,253,251,.82) 84%, transparent); }
-  :global(.services-ribbon-page.home-ribbons-ready .footer::before) { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(23,25,28,.82); }
-  /* Match the home closing: bright ribbons here, dimmed only in the footer. */
+  /* Match the home closing and footer brightness. */
   :global(.services-ribbon-page.home-ribbons-ready :is(.services-closing h2, .services-closing .eyebrow, .services-closing .closing-text)) { text-shadow: 0 0 2px #17191c, 0 0 5px #17191c; }
   :global(.services-ribbon-page.home-ribbons-ready .page-hero-copy) { text-shadow: 0 0 2px var(--paper), 0 0 5px var(--paper); }
-  /* The dark footer veil already protects contrast; no light text halo. */
-  :global(.services-ribbon-page.home-ribbons-ready :is(.footer-grid, .footer-bottom)) { text-shadow: none; }
+  :global(.home-ribbons-ready .footer) { --ribbon-copy-surface: #17191c; }
 </style>
 
 <script>
@@ -146,8 +143,11 @@ const colours = [
         point(width - margin, top(why) - 30),
         point(margin, top(solutions) + 45),
         point(width - margin, top(closing) - 35),
-        point(width * .2, top(footer) + footer.offsetHeight * .28),
-        point(width * .12, height + 100),
+        // Leave a clean reading column on phones; turn towards the footer
+        // only after the closing copy and contact action have finished.
+        ...(!services && mobile ? [point(width - margin, top(footer) - 20)] : []),
+        point(mobile ? width - margin : width * .2, top(footer) + footer.offsetHeight * .28),
+        point(mobile ? width - margin : width * .12, height + 100),
       ];
       if (!mobile) {
         const content = audience.querySelector<HTMLElement>('.container')!.getBoundingClientRect();

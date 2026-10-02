@@ -61,40 +61,4 @@ export const servicesCopy: Record<SiteLocale, ServicesCopy> = {
       { title: 'Colaboración continua.', text: 'Trabajamos como tu equipo externo de ventas, desarrollo de alianzas o crecimiento del cliente, con la opción de operar bajo tu marca.' },
     ], contact: 'Contáctanos', closingTitle: 'Un mejor camino hacia el crecimiento empieza con la conversación adecuada.', closingText: 'Juntos podemos aclarar tu próximo paso y cómo podemos contribuir.', talk: 'Hablemos',
   },
-  de: {
-    heroFirst: 'Neue Kunden erreichen.', heroAccent: 'Dauerhaftes Wachstum aufbauen.',
-    lead: 'Wir helfen Technologieunternehmen, durch Geschäftsentwicklung, Vertriebsvertretung und Empfehlungen neue Kunden zu erreichen – mit einem auf jede Partnerschaft abgestimmten Unterstützungsumfang.',
-    introTitle: 'So unterstützen wir Ihr Wachstum.',
-    intro: ['Neue Kunden zu erreichen und dauerhafte Beziehungen aufzubauen erfordert mehr als eine Kontaktliste. Entscheidend sind ein Verständnis dafür, wie Kunden kaufen, relevante Kontakte und konsequente Nachverfolgung.', 'ADL Nexus bringt internationale Vertriebserfahrung und ein etabliertes berufliches Netzwerk in jede Partnerschaft ein. Von Kontaktanbahnungen und gezielten Projekten bis zur laufenden kommerziellen Zusammenarbeit vereinbaren wir die Unterstützung, die zu Ihren Zielen passt.'],
-    items: [
-      { title: 'Markteintritt', text: 'Prioritätsmärkte identifizieren, Kundenbedürfnisse verstehen und einen praktischen Ansatz entwickeln, um die richtigen Käufer zu erreichen.' },
-      { title: 'Geschäftsentwicklung', text: 'Mit potenziellen Kunden in Kontakt treten, relevante Kontakte herstellen und qualifizierte Verkaufschancen entwickeln.' },
-      { title: 'Vertriebsvertretung', text: 'Ihre Lösung in Kundengesprächen vertreten und den Vertriebsprozess unterstützen – von ersten Treffen über Verhandlungen bis zum Abschluss.' },
-      { title: 'Partnerentwicklung', text: 'Partnerschaften aufbauen und unterstützen, die Ihre Lösung zu den richtigen Kunden bringen.' },
-      { title: 'Kundenerfolg und Wachstum', text: 'Kunden beim Einstieg und der effektiven Nutzung Ihrer Lösung unterstützen und Möglichkeiten zum Ausbau der Beziehung erkennen.' },
-    ], approach: 'So arbeiten wir',
-    principles: [
-      { title: 'Empfehlungen und Kontaktanbahnung.', text: 'Wir verbinden potenzielle Kunden mit Ihrem Team, das den Vertriebsprozess führt und die Kundenbeziehung betreut.' },
-      { title: 'Gezielte Projekte.', text: 'Wir übernehmen einen klar definierten kommerziellen Auftrag, etwa die Entwicklung von Chancen in einem ausgewählten Markt oder die Suche nach geeigneten Partnern.' },
-      { title: 'Laufende Zusammenarbeit.', text: 'Wir arbeiten als Ihr externes Team im Vertrieb, in der Partnerentwicklung oder im Kundenwachstum – auf Wunsch auch unter Ihrer Marke.' },
-    ], contact: 'Kontakt aufnehmen', closingTitle: 'Ein besserer Weg zum Wachstum beginnt mit dem richtigen Gespräch.', closingText: 'Gemeinsam klären wir Ihren nächsten Schritt und unseren Beitrag dazu.', talk: 'Lassen Sie uns sprechen',
-  },
-  ru: {
-    heroFirst: 'Находите новых клиентов.', heroAccent: 'Создавайте долгосрочный рост.',
-    lead: 'Мы помогаем технологическим компаниям находить новых клиентов через развитие бизнеса, торговое представительство и рекомендации, подбирая объём поддержки для каждого партнёрства.',
-    introTitle: 'Как мы поддерживаем ваш рост.',
-    intro: ['Для привлечения новых клиентов и построения долгосрочных отношений нужен не просто список контактов. Необходимо понимать, как клиенты принимают решения о покупке, иметь нужные связи и последовательно доводить работу до результата.', 'ADL Nexus привносит в каждое партнёрство международный опыт продаж и развитую сеть профессиональных контактов. От деловых знакомств и целевых проектов до постоянного коммерческого сотрудничества — мы согласовываем поддержку, соответствующую вашим целям.'],
-    items: [
-      { title: 'Выход на рынок', text: 'Определите приоритетные рынки, поймите потребности клиентов и разработайте практический подход к поиску подходящих покупателей.' },
-      { title: 'Развитие бизнеса', text: 'Устанавливайте связи с потенциальными клиентами, организуйте полезные знакомства и развивайте квалифицированные возможности продаж.' },
-      { title: 'Торговое представительство', text: 'Представляем ваше решение в общении с клиентами и поддерживаем процесс продаж — от первых встреч до переговоров и заключения сделки.' },
-      { title: 'Развитие партнёрств', text: 'Создавайте и поддерживайте партнёрства, которые помогают вашему решению находить подходящих клиентов.' },
-      { title: 'Успех и рост клиентов', text: 'Помогайте клиентам начать работу, эффективно использовать ваше решение и находить возможности для развития сотрудничества.' },
-    ], approach: 'Как мы работаем',
-    principles: [
-      { title: 'Рекомендации и знакомства.', text: 'Мы знакомим потенциальных клиентов с вашей командой, которая ведёт процесс продаж и управляет отношениями с клиентом.' },
-      { title: 'Целевые проекты.', text: 'Мы берём на себя конкретную коммерческую задачу, например развитие возможностей на выбранном рынке или поиск подходящих партнёров.' },
-      { title: 'Постоянное сотрудничество.', text: 'Мы работаем как ваша внешняя команда по продажам, развитию партнёрств или росту клиентов, в том числе под вашим брендом.' },
-    ], contact: 'Свяжитесь с нами', closingTitle: 'Лучший путь к росту начинается с правильного разговора.', closingText: 'Вместе мы определим ваш следующий шаг и нашу роль в нём.', talk: 'Давайте обсудим',
-  },
 };

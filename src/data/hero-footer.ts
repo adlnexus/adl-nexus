@@ -26,18 +26,4 @@ export const heroFooterCopy: Record<SiteLocale, Record<HeroFooterContext, Labels
     insights: ['Software y ventas', 'Perspectivas de mercado', 'Ideas prácticas'],
     contact: ['Tus objetivos', 'Una conversación enfocada', 'Un siguiente paso claro'],
   },
-  de: {
-    home: ['Belgrad', 'International tätig', 'Unabhängige Vertretung'],
-    services: ['Markteintritt', 'Vertriebsvertretung', 'Kundenwachstum'],
-    about: ['Bewusste Auswahl', 'Unabhängige Beratung', 'Langfristige Partnerschaften'],
-    insights: ['Software & Vertrieb', 'Marktperspektiven', 'Praxisnahe Ideen'],
-    contact: ['Ihre Ziele', 'Ein fokussiertes Gespräch', 'Ein klarer nächster Schritt'],
-  },
-  ru: {
-    home: ['Белград', 'Работаем на международных рынках', 'Независимое представительство'],
-    services: ['Выход на рынок', 'Торговое представительство', 'Рост клиентов'],
-    about: ['Осознанный выбор', 'Независимые рекомендации', 'Долгосрочное партнёрство'],
-    insights: ['ПО и продажи', 'Взгляд на рынок', 'Практические идеи'],
-    contact: ['Ваши цели', 'Предметный разговор', 'Ясный следующий шаг'],
-  },
 };

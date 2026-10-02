@@ -8,15 +8,13 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
-      filter: (page) => !/^\/(?:sr\/|es\/|de\/|ru\/)?insights\/?$/.test(new URL(page).pathname),
+      filter: (page) => !/^\/(?:sr\/|es\/)?insights\/?$/.test(new URL(page).pathname) && !new URL(page).pathname.includes('/404'),
       i18n: {
         defaultLocale: 'en',
         locales: {
           en: 'en',
           sr: 'sr',
           es: 'es',
-          de: 'de',
-          ru: 'ru',
         },
       },
     }),

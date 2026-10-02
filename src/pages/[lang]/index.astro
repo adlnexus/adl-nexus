@@ -15,7 +15,7 @@ interface Props {
 
 const { lang, copy } = Astro.props;
 ---
-<BaseLayout lang={lang} title={copy.title} description={copy.description} footerVariant="home">
+<BaseLayout lang={lang} title={copy.title} description={copy.description} footerVariant="home" homepage>
   <HomeHero
     lang={lang}
     eyebrow={copy.hero.eyebrow}

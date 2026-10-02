@@ -3,7 +3,7 @@ import { dirname, join, relative, sep } from 'node:path';
 
 const outputDirectory = 'dist';
 const productionOrigin = 'https://adlnexus.com';
-const localeCodes = ['en', 'sr', 'es', 'de', 'ru'];
+const localeCodes = ['en', 'sr', 'es'];
 const errors = [];
 
 function collectHtmlFiles(directory) {
@@ -40,18 +40,25 @@ if (!existsSync(outputDirectory)) {
 const htmlFiles = collectHtmlFiles(outputDirectory).sort();
 const knownRoutes = new Set(htmlFiles.map(routeForFile));
 
-if (htmlFiles.length !== 35) errors.push(`Expected 35 HTML pages, found ${htmlFiles.length}.`);
+if (htmlFiles.length !== 22) errors.push(`Expected 21 content pages and one 404 page, found ${htmlFiles.length}.`);
+if (!existsSync(join(outputDirectory, '404.html'))) errors.push('Missing static 404.html.');
+if (existsSync(join(outputDirectory, 'de')) || existsSync(join(outputDirectory, 'ru'))) errors.push('Removed locale output still exists.');
 
 for (const file of htmlFiles) {
   const html = readFileSync(file, 'utf8');
   const route = routeForFile(file);
+  if (file === join(outputDirectory, '404.html')) {
+    if (!html.includes('noindex, follow')) addError('/404', '404 must be noindex');
+    if (tags(html, 'link').some(tag => tag.hreflang)) addError('/404', '404 must not advertise locale alternatives');
+    continue;
+  }
   const canonical = tags(html, 'link').filter((tag) => tag.rel === 'canonical');
   const alternates = tags(html, 'link').filter((tag) => tag.rel === 'alternate' && tag.hreflang);
   const metas = tags(html, 'meta');
   const robots = metas.find((tag) => tag.name === 'robots')?.content;
   const ogUrl = metas.find((tag) => tag.property === 'og:url')?.content;
   const ogImage = metas.find((tag) => tag.property === 'og:image')?.content;
-  const insightRoute = /^\/(?:sr\/|es\/|de\/|ru\/)?insights\/$/.test(route);
+  const insightRoute = /^\/(?:sr\/|es\/)?insights\/$/.test(route);
   const expectedCanonical = `${productionOrigin}${route}`;
 
   if (!/<title>[^<]+<\/title>/i.test(html)) addError(route, 'missing a non-empty title');
@@ -64,7 +71,8 @@ for (const file of htmlFiles) {
   if (!metas.some((tag) => tag.name === 'twitter:title' && tag.content)) addError(route, 'missing Twitter title');
   if (!metas.some((tag) => tag.name === 'twitter:description' && tag.content)) addError(route, 'missing Twitter description');
   if (!tags(html, 'link').some((tag) => tag.rel === 'icon' && tag.href === '/favicon.svg')) addError(route, 'missing primary favicon declaration');
-  if (alternates.length !== 6) addError(route, `expected six language alternatives, found ${alternates.length}`);
+  if (alternates.length !== 4) addError(route, `expected four language alternatives, found ${alternates.length}`);
+  if (alternates.some(tag => ['de', 'ru'].includes(tag.hreflang))) addError(route, 'removed language alternative');
   if (!alternates.every((tag) => tag.href?.startsWith(`${productionOrigin}/`))) addError(route, 'contains a non-absolute language alternative');
   if (![...localeCodes, 'x-default'].every((locale) => alternates.some((tag) => tag.hreflang === locale))) addError(route, 'language alternatives are incomplete');
   if (insightRoute && robots !== 'noindex, follow') addError(route, 'draft Insights route must be noindex, follow');
@@ -89,7 +97,8 @@ if (!existsSync(sitemapPath)) errors.push('Missing sitemap-0.xml.');
 if (existsSync(sitemapPath)) {
   const sitemap = readFileSync(sitemapPath, 'utf8');
   const sitemapEntries = sitemap.match(/<url>/g) ?? [];
-  if (sitemapEntries.length !== 30) errors.push(`Expected 30 indexable sitemap entries, found ${sitemapEntries.length}.`);
+  if (sitemapEntries.length !== 18) errors.push(`Expected 18 indexable sitemap entries, found ${sitemapEntries.length}.`);
+  if (/\/(de|ru)\/|\/404/.test(sitemap)) errors.push('Sitemap contains a removed locale or 404 page.');
   if (sitemap.includes('/insights/')) errors.push('Draft Insights routes must not appear in the sitemap.');
   if ([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].some((match) => !match[1].startsWith(`${productionOrigin}/`))) {
     errors.push('Sitemap contains a URL outside the canonical production origin.');
@@ -107,7 +116,7 @@ const redirectsPath = join(outputDirectory, '_redirects');
 if (!existsSync(redirectsPath)) errors.push('Missing Cloudflare Pages redirect rules.');
 if (existsSync(redirectsPath)) {
   const redirects = readFileSync(redirectsPath, 'utf8');
-  for (const rule of ['/about /about/ 301', '/solutions/pipedrive /solutions/pipedrive/ 301', '/:lang/solutions/:product /:lang/solutions/:product/ 301']) {
+  for (const rule of ['/about /about/ 301', '/solutions/pipedrive /solutions/pipedrive/ 301', '/sr/solutions/:product /sr/solutions/:product/ 301', '/es/solutions/:product /es/solutions/:product/ 301']) {
     if (!redirects.includes(rule)) errors.push(`Missing canonical trailing-slash redirect rule: ${rule}`);
   }
 }
@@ -116,4 +125,4 @@ if (errors.length) {
   throw new Error(`SEO verification failed:\n- ${errors.join('\n- ')}`);
 }
 
-console.log(`SEO verification passed for ${htmlFiles.length} pages and 30 sitemap entries.`);
+console.log(`SEO verification passed for 21 content pages, one 404 page and 18 sitemap entries.`);

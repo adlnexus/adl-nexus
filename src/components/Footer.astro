@@ -12,8 +12,8 @@ const href = (route: string) => routeFor(lang, route);
   <div class="footer-grid container">
     <div class="footer-brand"><BrandLogo class="footer-logo" variant="tagline-white" alt="ADL Nexus — Global Connections" /><p>{ui.footer.tagline}</p></div>
     <div><h2>{ui.footer.explore}</h2><a href={href('/services')}>{ui.nav.services}</a><a href={href('/solutions/pipedrive')}>Pipedrive</a><a href={href('/solutions/learnie')}>Learnie</a></div>
-    <div><h2>{ui.footer.company}</h2><a href={href('/about')}>{ui.nav.about}</a><a href={href('/insights')}>{ui.nav.insights}</a><a href={href('/contact')}>{ui.nav.contact}</a></div>
-    <div><h2>{ui.footer.contact}</h2>{contactEmails.map((email) => <a href={`mailto:${email}`}>{email}</a>)}<p>{ui.footer.location}</p></div>
+    <div><h2>{ui.footer.company}</h2><a href={href('/contact')}>{ui.nav.contact}</a></div>
+    <div><h2>{ui.footer.contact}</h2>{contactEmails.map((email) => <a href={`mailto:${email}`}>{email}</a>)}{variant !== 'home' && <p>{ui.footer.location}</p>}</div>
   </div>
   <div class="footer-bottom container"><span>© {new Date().getFullYear()} ADL Nexus</span><span>{ui.footer.closing}</span></div>
 </footer>

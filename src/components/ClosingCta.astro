@@ -40,7 +40,10 @@ const hasAccent = variant === 'home' && accent && title.endsWith(accent);
   .closing--home h2 span { display: block; }
   .closing--home h2 .closing-accent { color: var(--accent-on-dark); }
   .closing--home p:not(.eyebrow) { max-width: 430px; margin: 0 0 1.5rem; color: #d0ced0; }
-  @media (max-width: 900px) { .closing--home .closing-inner { grid-template-columns: minmax(0, 1fr); } }
+  .closing--home .closing-action { position: relative; align-self: end; justify-self: end; width: 100%; max-width: 360px; margin-top: 5rem; }
+  .closing--home .closing-action p { text-shadow: none; }
+  @media (max-width: 900px) { .closing--home .closing-inner { grid-template-columns: minmax(0, 1fr); padding-right: 76px; } }
+  @media (max-width: 900px) { .closing--home .closing-action { margin-top: 0; justify-self: start; } }
 
   @media (prefers-reduced-motion: reduce) {
     .closing-shape { transform: rotate(25deg); }

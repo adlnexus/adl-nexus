@@ -59,6 +59,8 @@ img { display: block; max-width: 100%; }
 .button--primary:hover, .button--primary:focus-visible { border-color: transparent; background: var(--cta-hover); color: var(--white); }
 .text-link { display: inline-flex; align-items: center; gap: .6rem; padding-block: .3rem; border-bottom: 1px solid currentColor; font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .text-link::after { content: "↗"; }
+.homepage :is(.button, .text-link)::after { content: none; }
+:is(section[id], footer[id]) { scroll-margin-top: 120px; }
 .section { padding: clamp(5rem, 10vw, 9rem) 0; }
 
 .page-hero { position: relative; isolation: isolate; min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; padding: calc(7.5rem + clamp(2.5rem, 6vh, 5rem)) 0 1.5rem; background: var(--hero-surface); color: var(--ink); }

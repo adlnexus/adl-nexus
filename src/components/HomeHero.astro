@@ -1,6 +1,5 @@
 ---
 import { routeFor, type SiteLocale } from '../data/localization';
-import HeroFooter from './HeroFooter.astro';
 
 interface Props {
   lang?: SiteLocale;
@@ -37,7 +36,6 @@ const {
 
   </div>
 
-  <HeroFooter lang={lang} context="home" />
 </section>
 
 <style>
