@@ -1,11 +1,13 @@
 ---
 // Geometry changes only with layout; scrolling updates the colour reveal only.
+interface Props { variant?: 'home' | 'services' }
+const { variant = 'home' } = Astro.props;
 const colours = [
   ['#FFD56B', '#FFCA45'], ['#FF9C58', '#FF8A3D'],
   ['#F47C68', '#F16858'], ['#AAAAAA', '#969696'],
 ];
 ---
-<div class="home-ribbons" aria-hidden="true">
+<div class="home-ribbons" data-variant={variant} aria-hidden="true">
   <svg xmlns="http://www.w3.org/2000/svg" focusable="false" fill="none">
     <defs>
       {colours.map(([light, colour], index) => <linearGradient id={`home-ribbon-${index}`} x1="0" y1="0" x2="1" y2="1">
@@ -50,6 +52,17 @@ const colours = [
   :global(.home-ribbons-ready :is(.home-hero-copy > .eyebrow, .home-hero-copy > h1, .home-hero-lead, .home-audiences .eyebrow, .home-why, .solutions-head, .closing-heading, .closing-action p, .footer-grid, .footer-bottom)) { text-shadow: 0 0 2px var(--ribbon-copy-surface, var(--paper)), 0 0 5px var(--ribbon-copy-surface, var(--paper)); }
   :global(body.home-ribbon-page.home-ribbons-ready :is(.home-hero-lead, .home-why-grid p, .solutions-head > p)) { color: var(--ink); }
   :global(.home-ribbons-ready :is(.closing--home, .footer--home)) { --ribbon-copy-surface: #17191c; }
+  :global(.services-ribbon-page.home-ribbons-ready .services-hero) { isolation: auto; }
+  :global(.services-ribbon-page.home-ribbons-ready .hero-bands) { visibility: hidden; }
+  :global(.services-ribbon-page.home-ribbons-ready :is(.services-hero, .services-content, .services-closing, .footer) .container) { position: relative; z-index: 3; }
+  :global(.services-ribbon-page.home-ribbons-ready :is(.services-intro, .services-approach, .footer)) { position: relative; }
+  :global(.services-ribbon-page.home-ribbons-ready :is(.services-intro, .services-approach)::before) { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(transparent, rgba(255,253,251,.82) 16%, rgba(255,253,251,.82) 84%, transparent); }
+  :global(.services-ribbon-page.home-ribbons-ready .footer::before) { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(23,25,28,.82); }
+  /* Match the home closing: bright ribbons here, dimmed only in the footer. */
+  :global(.services-ribbon-page.home-ribbons-ready :is(.services-closing h2, .services-closing .eyebrow, .services-closing .closing-text)) { text-shadow: 0 0 2px #17191c, 0 0 5px #17191c; }
+  :global(.services-ribbon-page.home-ribbons-ready .page-hero-copy) { text-shadow: 0 0 2px var(--paper), 0 0 5px var(--paper); }
+  /* The dark footer veil already protects contrast; no light text halo. */
+  :global(.services-ribbon-page.home-ribbons-ready :is(.footer-grid, .footer-bottom)) { text-shadow: none; }
 </style>
 
 <script>
@@ -76,13 +89,14 @@ const colours = [
       revealEnd.setAttribute('stop-opacity', progress === 1 ? '1' : '.14');
       revealTail.setAttribute('stop-opacity', progress === 1 ? '1' : '.14');
     };
-    const hero = document.querySelector<HTMLElement>('.home-hero')!;
+    const services = layer.dataset.variant === 'services';
+    const hero = document.querySelector<HTMLElement>(services ? '.services-hero' : '.home-hero')!;
     const bands = hero.querySelector<HTMLElement>('.hero-bands')!;
-    const audience = document.querySelector<HTMLElement>('.home-audiences')!;
-    const why = document.querySelector<HTMLElement>('.home-why')!;
-    const solutions = document.querySelector<HTMLElement>('.solutions--cards')!;
-    const closing = document.querySelector<HTMLElement>('.closing--home')!;
-    const footer = document.querySelector<HTMLElement>('.footer--home')!;
+    const audience = document.querySelector<HTMLElement>(services ? '.services-intro' : '.home-audiences')!;
+    const why = document.querySelector<HTMLElement>(services ? '.service-list' : '.home-why')!;
+    const solutions = document.querySelector<HTMLElement>(services ? '.services-approach' : '.solutions--cards')!;
+    const closing = document.querySelector<HTMLElement>(services ? '.services-closing' : '.closing--home')!;
+    const footer = document.querySelector<HTMLElement>(services ? '.footer' : '.footer--home')!;
     type Point = { x: number; y: number; width: number; pitch: number };
 
     const miter = (points: Point[], index: number) => {

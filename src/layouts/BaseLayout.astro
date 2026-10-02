@@ -11,6 +11,7 @@ interface Props {
   darkHeader?: boolean;
   brandVariant?: 'default' | 'green';
   footerVariant?: 'default' | 'home';
+  ribbonVariant?: 'home' | 'services';
   lang?: SiteLocale;
   robots?: string;
 }
@@ -21,6 +22,7 @@ const {
   darkHeader = false,
   brandVariant = 'default',
   footerVariant = 'default',
+  ribbonVariant = footerVariant === 'home' ? 'home' : undefined,
   lang = 'en',
   robots = 'index, follow, max-image-preview:large',
 } = Astro.props;
@@ -103,10 +105,10 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     {structuredData && <script type="application/ld+json" set:html={structuredData} />}
     <title>{title}</title>
   </head>
-  <body class:list={{ 'home-ribbon-page': footerVariant === 'home' }}>
+  <body class:list={{ 'home-ribbon-page': !!ribbonVariant, 'services-ribbon-page': ribbonVariant === 'services' }}>
     <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} />
     <main><slot /></main>
     <Footer lang={lang} variant={footerVariant} />
-    {footerVariant === 'home' && <HomeRibbons />}
+    {ribbonVariant && <HomeRibbons variant={ribbonVariant} />}
   </body>
 </html>

@@ -123,4 +123,8 @@ Whenever important English positioning or route behaviour changes, update and ve
 
 ## Draft content
 
+### Services refresh — October 2026
+
+The supplied final Services developer brief is implemented across all five locales via `src/data/services.ts`. English follows the supplied wording; Serbian, Spanish, German and Russian translations require native-speaker review. The layout removes numbering and hero-footer labels, presents five champagne cards in a 3 + 2 desktop grid, and replaces the old principles with referrals, focused projects and ongoing collaboration. The extra featured CTA after the introduction is deliberately deferred pending the client's agreed copy, with no visible placeholder. There is one contact CTA after How we work and an arrow-free final Let's talk action, both linking to the locale-aware contact form with market-entry preselected. Services opts into the shared continuous ribbon treatment without changing the homepage or other interior-page defaults.
+
 Insights titles and summaries are editorial placeholders until full articles are approved. Do not fabricate authors, publication dates, case studies, customer logos, testimonials, revenue figures, or performance statistics.
