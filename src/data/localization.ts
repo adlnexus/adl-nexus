@@ -27,7 +27,7 @@ export const languageNames: Record<SiteLocale, string> = {
 export const uiCopy = {
   en: {
     nav: { home: 'Home', solutions: 'Solutions', services: 'Services', about: 'About Us', insights: 'Insights', contact: 'Contact' },
-    solutionNotes: { pipedrive: 'CRM for closing deals', learnie: 'Learning that travels' },
+    solutionNotes: { pipedrive: 'CRM for closing deals', learnie: 'Mobile-first microlearning' },
     cta: 'Let’s talk',
     languageLabel: 'Choose language',
     menuLabel: 'Open navigation',
@@ -40,7 +40,7 @@ export const uiCopy = {
   },
   sr: {
     nav: { home: 'Početna', solutions: 'Rešenja', services: 'Usluge', about: 'O nama', insights: 'Uvidi', contact: 'Kontakt' },
-    solutionNotes: { pipedrive: 'CRM za efikasniju prodaju', learnie: 'Učenje koje ide sa vama' },
+    solutionNotes: { pipedrive: 'CRM za efikasniju prodaju', learnie: 'Mikroučenje prilagođeno mobilnim uređajima' },
     cta: 'Hajde da pričamo',
     languageLabel: 'Izaberite jezik',
     menuLabel: 'Otvori navigaciju',
@@ -53,7 +53,7 @@ export const uiCopy = {
   },
   es: {
     nav: { home: 'Inicio', solutions: 'Soluciones', services: 'Servicios', about: 'Nosotros', insights: 'Perspectivas', contact: 'Contacto' },
-    solutionNotes: { pipedrive: 'CRM para cerrar más ventas', learnie: 'Aprendizaje que te acompaña' },
+    solutionNotes: { pipedrive: 'CRM para cerrar más ventas', learnie: 'Microaprendizaje diseñado para móviles' },
     cta: 'Hablemos',
     languageLabel: 'Elegir idioma',
     menuLabel: 'Abrir navegación',
@@ -66,7 +66,7 @@ export const uiCopy = {
   },
   de: {
     nav: { home: 'Startseite', solutions: 'Lösungen', services: 'Leistungen', about: 'Über uns', insights: 'Einblicke', contact: 'Kontakt' },
-    solutionNotes: { pipedrive: 'CRM für erfolgreiche Abschlüsse', learnie: 'Lernen, das mitkommt' },
+    solutionNotes: { pipedrive: 'CRM für erfolgreiche Abschlüsse', learnie: 'Microlearning für mobile Geräte' },
     cta: 'Gespräch starten',
     languageLabel: 'Sprache wählen',
     menuLabel: 'Navigation öffnen',
@@ -79,7 +79,7 @@ export const uiCopy = {
   },
   ru: {
     nav: { home: 'Главная', solutions: 'Решения', services: 'Услуги', about: 'О нас', insights: 'Материалы', contact: 'Контакты' },
-    solutionNotes: { pipedrive: 'CRM для успешных продаж', learnie: 'Обучение всегда с вами' },
+    solutionNotes: { pipedrive: 'CRM для успешных продаж', learnie: 'Микрообучение для мобильных устройств' },
     cta: 'Обсудить проект',
     languageLabel: 'Выбрать язык',
     menuLabel: 'Открыть навигацию',
