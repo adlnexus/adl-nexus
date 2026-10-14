@@ -85,13 +85,13 @@ The easy and effective CRM for closing deals. It helps teams track pipelines, op
 Primary action: **Book a demo**
 Secondary action on every detailed Pipedrive page: **Try it free for 30 days** via the owner-supplied affiliate link, translated for each locale.
 
-All five locales use the shared detailed page schema in `src/data/pipedrive.ts`. The approved “official Pipedrive Premier Partner in the Adria region” claim appears only in English and Serbian; Spanish, German, and Russian use neutral ADL Nexus implementation wording until that claim is approved for those locales.
+The EN/SR/ES landing pages use the shared detailed page schema in `src/data/pipedrive.ts`, with Spanish copy in `src/data/pipedrive-es.json`. The owner-requested Spanish adaptation of the completed English page (14 October 2026) carries the same approved Pipedrive Premier Partner claim and shared components. Dedicated Spanish subpages are out of scope; links identify existing English destinations. German and Russian routes have been removed.
 
-The detailed Pipedrive experience uses a product-specific system aligned with Pipedrive’s current public identity: green `#017737`, mint `#D7F9D3`, violet `#6861F2`, dark navy `#192435`, pale lavender and white. ADL navigation and footer remain recognisably ADL. Use only partner-approved Pipedrive logos, screenshots, badges or photography; until those assets are supplied, retain the local abstract product visual rather than copying website imagery.
+The reviewed EN/SR/ES Pipedrive landing uses the supplied partner-template palette: dark green `#1f5b49`, near-white `#faf8f1` and champagne `#f0e9d6`, with matching shared sections. ADL navigation and footer remain recognisably ADL. Use only partner-approved Pipedrive logos, screenshots, badges or photography; until those assets are supplied, retain the local abstract product visual rather than copying website imagery.
 
 The homepage product cards use the official Pipedrive wordmark SVG and primary green displayed on Pipedrive’s public homepage, stored locally at `public/partners/pipedrive-logo.svg` without altering its vector geometry.
 
-The supplied English wording is approved where present. British-English adaptations and the Serbian, Spanish, German and Russian detailed-page translations remain flagged for owner or native-speaker review.
+The supplied English wording is approved where present. British-English adaptations remain flagged for owner review; Serbian and Spanish translations require native-speaker review.
 
 ### Learnie
 

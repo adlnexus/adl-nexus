@@ -1,24 +1,25 @@
 ---
 import type { PipedriveDetailedCopy } from '../data/pipedrive';
 import { pipedriveTrialHref } from '../data/pipedrive';
-interface Props { lang: 'en' | 'sr'; detail: PipedriveDetailedCopy; demoHref: string }
+interface Props { lang: 'en' | 'sr' | 'es'; detail: PipedriveDetailedCopy; demoHref: string }
 const { lang, detail, demoHref } = Astro.props;
 const sr = lang === 'sr';
+const es = lang === 'es';
 ---
 <section class="comparison" id="pipedrive-challenges" aria-labelledby="comparison-title" data-comparison>
   <div class="container">
     <header><p class="label">{detail.pain.eyebrow}</p><h2 id="comparison-title">{detail.pain.title}</h2></header>
     <div id="comparison-slides" class="slides">
       {detail.pain.items.map((problem, i) => <article class="pair" data-slide role="group" aria-label={`${i + 1} / 3: ${problem.title}`}>
-        <div class="card problem"><p class="label">{sr ? 'Problem' : 'The challenge'}</p><h3>{problem.title}</h3><p>{problem.text}</p></div>
+        <div class="card problem"><p class="label">{es ? 'El reto' : sr ? 'Problem' : 'The challenge'}</p><h3>{problem.title}</h3><p>{problem.text}</p></div>
         <span class="arrow" aria-hidden="true">→</span>
-        <div class="card solution"><p class="label">{sr ? 'Kako Pipedrive pomaže' : 'How Pipedrive helps'}</p><h3>{detail.outcomes[i].title}</h3>{detail.outcomes[i].text.split('\n\n').map(p => <p>{p}</p>)}</div>
+        <div class="card solution"><p class="label">{es ? 'Cómo ayuda Pipedrive' : sr ? 'Kako Pipedrive pomaže' : 'How Pipedrive helps'}</p><h3>{detail.outcomes[i].title}</h3>{detail.outcomes[i].text.split('\n\n').map(p => <p>{p}</p>)}</div>
       </article>)}
     </div>
     <div class="controls" data-controls hidden>
-      <button type="button" data-prev aria-label={sr ? 'Prethodni par' : 'Previous comparison'} aria-controls="comparison-slides">←</button>
-      <div class="positions">{detail.pain.items.map((problem, i) => <button type="button" data-position={i} aria-label={`${sr ? 'Prikaži' : 'Show'}: ${problem.title}`} aria-controls="comparison-slides" aria-current={i === 0 ? 'true' : undefined}>{i + 1}</button>)}</div>
-      <button type="button" data-next aria-label={sr ? 'Sledeći par' : 'Next comparison'} aria-controls="comparison-slides">→</button>
+      <button type="button" data-prev aria-label={es ? 'Comparación anterior' : sr ? 'Prethodni par' : 'Previous comparison'} aria-controls="comparison-slides">←</button>
+      <div class="positions">{detail.pain.items.map((problem, i) => <button type="button" data-position={i} aria-label={`${es ? 'Mostrar' : sr ? 'Prikaži' : 'Show'}: ${problem.title}`} aria-controls="comparison-slides" aria-current={i === 0 ? 'true' : undefined}>{i + 1}</button>)}</div>
+      <button type="button" data-next aria-label={es ? 'Siguiente comparación' : sr ? 'Sledeći par' : 'Next comparison'} aria-controls="comparison-slides">→</button>
       <span class="sr-only" data-status aria-live="polite" aria-atomic="true"></span>
     </div>
     <p class="summary">{detail.pain.summary}</p>

@@ -1,25 +1,26 @@
 ---
 import type { PipedriveDetailedCopy } from '../data/pipedrive';
 import { pipedriveIndustries } from '../data/pipedrive-industries';
-interface Props { lang: 'en' | 'sr'; copy: PipedriveDetailedCopy['audiences'] }
+interface Props { lang: 'en' | 'sr' | 'es'; copy: PipedriveDetailedCopy['audiences'] }
 const { lang, copy } = Astro.props;
 const sr = lang === 'sr';
+const es = lang === 'es';
 ---
 <section id="pipedrive-industries" class="industries" aria-labelledby="industry-title" data-industries>
   <div class="container heading"><p class="eyebrow">{copy.eyebrow}</p><h2 id="industry-title">{copy.title}</h2><p>{copy.lead}</p></div>
-  <ul class="track" id="industry-track" data-track aria-label={sr ? 'Industrije — koristite strelice za listanje' : 'Industries — use arrow keys to browse'} tabindex="0">
+  <ul class="track" id="industry-track" data-track aria-label={es ? 'Sectores: usa las flechas del teclado para desplazarte' : sr ? 'Industrije — koristite strelice za listanje' : 'Industries — use arrow keys to browse'} tabindex="0">
     {pipedriveIndustries.map((industry, i) => <li data-card>
       <a href={industry.href} hreflang="en">
         <img src={industry.image} alt="" width="768" height="402" loading="lazy" />
         <h3>{copy.cards[i]}</h3>
-        <span class="badge">{sr ? 'CRM Vodič EN' : 'CRM Playbook'}</span>
+        <span class="badge">{es ? 'Guía CRM en inglés' : sr ? 'CRM Vodič EN' : 'CRM Playbook'}</span>
       </a>
     </li>)}
   </ul>
   <div class="controls" data-controls hidden>
-    <button type="button" data-prev aria-controls="industry-track" aria-label={sr ? 'Prethodna industrija' : 'Previous industry'}>←</button>
+    <button type="button" data-prev aria-controls="industry-track" aria-label={es ? 'Sector anterior' : sr ? 'Prethodna industrija' : 'Previous industry'}>←</button>
     <span data-status aria-live="polite" aria-atomic="true">1 / 12</span>
-    <button type="button" data-next aria-controls="industry-track" aria-label={sr ? 'Sledeća industrija' : 'Next industry'}>→</button>
+    <button type="button" data-next aria-controls="industry-track" aria-label={es ? 'Siguiente sector' : sr ? 'Sledeća industrija' : 'Next industry'}>→</button>
   </div>
 </section>
 <script>

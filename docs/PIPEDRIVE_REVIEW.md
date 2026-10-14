@@ -4,7 +4,7 @@ Ažurirano 14. oktobra 2026. Odobreni rad je commitovan i pushovan kao `058c329`
 
 ## Završeno
 
-EN/SR imaju Pipedrive pregled, cenovnik, pipeline članak i implementaciju. Dvanaest industrijskih vodiča i radionica postoje na engleskom; SR veze jasno nose oznaku EN. Engleske rute ne oglašavaju nepostojeće prevode. ES zadržava postojeći pregled proizvoda. Javni kontakt je info@adlnexus.com.
+EN/SR imaju Pipedrive pregled, cenovnik, pipeline članak i implementaciju. Dvanaest industrijskih vodiča i radionica postoje na engleskom; SR veze jasno nose oznaku EN. Engleske rute ne oglašavaju nepostojeće prevode. ES sada koristi isti kompletan raspored i zajedničke komponente kao EN/SR, sa prirodno prilagođenim španskim tekstom. ES veze ka cenovniku, resursima, implementaciji, radionici i 12 vodiča vode na lokalne EN stranice i označene su kao engleske. Javni kontakt je info@adlnexus.com.
 
 - Radionica je lokalno na `/solutions/pipedrive/workshop/`. Sve javne Hostinger destinacije zamenjene su lokalnim vezama. SEO provera sada odbija svaki preostali template href.
 - Preneti su izvorni edukativni sadržaj, četiri teme agende, šest FAQ odgovora i šest ilustracija (pet novih lokalnih datoteka i jedna već postojeća). Video je obična YouTube veza, bez ugrađenog plejera.
@@ -79,3 +79,9 @@ Ranije provereni izvori za podršku i bezbednost ostaju: [kontakt podrške](http
 - [Recruitment & HR Consulting Sales CRM playbook](http://127.0.0.1:4330/solutions/pipedrive/knowledge-base/recruitment-and-hr-consulting-sales-crm-playbook/)
 - [Business Consulting Sales CRM playbook](http://127.0.0.1:4330/solutions/pipedrive/knowledge-base/business-consulting-sales-crm-playbook/)
 - [HVAC & Field Services CRM](http://127.0.0.1:4330/solutions/pipedrive/knowledge-base/hvac-and-field-services-crm/)
+
+## ES landing — 14. oktobar 2026.
+
+Kompletna adaptacija EN rasporeda: trust, poređenje problema/rešenja, Why ADL, workflow, 12 industrija, integracije, 12 funkcija, tri načina početka, šest iskustava, FAQ i partner footer. Španski tekst i meta podaci su pregledani radi doslednosti; ovo nije potvrda izvornog govornika. Cenovnik, resursi, implementacija, radionica i industrijski vodiči ostaju EN destinacije sa jasnom oznakom jezika.
+
+Provere: `npm run verify` (41 HTML, 37 sitemap ruta); 1.328 lokalnih linkova i 326 referenci slika bez grešaka; EN/SR landing tekst, linkovi, slike i kontrole identični sačuvanom početnom buildu. ES pregled na 1440 × 900 i 390 × 844 bez horizontalnog preliva; tastatura menja comparison, industry, feature i stories karusele, ručna stories navigacija pauzira autoplay, FAQ se otvara tasterom Enter. Reduced-motion grane postojećih zajedničkih skripti ostale su neizmenjene i pregledane; OS emulacija reduced-motion nije ponovljena. Snimci `es-desktop.png` i `es-mobile.png` su u sibling QA direktorijumu.

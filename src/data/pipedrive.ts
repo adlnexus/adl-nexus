@@ -1,3 +1,5 @@
+import spanishPipedrive from './pipedrive-es.json';
+
 export const pipedriveTrialHref = 'https://app.pipedrive.com/affiliate/pdp-psh-andjelka-danilo?utm_source=PartnerScaleHub+Kft.&utm_medium=partners_program&utm_content=copy_text&utm_term=pdp-psh-andjelka-danilo';
 
 type ContentItem = { title: string; text: string };
@@ -333,97 +335,5 @@ export const pipedriveDetailedCopy: Record<'en' | 'sr' | 'es', PipedriveDetailed
       trial: 'Isprobajte besplatno 30 dana',
     },
   },
-  es: {
-    title: 'Pipedrive CRM adaptado a tu empresa — ADL Nexus',
-    description: 'Implementación personalizada de Pipedrive, automatización, informes y soporte continuo de ADL Nexus.',
-    hero: {
-      eyebrow: 'Implementación de Pipedrive · Región Adriática',
-      headline: 'Pipedrive CRM adaptado a tu empresa',
-      lead: 'Ayudamos a las organizaciones a adaptar Pipedrive a su forma de trabajar mediante una configuración adecuada del embudo, automatizaciones, informes y procesos de equipo.',
-      support: 'Configurado según tu forma real de vender, no con plantillas genéricas.',
-      demo: 'Reservar una demo',
-      trial: 'Probar gratis durante 30 días',
-      trialNote: '*Sin tarjeta de crédito',
-    },
-    pipeline: { title: 'Embudo de ventas', addDeal: '+ Añadir trato', stages: ['Nuevo lead', 'Cualificado', 'Propuesta', 'Ganado'] },
-    trust: 'Más de 100.000 empresas de todo el mundo confían en Pipedrive.',
-    pain: {
-      eyebrow: 'El reto',
-      title: '¿Dónde pierde impulso tu proceso de ventas?',
-      items: [
-        { title: '¿Un ciclo de ventas lento?', text: 'Sin próximos pasos claros, los seguimientos llegan tarde y oportunidades valiosas se enfrían antes de avanzar.' },
-        { title: '¿Un proceso de ventas caótico?', text: 'La información queda repartida entre correos, notas y hojas de cálculo, mientras cada persona trabaja de una manera distinta.' },
-        { title: '¿Informes poco fiables?', text: 'Sin datos en tiempo real ni previsiones consistentes, los problemas se descubren cuando el trimestre ya ha terminado.' },
-      ],
-      summary: 'Pipedrive convierte un proceso de ventas caótico e intuitivo en un sistema claro, medible y eficiente sin añadir carga administrativa al equipo.',
-    },
-    audiences: {
-      eyebrow: 'Para quién es',
-      title: 'Pipedrive se adapta a tu forma de vender.',
-      lead: 'Una plataforma flexible para equipos con mercados, operaciones y recorridos de cliente diferentes.',
-      cards: ['Mayoristas y distribución', 'Fabricación', 'Maquinaria y equipos industriales', 'Inmobiliarias e intermediación hipotecaria', 'Servicios de TI y venta de software', 'Construcción', 'Seguros', 'Agencias de marketing y digitales', 'Clínicas privadas y odontología', 'Selección y consultoría de RR. HH.', 'Consultoría empresarial', 'HVAC y servicios de campo'],
-    },
-    why: {
-      eyebrow: 'Por qué ADL Nexus',
-      title: 'Más que una implementación de CRM.',
-      lead: 'Pipedrive debe adaptarse a la forma en que tu equipo vende realmente.',
-      paragraphs: [
-        'ADL Nexus aporta experiencia en ventas, desarrollo de negocio y gestión de cuentas en mercados internacionales. Por eso entendemos el CRM como un sistema que debe respaldar todo el proceso comercial.',
-        'Antes de configurar Pipedrive, analizamos cómo llegan y se cualifican las oportunidades, quién se responsabiliza de ellas, dónde se frena el proceso y qué información necesita el equipo.',
-        'A partir de ahí adaptamos el embudo, las automatizaciones, las actividades y los informes, y ayudamos al equipo a incorporar Pipedrive al trabajo diario.',
-      ],
-      closing: 'ADL Nexus combina conocimiento del proceso comercial con implementación y soporte continuo.',
-    },
-    outcomes: [
-      { title: 'Un ciclo de ventas más rápido', text: 'Cada oportunidad tiene un siguiente paso, una fecha y una persona responsable, con recordatorios que mantienen el impulso.' },
-      { title: 'Un proceso de ventas organizado', text: 'Oportunidades, correos, llamadas, notas y documentos permanecen visibles en un único sistema compartido.' },
-      { title: 'Informes asistidos por IA', text: 'Los datos de actividad se convierten en paneles y previsiones que señalan riesgos y oportunidades que requieren atención.' },
-    ],
-    workflow: {
-      eyebrow: 'Cómo funciona',
-      title: 'Del primer contacto al crecimiento medible.',
-      items: [
-        { title: 'Captura automática de leads', text: 'Las consultas de la web, el correo, LinkedIn o el teléfono pueden llegar a un único lugar sin copiar datos manualmente.' },
-        { title: 'Seguimiento y conversión', text: 'Actividades, responsables, plazos y recordatorios mantienen cada oportunidad activa y cada seguimiento visible.' },
-        { title: 'Informes y crecimiento', text: 'Los paneles en tiempo real muestran qué funciona, dónde se frenan los tratos y en qué debe centrarse el equipo.' },
-      ],
-    },
-    features: {
-      eyebrow: 'Funciones clave',
-      title: 'Funciones de Pipedrive que impulsan las ventas.',
-      items: [
-        { title: 'Gestión del embudo y del proceso comercial', text: 'Visualiza qué oportunidades avanzan, dónde se ralentizan y qué necesita atención.' },
-        { title: 'Sincronización de correo, calendario, WhatsApp y LinkedIn', text: 'Mantén conversaciones y reuniones conectadas con el contacto o trato correcto.' },
-        { title: 'Automatización y asistente de ventas con IA', text: 'Automatiza tareas repetitivas y detecta oportunidades que necesitan atención.' },
-        { title: 'Gestión de tareas', text: 'Asigna a cada oportunidad un siguiente paso, una fecha y una persona responsable.' },
-        { title: 'Informes con IA', text: 'Convierte los datos diarios en informes claros para tomar mejores decisiones.' },
-        { title: 'Documentos y firma electrónica', text: 'Genera propuestas y contratos con datos del CRM y envíalos para su firma.' },
-        { title: 'Gestión de proyectos', text: 'Continúa el seguimiento de la entrega tras la venta dentro del mismo sistema.' },
-        { title: 'Priorización de leads', text: 'Centra al equipo en las oportunidades con mayor valor, avance e interacción.' },
-        { title: 'Campañas de correo y comunicación automatizada', text: 'Envía campañas y conserva aperturas, clics y respuestas junto al contacto.' },
-        { title: 'Enriquecimiento de datos', text: 'Completa datos públicos de contactos y empresas y reduce la introducción manual.' },
-        { title: 'Historial de comunicaciones', text: 'Consulta cronológicamente llamadas, correos y reuniones de cada contacto.' },
-        { title: 'Bandeja de entrada de ventas', text: 'Conecta las conversaciones por correo con sus contactos, tratos y próximos pasos.' },
-      ],
-    },
-    integrations: {
-      eyebrow: 'Integraciones',
-      title: 'Todo conectado. Todo en un solo lugar.',
-      lead: 'Pipedrive se conecta con las herramientas que tu equipo ya utiliza.',
-      points: ['Más de 500 integraciones directas para correo, calendarios, facturación, firmas, soporte, LinkedIn, WhatsApp y más.', 'Más de 4.000 conexiones adicionales mediante Make.com, Zapier y n8n.', 'Una API para integraciones personalizadas cuando una conexión estándar no es suficiente.'],
-      closing: 'Conecta Pipedrive con las herramientas que tu equipo ya utiliza.',
-    },
-    faq: {
-      eyebrow: 'Preguntas frecuentes',
-      title: 'Lo que preguntan los equipos antes de empezar.',
-      items: [
-        { question: '¿Pipedrive tiene una aplicación móvil?', answer: 'Pipedrive está disponible para iOS y Android, por lo que puedes actualizar oportunidades, registrar llamadas y consultar el embudo desde cualquier lugar.' },
-        { question: '¿Cuánto cuesta configurar Pipedrive y cuánto tiempo requiere?', answer: 'Pipedrive está diseñado para configurarse y utilizarse con facilidad. Muchos equipos pueden incorporarlo al trabajo diario en una semana, con configuración y formación propias o asistidas.' },
-        { question: '¿Están protegidos nuestros datos?', answer: 'Pipedrive protege los datos mediante conexiones HTTPS cifradas, copias de seguridad diarias y centros de datos certificados para clientes europeos.' },
-        { question: '¿Qué soporte recibimos después de empezar?', answer: 'Pipedrive ofrece soporte propio 24/7. ADL Nexus también puede ayudar localmente y ampliar la configuración como servicio adicional.' },
-        { question: '¿Cómo puede Pipedrive ayudarnos a mejorar las ventas?', answer: 'El embudo visual, los recordatorios automatizados y los informes en tiempo real ayudan a mantener las oportunidades en movimiento y a identificar qué actividades producen resultados.' },
-      ],
-    },
-    closing: { eyebrow: 'Da el siguiente paso', title: 'Aporta claridad e impulso a tu proceso de ventas.', text: 'Descubre cómo adaptar Pipedrive a tu equipo, embudo y objetivos.', demo: 'Reservar una demo', trial: 'Probar gratis durante 30 días' },
-  },
+  es: spanishPipedrive as PipedriveDetailedCopy,
 };

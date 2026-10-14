@@ -1,19 +1,20 @@
 ---
 import type { PipedriveDetailedCopy } from '../data/pipedrive';
-interface Props { lang: 'en' | 'sr'; copy: PipedriveDetailedCopy['features']; demoHref: string; demoLabel: string }
+interface Props { lang: 'en' | 'sr' | 'es'; copy: PipedriveDetailedCopy['features']; demoHref: string; demoLabel: string }
 const { lang, copy, demoHref, demoLabel } = Astro.props;
 const sr = lang === 'sr';
+const es = lang === 'es';
 ---
 <section id="pipedrive-features" class="features" data-features aria-labelledby="features-title">
   <div class="container">
     <header><p class="eyebrow">{copy.eyebrow}</p><h2 id="features-title">{copy.title}</h2></header>
-    <ul class="track" id="feature-track" tabindex="0" aria-label={sr ? 'Funkcionalnosti — koristite strelice za listanje' : 'Features — use arrow keys to browse'}>
+    <ul class="track" id="feature-track" tabindex="0" aria-label={es ? 'Funciones: usa las flechas del teclado para desplazarte' : sr ? 'Funkcionalnosti — koristite strelice za listanje' : 'Features — use arrow keys to browse'}>
       {copy.items.map(item => <li><article><h3>{item.title}</h3><p>{item.text}</p></article></li>)}
     </ul>
     <div class="controls" data-controls hidden>
-      <button type="button" data-prev aria-controls="feature-track" aria-label={sr ? 'Prethodna funkcionalnost' : 'Previous feature'}>←</button>
+      <button type="button" data-prev aria-controls="feature-track" aria-label={es ? 'Función anterior' : sr ? 'Prethodna funkcionalnost' : 'Previous feature'}>←</button>
       <span data-status aria-live="polite" aria-atomic="true"></span>
-      <button type="button" data-next aria-controls="feature-track" aria-label={sr ? 'Sledeća funkcionalnost' : 'Next feature'}>→</button>
+      <button type="button" data-next aria-controls="feature-track" aria-label={es ? 'Siguiente función' : sr ? 'Sledeća funkcionalnost' : 'Next feature'}>→</button>
     </div>
     <div class="actions"><a class="button" href={demoHref}>{demoLabel}</a></div>
   </div>

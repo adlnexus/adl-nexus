@@ -1,7 +1,7 @@
 ---
-interface Props { lang: 'en' | 'sr'; text: string }
+interface Props { lang: 'en' | 'sr' | 'es'; text: string }
 const { lang, text } = Astro.props;
-const value = lang === 'sr' ? '100.000' : '100,000';
+const value = lang === 'en' ? '100,000' : '100.000';
 const [before, after] = text.split(value);
 ---
 
@@ -9,9 +9,9 @@ const [before, after] = text.split(value);
   <div class="container">
     <p><span class="sr-only">{text}</span><span aria-hidden="true">{before}<span class="trust-number"><span class="number-space">{value}</span><span class="number-value" data-count>{value}</span></span>{after}</span></p>
     <div class="trust-badges">
-      <img src="/partners/pipedrive/crmmys-2026.avif" width="375" height="375" alt="CRMMY Awards 2026 — Best Sales CRM: Pipedrive" />
-      <img src="/partners/pipedrive/sourceforge-winter-2025.avif" width="375" height="381" alt="SourceForge Leader — Winter 2025: Pipedrive" />
-      <img src="/partners/pipedrive/g2-winter-2025.avif" width="375" height="349" alt="G2 Leader — Winter 2025: Pipedrive" />
+      <img src="/partners/pipedrive/crmmys-2026.avif" width="375" height="375" alt={lang === 'es' ? 'Premios CRMMY 2026 — Mejor CRM de ventas: Pipedrive' : 'CRMMY Awards 2026 — Best Sales CRM: Pipedrive'} />
+      <img src="/partners/pipedrive/sourceforge-winter-2025.avif" width="375" height="381" alt={lang === 'es' ? 'Líder de SourceForge — Invierno de 2025: Pipedrive' : 'SourceForge Leader — Winter 2025: Pipedrive'} />
+      <img src="/partners/pipedrive/g2-winter-2025.avif" width="375" height="349" alt={lang === 'es' ? 'Líder de G2 — Invierno de 2025: Pipedrive' : 'G2 Leader — Winter 2025: Pipedrive'} />
     </div>
   </div>
 </aside>
@@ -22,7 +22,7 @@ const [before, after] = text.split(value);
     if (!number || !('IntersectionObserver' in window)) return;
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (motion.matches) return;
-    const format = new Intl.NumberFormat(block.dataset.locale === 'sr' ? 'sr-Latn' : 'en-GB');
+    const format = new Intl.NumberFormat(block.dataset.locale === 'es' ? 'es-ES' : block.dataset.locale === 'sr' ? 'sr-Latn' : 'en-GB');
     let frame = 0;
     const finish = () => {
       cancelAnimationFrame(frame);

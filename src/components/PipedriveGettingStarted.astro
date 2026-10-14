@@ -2,11 +2,16 @@
 import { pipedriveTrialHref } from '../data/pipedrive';
 import { routeFor } from '../data/localization';
 import source from '../data/pipedrive-handoff.json';
-interface Props { lang: 'en' | 'sr'; pricing?: boolean }
+interface Props { lang: 'en' | 'sr' | 'es'; pricing?: boolean }
 const { lang, pricing = false } = Astro.props;
 const sr = lang === 'sr';
+const es = lang === 'es';
 const workshop = '/solutions/pipedrive/workshop/';
-const items = sr ? [
+const items = es ? [
+  { title: 'Empieza con una prueba gratuita de 30 días', text: 'Explora Pipedrive a tu ritmo y configura el sistema según tu proceso de ventas. No necesitas tarjeta de crédito para activar la prueba y no hay compromiso.', cta: 'Inicia tu prueba gratuita de 30 días', href: pipedriveTrialHref },
+  { title: 'Configuremos Pipedrive juntos.', text: 'Participa en nuestro taller gratuito y configura Pipedrive paso a paso. Al terminar tendrás un embudo de ventas operativo, un plan claro de configuración y respuestas a tus preguntas.', cta: 'Conoce el taller gratuito (en inglés)', href: workshop },
+  { title: 'Implementación completa', text: 'Analizamos tu proceso de ventas, configuramos Pipedrive según la forma de trabajar de tu equipo, migramos tus datos y formamos a las personas que lo utilizarán. Empieza con un sistema diseñado para tu negocio.', cta: 'Conoce la implementación (en inglés)', href: routeFor('en', '/solutions/pipedrive/implementation') },
+] : sr ? [
   { title: source['312'], text: source['313'], cta: source['314'], href: pipedriveTrialHref },
   { title: source['315'], text: source['316'], cta: `${source['317']} (EN)`, href: workshop },
   { title: source['319'], text: source['320'], cta: source['321'], href: routeFor(lang, '/solutions/pipedrive/implementation') },
@@ -17,8 +22,8 @@ const items = sr ? [
 ];
 ---
 <section id="pipedrive-getting-started" class="getting">
-  <header><div class="container"><p class="eyebrow">{pricing ? (sr ? source['309'] : 'Implementation & training') : (sr ? 'Prvi koraci' : 'Getting started')}</p><h2>{sr ? source[pricing ? '310' : '144'] : pricing ? 'Need help getting started?' : 'Choose the level of support that fits where you are now.'}</h2><p>{sr ? source[pricing ? '311' : '145'] : pricing ? 'Whether you want us to handle the full setup or prefer to do it yourself, we have an option that fits.' : 'Three ways to move forward. Pick the one that fits where you are right now.'}</p></div></header>
-  <div class="container cards">{items.map((item, i) => <article><span class="number" aria-hidden="true">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p><a class="button" href={item.href} hreflang={i === 1 ? 'en' : undefined} rel={i === 0 ? 'sponsored' : undefined}>{item.cta}</a></article>)}</div>
+  <header><div class="container"><p class="eyebrow">{es ? (pricing ? 'Implementación y formación' : 'Primeros pasos') : pricing ? (sr ? source['309'] : 'Implementation & training') : (sr ? 'Prvi koraci' : 'Getting started')}</p><h2>{es ? (pricing ? '¿Necesitas ayuda para empezar?' : 'Elige el apoyo que necesitas en esta etapa.') : sr ? source[pricing ? '310' : '144'] : pricing ? 'Need help getting started?' : 'Choose the level of support that fits where you are now.'}</h2><p>{es ? (pricing ? 'Podemos encargarnos de toda la configuración o ayudarte a hacerlo por tu cuenta.' : 'Tres formas de avanzar. Elige la que mejor se adapte a tu situación actual.') : sr ? source[pricing ? '311' : '145'] : pricing ? 'Whether you want us to handle the full setup or prefer to do it yourself, we have an option that fits.' : 'Three ways to move forward. Pick the one that fits where you are right now.'}</p></div></header>
+  <div class="container cards">{items.map((item, i) => <article><span class="number" aria-hidden="true">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p><a class="button" href={item.href} hreflang={i === 1 || (es && i === 2) ? 'en' : undefined} rel={i === 0 ? 'sponsored' : undefined}>{item.cta}</a></article>)}</div>
 </section>
 <style>
 .getting { background:#faf8f1; color:#262626; padding-bottom:clamp(3.5rem,6vw,6rem); scroll-margin-top:7rem; --focus-color:#1f5b49; }

@@ -4,7 +4,7 @@ Implemented and pushed as commit `058c329` on 14 October 2026 with explicit owne
 
 ## Scope
 
-English and Serbian landing pages include Getting started, customer stories, FAQ and the partner footer. Separate pricing, knowledge-base and implementation pages follow sections 11–13 of `ADL_Nexus_Pipedrive_Website_Handoff_With_Visual_References.docx`. Spanish remains on the existing landing page; the language switch links there from the new EN/SR pages.
+English, Serbian and Spanish landing pages share the same complete composition, including Getting started, customer stories, FAQ and the partner footer. Separate pricing, knowledge-base and implementation pages follow sections 11–13 of `ADL_Nexus_Pipedrive_Website_Handoff_With_Visual_References.docx`. Spanish was adapted from the completed English landing on 14 October 2026. Pricing, knowledge-base, implementation, workshop and all twelve industry-guide links on the Spanish landing lead to existing local English pages and explicitly identify their language. Spanish dedicated pages were not created; native-speaker review remains pending.
 
 The Word document supplies Serbian text, prices and explicit English replacements. Existing template text supplies the other English sections. Unresolved template biography placeholders were replaced with the supplied ADL team introduction and approved founders’ names, without inventing years of experience or portraits.
 

@@ -1,17 +1,18 @@
 ---
 import stories from '../data/pipedrive-stories.json';
-interface Props { lang: 'en' | 'sr'; compact?: boolean }
+interface Props { lang: 'en' | 'sr' | 'es'; compact?: boolean }
 const { lang, compact = false } = Astro.props;
 const entries = compact ? stories[lang].slice(3) : stories[lang]; const sr = lang === 'sr';
 const ratings = [['Capterra','4.5'],['Gartner','4.3'],['GetApp','4.5'],['Software Advice','4.5'],['SourceForge','4.7']];
+const es = lang === 'es';
 ---
-<section class="stories" id="pipedrive-stories" data-stories data-pause={sr ? 'Pauziraj' : 'Pause'} data-play={sr ? 'Pokreni' : 'Play'} aria-labelledby="stories-title">
+<section class="stories" id="pipedrive-stories" data-stories data-pause={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'} data-play={es ? 'Reanudar' : sr ? 'Pokreni' : 'Play'} aria-labelledby="stories-title">
  <div class="container">
-  <header><p class="eyebrow">{sr ? 'Iskustva Pipedrive korisnika' : 'Pipedrive customer stories'}</p><h2 id="stories-title">{sr ? 'Stvarni rezultati stvarnih kompanija.' : 'Real results from real businesses.'}</h2></header>
-  <ul id="stories-track" class="track" tabindex="0" aria-label={sr ? 'Iskustva korisnika — koristite strelice za listanje' : 'Customer stories — use arrow keys to browse'}>{entries.map(([category, quote, name, role, metrics]) => <li><article><p class="eyebrow">{category}</p>{Array.isArray(metrics) && metrics.length > 0 && <dl>{metrics.map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}<blockquote><p>{quote}</p></blockquote><p class="person"><strong>{name}</strong><span>{role}</span></p></article></li>)}</ul>
-  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" data-pause-toggle aria-pressed="false">{sr ? 'Pauziraj' : 'Pause'}</button></div>
-  <p class="trust">{sr ? 'Više od 100.000 kompanija u 179 zemalja koristi Pipedrive' : 'Used by over 100,000 companies in 179 countries'}</p>
-  <ul class="ratings" aria-label={sr ? 'Ocene korisnika' : 'Customer ratings'}>{ratings.map(([name,score]) => <li><strong>{name}</strong><span>{score}/5</span><span class="stars" aria-hidden="true">★★★★★</span></li>)}</ul>
+  <header><p class="eyebrow">{es ? 'Experiencias de clientes de Pipedrive' : sr ? 'Iskustva Pipedrive korisnika' : 'Pipedrive customer stories'}</p><h2 id="stories-title">{es ? 'Resultados reales de empresas reales.' : sr ? 'Stvarni rezultati stvarnih kompanija.' : 'Real results from real businesses.'}</h2></header>
+  <ul id="stories-track" class="track" tabindex="0" aria-label={es ? 'Experiencias de clientes: usa las flechas del teclado para desplazarte' : sr ? 'Iskustva korisnika — koristite strelice za listanje' : 'Customer stories — use arrow keys to browse'}>{entries.map(([category, quote, name, role, metrics]) => <li><article><p class="eyebrow">{category}</p>{Array.isArray(metrics) && metrics.length > 0 && <dl>{metrics.map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}<blockquote><p>{quote}</p></blockquote><p class="person"><strong>{name}</strong><span>{role}</span></p></article></li>)}</ul>
+  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={es ? 'Experiencia anterior' : sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={es ? 'Siguiente experiencia' : sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" data-pause-toggle aria-pressed="false">{es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}</button></div>
+  <p class="trust">{es ? 'Más de 100.000 empresas en 179 países utilizan Pipedrive' : sr ? 'Više od 100.000 kompanija u 179 zemalja koristi Pipedrive' : 'Used by over 100,000 companies in 179 countries'}</p>
+  <ul class="ratings" aria-label={es ? 'Valoraciones de los usuarios' : sr ? 'Ocene korisnika' : 'Customer ratings'}>{ratings.map(([name,score]) => <li><strong>{name}</strong><span>{score}/5</span><span class="stars" aria-hidden="true">★★★★★</span></li>)}</ul>
  </div>
 </section>
 <script>

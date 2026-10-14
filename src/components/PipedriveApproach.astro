@@ -1,7 +1,8 @@
 ---
 import type { PipedriveDetailedCopy } from '../data/pipedrive';
-interface Props { lang: 'en' | 'sr'; detail: PipedriveDetailedCopy; contactHref: string }
+interface Props { lang: 'en' | 'sr' | 'es'; detail: PipedriveDetailedCopy; contactHref: string }
 const { lang, detail, contactHref } = Astro.props;
+const es = lang === 'es';
 ---
 <section class="approach" id="why-adl-nexus" aria-labelledby="why-adl-title">
   <div class="container">
@@ -12,7 +13,7 @@ const { lang, detail, contactHref } = Astro.props;
       <p class="lead">{detail.why.lead}</p>
       {detail.why.paragraphs.map(text => <p>{text}</p>)}
       <p class="partner">{detail.why.closing}</p>
-      <a class="button" href={contactHref}>{lang === 'sr' ? 'Hajde da pričamo' : 'Let’s talk'}</a>
+      <a class="button" href={contactHref}>{es ? 'Hablemos' : lang === 'sr' ? 'Hajde da pričamo' : 'Let’s talk'}</a>
     </div>
   </div>
 </section>
