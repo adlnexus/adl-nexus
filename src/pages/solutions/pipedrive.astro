@@ -31,7 +31,7 @@ const pageDescription = detail.description;
             <div class="pd-actions">
               <a class="button pd-outline" href={demoHref}>{detail.hero.demo}</a>
               <div class="pd-trial-wrap">
-                <a class="button pd-trial" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a>
+                <a class="button pd-trial pd-trial-cta" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a>
                 <small>{detail.hero.trialNote}</small>
               </div>
             </div>
@@ -66,10 +66,14 @@ h1{font-size:clamp(3rem,4.25vw,4.5rem);line-height:1.12;letter-spacing:-.045em;c
 .pd-actions{display:flex;gap:clamp(16px,2.3vw,36px);align-items:flex-start;margin-top:40px;}
 .pd-hero .button{min-height:58px;border:0;border-radius:999px;font-size:clamp(1.2rem,1.4vw,1.4rem);font-weight:750;letter-spacing:-.02em;text-transform:none;padding:14px 25px;white-space:normal;text-align:center;}
 .pd-hero .button::after{content:none;}.pd-outline{background:#1b5a43;color:#fff;}.pd-outline:hover{background:#12412f;color:#fff;}
-.pd-trial{background:linear-gradient(105deg,#b57800,#b47700);color:#fff;}.pd-trial:hover{background:#805100;color:#fff;}
+/* Shared landing-only trial colours; preserve the approved hero treatment. */
+.pd-page{--trial-fill:linear-gradient(105deg,#b57800,#b47700);--trial-border:#b47700;--trial-active:#805100;}
+.pd-page :global(.button.pd-trial-cta){background:var(--trial-fill);border-color:var(--trial-border);color:#fff;font-size:clamp(1.2rem,1.4vw,1.4rem);}
+.pd-page :global(.button.pd-trial-cta:hover),.pd-page :global(.button.pd-trial-cta:focus-visible){background:var(--trial-active);border-color:var(--trial-active);color:#fff;}
+@media(max-width:760px){.pd-page{--trial-fill:#986100;--trial-border:#986100;}.pd-page :global(.button.pd-trial-cta){font-size:1.05rem;}}
 .pd-actions>.button{flex:1;}.pd-trial-wrap{display:grid;gap:7px;flex:1.3;}.pd-trial-wrap .button{width:100%;}.pd-trial-wrap small{text-align:center;font-size:clamp(.8rem,1vw,1rem);font-weight:600;}
 .pd-product-visual{position:relative;min-width:0;padding-top:90px;align-self:end;}.product{display:block;width:112%;max-width:none;height:auto;margin-left:-7%;}.partner{position:absolute;width:39%;height:auto;top:-80px;right:-7%;filter:drop-shadow(0 6px 14px #142e3344);}
 @media(min-width:1600px){.pd-hero{padding-top:40px;}}
 @media(max-width:1180px){.pd-hero-grid{align-items:center;}.pd-actions{flex-direction:column;gap:14px;margin-top:28px;}.pd-trial-wrap{width:100%;}.pd-hero .button{white-space:normal;text-align:center;}.pd-product-visual{padding-top:65px;}.partner{top:-10px;}}
-@media(max-width:760px){.pd-hero{padding:32px 0 18px;}.pd-hero-grid{grid-template-columns:1fr;gap:24px;width:90%;}h1{font-size:clamp(2.6rem,7.5vw,3.8rem);}.pd-lead{font-size:1.1rem;line-height:1.5;}.pd-support{font-size:1.3rem;}.pd-actions{align-items:stretch;}.pd-hero .button{font-size:1.05rem;min-height:54px;}.pd-trial{background:#986100;}.pd-product-visual{padding-top:40px;}.product{width:107%;margin-left:-4%;}.partner{width:37%;right:-4%;top:-18px;}}
+@media(max-width:760px){.pd-hero{padding:32px 0 18px;}.pd-hero-grid{grid-template-columns:1fr;gap:24px;width:90%;}h1{font-size:clamp(2.6rem,7.5vw,3.8rem);}.pd-lead{font-size:1.1rem;line-height:1.5;}.pd-support{font-size:1.3rem;}.pd-actions{align-items:stretch;}.pd-hero .button{font-size:1.05rem;min-height:54px;}.pd-product-visual{padding-top:40px;}.product{width:107%;margin-left:-4%;}.partner{width:37%;right:-4%;top:-18px;}}
 </style>

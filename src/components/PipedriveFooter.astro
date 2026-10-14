@@ -1,14 +1,26 @@
 ---
 import BrandLogo from './BrandLogo.astro';
 import { contactEmails } from '../data/contact';
+import { routeFor } from '../data/localization';
 interface Props { lang?: 'en' | 'sr' | 'es' }
 const { lang = 'en' } = Astro.props; const sr = lang === 'sr';
 const es = lang === 'es';
+const labels = es
+ ? ['Inicio ADL Nexus', 'Taller (en inglés)', 'Implementación (en inglés)', 'Precios (en inglés)', 'Recursos (en inglés)']
+ : sr ? ['Početna ADL Nexus', 'Radionica (EN)', 'Implementacija', 'Cene', 'Baza znanja']
+ : ['Home ADL Nexus', 'Workshop', 'Implementation', 'Pricing', 'Knowledge base'];
+const local = es ? 'en' : lang;
+const links = [
+ { href: routeFor(lang, '/'), language: lang },
+ { href: '/solutions/pipedrive/workshop/', language: 'en' },
+ ...['implementation', 'pricing', 'knowledge-base'].map(slug => ({ href: routeFor(local, `/solutions/pipedrive/${slug}`), language: local })),
+];
+const navigationLabel = es ? 'Navegación de Pipedrive' : sr ? 'Pipedrive navigacija' : 'Pipedrive navigation';
 ---
 <footer class="pipedrive-footer">
- <div class="container columns"><div><div class="logo-wrap"><BrandLogo variant="tagline-white" /></div><p>{es ? 'Como Pipedrive Premier Partner oficial de la red de distribución PartnerScaleHub, creamos sistemas CRM de ventas en Pipedrive adaptados al proceso comercial de tu empresa.' : sr ? 'Kao zvanični Pipedrive Premier Partner u PartnerScaleHub distributivnoj mreži, gradimo prodajne CRM sisteme na Pipedrive platformi, prilagođene prodajnom procesu vaše kompanije.' : 'As an official Pipedrive Premier Partner in the PartnerScaleHub distribution network, we build custom sales CRM systems on the Pipedrive platform, tailored to your company’s sales process.'}</p></div><div><h2>{es ? 'Ubicación' : sr ? 'Lokacija' : 'Location'}</h2><p>{es ? 'Belgrado · trabajamos a nivel internacional' : sr ? 'Beograd · radimo međunarodno' : 'Belgrade · working internationally'}</p></div><div><h2>{es ? 'Contacto' : sr ? 'Kontakt' : 'Contact'}</h2><a href={`mailto:${contactEmails[0]}`}>{contactEmails[0]}</a></div></div>
+ <div class="container columns"><div><div class="logo-wrap"><BrandLogo variant="tagline-white" /></div><p>{es ? 'Como Pipedrive Premier Partner oficial de la red de distribución PartnerScaleHub, creamos sistemas CRM de ventas en Pipedrive adaptados al proceso comercial de tu empresa.' : sr ? 'Kao zvanični Pipedrive Premier Partner u PartnerScaleHub distributivnoj mreži, gradimo prodajne CRM sisteme na Pipedrive platformi, prilagođene prodajnom procesu vaše kompanije.' : 'As an official Pipedrive Premier Partner in the PartnerScaleHub distribution network, we build custom sales CRM systems on the Pipedrive platform, tailored to your company’s sales process.'}</p></div><nav aria-label={navigationLabel}><h2>Pipedrive</h2><ul>{links.map((link, i) => <li><a href={link.href} hreflang={link.language}>{labels[i]}</a></li>)}</ul></nav><div><h2>{es ? 'Contacto' : sr ? 'Kontakt' : 'Contact'}</h2><a href={`mailto:${contactEmails[0]}`}>{contactEmails[0]}</a><img class="partner-badge" src="/partners/pipedrive/premier-partner.png" width="540" height="540" loading="lazy" alt="Pipedrive Premier Partner — PartnerScaleHub" /></div></div>
  <div class="container copyright">© 2026 ADL Nexus. {es ? 'Todos los derechos reservados.' : sr ? 'Sva prava zadržana.' : 'All rights reserved.'}</div>
 </footer>
 <style>
-.pipedrive-footer { background:#1f5b49;color:white;padding:3.5rem 0 1.5rem;--focus-color:#f6e8c8; }.columns { display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem; }.columns>div { min-width:0; }.pipedrive-footer .logo-wrap { width:180px;max-width:100%; }.pipedrive-footer .logo-wrap :global(img) { display:block;width:100%;height:auto; }.columns p { line-height:1.65;font-size:.95rem; }.columns h2 { font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 1rem; }.columns a { color:white;overflow-wrap:anywhere; }.copyright { border-top:1px solid #ffffff50;margin-top:2rem;padding-top:1rem;font-size:.85rem; }@media(max-width:800px) {.columns{grid-template-columns:1fr;gap:1.5rem;}}
+.pipedrive-footer { background:#1f5b49;color:white;padding:3.5rem 0 1.5rem;--focus-color:#f6e8c8; }.columns { display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:3rem; }.columns>div,.columns>nav { min-width:0; }.pipedrive-footer .logo-wrap { width:180px;max-width:100%; }.pipedrive-footer .logo-wrap :global(img) { display:block;width:100%;height:auto; }.columns p { line-height:1.65;font-size:.95rem; }.columns h2 { font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 1rem; }.columns a { color:white;overflow-wrap:anywhere; }.columns ul { list-style:none;margin:0;padding:0;display:grid;gap:.7rem; }.columns nav a { display:inline-block;padding:.2rem 0;line-height:1.45; }.columns a:hover { text-decoration:underline;text-underline-offset:.3em; }.partner-badge { display:block;width:220px;max-width:100%;height:auto;margin-top:.8rem; } .copyright { border-top:1px solid #ffffff50;margin-top:2rem;padding-top:1rem;font-size:.85rem; }@media(max-width:800px) {.columns{grid-template-columns:1fr;gap:1.5rem;}}
 </style>

@@ -21,7 +21,7 @@ const es = lang === 'es';
     <button type="button" data-prev aria-controls="industry-track" aria-label={es ? 'Sector anterior' : sr ? 'Prethodna industrija' : 'Previous industry'}>←</button>
     <span data-status aria-live="off" aria-atomic="true">1 / 12</span>
     <button type="button" data-next aria-controls="industry-track" aria-label={es ? 'Siguiente sector' : sr ? 'Sledeća industrija' : 'Next industry'}>→</button>
-    <button type="button" data-pause-toggle aria-controls="industry-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}><span aria-hidden="true" data-playback-icon>⏸</span></button>
+    <button type="button" class="keyboard-playback" data-pause-toggle aria-controls="industry-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}>{es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}</button>
   </div>
 </section>
 <script>
@@ -32,8 +32,9 @@ const es = lang === 'es';
     const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
     const status = root.querySelector<HTMLElement>('[data-status]')!;
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const hoverDevice = matchMedia('(hover: hover) and (pointer: fine)');
     const toggle = root.querySelector<HTMLButtonElement>('[data-pause-toggle]')!;
-    let paused = false, hovering = false, focused = false, visible = false, direction = 1;
+    let paused = false, hovering = false, focused = false, touching = false, visible = false, direction = 1;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const sync = () => {
       clearTimeout(timer);
@@ -41,14 +42,14 @@ const es = lang === 'es';
       const label = stopped ? root.dataset.play! : root.dataset.pause!;
       toggle.setAttribute('aria-label', label); toggle.title = label;
       toggle.setAttribute('aria-pressed', String(stopped)); toggle.disabled = motion.matches;
-      toggle.querySelector('[data-playback-icon]')!.textContent = stopped ? '▶' : '⏸';
-      if (!stopped && !hovering && !focused && visible && !document.hidden) timer = setTimeout(() => {
+      toggle.textContent = label;
+      if (!stopped && !hovering && !focused && !touching && visible && !document.hidden) timer = setTimeout(() => {
         if (current === cards.length - 1) direction = -1;
         if (current === 0) direction = 1;
         go(current + direction); sync();
       }, 6000);
     };
-    const manual = () => { paused = true; status.setAttribute('aria-live', 'polite'); sync(); };
+    const manual = () => { status.setAttribute('aria-live', 'polite'); sync(); };
     let current = 0;
     let frame = 0;
     const update = () => {
@@ -72,14 +73,21 @@ const es = lang === 'es';
       event.preventDefault(); manual(); go(keys[event.key], true);
     });
     track.addEventListener('scroll', () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); }, { passive: true });
+    track.addEventListener('scrollend', sync);
     new ResizeObserver(() => { track.scrollTo({left: cards[current].offsetLeft - (track.clientWidth - cards[current].offsetWidth) / 2, behavior: 'instant'}); update(); }).observe(track);
     toggle.addEventListener('click', () => { paused = !paused; status.setAttribute('aria-live', paused ? 'polite' : 'off'); sync(); });
-    root.addEventListener('pointerenter', () => { hovering = true; sync(); });
-    root.addEventListener('pointerleave', () => { hovering = false; sync(); });
-    root.addEventListener('focusin', () => { focused = true; sync(); });
-    root.addEventListener('focusout', event => { focused = event.relatedTarget instanceof Node && root.contains(event.relatedTarget); sync(); });
-    track.addEventListener('pointerdown', manual);
-    track.addEventListener('wheel', manual, { passive: true });
+  // Touch-generated pointerenter and pointer focus must not latch hover/focus pause.
+  root.addEventListener('pointerenter', event => { hovering = hoverDevice.matches && event.pointerType === 'mouse'; sync(); });
+  root.addEventListener('pointerleave', () => { hovering = false; sync(); });
+  root.addEventListener('keydown', () => { focused = true; sync(); });
+  root.addEventListener('focusin', event => { focused = event.target instanceof Element && event.target.matches(':focus-visible'); sync(); });
+  root.addEventListener('focusout', event => { focused = event.relatedTarget instanceof Element && root.contains(event.relatedTarget) && event.relatedTarget.matches(':focus-visible'); sync(); });
+  root.addEventListener('pointerdown', event => { focused = false; touching = event.pointerType !== 'mouse'; sync(); });
+  const release = () => { if (touching) { touching = false; sync(); } };
+  window.addEventListener('pointerup', release);
+  window.addEventListener('pointercancel', release);
+  track.addEventListener('wheel', () => sync(), { passive: true });
+  hoverDevice.addEventListener('change', () => { if (!hoverDevice.matches) hovering = false; sync(); });
     document.addEventListener('visibilitychange', sync);
     motion.addEventListener('change', () => { if (motion.matches) go(current); sync(); });
     new IntersectionObserver(([entry]) => { visible = entry.isIntersecting && entry.intersectionRatio >= .25; sync(); }, { threshold: .25 }).observe(track);
@@ -90,7 +98,9 @@ const es = lang === 'es';
 </script>
 <style>
 .track{scrollbar-width:none;}
-[data-pause-toggle]{font-size:1rem;}
+.controls{position:relative;}
+.keyboard-playback:not(:focus-visible){position:absolute;width:1px;height:1px;min-width:0;min-height:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+.keyboard-playback:focus-visible{width:auto;min-height:44px;padding:.6rem 1rem;font-size:1rem;position:absolute;top:calc(100% + 8px);z-index:2;}
 .track:focus-visible{outline:3px solid #1f5b49;outline-offset:-3px;}
 .track::-webkit-scrollbar{display:none;}
   .industries { padding: clamp(3.5rem, 6vw, 6rem) 0; background: #f0e9d6; color: #182420; --focus-color: #1f5b49; scroll-margin-top: 7rem; }

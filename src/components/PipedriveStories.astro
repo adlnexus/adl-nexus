@@ -10,7 +10,7 @@ const es = lang === 'es';
  <div class="container">
   <header><p class="eyebrow">{es ? 'Experiencias de clientes de Pipedrive' : sr ? 'Iskustva Pipedrive korisnika' : 'Pipedrive customer stories'}</p><h2 id="stories-title">{es ? 'Resultados reales de empresas reales.' : sr ? 'Stvarni rezultati stvarnih kompanija.' : 'Real results from real businesses.'}</h2></header>
   <ul id="stories-track" class="track" tabindex="0" aria-label={es ? 'Experiencias de clientes: usa las flechas del teclado para desplazarte' : sr ? 'Iskustva korisnika — koristite strelice za listanje' : 'Customer stories — use arrow keys to browse'}>{entries.map(([category, quote, name, role, metrics]) => <li><article><p class="eyebrow">{category}</p>{Array.isArray(metrics) && metrics.length > 0 && <dl>{metrics.map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}<blockquote><p>{quote}</p></blockquote><p class="person"><strong>{name}</strong><span>{role}</span></p></article></li>)}</ul>
-  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={es ? 'Experiencia anterior' : sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={es ? 'Siguiente experiencia' : sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" data-pause-toggle aria-controls="stories-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}><span aria-hidden="true" data-playback-icon>⏸</span></button></div>
+  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={es ? 'Experiencia anterior' : sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={es ? 'Siguiente experiencia' : sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" class="keyboard-playback" data-pause-toggle aria-controls="stories-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}>{es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}</button></div>
   <p class="trust">{es ? 'Más de 100.000 empresas en 179 países utilizan Pipedrive' : sr ? 'Više od 100.000 kompanija u 179 zemalja koristi Pipedrive' : 'Used by over 100,000 companies in 179 countries'}</p>
   <ul class="ratings" aria-label={es ? 'Valoraciones de los usuarios' : sr ? 'Ocene korisnika' : 'Customer ratings'}>{ratings.map(([name,score]) => <li><strong>{name}</strong><span>{score}/5</span><span class="stars" aria-hidden="true">★★★★★</span></li>)}</ul>
  </div>
@@ -22,41 +22,54 @@ const es = lang === 'es';
   const status = root.querySelector<HTMLElement>('[data-status]')!;
   const toggle = root.querySelector<HTMLButtonElement>('[data-pause-toggle]')!;
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = false, hovering = false, focused = false, visible = false, target = 0;
+  const hoverDevice = matchMedia('(hover: hover) and (pointer: fine)');
+  let paused = false, hovering = false, focused = false, touching = false, visible = false, target = 0;
   let timer: ReturnType<typeof setTimeout> | undefined;
   const stride = () => cards[1].offsetLeft - cards[0].offsetLeft;
   const max = () => Math.max(0, track.scrollWidth - track.clientWidth);
   const update = () => { const first = Math.round(track.scrollLeft / stride()); const count = Math.max(1, Math.floor((track.clientWidth + stride() - cards[0].offsetWidth + 1) / stride())); status.textContent = `${first + 1}–${Math.min(cards.length,first + count)} / ${cards.length}`; };
   const go = (index: number, manual = false, instant = false) => {
    target = index < 0 ? Math.ceil(max()/stride()) : index > Math.ceil(max()/stride()) ? 0 : index;
-   if (manual) { paused = true; status.setAttribute('aria-live','polite'); sync(); }
+   if (manual) { status.setAttribute('aria-live','polite'); sync(); }
    track.scrollTo({left: Math.min(max(),target*stride()),behavior: motion.matches || instant ? 'instant' : 'smooth'});
   };
   const sync = () => {
    clearTimeout(timer);
    const label = paused || motion.matches ? root.dataset.play! : root.dataset.pause!;
    toggle.setAttribute('aria-label',label); toggle.title = label;
-   toggle.querySelector('[data-playback-icon]')!.textContent = paused || motion.matches ? '▶' : '⏸';
+   toggle.textContent = label;
    toggle.setAttribute('aria-pressed',String(paused || motion.matches));
    toggle.disabled = motion.matches;
-   if (max() > 0 && !paused && !motion.matches && !hovering && !focused && visible && !document.hidden) timer = setTimeout(()=>{ go(target+1); sync(); },6000);
+   if (max() > 0 && !paused && !motion.matches && !hovering && !focused && !touching && visible && !document.hidden) timer = setTimeout(()=>{ go(target+1); sync(); },6000);
   };
   root.querySelector('[data-prev]')!.addEventListener('click',()=>go(target-1,true));
   root.querySelector('[data-next]')!.addEventListener('click',()=>go(target+1,true));
   toggle.addEventListener('click',()=>{ paused=!paused;status.setAttribute('aria-live',paused?'polite':'off');sync(); });
   track.addEventListener('keydown',event=>{const keys:Record<string,number>={ArrowLeft:target-1,ArrowRight:target+1,Home:0,End:Math.ceil(max()/stride())};if(!(event.key in keys))return;event.preventDefault();go(keys[event.key],true);});
-  root.addEventListener('pointerenter',()=>{hovering=true;sync();});root.addEventListener('pointerleave',()=>{hovering=false;sync();});
-  root.addEventListener('focusin',()=>{focused=true;sync();});root.addEventListener('focusout',event=>{focused=event.relatedTarget instanceof Node && root.contains(event.relatedTarget);sync();});
-  track.addEventListener('scroll',update,{passive:true});track.addEventListener('scrollend',()=>{target=Math.round(track.scrollLeft/stride());update();});
+  // Touch-generated pointerenter and pointer focus must not latch hover/focus pause.
+  root.addEventListener('pointerenter', event => { hovering = hoverDevice.matches && event.pointerType === 'mouse'; sync(); });
+  root.addEventListener('pointerleave', () => { hovering = false; sync(); });
+  root.addEventListener('keydown', () => { focused = true; sync(); });
+  root.addEventListener('focusin', event => { focused = event.target instanceof Element && event.target.matches(':focus-visible'); sync(); });
+  root.addEventListener('focusout', event => { focused = event.relatedTarget instanceof Element && root.contains(event.relatedTarget) && event.relatedTarget.matches(':focus-visible'); sync(); });
+  root.addEventListener('pointerdown', event => { focused = false; touching = event.pointerType !== 'mouse'; sync(); });
+  const release = () => { if (touching) { touching = false; sync(); } };
+  window.addEventListener('pointerup', release);
+  window.addEventListener('pointercancel', release);
+  track.addEventListener('wheel', () => sync(), { passive: true });
+  hoverDevice.addEventListener('change', () => { if (!hoverDevice.matches) hovering = false; sync(); });
+  track.addEventListener('scroll',update,{passive:true});track.addEventListener('scrollend',()=>{target=Math.round(track.scrollLeft/stride());update();sync();});
   document.addEventListener('visibilitychange',sync);motion.addEventListener('change',()=>{go(target,false,true);sync();});
-  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting && entry.intersectionRatio >= .25;sync();},{threshold:.25}).observe(root);
+  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting && entry.intersectionRatio >= .25;sync();},{threshold:.25}).observe(track);
   new ResizeObserver(()=>{target=Math.min(target,Math.ceil(max()/stride()));go(target,false,true);update();sync();}).observe(track);
   root.querySelector<HTMLElement>('[data-controls]')!.hidden=false;update();sync();
  });
 </script>
 <style>
 .track{scrollbar-width:none;}
-[data-pause-toggle]{width:44px;height:44px;padding:0;font-size:1rem;display:grid;place-items:center;}
+.controls{position:relative;}
+.keyboard-playback:not(:focus-visible){position:absolute;width:1px;height:1px;min-width:0;min-height:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+.keyboard-playback:focus-visible{width:auto;min-height:44px;padding:.6rem 1rem;font-size:1rem;position:absolute;top:calc(100% + 8px);z-index:2;}
 .track::-webkit-scrollbar{display:none;}
 .stories { padding:clamp(3.5rem,6vw,6rem) 0; background:#faf8f1;color:#262626;--focus-color:#1f5b49;scroll-margin-top:7rem; }
 header { text-align:center;margin-bottom:2.5rem; }.eyebrow { color:#1f5b49;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;font-weight:750; }
