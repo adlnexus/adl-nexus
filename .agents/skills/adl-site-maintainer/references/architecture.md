@@ -3,10 +3,10 @@
 ## Stack
 
 - Astro static-site generation
-- Node.js 22+
+- Node.js >=22.12.0
 - Plain Astro components, HTML, CSS, and small browser scripts
 - No database, server adapter, JavaScript UI framework, or CMS
-- Intended host: Cloudflare Pages
+- Existing host integration: Cloudflare Workers Builds; see release-and-cloudflare.md
 
 ## Commands
 
@@ -15,7 +15,7 @@ npm install       # install dependencies after cloning
 npm run dev       # live local preview
 npm run build     # production build to dist/
 npm run preview   # serve the production build locally
-npm run verify    # alias for the production build check
+npm run verify    # production build and SEO checks
 ```
 
 ## Source map
@@ -50,7 +50,7 @@ src/
 
 ## Routing
 
-Each file under `src/pages/` creates a URL. English routes are concrete `.astro` files. `src/pages/[lang]/[...slug].astro` renders equivalent Serbian, Spanish, German and Russian routes through the same page components. Preserve route parity, stable public URLs and locale-aware links unless the owner approves a redirect or removal.
+Each file under `src/pages/` creates a URL. English routes are concrete `.astro` files. `src/pages/[lang]/[...slug].astro` renders Serbian and Spanish routes through the same page components. German and Russian routes have been removed. Dedicated Pipedrive pricing/article/implementation routes are EN/SR; industry guides and workshop are EN only, labelled EN from Serbian links. Preserve stable URLs and advertise only existing language alternatives.
 
 ## Styling
 
@@ -64,4 +64,4 @@ Keep scripts progressive and minimal. The header script coordinates native `<det
 
 ## Metadata
 
-Shared metadata lives in `BaseLayout.astro`. When the final domain is known, set Astro’s `site` value in `astro.config.mjs` and use it to produce absolute canonical and social-image URLs.
+Shared metadata lives in `BaseLayout.astro`. Astro’s `site` is `https://adlnexus.com` for canonical and social-image URLs. Public target/domain mapping still needs verification against the existing Cloudflare integration; see the release reference.

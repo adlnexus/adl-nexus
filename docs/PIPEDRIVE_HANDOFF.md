@@ -1,6 +1,6 @@
 # Pipedrive handoff implementation
 
-Implemented in the main checkout. The owner authorised a local commit of all approved changes on 14 October 2026; publication and push remain unauthorised.
+Implemented and pushed as commit `058c329` on 14 October 2026 with explicit owner approval. For future save/publish/revert requests, see the owner guides in [English](OWNER_GUIDE_EN.md) and [Serbian](OWNER_GUIDE_SR.md) and [release reference](../.agents/skills/adl-site-maintainer/references/release-and-cloudflare.md). Public target verification is tracked separately from the successful push.
 
 ## Scope
 

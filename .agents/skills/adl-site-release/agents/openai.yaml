@@ -1,0 +1,4 @@
+interface:
+  display_name: "Save, Publish or Restore ADL Website"
+  short_description: "Save, publish and safely restore ADL site changes"
+  default_prompt: "Use $adl-site-release to check the ADL Nexus site status and carry out my requested action."

@@ -10,6 +10,12 @@ For any request involving site copy, design, routes, navigation, brand assets, r
 
 Use the skill’s references only when relevant to the current task.
 
+For owner requests to save, publish, check publication or restore a version, also read:
+
+`./.agents/skills/adl-site-release/SKILL.md`
+
+Owner command meanings (English / Serbian): “Save changes” / “Sačuvaj izmene” means local commit. “Publish the site” / “Objavi sajt” explicitly authorises checking all latest intended site changes, committing them if needed and a normal push to the existing production upstream (`origin/master`), which triggers automatic publication. Do not ask for redundant confirmation after that clear command; preserve actual approval/access restrictions. “Restore the previous version” / “Vrati prethodnu verziju” means a non-destructive local revert; “Restore and publish” / “Vrati i objavi” also authorises the push. A request to document these commands does not execute them.
+
 ## Project intent
 
 ADL Nexus has two connected audiences:

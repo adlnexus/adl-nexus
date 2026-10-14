@@ -1,45 +1,32 @@
-# Release and Cloudflare reference
+# ADL Nexus release target
 
-## Before release
+## Confirmed workflow
 
-1. Run `npm install` when dependencies are not present.
-2. Run `npm run build` and fix real failures.
-3. Review the changed pages at desktop and phone widths.
-4. Check affected navigation, calls to action, language links, metadata, and contact details.
-5. Check `git diff` and avoid committing generated output, secrets, or unrelated changes.
-6. If the user requested a commit, review the staged diff and use a focused Conventional Commit message in the form `<type>(optional-scope): concise description`.
+Owner confirmation, 14 October 2026: a normal GitHub push triggers automatic publication. “Publish the site” (Serbian: “Objavi sajt”) includes checking and committing all latest intended site changes before pushing, without another confirmation solely because it is a publication request. “Save changes” (Serbian: “Sačuvaj izmene”) is a local commit only. Use [adl-site-release](../../adl-site-release/SKILL.md) for the procedure and recovery.
 
-Examples:
+| Item | Recorded value |
+| --- | --- |
+| Repository | `https://github.com/technosapiens/adl-nexus.git` (private) |
+| Production branch / upstream | `master` / `origin/master` |
+| Existing integration | Cloudflare Workers Builds, script `adl-nexus` |
+| Local checks | `npm run verify` (build + SEO) |
+| Static output | `dist/` (never commit) |
+| Required local Node | `>=22.12.0` from package.json |
+| Canonical domain in source | `https://adlnexus.com` |
+| Actual public Worker URL | Not yet recorded; obtain from the existing Cloudflare project |
 
-```text
-feat(contact): add server-backed enquiry form
-fix(nav): keep language menu inside the mobile viewport
-docs: clarify Cloudflare deployment
-```
+Do not create a new Pages project or replace the current integration. Cloudflare's exact dashboard build/deploy commands and runtime setting have not been inspected; do not present local build settings as confirmed remote settings.
 
-Use `!` or a `BREAKING CHANGE:` footer for breaking changes. Do not commit or push unless the user explicitly requests it.
+## Evidence and limits
 
-## Cloudflare Pages settings
+On 14 October 2026 GitHub reported `Workers Builds: adl-nexus` successful for commit `058c3290f365ee0dffbb096dbb68b0dd78552f9b`, with Cloudflare version `e485de1a-5bde-49fa-9858-948168da1c3c`. The owner confirms automatic publication on push. The GitHub legacy status endpoint had no statuses; use the actual check-run rather than interpreting that empty legacy response as a deployment failure.
 
-```text
-Production branch: main
-Build command: npm run build
-Build output directory: dist
-Root directory: empty
-Node.js version: 22
-```
+In the same read-only audit, `https://adlnexus.com/` returned 200 with title “adlnexus.com”; `/solutions/pipedrive/` and `/solutions/pipedrive/workshop/` returned 404. This leaves the public target/domain mapping unverified; it does not contradict the confirmed push automation. Associate the actual Worker URL/custom domain with this project before claiming that public-site verification is complete. Do not guess a workers.dev hostname or alter DNS.
 
-The preferred release flow is GitHub integration rather than committing `dist/` or manually uploading it.
+Report separately: local commit saved; remote SHA confirmed; Cloudflare check succeeded/failed/pending; public page verified/unverified. Check the SHA being published, not a previous successful build.
 
-## Domain setup
+## Access and boundaries
 
-After the owner selects a domain:
+Routine publication needs the owner's working GitHub write access. Cloudflare access is needed to inspect restricted logs/settings and confirm the public target, not to run a second manual deployment. Verify available access without assuming account ownership or copying credentials into the repository/chat.
 
-1. Add `site: 'https://example.com'` to `astro.config.mjs` using the real HTTPS domain.
-2. Add canonical metadata and absolute Open Graph image URLs through `BaseLayout.astro`.
-3. Configure the custom domain in Cloudflare Pages.
-4. Verify the primary domain, `www` redirect decision, HTTPS, metadata previews, and the contact destination.
-
-## Authority boundary
-
-Building and checking locally is allowed as part of implementation. Publishing to GitHub, creating Cloudflare resources, deploying, modifying DNS, or connecting external services requires an explicit user request. Explain any authentication step that the owner must complete.
+No manual deployment, DNS change, new hosting service or account connection is implied by “publish”. If access or genuine approval restrictions block a step, preserve work and report that step accurately. Detailed save/publish/revert recovery is maintained only in the release skill.

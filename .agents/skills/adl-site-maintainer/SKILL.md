@@ -1,11 +1,11 @@
 ---
 name: adl-site-maintainer
-description: Maintain, extend, preview, verify, and prepare the ADL Nexus Astro website for publishing. Use for requests involving website copy, pages, navigation, responsive design, ADL visual identity, Pipedrive or Learnie content, English, Serbian, Spanish, German, or Russian localisation, contact details, brand assets, SEO/social metadata, GitHub handoff, or Cloudflare Pages deployment.
+description: Maintain, extend, preview, verify, and prepare the ADL Nexus Astro website for publishing. Use for requests involving website copy, pages, navigation, responsive design, ADL visual identity, Pipedrive or Learnie content, English, Serbian, Spanish, German, or Russian localisation, contact details, brand assets, SEO/social metadata, GitHub handoff, or publication through the existing Cloudflare integration.
 ---
 
 # Maintain the ADL website
 
-Keep the site simple for nontechnical owners and safe for static Cloudflare Pages hosting.
+Keep the site simple for nontechnical owners and preserve static output through the existing Cloudflare integration.
 
 ## Orient
 
@@ -33,6 +33,10 @@ Keep the site simple for nontechnical owners and safe for static Cloudflare Page
 4. Test changed navigation, dropdowns, forms, and language links without sending real enquiries.
 5. Check that no page introduces horizontal overflow.
 6. Keep generated folders and secrets out of version control.
+
+## Owner save, publish and recovery
+
+For ordinary-language or voice requests to save, publish or restore a version, use [adl-site-release](../adl-site-release/SKILL.md). “Publish the site” (Serbian: “Objavi sajt”) authorises checks, committing all intended changes and the ordinary production push; no redundant confirmation is needed. A request to prepare instructions does not execute these actions.
 
 ## Commit
 

@@ -1,6 +1,6 @@
 # Pipedrive pregled pre objavljivanja
 
-Ažurirano 14. oktobra 2026. Izmene su lokalne; vlasnik je odobrio lokalni commit svih dosadašnjih izmena 14. oktobra 2026. Nema pusha, deploymenta, DNS promena, novih servisa, slanja formi ili aktiviranja probnog naloga.
+Ažurirano 14. oktobra 2026. Odobreni rad je commitovan i pushovan kao `058c329` 14. oktobra 2026. Cloudflare Workers Builds check je uspešan; stvarni javni URL/domen još treba povezati sa targetom za završnu javnu proveru. Nema ručnog deploymenta, DNS promena, novih servisa, slanja formi ili aktiviranja probnog naloga. Budući workflow je opisan u vlasničkim uputstvima na [srpskom](OWNER_GUIDE_SR.md) i [engleskom](OWNER_GUIDE_EN.md).
 
 ## Završeno
 
