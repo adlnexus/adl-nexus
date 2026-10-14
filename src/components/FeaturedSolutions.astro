@@ -76,18 +76,18 @@ const products = ['pipedrive', 'learnie'] as const;
 <style>
   .solutions { padding: clamp(3.5rem, 6vw, 5.5rem) 0; }
   .section-title { max-width: 24ch; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.02; }
-  .solution-list { position: relative; display: flex; gap: 1.5rem; margin-top: 2.5rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; border-radius: 22px; }
+  .solution-list { position: relative; display: flex; gap: 1.5rem; max-width: 1000px; margin: 2.5rem auto 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; border-radius: 22px; }
   .solution-list:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
   .solution-list.is-enhanced { scrollbar-width: none; }
   .solution-list.is-enhanced::-webkit-scrollbar { display: none; }
-  .solution { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: clamp(1.5rem, 4vw, 4rem); scroll-snap-align: start; scroll-snap-stop: always; border: 1px solid #e9dfd6; border-radius: 22px; background: #fffdf9; }
-  .solution-copy { min-width: 0; }
-  .solution h3 { max-width: 24ch; margin: 0 0 1.25rem; font-size: clamp(1.8rem, 3vw, 3rem); letter-spacing: -.05em; line-height: 1.08; }
-  .solution p { margin: 0; max-width: 580px; color: var(--muted); line-height: 1.65; }
-  .solution-logo { display: grid; place-items: center; padding-block: 2rem; border-left: 1px solid #dfebe0; }
-  .solution-logo img { width: min(85%, 210px); height: auto; }
-  .solution--pipedrive .solution-logo img { width: min(85%, 190px); }
-  .solution-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2rem; }
+  .solution { --card-wave: #ffdcc8; flex: 0 0 100%; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; padding: clamp(1.5rem, 2.8vw, 2.5rem); scroll-snap-align: start; scroll-snap-stop: always; border: 1px solid #e9dfd6; border-radius: 22px; background: radial-gradient(ellipse 75% 160% at 15% -45%, #fffaf3 73%, transparent 74%), radial-gradient(ellipse 70% 120% at 95% 150%, var(--card-wave) 68%, transparent 69%), linear-gradient(120deg, #fffaf3, #fff0e1); }
+  .solution--learnie { --card-wave: #e6efcf; }
+  .solution-copy { min-width: 0; width: 100%; }
+  .solution h3 { max-width: 30ch; margin: 0 0 .75rem; font-size: clamp(1.75rem, 2.7vw, 2.5rem); letter-spacing: -.045em; line-height: 1.08; }
+  .solution p { margin: 0; max-width: 760px; color: var(--muted); line-height: 1.55; }
+  .solution-logo { order: -1; display: flex; align-items: center; height: 44px; }
+  .solution-logo img { width: auto; height: 44px; max-width: 210px; object-fit: contain; object-position: left center; }
+  .solution-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.25rem; }
   .demo-link { display: inline-flex; align-items: center; min-height: 44px; padding: .75rem 1rem; border-radius: 999px; text-decoration: underline; text-underline-offset: .2em; color: var(--accent-dark); font-size: .85rem; transition: background .2s ease, color .2s ease; }
   .demo-link:hover, .demo-link:focus-visible { background: #ffead7; color: var(--ink); }
   .carousel-controls:not([hidden]) { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: 1.25rem; }
@@ -98,11 +98,6 @@ const products = ['pipedrive', 'learnie'] as const;
   .carousel-dot span { width: 8px; height: 8px; border-radius: 50%; background: #9b8c82; }
   .carousel-dot[aria-current] span { background: var(--accent); box-shadow: 0 0 0 4px rgba(192,68,22,.1); }
   .carousel-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  @media (max-width: 900px) {
-    .solution { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
-    .solution-logo { grid-row: 1; justify-items: start; border: 0; padding: 0; }
-    .solution-logo img { max-width: 180px; }
-  }
   @media (max-width: 480px) { .solution-actions { align-items: flex-start; flex-direction: column; } }
   @media (prefers-reduced-motion: reduce) { .demo-link { transition: none; } }
 </style>

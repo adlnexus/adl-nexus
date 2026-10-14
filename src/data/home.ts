@@ -10,7 +10,7 @@ interface HomeCopy {
 // English follows the final v2 owner brief. SR/ES require native-speaker review.
 export const homeCopy: Record<SiteLocale, HomeCopy> = {
   en: {
-    audienceLabel: 'Two sides of one partnership',
+    audienceLabel: 'How we can help',
     audiences: [
       { title: 'Find software that fits.', text: 'Discover software that fits the way your organisation works, with guidance on choosing the right solution and getting started.', action: 'Explore our solutions' },
       { title: 'Grow in the right markets.', text: 'Reach new customers through business development, sales representation and referrals, backed by international sales experience and a strong professional network. Each partnership is built around agreed goals, with no competing solutions that address the same need.', action: 'Explore our services' },
@@ -27,7 +27,7 @@ export const homeCopy: Record<SiteLocale, HomeCopy> = {
     closing: { eyebrow: 'Start a conversation', title: 'The right software. The right market. Let’s find it.', accent: 'Let’s find it.', text: 'Tell us where you want to go. We’ll bring focus, clarity and a partnership built to last.', cta: 'Contact us' },
   },
   sr: {
-    audienceLabel: 'Dve strane jednog partnerstva',
+    audienceLabel: 'Kako možemo da pomognemo',
     audiences: [
       { title: 'Pronađite softver koji odgovara.', text: 'Otkrijte softver koji odgovara načinu rada vaše organizacije, uz podršku pri izboru pravog rešenja i početku korišćenja.', action: 'Istražite naša rešenja' },
       { title: 'Rastite na pravim tržištima.', text: 'Dođite do novih klijenata kroz razvoj poslovanja, prodajno zastupanje i preporuke, uz međunarodno prodajno iskustvo i snažnu profesionalnu mrežu. Svako partnerstvo zasnivamo na dogovorenim ciljevima, bez zastupanja konkurentskih rešenja koja odgovaraju na istu potrebu.', action: 'Istražite naše usluge' },
@@ -44,7 +44,7 @@ export const homeCopy: Record<SiteLocale, HomeCopy> = {
     closing: { eyebrow: 'Započnimo razgovor', title: 'Pravi softver. Pravo tržište. Hajde da ih pronađemo.', accent: 'Hajde da ih pronađemo.', text: 'Recite nam gde želite da stignete. Donosimo fokus, jasnoću i partnerstvo koje traje.', cta: 'Kontaktirajte nas' },
   },
   es: {
-    audienceLabel: 'Dos lados de una misma colaboración',
+    audienceLabel: 'Cómo podemos ayudarte',
     audiences: [
       { title: 'Encuentra el software adecuado.', text: 'Descubre software que se adapte a la forma de trabajar de tu organización, con orientación para elegir la solución adecuada y empezar a utilizarla.', action: 'Explora nuestras soluciones' },
       { title: 'Crece en los mercados adecuados.', text: 'Llega a nuevos clientes mediante el desarrollo de negocio, la representación comercial y las recomendaciones, con el respaldo de experiencia internacional en ventas y una sólida red profesional. Cada colaboración se basa en objetivos acordados, sin soluciones competidoras que respondan a la misma necesidad.', action: 'Explora nuestros servicios' },
