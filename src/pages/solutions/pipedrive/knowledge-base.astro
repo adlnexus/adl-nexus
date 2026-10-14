@@ -1,0 +1,26 @@
+---
+import PipedriveLayout from '../../../layouts/PipedriveLayout.astro';
+import source from '../../../data/pipedrive-handoff.json';
+import english from '../../../data/pipedrive-pipeline-en.json';
+import { pipedriveIndustries } from '../../../data/pipedrive-industries';
+import { pipedriveDetailedCopy } from '../../../data/pipedrive';
+import { routeFor } from '../../../data/localization';
+interface Props { lang?: 'en' | 'sr' }
+const {lang='en'}=Astro.props;const sr=lang==='sr';
+const copy:Record<string,string>=sr?source:english;
+const t=(id:number)=>copy[String(id)];
+const heads=[183,187,192,202,206,214,219,224];
+const paragraphs=Array.from({length:51},(_,i)=>180+i).filter(i=>![213,226,229].includes(i));
+const linkFor=(id:number)=>id===205?{label:sr?'besplatna radionica':'free workshop',href:'/solutions/pipedrive/workshop/'}:id===207?{label:sr?'usluga implementacije':'implementation service',href:routeFor(lang,'/solutions/pipedrive/implementation')}:id===235?{label:'Dostupni paketi',href:routeFor(lang,'/solutions/pipedrive/pricing')}:null;
+const industries=pipedriveDetailedCopy[lang].audiences.cards;
+---
+<PipedriveLayout lang={lang} eyebrow={t(175)} title={t(176)} description={t(177)}>
+<article class="pd-document"><div class="container"><div class="pd-prose"><p class="eyebrow">{t(178)}</p><p><time datetime="2026-06-17">{t(179)}</time></p>
+{paragraphs.map(id=><>
+ {heads.includes(id)?<h2>{t(id)}</h2>:id===227?<blockquote><p>{t(id)}</p><cite>{t(228)}</cite></blockquote>:id===228?null:linkFor(id)?<p>{t(id).split(linkFor(id)!.label)[0]}<a href={linkFor(id)!.href}>{linkFor(id)!.label}</a>{sr && id===205 && ' (EN)'}{t(id).split(linkFor(id)!.label)[1]}</p>:<p class:list={{step:id>=208&&id<=212}}>{t(id)}</p>}
+ {id===212&&<div class="card-grid related">{[11,10,9,8].map(index=><a class="card" href={pipedriveIndustries[index].href} hreflang="en"><img src={pipedriveIndustries[index].image} alt="" width="400" height="240" loading="lazy"/><h3>{industries[index]}</h3><span>{sr?'CRM Vodič EN':'CRM Playbook'}</span></a>)}</div>}
+</>)}
+{sr&&<section aria-labelledby="article-faq"><h2 id="article-faq">{t(232)}</h2>{[233,237,239,241,243].map(id=><details><summary>{t(id)}</summary><p>{t(id+1)}</p>{id===233&&<p>{t(235).split('Dostupni paketi')[0]}<a href={routeFor(lang,'/solutions/pipedrive/pricing')}>Dostupni paketi</a>{t(235).split('Dostupni paketi')[1]}</p>}</details>)}</section>}
+</div></div></article>
+</PipedriveLayout>
+<style>.step{padding:1.25rem;border:1px solid #dedbd0;border-radius:.7rem;background:#fffdf8;}.related{grid-template-columns:repeat(2,minmax(0,1fr))!important;}.related a{text-decoration:none!important;}.related img{width:100%;height:140px;object-fit:cover;border-radius:.4rem;}.related span{font-weight:750;text-decoration:underline;}.related h3{font-size:1.2rem;}.related p{font-size:.9rem;}@media(max-width:600px){.related{grid-template-columns:1fr!important;}}</style>

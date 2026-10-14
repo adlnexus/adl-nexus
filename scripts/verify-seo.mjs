@@ -39,8 +39,13 @@ if (!existsSync(outputDirectory)) {
 
 const htmlFiles = collectHtmlFiles(outputDirectory).sort();
 const knownRoutes = new Set(htmlFiles.map(routeForFile));
+const playbookSlugs = JSON.parse(readFileSync('src/data/pipedrive-playbooks/index.json', 'utf8'));
+if (playbookSlugs.length !== 12 || new Set(playbookSlugs).size !== 12) errors.push('Expected 12 unique industry playbooks.');
+for (const slug of playbookSlugs) {
+  if (!knownRoutes.has(`/solutions/pipedrive/knowledge-base/${slug}/`)) errors.push(`Missing industry playbook: ${slug}`);
+}
 
-if (htmlFiles.length !== 22) errors.push(`Expected 21 content pages and one 404 page, found ${htmlFiles.length}.`);
+if (htmlFiles.length !== 41) errors.push(`Expected 40 content pages and one 404 page, found ${htmlFiles.length}.`);
 if (!existsSync(join(outputDirectory, '404.html'))) errors.push('Missing static 404.html.');
 if (existsSync(join(outputDirectory, 'de')) || existsSync(join(outputDirectory, 'ru'))) errors.push('Removed locale output still exists.');
 
@@ -71,14 +76,19 @@ for (const file of htmlFiles) {
   if (!metas.some((tag) => tag.name === 'twitter:title' && tag.content)) addError(route, 'missing Twitter title');
   if (!metas.some((tag) => tag.name === 'twitter:description' && tag.content)) addError(route, 'missing Twitter description');
   if (!tags(html, 'link').some((tag) => tag.rel === 'icon' && tag.href === '/favicon.svg')) addError(route, 'missing primary favicon declaration');
-  if (alternates.length !== 4) addError(route, `expected four language alternatives, found ${alternates.length}`);
-  if (alternates.some(tag => ['de', 'ru'].includes(tag.hreflang))) addError(route, 'removed language alternative');
+  const pageLocales = /^\/solutions\/pipedrive\/(?:knowledge-base\/[^/]+|workshop)\/$/.test(route) ? ['en'] : /^\/(?:sr\/)?solutions\/pipedrive\/(pricing|implementation|knowledge-base)\/$/.test(route) ? ['en', 'sr'] : localeCodes;
+  if (alternates.length !== pageLocales.length + 1) addError(route, `expected ${pageLocales.length + 1} language alternatives, found ${alternates.length}`);
+  if (alternates.some(tag => tag.hreflang !== 'x-default' && !pageLocales.includes(tag.hreflang))) addError(route, 'removed language alternative');
+  for (const alternate of alternates) {
+    if (alternate.href?.startsWith(`${productionOrigin}/`) && !knownRoutes.has(new URL(alternate.href).pathname)) addError(route, `language alternative targets missing route: ${alternate.href}`);
+  }
   if (!alternates.every((tag) => tag.href?.startsWith(`${productionOrigin}/`))) addError(route, 'contains a non-absolute language alternative');
-  if (![...localeCodes, 'x-default'].every((locale) => alternates.some((tag) => tag.hreflang === locale))) addError(route, 'language alternatives are incomplete');
+  if (![...pageLocales, 'x-default'].every((locale) => alternates.some((tag) => tag.hreflang === locale))) addError(route, 'language alternatives are incomplete');
   if (insightRoute && robots !== 'noindex, follow') addError(route, 'draft Insights route must be noindex, follow');
   if (!insightRoute && robots !== 'index, follow, max-image-preview:large') addError(route, 'indexable route has unexpected robots metadata');
 
   for (const link of tags(html, 'a')) {
+    if (link.href?.includes('hostingersite.com')) addError(route, `unmigrated template destination: ${link.href}`);
     if (!link.href?.startsWith('/')) continue;
     const pathname = new URL(link.href, productionOrigin).pathname;
     const normalizedRoute = pathname === '/' ? '/' : `${pathname.replace(/\/+$/, '')}/`;
@@ -97,7 +107,7 @@ if (!existsSync(sitemapPath)) errors.push('Missing sitemap-0.xml.');
 if (existsSync(sitemapPath)) {
   const sitemap = readFileSync(sitemapPath, 'utf8');
   const sitemapEntries = sitemap.match(/<url>/g) ?? [];
-  if (sitemapEntries.length !== 18) errors.push(`Expected 18 indexable sitemap entries, found ${sitemapEntries.length}.`);
+  if (sitemapEntries.length !== 37) errors.push(`Expected 37 indexable sitemap entries, found ${sitemapEntries.length}.`);
   if (/\/(de|ru)\/|\/404/.test(sitemap)) errors.push('Sitemap contains a removed locale or 404 page.');
   if (sitemap.includes('/insights/')) errors.push('Draft Insights routes must not appear in the sitemap.');
   if ([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].some((match) => !match[1].startsWith(`${productionOrigin}/`))) {
@@ -125,4 +135,4 @@ if (errors.length) {
   throw new Error(`SEO verification failed:\n- ${errors.join('\n- ')}`);
 }
 
-console.log(`SEO verification passed for 21 content pages, one 404 page and 18 sitemap entries.`);
+console.log(`SEO verification passed for 40 content pages, one 404 page and 37 sitemap entries.`);

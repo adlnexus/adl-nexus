@@ -1,0 +1,9 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PipedriveNav from '../components/PipedriveNav.astro';
+import '../styles/pipedrive-pages.css';
+interface Props { lang: 'en' | 'sr'; title: string; description: string; eyebrow: string }
+const { lang,title,description,eyebrow }=Astro.props;
+---
+<BaseLayout lang={lang} title={`${title} — ADL Nexus`} description={description} brandVariant="green" footerVariant="pipedrive"><header class="pd-document-hero"><div class="container"><p>{eyebrow}</p><h1>{title}</h1><p class="lead">{description}</p><PipedriveNav lang={lang}/></div></header><slot/></BaseLayout>
+<style>.pd-document-hero{padding:10rem 0 3rem;background:linear-gradient(90deg,#faf8f1,#f0e9d6);color:#1f5b49;text-align:center;}h1{max-width:1050px;margin:1rem auto;font-size:clamp(2.4rem,5vw,4.5rem);line-height:1.08;letter-spacing:-.045em;}.lead{max-width:900px;margin:1.5rem auto;line-height:1.65;}</style>

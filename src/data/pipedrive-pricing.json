@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Lite",
+    "price": 14,
+    "sr": [
+      "Upravljanje leadovima i kontaktima",
+      "Upravljanje prodajnim pipeline-om",
+      "Sinhronizacija kalendara",
+      "Prodajne aktivnosti u realnom vremenu",
+      "Mobilna aplikacija",
+      "Više od 500 integracija",
+      "AI Pulse i preporuke za prodaju",
+      "Izveštavanje uz podršku AI-ja"
+    ],
+    "en": [
+      "Lead and contact management",
+      "Sales pipeline management",
+      "Calendar sync",
+      "Real-time sales activities",
+      "Mobile app",
+      "500+ integrations",
+      "AI Pulse and sales recommendations",
+      "AI-powered reporting"
+    ]
+  },
+  {
+    "name": "Growth",
+    "price": 39,
+    "sr": [
+      "Sve iz Lite paketa",
+      "Sinhronizacija e-maila, šabloni i praćenje otvaranja",
+      "Masovno i automatizovano slanje e-mailova",
+      "Istorija aktivnosti kontakta",
+      "Online zakazivanje sastanaka",
+      "Upravljanje automatizacijama i sekvencama",
+      "Izveštaji za prognoziranje prodaje"
+    ],
+    "en": [
+      "Everything in Lite",
+      "Email sync, templates and open tracking",
+      "Bulk and automated emails",
+      "Contact activity history",
+      "Online meeting scheduler",
+      "Automation and sequence management",
+      "Sales forecasting reports"
+    ]
+  },
+  {
+    "name": "Premium",
+    "price": 59,
+    "sr": [
+      "Sve iz Growth paketa",
+      "Sinhronizacija do 3 e-mail naloga po korisniku",
+      "Upravljanje zajedničkim timskim inboxom",
+      "Online forme i chatbot",
+      "AI funkcije za e-mail",
+      "Kreiranje dokumenata i elektronsko potpisivanje",
+      "Bodovanje leadova",
+      "Obavezna polja i polja samo za čitanje",
+      "Napredno izveštavanje, automatizacije i sekvence"
+    ],
+    "en": [
+      "Everything in Growth",
+      "Sync up to 3 email accounts per user",
+      "Shared team inbox",
+      "Web forms and chatbot",
+      "AI email features",
+      "Documents and electronic signatures",
+      "Lead scoring",
+      "Required and read-only fields",
+      "Advanced reports, automations and sequences"
+    ]
+  },
+  {
+    "name": "Ultimate",
+    "price": 79,
+    "sr": [
+      "Sve iz Premium paketa",
+      "Sinhronizacija do 5 e-mail naloga po korisniku",
+      "Do 5 zajedničkih timskih inboxa",
+      "Napredno upravljanje bezbednošću",
+      "Obavezna pravila za lozinke",
+      "Ograničenja pristupa prema IP adresi i vremenu"
+    ],
+    "en": [
+      "Everything in Premium",
+      "Sync up to 5 email accounts per user",
+      "Up to 5 shared team inboxes",
+      "Advanced security management",
+      "Password requirements",
+      "IP- and time-based access restrictions"
+    ]
+  }
+]

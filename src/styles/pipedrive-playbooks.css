@@ -1,0 +1,57 @@
+/* Source embeds are rendered as semantic, static HTML. No third-party scripts or fonts. */
+.playbook { overflow-wrap: anywhere; }
+.playbook .pd-prose { max-width: 920px; }
+.playbook-meta { color: #52635b; font-size: .9rem; }
+.playbook-contents { margin: 1.5rem 0 2rem; }
+.playbook-contents li { margin: .5rem 0; }
+.playbook-section { padding-block: 1rem; scroll-margin-top: 8rem; }
+.playbook-section + .playbook-section { border-top: 1px solid #dedbd0; }
+.playbook-copy > :first-child { margin-top: 0; }
+.playbook-copy p { margin-bottom: 1.25rem; }
+.playbook-copy h3 { margin: 2rem 0 1rem; }
+.playbook-copy h4 { font-size: 1.15rem; line-height: 1.4; color: #1f5b49; }
+.playbook-image { display: block; width: 100%; height: auto; max-width: 760px; margin: 2rem auto; border-radius: .8rem; }
+.playbook .playbook-cta { margin: .5rem .75rem .5rem 0; max-width: 100%; white-space: normal; text-align: center; }
+.playbook .sw-pipe { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin: 1.5rem 0; }
+.playbook .sw-step { display: flex; align-items: center; gap: .75rem; border: 1px solid #c9d8cf; background: white; padding: 1rem; border-radius: .7rem; line-height: 1.5; }
+.playbook .sw-num { display: grid; place-items: center; flex: 0 0 2rem; height: 2rem; border-radius: 50%; background: #1f5b49; color: white; font-weight: 750; }
+.playbook .is-win { background: #e5eeea; }
+.playbook .sw-tabs { display: grid; gap: .75rem; margin-block: 1rem 2rem; }
+.playbook .sw-tab { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #c9d8cf; border-radius: .7rem; background: white; }
+.playbook .sw-tab .tx, .playbook .sw-tab .kicker, .playbook .sw-tab .name { display: block; }
+.playbook .sw-tab .kicker { font-size: .8rem; }
+.playbook .sw-tab .name { font-weight: 750; }
+.playbook .sw-panel { margin: 2.5rem 0; padding: 1.5rem; background: #f0f5ef; border-radius: .8rem; scroll-margin-top: 8rem; }
+.playbook .sw-name, .playbook .sw-labelrow { display: flex; flex-wrap: wrap; gap: .75rem; align-items: baseline; margin-block: 1rem; }
+.playbook .sw-name .pill, .playbook .chip { font-weight: 750; color: #1f5b49; }
+.playbook .tag { margin-right: .5rem; font-weight: 750; }
+.playbook .sw-chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: .75rem 1.5rem; }
+.playbook .sw-chips .c { padding: .4rem .7rem; border: 1px solid #c9d8cf; border-radius: .5rem; background: white; }
+.playbook .sw-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.playbook .sw-group, .playbook .sw-card { padding: 1.5rem; border: 1px solid #c9d8cf; border-radius: .8rem; background: white; min-width: 0; }
+.playbook .sw-cards { display: grid; gap: 1rem; margin-block: 1.5rem; }
+.playbook .sw-company { font-size: 1.35rem; font-weight: 750; color: #1f5b49; }
+.playbook .sw-logo, .playbook .sw-icon { display: none; }
+.playbook .sw-tag, .playbook .sw-site { font-size: .9rem; color: #52635b; margin-block: .5rem; }
+.playbook .sw-usage { padding-top: .75rem; border-top: 1px solid #e0e7e1; line-height: 1.65; }
+.playbook .sw-body { padding: .75rem 0 0; }
+.playbook .sw-body p:last-child { margin-bottom: 0; }
+.playbook-related { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #c9d8cf; }
+.playbook-related ul { columns: 2; padding-left: 1.2rem; }
+.playbook-related li { break-inside: avoid; margin-bottom: .75rem; }
+@media (max-width: 650px) {
+  .playbook .sw-pipe, .playbook .sw-groups { grid-template-columns: 1fr; }
+  .playbook .sw-panel, .playbook .sw-card, .playbook .sw-group { padding: 1rem; }
+  .playbook-related ul { columns: 1; }
+  .playbook .playbook-cta { width: 100%; margin-right: 0; }
+}
+.playbook .sw-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.playbook .sw-stat { padding: 1rem; background: #e5eeea; border-radius: .6rem; }
+.playbook .sw-stat .num { font-size: 2rem; line-height: 1.2; font-weight: 750; color: #1f5b49; }
+.playbook .sw-stat .lbl { margin-top: .5rem; font-size: .95rem; line-height: 1.5; }
+.playbook .sw-why p { margin-top: .75rem; }
+.workshop .grid { display: grid; gap: 1rem; }
+.workshop .author { display: flex; align-items: center; gap: 1rem; }
+.workshop .avatar { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #e5eeea; font-weight: 750; }
+.workshop .author p { margin: .4rem 0 0; }
+.workshop .faq-answer { margin-top: 1rem; }

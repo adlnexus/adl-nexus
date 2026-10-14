@@ -1,0 +1,29 @@
+---
+import type { Playbook } from '../../../../data/pipedrive-playbooks';
+import PipedriveLayout from '../../../../layouts/PipedriveLayout.astro';
+import { pipedriveTrialHref } from '../../../../data/pipedrive';
+import { pipedriveIndustries } from '../../../../data/pipedrive-industries';
+import '../../../../styles/pipedrive-playbooks.css';
+
+export function getStaticPaths() {
+  const articles = import.meta.glob<Playbook>('../../../../data/pipedrive-playbooks/*-*.json', { eager: true, import: 'default' });
+  return Object.values(articles).map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+interface Props { article: Playbook }
+const { article } = Astro.props;
+const related = Object.values(import.meta.glob<Playbook>('../../../../data/pipedrive-playbooks/*-*.json', { eager: true, import: 'default' }));
+const headings = article.sections.filter((section) => section.heading);
+---
+<PipedriveLayout lang="en" eyebrow="Industry CRM Playbook · English" title={article.title} description={article.description}>
+  <article class="pd-document playbook">
+    <div class="container pd-prose">
+      <p class="playbook-meta"><time datetime={article.sourceDate}>{new Date(`${article.sourceDate}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time> · {article.readingMinutes} min read</p>
+      <a class="back-link" href="/solutions/pipedrive/#pipedrive-industries">← All industries</a>
+      <details class="playbook-contents"><summary>In this guide</summary><ol>{headings.map((section) => <li><a href={`#${section.id}`}>{section.heading}</a></li>)}</ol></details>
+      {article.sections.map((section) => <section id={section.id} class="playbook-section">
+        {section.items.map((item) => item.kind === 'html' ? <div class="playbook-copy" data-source-element={item.sourceElement} set:html={item.html} /> : item.kind === 'image' ? <img class="playbook-image" src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" /> : <a class="button playbook-cta" href={item.href === 'trial' ? pipedriveTrialHref : item.href} rel={item.href === 'trial' ? 'sponsored' : undefined}>{item.label}</a>)}
+      </section>)}
+      <nav class="playbook-related" aria-labelledby="more-playbooks"><h2 id="more-playbooks">More industry CRM playbooks</h2><ul>{pipedriveIndustries.filter(industry => !industry.href.endsWith(`/${article.slug}/`)).map(industry => <li><a href={industry.href}>{related.find(other => industry.href.endsWith(`/${other.slug}/`))?.title}</a></li>)}</ul></nav>
+    </div>
+  </article>
+</PipedriveLayout>

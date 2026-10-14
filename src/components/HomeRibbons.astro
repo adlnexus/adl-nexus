@@ -1,6 +1,6 @@
 ---
 // Geometry changes only with layout; scrolling updates the colour reveal only.
-interface Props { variant?: 'home' | 'services' }
+interface Props { variant?: 'home' | 'services' | 'contact' }
 const { variant = 'home' } = Astro.props;
 const colours = [
   ['#FFD56B', '#FFCA45'], ['#FF9C58', '#FF8A3D'],
@@ -59,6 +59,9 @@ const colours = [
   /* Match the home closing and footer brightness. */
   :global(.services-ribbon-page.home-ribbons-ready :is(.services-closing h2, .services-closing .eyebrow, .services-closing .closing-text)) { text-shadow: 0 0 2px #17191c, 0 0 5px #17191c; }
   :global(.services-ribbon-page.home-ribbons-ready .page-hero-copy) { text-shadow: 0 0 2px var(--paper), 0 0 5px var(--paper); }
+  :global(.contact-ribbon-page.home-ribbons-ready .contact-hero) { isolation: auto; }
+  :global(.contact-ribbon-page.home-ribbons-ready .hero-bands) { visibility: hidden; }
+  :global(.contact-ribbon-page.home-ribbons-ready .contact-hero .container) { position: relative; z-index: 3; text-shadow: 0 0 2px var(--paper), 0 0 5px var(--paper); }
   :global(.home-ribbons-ready .footer) { --ribbon-copy-surface: #17191c; }
 </style>
 
@@ -73,7 +76,7 @@ const colours = [
     const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
     let pageHeight = 1;
     const updateProgress = () => {
-      const atBottom = window.scrollY + window.innerHeight >= pageHeight - 2;
+      const atBottom = window.scrollY + window.innerHeight >= document.body.offsetHeight - 2;
       // Follow the current position in both directions, without retaining a
       // high-water mark. No parallax or moving geometry.
       // Centre the soft colour transition in the viewport.
@@ -87,13 +90,14 @@ const colours = [
       revealTail.setAttribute('stop-opacity', progress === 1 ? '1' : '.14');
     };
     const services = layer.dataset.variant === 'services';
-    const hero = document.querySelector<HTMLElement>(services ? '.services-hero' : '.home-hero')!;
+    const contact = layer.dataset.variant === 'contact';
+    const hero = document.querySelector<HTMLElement>(contact ? '.contact-hero' : services ? '.services-hero' : '.home-hero')!;
     const bands = hero.querySelector<HTMLElement>('.hero-bands')!;
-    const audience = document.querySelector<HTMLElement>(services ? '.services-intro' : '.home-audiences')!;
-    const why = document.querySelector<HTMLElement>(services ? '.service-list' : '.home-why')!;
-    const solutions = document.querySelector<HTMLElement>(services ? '.services-approach' : '.solutions--cards')!;
-    const closing = document.querySelector<HTMLElement>(services ? '.services-closing' : '.closing--home')!;
-    const footer = document.querySelector<HTMLElement>(services ? '.footer' : '.footer--home')!;
+    const audience = document.querySelector<HTMLElement>(contact ? '.contact-section' : services ? '.services-intro' : '.home-audiences')!;
+    const why = document.querySelector<HTMLElement>(contact ? '.contact-section' : services ? '.service-list' : '.home-why')!;
+    const solutions = document.querySelector<HTMLElement>(contact ? '.contact-section' : services ? '.services-approach' : '.solutions--cards')!;
+    const closing = document.querySelector<HTMLElement>(contact ? '.contact-section' : services ? '.services-closing' : '.closing--home')!;
+    const footer = document.querySelector<HTMLElement>(services || contact ? '.footer' : '.footer--home')!;
     type Point = { x: number; y: number; width: number; pitch: number };
 
     const miter = (points: Point[], index: number) => {
@@ -122,7 +126,9 @@ const colours = [
       const bodyRect = document.body.getBoundingClientRect();
       const width = bodyRect.width;
       const height = document.body.offsetHeight;
-      pageHeight = height;
+      pageHeight = contact ? hero.offsetHeight : height;
+      // Contact reuses the opening geometry, clipped to its hero only.
+      if (contact) layer.style.height = `${pageHeight}px`;
       const mobile = width <= 900;
       const top = (element: HTMLElement) => element.getBoundingClientRect().top - bodyRect.top;
       const heroHeight = hero.offsetHeight;
@@ -140,6 +146,7 @@ const colours = [
         point(upperX, -120, 48 * scale, 60 * scale),
         point(upperX, bendY, 48 * scale, 60 * scale),
         point(margin, heroHeight + Math.min(50, audience.offsetHeight * .1), slim * 1.5, pitch * 1.5),
+        ...(contact ? [point(width - margin, heroHeight + 500)] : [
         point(width - margin, top(why) - 30),
         point(margin, top(solutions) + 45),
         point(width - margin, top(closing) - 35),
@@ -148,6 +155,7 @@ const colours = [
         ...(!services && mobile ? [point(width - margin, top(footer) - 20)] : []),
         point(mobile ? width - margin : width * .2, top(footer) + footer.offsetHeight * .28),
         point(mobile ? width - margin : width * .12, height + 100),
+        ]),
       ];
       if (!mobile) {
         const content = audience.querySelector<HTMLElement>('.container')!.getBoundingClientRect();
@@ -173,7 +181,7 @@ const colours = [
           if (movement < .01) break;
         }
       }
-      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.setAttribute('viewBox', `0 0 ${width} ${pageHeight}`);
       paths.forEach((path, index) => path.setAttribute('d', outline(points, index)));
       updateProgress();
       document.body.classList.add('home-ribbons-ready');

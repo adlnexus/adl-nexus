@@ -1,0 +1,8 @@
+---
+import { routeFor } from '../data/localization';
+interface Props { lang: 'en' | 'sr' }
+const { lang } = Astro.props; const sr = lang === 'sr';
+const links = [[sr?'Pregled':'Overview','/solutions/pipedrive'],[sr?'Cene':'Pricing','/solutions/pipedrive/pricing'],[sr?'Baza znanja':'Knowledge base','/solutions/pipedrive/knowledge-base'],[sr?'Implementacija i obuka':'Implementation & training','/solutions/pipedrive/implementation']];
+---
+<nav class="product-nav" aria-label={sr?'Pipedrive stranice':'Pipedrive pages'}>{links.map(([label,path])=><a href={routeFor(lang,path)} aria-current={Astro.url.pathname===routeFor(lang,path)?'page':undefined}>{label}</a>)}<a href="/solutions/pipedrive/workshop/" hreflang="en" aria-current={Astro.url.pathname==='/solutions/pipedrive/workshop/'?'page':undefined}>{sr?'Radionica EN':'Workshop'}</a></nav>
+<style>.product-nav {display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 1.5rem;margin:2rem auto 0;padding:1rem;color:#1f5b49;--focus-color:#1f5b49;}.product-nav a {font-size:.9rem;font-weight:700;text-decoration:underline;text-underline-offset:.25em;}.product-nav a[aria-current]{text-decoration-thickness:3px;}</style>

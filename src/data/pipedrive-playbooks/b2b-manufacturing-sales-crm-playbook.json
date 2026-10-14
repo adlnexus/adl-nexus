@@ -1,0 +1,344 @@
+{
+  "slug": "b2b-manufacturing-sales-crm-playbook",
+  "title": "B2B Manufacturing Sales CRM playbook",
+  "description": "Help your B2B manufacturing sales team manage RFQs, quotes, follow-ups and reorders in Pipedrive. A practical, AI-ready CRM process built for manufacturers.",
+  "sourceUrl": "https://floq-creative-a-builder-zjnaqwe9o7oyh3pz.hostingersite.com/b2b-manufacturing-sales-crm-playbook",
+  "sourceDate": "2026-06-26",
+  "readingMinutes": "10",
+  "sections": [
+    {
+      "id": "zZT5_k",
+      "heading": "",
+      "items": [
+        {
+          "kind": "image",
+          "src": "/partners/pipedrive/playbooks/b2b-manufacturing-sales-crm-playbook-dlMnu1Vq2b14TUNh.jpg",
+          "alt": "B2B manufacturing sales floor with robotic assembly line, Pipedrive CRM playbook",
+          "width": 1200,
+          "height": 627
+        }
+      ]
+    },
+    {
+      "id": "z3qWUF",
+      "heading": "Build a predictable sales process for your manufacturing business",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Build a predictable sales process for your manufacturing business</h2>",
+          "sourceElement": "zqwIcF"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>B2B manufacturing sales is rarely simple. You may receive inquiries from OEMs, distributors, resellers, procurement teams or existing customers. Some opportunities are one-time orders. Others can turn into long-term supply relationships, repeat purchases or strategic accounts.</span></p><p class=\"body\"><span>The challenge is that many manufacturing sales teams still manage this process across spreadsheets, inboxes, ERP notes, phone calls and individual memory. That makes it hard to see what is really happening in sales.</span></p><p class=\"body\"><span>●</span><span> Which RFQs are open?</span><br><span>●</span><span> Which quotes need follow-up?</span><br><span>●</span><span> Which accounts are close to reordering?</span><br><span>●</span><span> Which opportunities are stuck because of price, lead time or technical questions?</span><br><span>●</span><span> Which deals should be included in the forecast?</span><br><span>●</span><span> Which customer conversations should be summarized before the next follow-up?</span></p><p class=\"body\"><span><strong>I help B2B manufacturing sales teams build a clear, practical and AI-ready sales process in Pipedrive – a CRM built by salespeople, for salespeople.</strong></span></p><p class=\"body\"><span>With the right setup, your team can manage RFQs, quotes, customer conversations, follow-ups, account opportunities, reorder potential, sales forecasts and AI-supported sales insights in one structured system.</span></p>",
+          "sourceElement": "zGOB-N"
+        },
+        {
+          "kind": "cta",
+          "label": "Book a free consultation",
+          "href": "/contact/?solution=pipedrive#contact-form"
+        },
+        {
+          "kind": "cta",
+          "label": "Start your Pipedrive trial",
+          "href": "trial"
+        }
+      ]
+    },
+    {
+      "id": "zh26a2",
+      "heading": "Why B2B manufacturing sales often becomes hard to manage",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Why B2B manufacturing sales often becomes hard to manage</h2>",
+          "sourceElement": "zBLVOi"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Manufacturing sales teams usually work with several moving parts at the same time.</span></p><p class=\"body\"><span>You are not only trying to close new deals. You are managing technical requirements, product availability, lead times, price negotiations, procurement processes, delivery expectations, recurring orders and long-term customer relationships. Without a clear CRM process, the same problems appear again and again.</span></p><h3 class=\"body\"><span><strong>RFQs are difficult to track</strong></span></h3><p class=\"body\"><span>Requests for quotes can come from many sources: website forms, emails, distributors, existing customers, sales reps, events or referrals. If these RFQs are not captured in one system, it becomes difficult to know which ones are new, which ones are qualified and which ones need action today.</span></p><h3 class=\"body\"><span><strong>Quotes disappear after they are sent</strong></span></h3><p class=\"body\"><span>In manufacturing sales, sending the quote is not the end of the process. It is often the beginning of the real sales work. The customer may compare suppliers, ask for technical clarification, negotiate delivery terms, delay the decision or wait for internal approval. If follow-up is not scheduled properly, valuable quotes can go silent.</span></p><h3 class=\"body\"><span><strong>Multiple people influence the decision</strong></span></h3><p class=\"body\"><span>Manufacturing deals often involve procurement, engineering, production, finance, operations and management. If your team only tracks one contact, you may miss the real buying process.</span></p><h3 class=\"body\"><span><strong>Repeat orders are not managed proactively</strong></span></h3><p class=\"body\"><span>Many manufacturers already have customers who could buy again, increase order volume, request new products or become strategic accounts. But if reorder potential is not visible in the CRM, the team becomes reactive instead of proactive.</span></p><h3 class=\"body\"><span><strong>Sales forecast is not reliable</strong></span></h3><p class=\"body\"><span>If deal values, expected close dates, probabilities, production constraints and next activities are not updated, management cannot see what is likely to close. The forecast becomes a guess instead of a sales management tool.</span></p><h3 class=\"body\"><span><strong>Customer information is hard to summarize</strong></span></h3><p class=\"body\"><span>Manufacturing sales often includes long email threads, technical discussions, quote revisions and several stakeholders. If the conversation history is hard to review, salespeople lose time before every follow-up. This is where AI can help – but only if the customer data, email history and sales process are properly structured.</span></p><h3 class=\"body\"><span><strong>ERP and sales process are mixed together</strong></span></h3><p class=\"body\"><span>ERP systems are useful for orders, stock, production and invoicing. But they usually do not help salespeople manage new opportunities, follow-ups, pipeline stages, lost reasons or customer development. That is where CRM becomes important.</span></p>",
+          "sourceElement": "zdh6LJ"
+        }
+      ]
+    },
+    {
+      "id": "zaB6pW",
+      "heading": "How I would structure your manufacturing sales process in Pipedrive",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>How I would structure your manufacturing sales process in Pipedrive</h2>",
+          "sourceElement": "zNIXIu"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>When I implement Pipedrive for a B2B manufacturing company, I do not start with software configuration.</span><br><span>I start with your real sales process.</span></p><p class=\"body\"><span>●</span><span> Where do inquiries come from?</span><br><span>●</span><span> What counts as a qualified opportunity?</span><br><span>●</span><span> How do you handle RFQs?</span><br><span>●</span><span> When is a quote created?</span><br><span>●</span><span> Who needs to approve pricing or lead time?</span><br><span>●</span><span> How do you follow up?</span><br><span>●</span><span> How do you manage existing accounts?</span><br><span>●</span><span> How do you track reorder potential?</span><br><span>●</span><span> What does management need to see every week?</span><br><span>●</span><span> What kind of customer data would make AI useful later?</span></p>",
+          "sourceElement": "zQHfBP"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Once this is clear, we can build a CRM setup that supports daily sales work.</span></p><p class=\"body\"><span>A typical B2B manufacturing sales pipeline in Pipedrive could look like this:</span></p>",
+          "sourceElement": "z5Rizx"
+        },
+        {
+          "kind": "html",
+          "html": "<div class=\"sw-pipe\">\n    <div class=\"sw-step\"><span class=\"sw-num\">1</span><span class=\"sw-step-text\">New inquiry</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">2</span><span class=\"sw-step-text\">Qualification</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">3</span><span class=\"sw-step-text\">Customer need confirmed</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">4</span><span class=\"sw-step-text\">Technical or production feasibility checked</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">5</span><span class=\"sw-step-text\">Quote in preparation</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">6</span><span class=\"sw-step-text\">Quote sent</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">7</span><span class=\"sw-step-text\">Follow-up scheduled</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">8</span><span class=\"sw-step-text\">Negotiation / procurement review</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">9</span><span class=\"sw-step-text\">Won / order confirmed</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">10</span><span class=\"sw-step-text\">Handover to production, logistics or ERP</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">11</span><span class=\"sw-step-text\">Account management</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">12</span><span class=\"sw-step-text\">Reorder / upsell opportunity</span></div>\n  </div>\n\n",
+          "sourceElement": "zs2Av1"
+        }
+      ]
+    },
+    {
+      "id": "zbRNej",
+      "heading": "What Pipedrive helps you control in B2B manufacturing sales",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>What Pipedrive helps you control in B2B manufacturing sales</h2>",
+          "sourceElement": "zbrHCD"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>RFQ and inquiry management</strong></h3>",
+          "sourceElement": "zh_daz"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Pipedrive helps your team capture and organize incoming requests in one system.</span></p><p class=\"body\"><span>Instead of losing RFQs in emails or spreadsheets, every opportunity can be created, assigned, qualified and followed up.</span></p>",
+          "sourceElement": "zkY_Lf"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Sales pipeline visibility</strong></h3>",
+          "sourceElement": "zl6s9k"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Your team and management can see where each opportunity stands: new inquiry, qualification, quote preparation, quote sent, negotiation or won.</span><br><span>This makes manufacturing sales easier to manage because everyone works from the same view.</span></p>",
+          "sourceElement": "zinsIM"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Follow-up discipline</strong></h3>",
+          "sourceElement": "zG2gy6"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Every deal should have a next step.</span></p><p class=\"body\"><span>Pipedrive helps salespeople schedule calls, emails, meetings and quote follow-ups so open opportunities do not disappear.</span></p>",
+          "sourceElement": "z_1GNn"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Contact and account management</strong></h3>",
+          "sourceElement": "z_K868"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Manufacturing sales is often account-based. One customer can have several contacts, multiple locations, recurring orders and future growth potential. Pipedrive helps you keep this information connected and visible.</span></p>",
+          "sourceElement": "zqFXnJ"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Quote and document workflow</strong></h3>",
+          "sourceElement": "zXZ9FF"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Quotes, proposals and documents can be connected to deals and customer records. This makes it easier to track which quote was sent, when it was sent and what needs to happen next.</span></p>",
+          "sourceElement": "zN-IZv"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Reporting and forecasting</strong></h3>",
+          "sourceElement": "z3LnVm"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>With the right pipeline stages, custom fields and dashboards, you can track open deal value, expected revenue, conversion rates, lost reasons, sales activity and reorder potential.</span></p>",
+          "sourceElement": "z1PIT1"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Automation</strong></h3>",
+          "sourceElement": "z5ZRoF"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Repetitive tasks can be automated. For example, when a quote is sent, Pipedrive can automatically create a follow-up activity for the salesperson.</span></p>",
+          "sourceElement": "zwAFh0"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>AI-supported sales work</strong></h3>",
+          "sourceElement": "zsaZ-6"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>AI becomes useful when your CRM data is clean. In B2B manufacturing sales, your team may handle long email threads, quote revisions, technical questions, several contacts and many open opportunities at the same time.</span></p><p class=\"body\"><span>Pipedrive’s AI tools can support sales work by helping your team summarize customer conversations, prepare follow-up emails, identify sales patterns and focus on opportunities that need attention.</span></p><p class=\"body\"><span>For example, AI can help a salesperson quickly understand a long customer email thread before making the next call. It can also help managers spot deals without next activities, understand where bottlenecks appear and prepare better pipeline reviews.</span></p><p class=\"body\"><span><strong>The goal is not to replace the salesperson. The goal is to help your team spend less time searching for information and more time moving opportunities forward.</strong></span></p>",
+          "sourceElement": "zxtPyh"
+        }
+      ]
+    },
+    {
+      "id": "zfvWwg",
+      "heading": "Practical CRM habits for manufacturing sales teams",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Practical CRM habits for manufacturing sales teams</h2>",
+          "sourceElement": "zWYlPY"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span><strong>Every RFQ should become a visible opportunity.</strong></span><span> </span><span>If an inquiry has commercial potential, it should not stay only in an inbox. Create a deal, assign an owner and define the next step.</span></p><p class=\"body\"><span><strong>Never send a quote without a follow-up activity.</strong></span><span> A quote without a follow-up date is a risk. Every quote should have a planned call, email or meeting.</span></p><p class=\"body\"><span><strong>Track technical and commercial fit separately.</strong></span><span> A customer can be technically a good fit but commercially weak. Or commercially attractive, but difficult to serve because of lead time, production capacity or customization needs. Track both..</span></p><p class=\"body\"><span><strong>Use clear lost reasons.</strong></span><span> Do not only mark deals as “lost”. Track why they were lost: price, lead time, competitor, no decision, technical mismatch, budget issue, capacity issue or timing.</span></p><p class=\"body\"><strong><strong>Separate new business from existing account opportunities.</strong></strong><span> New customer acquisition and existing account growth are different sales motions. Use separate pipelines, labels or custom fields to make this visible.</span></p><p class=\"body\"><span><strong>Track reorder potential.</strong></span><span> If a customer may buy again in 30, 60, 90 or 180 days, that should be visible in the CRM. Do not rely on memory.</span></p><p class=\"body\"><span><strong>Review stuck deals every week.</strong></span><span> If a high-value opportunity has no next activity or has been in the same stage too long, it needs attention.</span></p><p class=\"body\"><span><strong>Keep customer communication easy to summarize.</strong></span><span> If your team wants to use AI effectively, customer history needs to be organized. Important emails, notes, calls, quote versions, next steps and decision-makers should be connected to the right deal or account. This makes AI-supported summaries, follow-up preparation and sales insights much more useful.</span></p><p class=\"body\"><span><strong>Clean data before using.</strong></span><span> AI AI will only help if the sales data is structured. First build a clear pipeline, activity discipline, useful lost reasons and reliable account history. Then use AI to support summaries, follow-up writing, prioritization and decision-making.</span></p>",
+          "sourceElement": "zdbuKB"
+        }
+      ]
+    },
+    {
+      "id": "zVpCNv",
+      "heading": "Your ERP manages orders. Your CRM should manage opportunities.",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Your ERP manages orders. Your CRM should manage opportunities.</h2>",
+          "sourceElement": "z7Up_r"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Many manufacturing companies already use ERP systems. That is important but ERP and CRM are not the same thing.</span><br><span>Your ERP usually manages:</span></p><p class=\"body\"><span>●</span><span> orders,</span><br><span>●</span><span> production,</span><br><span>●</span><span> inventory,</span><br><span>●</span><span> delivery,</span><br><span>●</span><span> invoices,</span><br><span>●</span><span> purchasing,</span><br><span>●</span><span> and operational data.</span></p><p class=\"body\"><span>Your CRM should manage what happens before and around the order:</span></p><p class=\"body\"><span>●</span><span> inquiries,</span><br><span>●</span><span> leads,</span><br><span>●</span><span> RFQs,</span><br><span>●</span><span> quotes,</span><br><span>●</span><span> customer conversations,</span><br><span>●</span><span> buying committees,</span><br><span>●</span><span> follow-ups,</span><br><span>●</span><span> negotiations,</span><br><span>●</span><span> forecast,</span><br><span>●</span><span> lost reasons,</span><br><span>●</span><span> reorder potential,</span><br><span>●</span><span> and account development.</span></p><p class=\"body\"><span>Pipedrive does not need to replace your ERP. The goal is not to replace or rebuild your ERP. The goal is to create a clear sales layer before the order, so your team can manage leads, quotes, follow-ups and account growth before the operational process starts.</span></p><p class=\"body\"><span>This sales layer also creates the clean data foundation your team needs if you want to use AI in a practical way.</span></p>",
+          "sourceElement": "zB2IpE"
+        }
+      ]
+    },
+    {
+      "id": "zscgiy",
+      "heading": "Example: weekly manufacturing sales meeting in Pipedrive",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Example: weekly manufacturing sales meeting in Pipedrive</h2>",
+          "sourceElement": "z_UJ4m"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>A good sales meeting should not be based only on opinions, memory or manual updates. It should be based on the pipeline.</span><br><span>In a B2B manufacturing sales meeting, I would review questions like:</span></p><p class=\"body\"><span>●</span><span> Which RFQs came in this week?</span><br><span>●</span><span> Which quotes are waiting for follow-up?</span><br><span>●</span><span> Which high-value deals have no next activity?</span><br><span>●</span><span> Which opportunities are stuck because of price, technical questions or lead time?</span><br><span>●</span><span> Which deals are expected to close this month?</span><br><span>●</span><span> Which existing customers may reorder soon?</span><br><span>●</span><span> Which accounts have growth potential?</span><br><span>●</span><span> Which lost reasons appear most often?</span><br><span>●</span><span> Which salespeople need help with complex opportunities?</span><br><span>●</span><span> Which deals should be included in the forecast?</span></p><p class=\"body\"><span>You can also use AI-supported insights to prepare better sales meetings. For example, your team can review:</span></p><p class=\"body\"><span>●</span><span> Which deals may need a next activity?</span><br><span>●</span><span> Which long email conversations should be summarized before follow-up?</span><br><span>●</span><span> Which customer segments show stronger buying potential?</span><br><span>●</span><span> Which lost reasons appear repeatedly?</span><br><span>●</span><span> Which opportunities are moving too slowly?</span><br><span>●</span><span> Which reps, regions or account types may need more support?</span><br><span>●</span><span> Which customers should be prioritized for reorder or account development?</span></p><p class=\"body\"><span>AI does not replace the sales meeting. It helps the team prepare faster and focus on the most important sales opportunities.</span></p>",
+          "sourceElement": "zef6I-"
+        }
+      ]
+    },
+    {
+      "id": "z7oQPf",
+      "heading": "Pipedrive customer references in manufacturing, technical and complex B2B sales",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Pipedrive customer references in manufacturing, technical and complex B2B sales</h2>",
+          "sourceElement": "zZ2X5-"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Pipedrive is already used by manufacturing, product-based and technical B2B sales teams to manage inquiries, leads, quotes, follow-ups, account relationships and sales performance.</span></p><p class=\"body\"><span>These customer stories show why Pipedrive is a strong fit for B2B manufacturing sales: it helps turn scattered sales activity into a clearer, more measurable sales process.</span></p><p class=\"body\"><span>Not generic CRM examples. These are real Pipedrive customer stories from companies selling manufactured, technical or product-based B2B solutions.</span></p>",
+          "sourceElement": "zR1_q-"
+        },
+        {
+          "kind": "html",
+          "html": "<div class=\"sw-cards\">\n\n    <div class=\"sw-card\">\n      <div>\n        <div class=\"sw-company\">\n          <div class=\"sw-logo\">RMS</div>\n          <div>\n            <h3>Reliability Maintenance Solutions</h3>\n            <span class=\"sw-tag\">Manufacturing / Reliability engineering</span>\n          </div>\n        </div>\n        <p class=\"sw-desc\">Reliability Maintenance Solutions is a UK-based company providing reliability engineering, maintenance services, diagnostic technologies and professional training.</p>\n        <p class=\"sw-usage\">According to Pipedrive’s customer story, the company uses Pipedrive to improve lead generation, qualify inbound inquiries and help the team engage with the right leads more effectively.</p>\n        <p class=\"sw-site\">Company website: <span>rms-reliability.com</span></p>\n        <p class=\"sw-site\">Pipedrive customer story: <span>Reliability Maintenance Solutions case study</span></p>\n      </div>\n      <div>\n        <p class=\"sw-impact-label\">Pipedrive-reported impact</p>\n        <ul class=\"sw-impact\">\n          <li>Web Forms help website visitors place orders more easily</li>\n          <li>Chatbot helps engage visitors and qualify leads</li>\n          <li>Lead management helps keep leads engaged and save time</li>\n        </ul>\n        <div class=\"sw-why\">\n          <strong>Why it is relevant for manufacturing sales</strong>\n          <p>It shows how a technical B2B company can use Pipedrive to structure incoming inquiries, improve lead qualification and avoid missed sales opportunities.</p>\n          <p>This is especially relevant for manufacturing and technical B2B companies that receive inbound interest from several markets, product lines or training/service areas and need a clearer process for qualification and follow-up.</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"sw-card\">\n      <div>\n        <div class=\"sw-company\">\n          <div class=\"sw-logo\">FR</div>\n          <div>\n            <h3>Framery</h3>\n            <span class=\"sw-tag\">Manufacturing / Soundproof office pods and workspace solutions</span>\n          </div>\n        </div>\n        <p class=\"sw-desc\">Framery is a global company engineering and manufacturing soundproof pods, services and workplace solutions.</p>\n        <p class=\"sw-usage\">According to Pipedrive’s customer story, Framery used the Pipedrive and Leadfeeder integration to better manage leads and gain clearer visibility into lead data, sales performance, markets and customer cases.</p>\n        <p class=\"sw-site\">Company website: <span>framery.com</span></p>\n        <p class=\"sw-site\">Pipedrive customer story: <span>Framery case study</span></p>\n      </div>\n      <div>\n        <p class=\"sw-impact-label\">Pipedrive-reported results</p>\n        <ul class=\"sw-impact\">\n          <li>800% increase in lead generation</li>\n          <li>Revenue grew from $1.5 million in 2014 to $21 million after implementing Pipedrive</li>\n          <li>Revenue was expected to double again the following year</li>\n        </ul>\n        <div class=\"sw-why\">\n          <strong>Why it is relevant for manufacturing sales</strong>\n          <p>It shows how a manufacturing company selling across different markets can use Pipedrive to improve visibility over new leads, sales activity and customer opportunities.</p>\n          <p>This is especially relevant for manufacturing teams that need to manage international demand, distributor activity, incoming leads and sales performance across multiple markets.</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"sw-card\">\n      <div>\n        <div class=\"sw-company\">\n          <div class=\"sw-logo\">GE</div>\n          <div>\n            <h3>Gentec-EO</h3>\n            <span class=\"sw-tag\">Technical manufacturing / Laser measurement technology</span>\n          </div>\n        </div>\n        <p class=\"sw-desc\">Gentec-EO is a manufacturer of laser power and energy measurement devices, terahertz meters and beam profiling cameras.</p>\n        <p class=\"sw-usage\">According to Pipedrive’s customer story, Gentec-EO uses Pipedrive to organize contacts, deals, follow-ups and quote-related workflows more clearly.</p>\n        <p class=\"sw-site\">Company website: <span>gentec-eo.com</span></p>\n        <p class=\"sw-site\">Pipedrive customer story: <span>Gentec-EO case study</span></p>\n      </div>\n      <div>\n        <p class=\"sw-impact-label\">Pipedrive-reported details</p>\n        <ul class=\"sw-impact\">\n          <li>10 people in the sales team</li>\n          <li>2 key Pipedrive integrations used</li>\n          <li>Formstack Documents integration used for automatic document generation</li>\n          <li>Mailchimp integration used for segmented email campaigns</li>\n        </ul>\n        <div class=\"sw-why\">\n          <strong>Why it is relevant for manufacturing sales</strong>\n          <p>It shows how a technical manufacturing sales team with complex products and longer decision processes can benefit from a clearer, easier-to-use CRM.</p>\n          <p>This is especially relevant for technical B2B manufacturers that need to manage contacts, deals, quotes, follow-ups and long decision cycles without overcomplicating the sales process.</p>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n",
+          "sourceElement": "zciAnv"
+        }
+      ]
+    },
+    {
+      "id": "zp7LIC",
+      "heading": "How I implement Pipedrive for B2B manufacturing sales teams",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>How I implement Pipedrive for B2B manufacturing sales teams</h2>",
+          "sourceElement": "zoyDfZ"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span><strong>Sales process discovery</strong></span><br><span>We review how your sales process works today: lead sources, RFQs, qualification steps, quote creation, follow-up habits, customer types, decision-makers and reporting needs.</span></p><p class=\"body\"><span><strong>Pipeline design</strong></span><br><span>We build a pipeline that reflects your real sales process, from first inquiry to RFQ, quote, negotiation, order confirmation and account development.</span></p><p class=\"body\"><span><strong>Custom fields and data structure</strong></span><br><span>We define the data your team needs to track, such as product category, customer type, expected order value, expected close date, lead time, technical fit, quote status, probability and reorder date.</span></p><p class=\"body\"><span><strong>Quote and follow-up workflow</strong></span><br><span>We create a clear process for quote sending, follow-up reminders, next activities and deal stage updates.</span></p><p class=\"body\"><span><strong>Account management setup</strong></span><br><span>We structure how existing customers, repeat orders, upsell opportunities and strategic accounts should be tracked.</span></p><p class=\"body\"><span><strong>Management dashboards</strong></span><br><span>We build reports that help sales managers see forecast, open RFQs, quote conversion, stuck deals, sales activity, lost reasons and account growth potential.</span></p><p class=\"body\"><span><strong>AI readiness setup</strong></span><br><span>Before using AI seriously, we make sure your CRM data is clean enough to be useful. This means clear pipeline stages, consistent customer segmentation, structured activities, meaningful lost reasons, useful account history and disciplined follow-up processes. Once this foundation is in place, AI can support your team with email summaries, follow-up writing, sales insights, prioritization and better preparation for account reviews.</span></p><p class=\"body\"><span><strong>Team training</strong></span><br><span>Your team learns how to use Pipedrive in daily sales work, not just how to click around in the software.</span><br><span>The goal is to make Pipedrive part of the team’s daily sales rhythm: RFQs, quotes, follow-ups, account development, reporting and AI-supported preparation.</span></p><p class=\"body\"><span><strong>Optimization after real usage</strong></span><br><span>After the team starts using the system, we review what works, what needs to be simplified and where automation, reporting or AI-supported workflows can be improved.</span></p>",
+          "sourceElement": "z5uRiR"
+        },
+        {
+          "kind": "cta",
+          "label": "Book a free consultation",
+          "href": "/contact/?solution=pipedrive#contact-form"
+        },
+        {
+          "kind": "image",
+          "src": "/partners/pipedrive/playbooks/pd_hero_ai-gs-FDauw7Qr6iuR0VZU.webp",
+          "alt": "Pipedrive sales pipeline, activity and reporting interface",
+          "width": 3725,
+          "height": 1170
+        }
+      ]
+    },
+    {
+      "id": "z4uN-n",
+      "heading": "Is Pipedrive the right CRM for your manufacturing sales team?",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Is Pipedrive the right CRM for your manufacturing sales team?</h2>",
+          "sourceElement": "zbDCf1"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Pipedrive is a strong fit if your sales process includes:</span></p><p class=\"body\"><span>●</span><span> B2B inquiries,</span><br><span>●</span><span> RFQs,</span><br><span>●</span><span> quotes and proposals,</span><br><span>●</span><span> repeat customers,</span><br><span>●</span><span> distributors or resellers,</span><br><span>●</span><span> OEM or supplier relationships,</span><br><span>●</span><span> multiple decision-makers,</span><br><span>●</span><span> long-term account development,</span><br><span>●</span><span> recurring or reorder opportunities,</span><br><span>●</span><span> and a need for better sales visibility.</span></p><p class=\"body\"><span>Pipedrive is also a strong fit if you want to use AI in a practical way not as a buzzword, but as a tool to help your team summarize customer conversations, prepare follow-ups, identify sales patterns and focus on the right opportunities.</span></p><p class=\"body\"><span>AI works best when your sales process is already structured. That is why the first step is not AI. The first step is building a clean, usable manufacturing sales process. If your team still manages sales opportunities in spreadsheets, inboxes or disconnected systems, Pipedrive can help you create a more structured and predictable sales operation.</span></p><p class=\"body\"><span><strong>The goal is not to make your salespeople do more administration. The goal is to help them focus on the right opportunities, follow up at the right time and give management a clear view of the real sales pipeline.</strong></span></p>",
+          "sourceElement": "ze8Ftq"
+        }
+      ]
+    },
+    {
+      "id": "zdjVP7",
+      "heading": "Frequently asked questions (FAQ)",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Frequently asked questions (FAQ)</h2>",
+          "sourceElement": "z86Q7x"
+        },
+        {
+          "kind": "html",
+          "html": "<div class=\"sw-faq\">\n\n    <details class=\"sw-item\">\n      <summary>What is a CRM for B2B manufacturing sales?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>A CRM for B2B manufacturing sales helps teams manage inquiries, RFQs, quotes, follow-ups, contacts, sales activities, forecasts, reorder opportunities and customer relationships in one system.</p>\n        <p>For manufacturing companies, CRM is especially useful because sales processes often involve technical questions, multiple contacts, longer decision cycles and repeat business potential.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Why do manufacturing companies need CRM if they already have ERP?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>ERP usually manages operations after the order: production, stock, delivery, invoicing and administration.</p>\n        <p>CRM manages the sales process before the order: inquiries, RFQs, quotes, follow-ups, negotiations, lost reasons and account development.</p>\n        <p>Your ERP helps you operate the business after the deal is won. Your CRM helps you win and develop the deal in the first place.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive help manage RFQs?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. Pipedrive can help your team turn RFQs into visible opportunities, assign owners, track quote status, schedule follow-ups and report on conversion.</p>\n        <p>This helps reduce the risk of losing inquiries in emails or spreadsheets.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive help with quote follow-up?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. Salespeople can schedule follow-up activities, track quote status and use automation to reduce the risk of missed opportunities.</p>\n        <p>A simple rule can make a big difference: every quote should have a next activity.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive support repeat orders and account management?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. You can track existing customers, reorder potential, account development, upsell opportunities and future customer needs in Pipedrive.</p>\n        <p>For many manufacturing companies, account growth is just as important as new customer acquisition.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive support distributors and resellers?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. You can manage distributors, resellers and partner-related opportunities in Pipedrive by using pipelines, labels, custom fields and account-level activity tracking.</p>\n        <p>This helps make channel sales more visible.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can AI help manufacturing sales teams?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes, but only when CRM data is structured.</p>\n        <p>Once the pipeline, activities, customer conversations and sales history are clean, AI can help summarize information, support follow-up writing, identify patterns and help your team prioritize the right opportunities.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive AI help with follow-up emails?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. Pipedrive’s AI email tools can help create sales emails and summarize long email conversations.</p>\n        <p>This is especially useful in manufacturing sales, where customer communication may include technical questions, quote revisions, procurement discussions and several stakeholders.</p>\n        <p>The salesperson still controls the message. AI helps prepare faster.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive AI help with sales meetings?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes, if the data is clean.</p>\n        <p>AI-supported insights can help managers prepare pipeline reviews by identifying deals without next activities, slow-moving opportunities, repeated lost reasons or patterns in sales performance.</p>\n        <p>The sales meeting still needs human judgment. AI simply helps the team focus on what matters.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Is Pipedrive difficult for manufacturing sales teams to use?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Pipedrive is designed to be simple and visual.</p>\n        <p>However, CRM success does not only depend on the software. It depends on whether the sales process is set up correctly and whether the team understands how to use it in daily work.</p>\n        <p>That is why implementation and training are important.</p>\n      </div>\n    </details>\n\n  </div>\n\n",
+          "sourceElement": "zOiwjC"
+        }
+      ]
+    },
+    {
+      "id": "zrgGOX",
+      "heading": "Want to see how your manufacturing sales process could work in Pipedrive?",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Want to see how your manufacturing sales process could work in Pipedrive?</h2>",
+          "sourceElement": "zvv2Az"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Book a free consultation and I will show you how your RFQs, quotes, follow-ups, customer accounts, reorder opportunities, forecasts and AI-ready customer data could be structured in one clear sales pipeline.</span></p><p class=\"body\"><span>You will see how Pipedrive can help your team manage B2B manufacturing sales with more visibility, discipline, predictability and smarter AI-supported follow-up.</span></p>",
+          "sourceElement": "zHkaVa"
+        },
+        {
+          "kind": "cta",
+          "label": "Book a free CRM consultation",
+          "href": "/contact/?solution=pipedrive#contact-form"
+        },
+        {
+          "kind": "cta",
+          "label": "Start your Pipedrive trial",
+          "href": "trial"
+        },
+        {
+          "kind": "image",
+          "src": "/partners/pipedrive/playbooks/psh-site-materials-2-ufcPDcxzMjJ0719q.png",
+          "alt": "Pipedrive pipeline on desktop and contact details on mobile",
+          "width": 1200,
+          "height": 627
+        }
+      ]
+    }
+  ]
+}

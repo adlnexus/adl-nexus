@@ -1,0 +1,344 @@
+{
+  "slug": "machinery-and-industrial-equipment-sales-crm-playbook",
+  "title": "Machinery & Industrial Equipment Sales CRM Playbook",
+  "description": "A practical CRM setup for machinery and industrial equipment sales teams. Manage long sales cycles, complex quotes, multiple decision-makers and after-sales opportunities in one clear Pipedrive pipeline.",
+  "sourceUrl": "https://floq-creative-a-builder-zjnaqwe9o7oyh3pz.hostingersite.com/machinery-and-industrial-equipment-sales-crm-playbook",
+  "sourceDate": "2026-06-25",
+  "readingMinutes": "9",
+  "sections": [
+    {
+      "id": "zf2UH9",
+      "heading": "",
+      "items": [
+        {
+          "kind": "image",
+          "src": "/partners/pipedrive/playbooks/machinery-industrial-equipment-sales-crm-playbook-JmYVwi2q0uJSMxCn.jpg",
+          "alt": "Industrial machinery and CNC equipment close-up, Pipedrive CRM playbook",
+          "width": 1200,
+          "height": 627
+        }
+      ]
+    },
+    {
+      "id": "zFtpfx",
+      "heading": "Build a clear sales pipeline for complex machinery and industrial equipment deals",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Build a clear sales pipeline for complex machinery and industrial equipment deals</h2>",
+          "sourceElement": "zyN4Ld"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Selling machinery, industrial equipment or technical solutions is not a simple one-call sales process.</span></p><p class=\"body\"><span>Deals are usually complex. Buyers compare several suppliers, technical specifications matter, procurement gets involved, and the decision may take weeks or months. One missed follow-up, one unclear quote status or one forgotten stakeholder can easily slow down or kill a valuable opportunity.</span></p><p class=\"body\"><span>I help machinery and industrial equipment sales teams build a clear, practical and AI-ready sales process in Pipedrive — a CRM built by salespeople, for salespeople.</span></p><p class=\"body\"><span>With the right setup, your sales team can manage inquiries, technical qualification, quotes, follow-ups, negotiations, forecasts, after-sales opportunities and AI-supported sales insights in one structured system.</span></p>",
+          "sourceElement": "z5R9Vu"
+        },
+        {
+          "kind": "cta",
+          "label": "Book a free consultation",
+          "href": "/contact/?solution=pipedrive#contact-form"
+        },
+        {
+          "kind": "cta",
+          "label": "Start your Pipedrive trial",
+          "href": "trial"
+        }
+      ]
+    },
+    {
+      "id": "zmJ2Pv",
+      "heading": "Why machinery sales often becomes difficult to manage",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Why machinery sales often becomes difficult to manage</h2>",
+          "sourceElement": "zpesac"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Machinery and industrial equipment sales usually involve more complexity than standard B2B sales.</span><span><br></span><span>You are not just selling a product. You are managing specifications, budget discussions, delivery timelines, technical requirements, procurement processes and multiple decision-makers.</span></p><p class=\"body\"><span>Without a structured CRM process, sales teams often face the same problems.</span></p><p class=\"body\"><span><strong>Long sales cycles</strong></span></p><p class=\"body\"><span>A new inquiry may take months to become a signed order. During this time, the sales team needs to keep momentum, follow up regularly and stay close to the buyer’s decision process.</span></p><p class=\"body\"><span><strong>Multiple stakeholders</strong></span></p><p class=\"body\"><span>Machinery purchases often involve owners, operations managers, production leaders, engineers, finance teams and procurement. If all contact history is scattered across inboxes and spreadsheets, the sales context becomes hard to control.</span></p><p class=\"body\"><span><strong>Complex quotes and technical requirements</strong></span></p><p class=\"body\"><span>A quote is rarely just a price. It may include configuration, accessories, installation, service, delivery, warranty, financing or custom technical details.</span></p><p class=\"body\"><span><strong>Missed follow-ups</strong></span></p><p class=\"body\"><span>Many machinery deals are not lost because the customer was not interested. They are lost because nobody followed up at the right time with the right message.</span></p><p class=\"body\"><span><strong>Weak sales forecasting</strong></span></p><p class=\"body\"><span>If deal stages, quote values and next activities are not updated, management cannot see what is likely to close, what is stuck and where the team needs support.</span></p><p class=\"body\"><span><strong>Long customer conversations are hard to review</strong></span></p><p class=\"body\"><span>Machinery deals often include long email threads, technical questions, quote revisions, product configuration details and several stakeholders.</span><span><br></span><span>If this information is difficult to summarize before the next call, salespeople lose time and risk missing important details.</span><span><br></span><span>This is where AI can help but only if the sales process, customer history and deal data are properly structured.</span></p><p class=\"body\"><span><strong>Reorders, service and after-sales opportunities are not managed properly</strong></span></p><p class=\"body\"><span>The first sale is often only the beginning. Spare parts, service packages, upgrades, maintenance and future equipment needs can become important revenue opportunities if they are tracked properly.</span></p>",
+          "sourceElement": "z5_SJi"
+        }
+      ]
+    },
+    {
+      "id": "zR3zCZ",
+      "heading": "How I would structure your machinery sales process in Pipedrive",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>How I would structure your machinery sales process<br>in Pipedrive</h2>",
+          "sourceElement": "z1c5B4"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>When I implement Pipedrive for a machinery or industrial equipment sales team, I do not start with software settings.<br>I start with your real sales process.</span></p><p class=\"body\"><span>●</span><span> Where do inquiries come from?<br></span><span>●</span><span> How do you qualify a technical opportunity?<br></span><span>●</span><span> When do you create a quote?<br></span><span>●</span><span> Who needs to approve it?<br></span><span>●</span><span> How often do you follow up?<br></span><span>●</span><span> What does management need to see every week?<br></span><span>●</span><span> What happens after the first order?<br></span><span>●</span><span> What kind of sales data would make AI useful later?</span></p>",
+          "sourceElement": "zFWT8t"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Once this is clear, we can build a CRM process that supports real sales work.</span></p><p class=\"body\"><span>A typical machinery sales pipeline in Pipedrive could look like this:</span></p>",
+          "sourceElement": "z-ouW6"
+        },
+        {
+          "kind": "html",
+          "html": "<div class=\"sw-pipe\">\n    <div class=\"sw-step\"><span class=\"sw-num\">1</span><span class=\"sw-step-text\">New inquiry</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">2</span><span class=\"sw-step-text\">Qualification</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">3</span><span class=\"sw-step-text\">Technical requirements confirmed</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">4</span><span class=\"sw-step-text\">Site visit or technical consultation</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">5</span><span class=\"sw-step-text\">Configuration</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">6</span><span class=\"sw-step-text\">Quote in preparation</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">7</span><span class=\"sw-step-text\">Quote sent</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">8</span><span class=\"sw-step-text\">Follow-up</span></div>\n    <div class=\"sw-step\"><span class=\"sw-num\">9</span><span class=\"sw-step-text\">Negotiation</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">10</span><span class=\"sw-step-text\">Won / order confirmed</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">11</span><span class=\"sw-step-text\">Handover to delivery, installation or service</span></div>\n    <div class=\"sw-step is-win\"><span class=\"sw-num\">12</span><span class=\"sw-step-text\">After-sales / reorder opportunity</span></div>\n  </div>\n\n",
+          "sourceElement": "zPeXil"
+        }
+      ]
+    },
+    {
+      "id": "zc3b4Q",
+      "heading": "What Pipedrive helps you control in machinery sales",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>What Pipedrive helps you control in machinery sales</h2>",
+          "sourceElement": "zAZQN3"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Sales pipeline visibility</strong></h3>",
+          "sourceElement": "ztjvcz"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Pipedrive gives your team a visual pipeline where every inquiry, quote, negotiation and order opportunity can be tracked clearly.</span></p><p class=\"body\"><span>Instead of asking, “Where are we with this customer?”, you can see it immediately.</span></p>",
+          "sourceElement": "z1UzGb"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Follow-up discipline</strong></h3>",
+          "sourceElement": "zVswQU"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Every deal should have a next step. Pipedrive helps salespeople schedule calls, emails, meetings and quote follow-ups so valuable opportunities do not disappear.</span></p>",
+          "sourceElement": "zg4q8R"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Contact and stakeholder management</strong></h3>",
+          "sourceElement": "zM4Vi5"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>In machinery sales, one company can have several important contacts. Pipedrive helps you keep decision-makers, influencers, technical contacts and procurement contacts connected to the right opportunity.</span></p>",
+          "sourceElement": "zd4BLy"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Quote and document workflow</strong></h3>",
+          "sourceElement": "z1sQ-4"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Quotes, proposals and sales documents can be connected to the sales process. This helps the team work faster and makes quote follow-up easier to manage.</span></p>",
+          "sourceElement": "zTv12N"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Activity-based sales management</strong></h3>",
+          "sourceElement": "zKvWAk"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>A good machinery sales process is not only about deal value. It is also about activity: calls, meetings, follow-ups, site visits, quote reviews and next steps.</span></p>",
+          "sourceElement": "zkHJDm"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Reporting and forecasting</strong></h3>",
+          "sourceElement": "z7zzfa"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>With the right pipeline stages and fields, you can track expected revenue, deal probability, stuck opportunities, lost reasons, source performance and sales activity.</span></p>",
+          "sourceElement": "zv3X4A"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>Automation</strong></h3>",
+          "sourceElement": "zhhl18"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Repetitive tasks can be automated. For example, when a quote is sent, Pipedrive can remind the salesperson to follow up after a set number of days.</span></p>",
+          "sourceElement": "zCDSbB"
+        },
+        {
+          "kind": "html",
+          "html": "<h3 class=\"body-large\"><strong>AI-supported sales work</strong></h3>",
+          "sourceElement": "zmfYPO"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>AI becomes useful when your CRM data is clean. In machinery and industrial equipment sales, your team may handle long email threads, technical specifications, quote versions, procurement questions and several decision-makers at the same time.</span></p><p class=\"body\"><span>Pipedrive’s AI tools can support sales work by helping your team summarize customer conversations, prepare follow-up emails, identify sales patterns and focus on opportunities that need attention.</span></p><p class=\"body\"><span>For example, AI can help a salesperson quickly understand a long customer email thread before making the next call. It can also help managers prepare pipeline reviews by identifying deals without next activities, slow-moving opportunities or repeated lost reasons.</span></p><p class=\"body\"><span><strong>The goal is not to replace the salesperson. The goal is to help your team spend less time searching for information and more time moving high-value opportunities forward.</strong></span></p>",
+          "sourceElement": "znF-Ej"
+        }
+      ]
+    },
+    {
+      "id": "z0cR5c",
+      "heading": "Practical CRM habits for machinery sales teams",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Practical CRM habits for machinery sales teams</h2>",
+          "sourceElement": "z9eMBa"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span><strong>Never send a quote without a follow-up date.</strong></span><span> A quote without a next activity is a risk. Every quote should have a planned follow-up call, email or meeting.</span></p><p class=\"body\"><span><strong>Track technical and commercial qualification separately.</strong></span><span> A deal can be technically possible but commercially weak. Or commercially attractive but technically complicated. Track both.</span></p><p class=\"body\"><span><strong>Use clear lost reasons.</strong></span><span> Do not only mark a deal as “lost”. Track why it was lost: price, timing, competitor, technical mismatch, no decision, budget issue or delivery timeline.</span></p><p class=\"body\"><span><strong>Keep decision-makers visible.</strong></span><span> Do not manage the whole opportunity through one contact if the buying committee is bigger. Track the real stakeholders.</span></p><p class=\"body\"><span><strong>Separate new equipment sales from after-sales opportunities.</strong></span><span> New machinery sales, spare parts, service contracts and upgrades may need different pipelines or at least clear labels.</span></p><p class=\"body\"><span><strong>Review stuck deals every week.</strong></span><span> If a high-value deal has no activity or has been in the same stage too long, it needs management attention.</span></p><p class=\"body\"><span><strong>Keep customer communication easy to summarize.</strong></span><span>  If your team wants to use AI effectively, customer history needs to be organized. Important emails, notes, calls, quote versions, technical requirements, next steps and decision-makers should be connected to the right deal or account. This makes AI-supported summaries, follow-up preparation and sales insights much more useful.</span></p><p class=\"body\"><span><strong>Use CRM data before using AI.</strong></span><span> AI will only help if the sales process is clean. First build the structure: pipeline stages, activities, lost reasons, contact history, quote status and account data. Then use AI to improve summaries, follow-up writing, prioritization and sales decisions.</span></p>",
+          "sourceElement": "zKrQog"
+        }
+      ]
+    },
+    {
+      "id": "zubetR",
+      "heading": "Your ERP manages orders. Your CRM should manage opportunities.",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Your ERP manages orders. Your CRM should manage opportunities.</h2>",
+          "sourceElement": "zyzp72"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Many machinery and industrial companies already use ERP systems. That is important but ERP and CRM are not the same thing.</span></p><p class=\"body\"><span>Your ERP usually manages orders, invoices, inventory, production, delivery or service administration. Your CRM should manage what happens before the order:</span></p><p class=\"body\"><span>●</span><span> inquiries,</span><br><span>●</span><span> leads,</span><br><span>●</span><span> opportunities,</span><br><span>●</span><span> quotes,</span><br><span>●</span><span> decision-makers,</span><br><span>●</span><span> follow-ups,</span><br><span>●</span><span> negotiations,</span><br><span>●</span><span> forecast,</span><br><span>●</span><span> lost reasons,</span><br><span>●</span><span> and future sales opportunities.</span></p><p class=\"body\"><span>Pipedrive does not need to replace your ERP.</span></p><p class=\"body\"><span>The goal is not to replace or rebuild your ERP. The goal is to create a clear sales layer before the order, so your team can manage inquiries, quotes, follow-ups and opportunity development before the operational process starts.</span></p><p class=\"body\"><span>This sales layer also creates the clean data foundation your team needs if you want to use AI in a practical way.</span></p>",
+          "sourceElement": "znbv06"
+        }
+      ]
+    },
+    {
+      "id": "z8BVLB",
+      "heading": "Example: weekly machinery sales meeting in Pipedrive",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Example: weekly machinery sales meeting in Pipedrive</h2>",
+          "sourceElement": "zysK4j"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>A good sales meeting should not be based only on opinions or memory. It should be based on the <strong>pipeline. </strong>In a machinery sales meeting, I would review questions like:</span></p><p class=\"body\"><span>●</span><span> Which high-value quotes are waiting for a follow-up?</span><br><span>●</span><span> Which deals have no next activity?</span><br><span>●</span><span> Which opportunities are stuck in technical clarification?</span><br><span>●</span><span> Which customers need a site visit or product demo?</span><br><span>●</span><span> Which deals are expected to close this month?</span><br><span>●</span><span> Which lost reasons appear most often?</span><br><span>●</span><span> Which customers may need spare parts, service or upgrades?</span><br><span>●</span><span> Which salespeople need support with complex opportunities?</span></p><p class=\"body\"><span>You can also use <strong>AI-supported insights</strong> to prepare better sales meetings. For example, your team can review:</span></p><p class=\"body\"><span>●</span><span> Which long email conversations should be summarized before follow-up?</span><br><span>●</span><span> Which deals may need a next activity?</span><br><span>●</span><span> Which high-value opportunities are moving too slowly?</span><br><span>●</span><span> Which lost reasons appear repeatedly?</span><br><span>●</span><span> Which technical objections come up most often?</span><br><span>●</span><span> Which reps, regions or product categories may need more support?</span><br><span>●</span><span> Which customers should be prioritized for after-sales or service opportunities?</span></p><p class=\"body\"><span>AI does not replace the sales meeting. It helps the team prepare faster and focus on the most important machinery sales opportunities.</span></p>",
+          "sourceElement": "z53JO8"
+        }
+      ]
+    },
+    {
+      "id": "zVyPLv",
+      "heading": "Pipedrive customer references in manufacturing, technical and complex B2B sales",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Pipedrive customer references in manufacturing, technical and complex B2B sales</h2>",
+          "sourceElement": "zfRVkn"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Pipedrive is already used by manufacturing, technical and complex B2B sales teams to manage inbound inquiries, long sales cycles, follow-ups, quotes and customer relationships.</span></p><p class=\"body\"><span>These customer stories show why Pipedrive is a strong fit for machinery and industrial equipment sales: it helps turn complex, scattered sales activity into a clear, measurable sales process.</span></p><p class=\"body\"><span>Not generic CRM examples. These are real Pipedrive customer stories from companies selling technical, industrial or complex B2B products.</span></p>",
+          "sourceElement": "zA-g9Y"
+        },
+        {
+          "kind": "html",
+          "html": "<div class=\"sw-cards\">\n\n    <div class=\"sw-card\">\n      <div>\n        <div class=\"sw-company\">\n          <div class=\"sw-logo\">RMS</div>\n          <div>\n            <h3>Reliability Maintenance Solutions</h3>\n            <span class=\"sw-tag\">Manufacturing / Reliability engineering</span>\n          </div>\n        </div>\n        <p class=\"sw-desc\">A UK-based company providing reliability engineering, maintenance services, diagnostic technologies and professional training.</p>\n        <p class=\"sw-usage\">According to Pipedrive's customer story, the company uses Pipedrive to improve lead generation, qualify inbound inquiries and help the team engage with the right leads more effectively.</p>\n        <p class=\"sw-site\">Company website: <span>rms-reliability.com</span></p>\n      </div>\n      <div>\n        <p class=\"sw-impact-label\">Pipedrive-reported impact</p>\n        <ul class=\"sw-impact\">\n          <li>Web Forms help website visitors place orders more easily</li>\n          <li>Chatbot helps engage visitors and qualify leads</li>\n          <li>Lead management helps keep leads engaged and save time</li>\n        </ul>\n        <div class=\"sw-why\">\n          <strong>Why it is relevant for machinery sales</strong>\n          <p>It shows how technical B2B companies can use Pipedrive to structure incoming inquiries, improve lead qualification and avoid missed sales opportunities.</p>\n          <p>This is especially relevant for machinery and industrial equipment teams that receive inbound interest from technical buyers and need a clearer way to qualify, prioritize and follow up with the right opportunities.</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"sw-card\">\n      <div>\n        <div class=\"sw-company\">\n          <div class=\"sw-logo\">GE</div>\n          <div>\n            <h3>Gentec-EO</h3>\n            <span class=\"sw-tag\">Technical B2B / Laser measurement technology</span>\n          </div>\n        </div>\n        <p class=\"sw-desc\">A manufacturer of laser power and energy measurement devices, terahertz meters and beam profiling cameras.</p>\n        <p class=\"sw-usage\">According to Pipedrive's customer story, Gentec-EO uses Pipedrive to organize contacts, deals, follow-ups and quote-related workflows more clearly.</p>\n        <p class=\"sw-site\">Company website: <span>gentec-eo.com</span></p>\n      </div>\n      <div>\n        <p class=\"sw-impact-label\">Pipedrive-reported details</p>\n        <ul class=\"sw-impact\">\n          <li>10 people in the sales team</li>\n          <li>2 key Pipedrive integrations used</li>\n          <li>Document generation through Webmerge / document-generation integration</li>\n          <li>Segmented email campaigns through Mailchimp integration</li>\n        </ul>\n        <div class=\"sw-why\">\n          <strong>Why it is relevant for machinery sales</strong>\n          <p>It shows how a technical sales team with complex products and longer decision processes can benefit from a clearer, easier-to-use CRM.</p>\n          <p>This is especially relevant for machinery and industrial equipment sales teams that need to manage technical contacts, complex quotes, long decision cycles and follow-ups without overcomplicating the sales process.</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"sw-card\">\n      <div>\n        <div class=\"sw-company\">\n          <div class=\"sw-logo\">AM</div>\n          <div>\n            <h3>Ari Motors GmbH</h3>\n            <span class=\"sw-tag\">B2B electric vehicle sales</span>\n          </div>\n        </div>\n        <p class=\"sw-desc\">Sells small electric commercial vehicles, transporters and utility vehicles for B2B customers.</p>\n        <p class=\"sw-usage\">According to Pipedrive's customer story, Ari Motors uses Pipedrive to support a growing sales operation, centralize customer data and manage multiple sales pipelines.</p>\n        <p class=\"sw-site\">Company website: <span>ari-motors.com</span></p>\n      </div>\n      <div>\n        <p class=\"sw-impact-label\">Pipedrive-reported results</p>\n        <div class=\"sw-stats\">\n          <div class=\"sw-stat\"><div class=\"num\">10x</div><div class=\"lbl\">increase in sales</div></div>\n          <div class=\"sw-stat\"><div class=\"num\">10x</div><div class=\"lbl\">increase in inquiries</div></div>\n          <div class=\"sw-stat\"><div class=\"num\">2→31</div><div class=\"lbl\">team growth in employees</div></div>\n        </div>\n        <div class=\"sw-why\">\n          <strong>Why it is relevant for machinery sales</strong>\n          <p>It shows how a company selling configurable, high-consideration B2B products can use Pipedrive to create structure, improve visibility and scale its sales process.</p>\n          <p>This is especially relevant for machinery and industrial equipment companies that need to manage many product inquiries, custom configurations, long decision processes and a growing sales team in one structured CRM.</p>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n",
+          "sourceElement": "ztUs8Y"
+        }
+      ]
+    },
+    {
+      "id": "zBwh6O",
+      "heading": "How I implement Pipedrive for machinery and industrial equipment sales teams",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>How I implement Pipedrive for machinery and industrial equipment sales teams</h2>",
+          "sourceElement": "zHoi1B"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span><strong>Sales process discovery</strong></span><span><br></span><span>We review how your sales process works today: lead sources, qualification steps, technical discussions, quote creation, follow-up habits, decision-makers and reporting needs.</span></p><p class=\"body\"><span><strong>Pipeline design</strong></span><span><br></span><span>We build a pipeline that reflects your real sales process, from first inquiry to quote, negotiation, order confirmation and after-sales opportunities.</span></p><p class=\"body\"><span><strong>Custom fields and data structure</strong></span><span><br></span><span>We define the data your team needs to track, such as equipment type, deal value, expected delivery date, decision-maker role, technical fit, quote status and probability.</span></p><p class=\"body\"><span><strong>Quote and follow-up workflow</strong></span><span><br></span><span>We create a clear process for quote sending, follow-up reminders, next activities and deal stage updates.</span></p><p class=\"body\"><span><strong>Management dashboards</strong></span><span><br></span><span>We build reports that help sales managers see forecasts, stuck deals, sales activity, win rate, lost reasons and high-value opportunities.</span></p><p class=\"body\"><span><strong>AI readiness setup</strong></span><span><br></span><span>Before using AI seriously, we make sure your CRM data is clean enough to be useful. This means clear pipeline stages, structured customer communication, consistent activities, meaningful lost reasons, useful quote history, visible decision-makers and disciplined follow-up processes.</span></p><p class=\"body\"><span>Once this foundation is in place, AI can support your team with email summaries, follow-up writing, sales insights, prioritization and better preparation for pipeline reviews.</span></p><p class=\"body\"><span><strong>Team training</strong></span><span><br></span><span>Your team learns how to use Pipedrive in daily sales work, not just how to click around in the software.</span><span><br></span><span>The goal is to make Pipedrive part of the team’s daily sales rhythm: inquiries, quotes, follow-ups, stakeholder management, forecasting, after-sales opportunities and AI-supported preparation.</span></p><p class=\"body\"><span><strong>Optimization after real usage</strong></span><span><br></span><span>After the team starts using the system, we review what works, what needs to be simplified and where automation, reporting or AI-supported workflows can be improved.</span></p>",
+          "sourceElement": "zBjGR0"
+        },
+        {
+          "kind": "cta",
+          "label": "Book a free consultation",
+          "href": "/contact/?solution=pipedrive#contact-form"
+        },
+        {
+          "kind": "image",
+          "src": "/partners/pipedrive/playbooks/pd_hero_ai-gs-FDauw7Qr6iuR0VZU.webp",
+          "alt": "Pipedrive sales pipeline, activity and reporting interface",
+          "width": 3725,
+          "height": 1170
+        }
+      ]
+    },
+    {
+      "id": "ze1hJI",
+      "heading": "Is Pipedrive the right CRM for your machinery sales team?",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Is Pipedrive the right CRM for your machinery sales team?</h2>",
+          "sourceElement": "zcbg8p"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Pipedrive is a strong fit if your sales process includes:</span></p><p class=\"body\"><span>● </span><span>long B2B sales cycles,</span></p><p class=\"body\"><span>●</span><span> </span><span>technical qualification,</span></p><p class=\"body\"><span>●</span><span> </span><span>quotes and proposals,</span></p><p class=\"body\"><span>●</span><span> </span><span>multiple decision-makers,</span></p><p class=\"body\"><span>●</span><span> </span><span>repeated follow-ups,</span></p><p class=\"body\"><span>●</span><span> </span><span>high-value opportunities,</span></p><p class=\"body\"><span>●</span><span> </span><span>after-sales or service revenue,</span></p><p class=\"body\"><span>●</span><span> </span><span>and a need for better sales visibility.</span></p><p class=\"body\"><span>Pipedrive is also a strong fit if you want to use AI in a practical way not as a buzzword, but as a tool to help your team summarize customer conversations, prepare follow-ups, identify sales patterns and focus on the right opportunities.</span></p><p class=\"body\"><span>AI works best when your sales process is already structured. That is why the first step is not AI. The first step is building a clean, usable machinery sales process. If your team still manages opportunities in spreadsheets, inboxes or disconnected systems, Pipedrive can help you create a more structured and predictable sales operation.</span></p><p class=\"body\"><span>The goal is not to make your salespeople do more administration.</span></p><p class=\"body\"><span><strong>The goal is to help them focus on the right opportunities, follow up at the right time and give management a clear view of the real sales pipeline.</strong></span></p>",
+          "sourceElement": "zqxdj4"
+        }
+      ]
+    },
+    {
+      "id": "zsLHB_",
+      "heading": "Frequently asked questions (FAQ)",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Frequently asked questions (FAQ)</h2>",
+          "sourceElement": "zrQhqW"
+        },
+        {
+          "kind": "html",
+          "html": "<div class=\"sw-faq\">\n\n    <details class=\"sw-item\">\n      <summary>What is a CRM for machinery sales?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>A CRM for machinery sales helps teams manage leads, opportunities, quotes, follow-ups, contacts, sales activities, forecasts and customer relationships in one system.</p>\n        <p>For machinery and industrial equipment companies, CRM is especially useful because sales cycles are often long, quotes are complex and several stakeholders may be involved in the buying process.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Why do machinery companies need CRM if they already have ERP?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>ERP usually manages orders and operations. CRM manages the sales process before the order: inquiries, quotes, follow-ups, negotiations and future opportunities.</p>\n        <p>Your ERP helps you operate the business after the deal is won. Your CRM helps you win the deal in the first place.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive handle long machinery sales cycles?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. Pipedrive can be customized around long and complex sales cycles, with clear pipeline stages, deal ownership, activities, reminders and reporting.</p>\n        <p>This makes it easier to see which deals are moving, which are stuck and which require management attention.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive help with quote follow-up?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. Salespeople can schedule follow-up activities, track quote status and use automation to reduce the risk of missed opportunities.</p>\n        <p>A simple rule can make a big difference: every quote should have a next activity.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive support after-sales opportunities?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. You can track spare parts, service contracts, upgrades, reorder opportunities and future customer needs in Pipedrive.</p>\n        <p>For many machinery companies, after-sales revenue is an important part of the business. CRM helps make these opportunities visible.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can AI help machinery sales teams?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes, but only when CRM data is structured.</p>\n        <p>Once the pipeline, activities, customer conversations and sales history are clean, AI can help summarize information, support follow-up writing, identify patterns and help your team prioritize the right opportunities.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive AI help with technical sales follow-ups?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes. Pipedrive's AI email tools can help create sales emails and summarize long email conversations.</p>\n        <p>This is especially useful in machinery sales, where customer communication may include technical questions, quote revisions, procurement discussions, delivery expectations and several stakeholders.</p>\n        <p>The salesperson still controls the message. AI helps prepare faster.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Can Pipedrive AI help with pipeline reviews?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Yes, if the data is clean.</p>\n        <p>AI-supported insights can help managers prepare pipeline reviews by identifying deals without next activities, slow-moving opportunities, repeated lost reasons or patterns in sales performance.</p>\n        <p>The pipeline review still needs human judgment. AI simply helps the team focus on what matters.</p>\n      </div>\n    </details>\n\n    <details class=\"sw-item\">\n      <summary>Is Pipedrive difficult for machinery sales teams to use?<span class=\"sw-icon\"></span></summary>\n      <div class=\"sw-body\">\n        <p>Pipedrive is designed to be simple and visual. However, the success of a CRM does not only depend on the software. It depends on whether the sales process is set up correctly and whether the team understands how to use it in daily work.</p>\n        <p>That is why implementation and training are important.</p>\n      </div>\n    </details>\n\n  </div>\n\n",
+          "sourceElement": "z295Ua"
+        }
+      ]
+    },
+    {
+      "id": "zEvcLk",
+      "heading": "Want to see how your machinery sales process could work in Pipedrive?",
+      "items": [
+        {
+          "kind": "html",
+          "html": "<h2>Want to see how your machinery sales process could work in Pipedrive?</h2>",
+          "sourceElement": "z7vyWT"
+        },
+        {
+          "kind": "html",
+          "html": "<p class=\"body\"><span>Book a free consultation and I will show you how your inquiries, quotes, follow-ups, decision-makers, forecasts, after-sales opportunities and AI-ready customer data could be structured in one clear sales pipeline.</span></p><p class=\"body\"><span>You will see how Pipedrive can help your team manage complex machinery sales with more visibility, discipline, predictability and smarter AI-supported follow-up.</span></p>",
+          "sourceElement": "zDyJVA"
+        },
+        {
+          "kind": "cta",
+          "label": "Book a free machinery CRM consultation",
+          "href": "/contact/?solution=pipedrive#contact-form"
+        },
+        {
+          "kind": "cta",
+          "label": "Start your Pipedrive trial",
+          "href": "trial"
+        },
+        {
+          "kind": "image",
+          "src": "/partners/pipedrive/playbooks/psh-site-materials-2-ufcPDcxzMjJ0719q.png",
+          "alt": "Pipedrive pipeline on desktop and contact details on mobile",
+          "width": 1200,
+          "height": 627
+        }
+      ]
+    }
+  ]
+}

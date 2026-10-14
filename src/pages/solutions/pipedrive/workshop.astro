@@ -1,0 +1,17 @@
+---
+import PipedriveLayout from '../../../layouts/PipedriveLayout.astro';
+import type { Playbook } from '../../../data/pipedrive-playbooks';
+import source from '../../../data/pipedrive-workshop-en.json';
+import { pipedriveTrialHref } from '../../../data/pipedrive';
+import '../../../styles/pipedrive-playbooks.css';
+const workshop = source as Pick<Playbook, 'title' | 'description' | 'sections'>;
+---
+<PipedriveLayout lang="en" eyebrow="Free workshop · English" title={workshop.title} description={workshop.description}>
+  <article class="pd-document playbook workshop">
+    <div class="container pd-prose">
+      <aside class="workshop-note" aria-label="Free workshop"><strong>Join our free workshop</strong><p>We’ll guide you through setting up Pipedrive, step by step. You’ll leave with a working pipeline, a clear setup plan and answers to your questions.</p><a href="/contact/?solution=pipedrive#contact-form">Ask about the workshop</a></aside>
+      {workshop.sections.map(section => <section class="playbook-section" id={section.id}>{section.items.map(item => item.kind === 'html' ? <div class="playbook-copy" data-source-element={item.sourceElement} set:html={item.html} /> : item.kind === 'image' ? <img class="playbook-image" src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" /> : <a class="button playbook-cta" href={item.href === 'trial' ? pipedriveTrialHref : item.href} rel={item.href === 'trial' ? 'sponsored' : undefined}>{item.label}</a>)}</section>)}
+    </div>
+  </article>
+</PipedriveLayout>
+<style>.workshop-note{padding:1.5rem;border:1px solid #bbcfc1;border-radius:.8rem;background:#e5eeea;}.workshop-note p{margin:.75rem 0;}</style>

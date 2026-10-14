@@ -18,9 +18,12 @@
   --headline-accent: #e65018;
   --accent-on-dark: #ffb16e;
   --accent-line: rgba(223, 89, 46, .24);
+  --header-cta-fill: linear-gradient(105deg, #c44b19 0%, #c33f28 48%, #b52820 100%);
+  --header-cta-hover: linear-gradient(105deg, #ac3c14 0%, #b33220 48%, #9d221b 100%);
   --cta-fill: linear-gradient(105deg, #ff8a3d 0%, #f45d3e 48%, #d32f23 100%);
   --cta-hover: linear-gradient(105deg, #f77b2d 0%, #e94d30 48%, #c5271c 100%);
   --cta-shadow: 0 6px 20px rgba(232, 79, 41, .24), inset 0 1px 0 rgba(255, 255, 255, .22);
+  --cta-focus: var(--accent);
   --hero-surface: url('/brand/adl-nexus-hero-ambient.svg') center / cover no-repeat, var(--paper);
   --muted: #5e5955;
   --line: rgba(26, 23, 27, 0.14);

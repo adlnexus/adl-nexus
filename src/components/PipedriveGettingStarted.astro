@@ -1,0 +1,37 @@
+---
+import { pipedriveTrialHref } from '../data/pipedrive';
+import { routeFor } from '../data/localization';
+import source from '../data/pipedrive-handoff.json';
+interface Props { lang: 'en' | 'sr'; pricing?: boolean }
+const { lang, pricing = false } = Astro.props;
+const sr = lang === 'sr';
+const workshop = '/solutions/pipedrive/workshop/';
+const items = sr ? [
+  { title: source['312'], text: source['313'], cta: source['314'], href: pipedriveTrialHref },
+  { title: source['315'], text: source['316'], cta: `${source['317']} (EN)`, href: workshop },
+  { title: source['319'], text: source['320'], cta: source['321'], href: routeFor(lang, '/solutions/pipedrive/implementation') },
+] : [
+  { title: 'Start with a free 30-day trial', text: 'Explore Pipedrive at your own pace and configure the system around your sales process. No credit card is needed to activate your trial, and there is no commitment.', cta: 'Start your free 30-day trial', href: pipedriveTrialHref },
+  { title: 'Let’s set up Pipedrive together.', text: 'Join our free workshop and work through your Pipedrive setup step by step. Leave with a working pipeline, a clear setup plan and answers to your questions.', cta: 'Learn about the free workshop', href: workshop },
+  { title: 'Full implementation', text: 'We map your sales process, configure Pipedrive around the way your team works, migrate your existing data and train your team. Start with a system built for your business.', cta: 'Learn about implementation', href: routeFor(lang, '/solutions/pipedrive/implementation') },
+];
+---
+<section id="pipedrive-getting-started" class="getting">
+  <header><div class="container"><p class="eyebrow">{pricing ? (sr ? source['309'] : 'Implementation & training') : (sr ? 'Prvi koraci' : 'Getting started')}</p><h2>{sr ? source[pricing ? '310' : '144'] : pricing ? 'Need help getting started?' : 'Choose the level of support that fits where you are now.'}</h2><p>{sr ? source[pricing ? '311' : '145'] : pricing ? 'Whether you want us to handle the full setup or prefer to do it yourself, we have an option that fits.' : 'Three ways to move forward. Pick the one that fits where you are right now.'}</p></div></header>
+  <div class="container cards">{items.map((item, i) => <article><span class="number" aria-hidden="true">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p><a class="button" href={item.href} hreflang={i === 1 ? 'en' : undefined} rel={i === 0 ? 'sponsored' : undefined}>{item.cta}</a></article>)}</div>
+</section>
+<style>
+.getting { background:#faf8f1; color:#262626; padding-bottom:clamp(3.5rem,6vw,6rem); scroll-margin-top:7rem; --focus-color:#1f5b49; }
+header { background:#1f5b49; color:white; text-align:center; padding:3.5rem 0; }
+.getting .eyebrow { color:white; font-weight:750; text-transform:uppercase; letter-spacing:.08em; }
+h2 { max-width:950px; margin:auto; font-size:clamp(2rem,3.5vw,3.5rem); line-height:1.12; letter-spacing:-.04em; }
+header p:last-child { max-width:850px; margin:1.5rem auto 0; font-size:1.1rem; line-height:1.65; }
+.cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; padding-top:2rem; }
+article { display:flex; flex-direction:column; align-items:flex-start; padding:clamp(1.5rem,2.5vw,2.5rem); border:1px solid #dedbd0; border-radius:1rem; background:#fffdf8; }
+.number { color:#1f5b49; font-weight:750; margin-bottom:1.5rem; }
+h3 { margin:0 0 1rem; color:#1f5b49; font-size:clamp(1.6rem,2.2vw,2.2rem); line-height:1.15; letter-spacing:-.03em; }
+article p { line-height:1.65; margin:0 0 2rem; }
+.button { margin-top:auto; background:#1f5b49; color:white; border-color:#1f5b49; width:100%; text-align:center; }
+.button:hover,.button:focus-visible { background:#173f34; }
+@media(max-width:850px) { .cards { grid-template-columns:1fr; } }
+</style>

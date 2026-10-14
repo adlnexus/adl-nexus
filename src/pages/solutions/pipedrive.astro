@@ -1,5 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PipedriveNav from '../../components/PipedriveNav.astro';
+import PipedriveFaq from '../../components/PipedriveFaq.astro';
+import PipedriveStories from '../../components/PipedriveStories.astro';
+import PipedriveGettingStarted from '../../components/PipedriveGettingStarted.astro';
+import PipedriveTrust from '../../components/PipedriveTrust.astro';
+import PipedriveComparison from '../../components/PipedriveComparison.astro';
+import PipedriveApproach from '../../components/PipedriveApproach.astro';
+import PipedriveIndustries from '../../components/PipedriveIndustries.astro';
+import PipedriveFeatures from '../../components/PipedriveFeatures.astro';
+import PipedriveIntegrations from '../../components/PipedriveIntegrations.astro';
 import { routeFor, type SiteLocale } from '../../data/localization';
 import { pipedriveDetailedCopy, pipedriveTrialHref } from '../../data/pipedrive';
 
@@ -11,10 +21,10 @@ const pageTitle = detail.title;
 const pageDescription = detail.description;
 ---
 
-<BaseLayout lang={lang} title={pageTitle} description={pageDescription} brandVariant="green">
+<BaseLayout lang={lang} title={pageTitle} description={pageDescription} brandVariant="green" footerVariant={lang === 'es' ? 'default' : 'pipedrive'}>
   {detail && (
     <div class="pd-page">
-      <section class="pd-hero">
+      <section class:list={['pd-hero', { 'pd-hero-template': lang === 'en' || lang === 'sr' }]}>
         <div class="container pd-hero-grid">
           <div>
             <p class="eyebrow">{detail.hero.eyebrow}</p>
@@ -36,10 +46,12 @@ const pageDescription = detail.description;
             ))}
           </div>
         </div>
+        {(lang === 'en' || lang === 'sr') && <PipedriveNav lang={lang} />}
       </section>
 
-      <aside class="pd-trust"><div class="container"><p>{detail.trust}</p></div></aside>
+      {lang === 'en' || lang === 'sr' ? <PipedriveTrust lang={lang} text={detail.trust} /> : <aside class="pd-trust"><div class="container"><p>{detail.trust}</p></div></aside>}
 
+      {lang === 'en' || lang === 'sr' ? <PipedriveComparison lang={lang} detail={detail} demoHref={demoHref} /> : (
       <section class="pd-section pd-pain">
         <div class="container">
           <p class="eyebrow">{detail.pain.eyebrow}</p><h2>{detail.pain.title}</h2>
@@ -47,20 +59,26 @@ const pageDescription = detail.description;
           <p class="pd-summary">{detail.pain.summary}</p>
         </div>
       </section>
+      )}
 
+      {(lang === 'en' || lang === 'sr') && <PipedriveApproach lang={lang} detail={detail} contactHref={`${routeFor(lang, '/contact')}#start-a-conversation`} />}
+
+      {lang === 'en' || lang === 'sr' ? <PipedriveIndustries lang={lang} copy={detail.audiences} /> : (
       <section class="pd-section pd-audiences">
         <div class="container">
           <div class="pd-heading-row"><div><p class="eyebrow">{detail.audiences.eyebrow}</p><h2>{detail.audiences.title}</h2></div><p>{detail.audiences.lead}</p></div>
           <div class="pd-industry-grid">{detail.audiences.cards.map((card, index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{card}</h3></article>)}</div>
         </div>
       </section>
+      )}
 
+      {lang === 'es' && (<>
       <section class="pd-section pd-why">
         <div class="container pd-split">
           <div><p class="eyebrow">{detail.why.eyebrow}</p><h2>{detail.why.title}</h2><p class="pd-intro">{detail.why.lead}</p></div>
           <div class="pd-long-copy">{detail.why.paragraphs.map((paragraph) => <p>{paragraph}</p>)}<p class="pd-partner">{detail.why.closing}</p></div>
         </div>
-        <div class="container pd-three pd-outcomes">{detail.outcomes.map((item, index) => <article class="pd-card"><span class="pd-index">0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+        {lang === 'es' && (<div class="container pd-three pd-outcomes">{detail.outcomes.map((item, index) => <article class="pd-card"><span class="pd-index">0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>)}
       </section>
 
       <section class="pd-section pd-workflow">
@@ -70,17 +88,29 @@ const pageDescription = detail.description;
         </div>
       </section>
 
+      </>)}
+
+      {(lang === 'en' || lang === 'sr') && <PipedriveIntegrations detail={detail} demoHref={demoHref} />}
+
+      {(lang === 'en' || lang === 'sr') ? <PipedriveFeatures lang={lang} copy={detail.features} demoHref={demoHref} demoLabel={detail.hero.demo} /> : (
       <section class="pd-section pd-features">
         <div class="container"><p class="eyebrow">{detail.features.eyebrow}</p><h2>{detail.features.title}</h2><div class="pd-feature-grid">{detail.features.items.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div>
       </section>
 
+      )}
+
+      {lang === 'es' && (
       <section class="pd-section pd-integrations">
         <div class="container pd-split">
           <div><p class="eyebrow">{detail.integrations.eyebrow}</p><h2>{detail.integrations.title}</h2><p class="pd-intro">{detail.integrations.lead}</p></div>
           <div><ul>{detail.integrations.points.map((point) => <li>{point}</li>)}</ul><p class="pd-integration-closing">{detail.integrations.closing}</p><div class="pd-actions"><a class="button pd-light" href={demoHref}>{detail.hero.demo}</a><a class="button pd-mint" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a></div></div>
         </div>
       </section>
+      )}
 
+      {(lang === 'en' || lang === 'sr') && <><PipedriveGettingStarted lang={lang} /><PipedriveStories lang={lang} /></>}
+
+      {lang === 'en' || lang === 'sr' ? <PipedriveFaq lang={lang} /> : (<>
       <section class="pd-section pd-faq">
         <div class="container pd-faq-grid">
           <div><p class="eyebrow">{detail.faq.eyebrow}</p><h2>{detail.faq.title}</h2></div>
@@ -89,6 +119,7 @@ const pageDescription = detail.description;
       </section>
 
       <section class="pd-closing"><div class="container"><p class="eyebrow">{detail.closing.eyebrow}</p><h2>{detail.closing.title}</h2><p>{detail.closing.text}</p><div class="pd-actions pd-actions-center"><a class="button pd-light" href={demoHref}>{detail.closing.demo}</a><a class="button pd-mint" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.closing.trial}</a></div></div></section>
+      </>)}
     </div>
   )}
 </BaseLayout>
@@ -149,6 +180,24 @@ const pageDescription = detail.description;
   .pd-outline:hover, .pd-outline:focus-visible { border-color: var(--pd-navy); background: var(--pd-navy); color: white; }
   .pd-trial { border-color: var(--pd-purple); background: var(--pd-purple); color: white; }
   .pd-trial:hover, .pd-trial:focus-visible { border-color: var(--pd-purple-dark); background: var(--pd-purple-dark); color: white; }
+
+  /* Original partner template palette, scoped to the reviewed EN/SR hero. */
+  .pd-hero.pd-hero-template {
+    flex-direction: column;
+    justify-content: center;
+    --pd-green: #1f5b49;
+    --pd-purple: #1f5b49;
+    --focus-color: #1f5b49;
+    background: linear-gradient(90deg, #faf8f1, #f0e9d6);
+  }
+  .pd-hero-template h1 { max-width: 20ch; font-size: clamp(3.15rem, 4vw, 4.5rem); }
+  .pd-hero-template .pd-lead { color: #262626; }
+  .pd-hero-template .pd-support { color: #1d1e20; }
+  .pd-hero-template .pd-outline { border-color: #1f5b49; background: #1f5b49; color: white; box-shadow: none; }
+  .pd-hero-template .pd-outline:hover, .pd-hero-template .pd-outline:focus-visible { border-color: #173f34; background: #173f34; }
+  .pd-hero-template .pd-trial { border-color: #f6e8c8; background: #f6e8c8; color: #1b2420; box-shadow: none; }
+  .pd-hero-template .pd-trial:hover, .pd-hero-template .pd-trial:focus-visible { border-color: #ebd9af; background: #ebd9af; color: #1b2420; }
+  .pd-hero-template .pd-trial-wrap small { color: #262626; text-align: center; }
 
   .pd-pipeline { min-width: 0; min-height: 470px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-content: center; gap: .65rem; padding: clamp(1.2rem, 2.7vw, 2rem); border: 1px solid rgba(25,36,53,.1); border-radius: .75rem; background: rgba(255,255,255,.92); box-shadow: 0 2rem 5rem rgba(25,36,53,.14); }
   .pd-pipeline-top { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(25,36,53,.12); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }

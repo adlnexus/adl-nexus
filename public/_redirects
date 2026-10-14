@@ -17,3 +17,27 @@
 /es/insights /es/insights/ 301
 /es/services /es/services/ 301
 /es/solutions/:product /es/solutions/:product/ 301
+
+# Dedicated Pipedrive pages are available in English and Serbian.
+/solutions/pipedrive/pricing /solutions/pipedrive/pricing/ 301
+/solutions/pipedrive/knowledge-base /solutions/pipedrive/knowledge-base/ 301
+/solutions/pipedrive/implementation /solutions/pipedrive/implementation/ 301
+/sr/solutions/pipedrive/pricing /sr/solutions/pipedrive/pricing/ 301
+/sr/solutions/pipedrive/knowledge-base /sr/solutions/pipedrive/knowledge-base/ 301
+/sr/solutions/pipedrive/implementation /sr/solutions/pipedrive/implementation/ 301
+
+# English industry CRM playbooks
+/solutions/pipedrive/knowledge-base/wholesale-and-distribution-sales-crm /solutions/pipedrive/knowledge-base/wholesale-and-distribution-sales-crm/ 301
+/solutions/pipedrive/knowledge-base/b2b-manufacturing-sales-crm-playbook /solutions/pipedrive/knowledge-base/b2b-manufacturing-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/machinery-and-industrial-equipment-sales-crm-playbook /solutions/pipedrive/knowledge-base/machinery-and-industrial-equipment-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/real-estate-and-mortgage-broker-sales-crm /solutions/pipedrive/knowledge-base/real-estate-and-mortgage-broker-sales-crm/ 301
+/solutions/pipedrive/knowledge-base/it-services-and-software-sales-crm-playbook /solutions/pipedrive/knowledge-base/it-services-and-software-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/construction-services-sales-crm-playbook /solutions/pipedrive/knowledge-base/construction-services-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/insurance-sales-crm /solutions/pipedrive/knowledge-base/insurance-sales-crm/ 301
+/solutions/pipedrive/knowledge-base/marketing-and-digital-agency-sales-crm-playbook /solutions/pipedrive/knowledge-base/marketing-and-digital-agency-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/private-clinics-and-dental-practices-crm /solutions/pipedrive/knowledge-base/private-clinics-and-dental-practices-crm/ 301
+/solutions/pipedrive/knowledge-base/recruitment-and-hr-consulting-sales-crm-playbook /solutions/pipedrive/knowledge-base/recruitment-and-hr-consulting-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/business-consulting-sales-crm-playbook /solutions/pipedrive/knowledge-base/business-consulting-sales-crm-playbook/ 301
+/solutions/pipedrive/knowledge-base/hvac-and-field-services-crm /solutions/pipedrive/knowledge-base/hvac-and-field-services-crm/ 301
+
+/solutions/pipedrive/workshop /solutions/pipedrive/workshop/ 301

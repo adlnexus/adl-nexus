@@ -57,14 +57,19 @@ Do not deploy, connect external services, send enquiries, publish to GitHub, or 
 ## Confirmed owner decisions
 
 - Production domain: `adlnexus.com`
+- Public contact email: `info@adlnexus.com` (one shared enquiry address, confirmed 13 October 2026).
 - The final ADL Nexus identity uses blue `#004A98`, mint `#91CDC3`, grey `#7A97AB`, black `#1A171B`, and white.
 - The website UI finish approved on 29 September 2026 uses warm gradients, abstract flowing backgrounds and a grayscale light-header wordmark presentation; it does not modify logo source assets, layout, typography or responsive behaviour.
 - “GLOBAL CONNECTIONS” is the secondary logo tagline for footer and social treatments. It does not replace the primary site positioning.
 - ADL Nexus may publish the approved Pipedrive Premier Partner claim and supplied affiliate trial link on the English and Serbian Pipedrive pages.
 
+- Confirmed 14 October 2026: the Pipedrive workshop is free and follows the written Word brief; do not add template/screenshot pricing, duration or session conditions.
+- Newsletter is deferred and remains omitted, without a signup form or service; retain supplied copy for later.
+- Keep the approved “Unlimited access” / “Neograničen pristup” pricing copy. It refers to full access during the trial, not unlimited paid-plan usage; preserve the existing usage-limit disclaimer.
+- Keep existing Pipedrive prices in EUR and the existing annual-billing presentation; do not convert currencies.
+
 ## Current owner decisions pending
 
-- Public contact email confirmation
 - Owner review of the newly adapted British-English Pipedrive sections
 - Native-speaker review of Serbian, Spanish, German and Russian copy
 - Final Insights copy

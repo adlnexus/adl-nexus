@@ -1,0 +1,70 @@
+---
+interface Props { lang: 'en' | 'sr'; text: string }
+const { lang, text } = Astro.props;
+const value = lang === 'sr' ? '100.000' : '100,000';
+const [before, after] = text.split(value);
+---
+
+<aside class="pd-trust-template" id="pipedrive-trust" data-trust-counter data-locale={lang}>
+  <div class="container">
+    <p><span class="sr-only">{text}</span><span aria-hidden="true">{before}<span class="trust-number"><span class="number-space">{value}</span><span class="number-value" data-count>{value}</span></span>{after}</span></p>
+    <div class="trust-badges">
+      <img src="/partners/pipedrive/crmmys-2026.avif" width="375" height="375" alt="CRMMY Awards 2026 — Best Sales CRM: Pipedrive" />
+      <img src="/partners/pipedrive/sourceforge-winter-2025.avif" width="375" height="381" alt="SourceForge Leader — Winter 2025: Pipedrive" />
+      <img src="/partners/pipedrive/g2-winter-2025.avif" width="375" height="349" alt="G2 Leader — Winter 2025: Pipedrive" />
+    </div>
+  </div>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-trust-counter]').forEach((block) => {
+    const number = block.querySelector<HTMLElement>('[data-count]');
+    if (!number || !('IntersectionObserver' in window)) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motion.matches) return;
+    const format = new Intl.NumberFormat(block.dataset.locale === 'sr' ? 'sr-Latn' : 'en-GB');
+    let frame = 0;
+    const finish = () => {
+      cancelAnimationFrame(frame);
+      number.textContent = format.format(100000);
+      motion.removeEventListener('change', onMotionChange);
+    };
+    const onMotionChange = () => {
+      if (motion.matches) {
+        observer.disconnect();
+        finish();
+      }
+    };
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      observer.disconnect();
+      if (motion.matches) { finish(); return; }
+      number.textContent = '0';
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / 2000, 1);
+        if (progress === 1) { finish(); return; }
+        number.textContent = format.format(Math.floor(100000 * (1 - Math.pow(1 - progress, 3))));
+        frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    });
+    motion.addEventListener('change', onMotionChange);
+    observer.observe(block);
+  });
+</script>
+
+<style>
+  .pd-trust-template { padding: 24px 0; background: #182420; color: #fff; text-align: center; }
+  p { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: normal; }
+  .trust-number { display: inline-grid; font-variant-numeric: tabular-nums; }
+  .trust-number > span { grid-area: 1 / 1; }
+  .number-space { visibility: hidden; }
+  .number-value { text-align: right; }
+  .trust-badges { display: flex; justify-content: center; align-items: center; gap: 38px; margin-top: 20px; }
+  .trust-badges img { width: 72px; height: auto; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+  @media (max-width: 480px) {
+    .trust-badges { gap: 24px; }
+  }
+</style>

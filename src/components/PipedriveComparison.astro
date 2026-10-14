@@ -1,0 +1,123 @@
+---
+import type { PipedriveDetailedCopy } from '../data/pipedrive';
+import { pipedriveTrialHref } from '../data/pipedrive';
+interface Props { lang: 'en' | 'sr'; detail: PipedriveDetailedCopy; demoHref: string }
+const { lang, detail, demoHref } = Astro.props;
+const sr = lang === 'sr';
+---
+<section class="comparison" id="pipedrive-challenges" aria-labelledby="comparison-title" data-comparison>
+  <div class="container">
+    <header><p class="label">{detail.pain.eyebrow}</p><h2 id="comparison-title">{detail.pain.title}</h2></header>
+    <div id="comparison-slides" class="slides">
+      {detail.pain.items.map((problem, i) => <article class="pair" data-slide role="group" aria-label={`${i + 1} / 3: ${problem.title}`}>
+        <div class="card problem"><p class="label">{sr ? 'Problem' : 'The challenge'}</p><h3>{problem.title}</h3><p>{problem.text}</p></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="card solution"><p class="label">{sr ? 'Kako Pipedrive pomaže' : 'How Pipedrive helps'}</p><h3>{detail.outcomes[i].title}</h3>{detail.outcomes[i].text.split('\n\n').map(p => <p>{p}</p>)}</div>
+      </article>)}
+    </div>
+    <div class="controls" data-controls hidden>
+      <button type="button" data-prev aria-label={sr ? 'Prethodni par' : 'Previous comparison'} aria-controls="comparison-slides">←</button>
+      <div class="positions">{detail.pain.items.map((problem, i) => <button type="button" data-position={i} aria-label={`${sr ? 'Prikaži' : 'Show'}: ${problem.title}`} aria-controls="comparison-slides" aria-current={i === 0 ? 'true' : undefined}>{i + 1}</button>)}</div>
+      <button type="button" data-next aria-label={sr ? 'Sledeći par' : 'Next comparison'} aria-controls="comparison-slides">→</button>
+      <span class="sr-only" data-status aria-live="polite" aria-atomic="true"></span>
+    </div>
+    <p class="summary">{detail.pain.summary}</p>
+    <div class="actions"><a class="button demo" href={demoHref}>{detail.hero.demo}</a><div class="trial-wrap"><a class="button trial" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a><small>{detail.hero.trialNote}</small></div></div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-comparison]').forEach(root => {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const deck = root.querySelector<HTMLElement>('.slides');
+    const controls = root.querySelector<HTMLElement>('[data-controls]');
+    const positions = [...root.querySelectorAll<HTMLButtonElement>('[data-position]')];
+    const status = root.querySelector<HTMLElement>('[data-status]');
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    let animations: Animation[] = [];
+    const settle = () => {
+      animations.forEach(animation => { animation.onfinish = null; animation.cancel(); });
+      animations = [];
+      slides.forEach(slide => slide.classList.remove('is-leaving'));
+    };
+    let current = 0;
+    const show = (index: number, announce = true) => {
+      const target = (index + slides.length) % slides.length;
+      if (announce && target === current) return;
+      const previous = current;
+      const direction = index > current ? 1 : -1;
+      // Retarget from the current visual positions during rapid input.
+      const outgoingTransform = getComputedStyle(slides[previous]).transform;
+      const incomingTransform = slides[target].classList.contains('is-leaving')
+        ? getComputedStyle(slides[target]).transform : `translateX(${direction * 100}%)`;
+      settle();
+      current = target;
+      slides.forEach((slide, i) => {
+        const inactive = i !== current;
+        slide.hidden = inactive;
+        slide.inert = inactive;
+        slide.setAttribute('aria-hidden', String(inactive));
+      });
+      positions.forEach((button, i) => { if (i === current) button.setAttribute('aria-current', 'true'); else button.removeAttribute('aria-current'); });
+      if (announce && status) status.textContent = slides[current].getAttribute('aria-label');
+      if (announce && !motion.matches) {
+        slides[previous].classList.add('is-leaving');
+        // Industries uses native smooth scrolling (browser-defined timing).
+        // A comparable eased horizontal movement keeps the whole pair together.
+        const options = { duration: 360, easing: 'cubic-bezier(.25, .1, .25, 1)', fill: 'both' as const };
+        animations = [
+          slides[previous].animate([{ transform: outgoingTransform }, { transform: `translateX(${-direction * 100}%)` }], options),
+          slides[current].animate([{ transform: incomingTransform }, { transform: 'translateX(0)' }], options),
+        ];
+        animations[1].onfinish = settle;
+      }
+    };
+    root.querySelector('[data-prev]')?.addEventListener('click', () => show(current - 1));
+    root.querySelector('[data-next]')?.addEventListener('click', () => show(current + 1));
+    positions.forEach((button, i) => button.addEventListener('click', () => show(i)));
+    show(0, false);
+    deck?.classList.add('is-enhanced');
+    if (deck) new ResizeObserver(settle).observe(deck);
+    motion.addEventListener('change', settle);
+    if (controls) controls.hidden = false;
+  });
+</script>
+<style>
+  .comparison { padding: clamp(3.5rem, 6vw, 6rem) 0; background: #faf8f1; color: #262626; --focus-color: #1f5b49; scroll-margin-top: 7rem; }
+  header { max-width: 850px; margin: 0 auto 2.5rem; text-align: center; }
+  .label { margin: 0 0 1rem; color: #1f5b49; font-weight: 750; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+  h2 { margin: 0; color: #1f5b49; font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.1; letter-spacing: -.04em; }
+  .slides { display: grid; gap: 2rem; }
+  .pair { display: grid; grid-template-columns: minmax(0,1fr) 2.5rem minmax(0,1fr); gap: 1.5rem; align-items: stretch; }
+  .pair[hidden], .controls[hidden] { display: none; }
+  /* Hidden pairs still size the shared grid, so every step has the same
+     intrinsic height. It updates naturally on resize and font loading. */
+  .slides.is-enhanced { gap: 0; overflow: clip; }
+  .slides.is-enhanced .pair { grid-area: 1 / 1; }
+  .slides.is-enhanced .pair[hidden] { display: grid; visibility: hidden; pointer-events: none; }
+  .slides.is-enhanced .pair[hidden].is-leaving { visibility: visible; }
+  .card { min-width: 0; padding: clamp(1.5rem, 3vw, 2.5rem); border: 1px solid #dedfd7; border-radius: .75rem; background: #fff; }
+  .problem .label { color: #854136; }
+  h3 { margin: 0 0 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid #dedfd7; font-size: clamp(1.5rem, 2.3vw, 2.25rem); line-height: 1.15; letter-spacing: -.03em; }
+  .solution h3 { color: #1f5b49; }
+  .card > p:not(.label) { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.65; }
+  .card > p:last-child { margin-bottom: 0; }
+  .arrow { align-self: center; color: #1f5b49; font-size: 2.5rem; }
+  .controls { display: flex; justify-content: center; align-items: center; gap: 1.2rem; margin-top: 1.5rem; }
+  .positions { display: flex; gap: .5rem; }
+  button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #1f5b49; border-radius: 50%; color: #1f5b49; background: white; cursor: pointer; font-weight: 750; }
+  button:hover, button[aria-current] { background: #1f5b49; color: white; }
+  .summary { max-width: 1000px; margin: 2rem auto; text-align: center; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.45; color: #1f5b49; }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; }
+  .demo { background: #1f5b49; border-color: #1f5b49; color: white; }
+  .trial { background: #f6e8c8; border-color: #f6e8c8; color: #1b2420; }
+  .trial-wrap { display: grid; gap: .5rem; text-align: center; }
+  small { font-size: .8rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  @media (max-width: 700px) { .pair { grid-template-columns: 1fr; gap: 1rem; } .arrow { justify-self: center; transform: rotate(90deg); } }
+  /* Share each mobile row as well, keeping both panels and the arrow aligned. */
+  @media (max-width: 700px) {
+    .slides.is-enhanced { grid-template-rows: auto auto auto; row-gap: 1rem; }
+    .slides.is-enhanced .pair { grid-area: 1 / 1 / 4 / 2; grid-template-rows: subgrid; }
+  }
+  @media (max-width: 480px) { .actions > *, .actions .button { width: 100%; } }
+</style>

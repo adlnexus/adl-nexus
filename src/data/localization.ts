@@ -13,6 +13,8 @@ export function routeFor(locale: SiteLocale, route = '/') {
 export function equivalentLocaleRoute(pathname: string, locale: SiteLocale) {
   const localePattern = new RegExp(`^/(${localizedLandingCodes.join('|')})(?=/|$)`);
   const route = pathname.replace(localePattern, '') || '/';
+  // New EN/SR Pipedrive articles have no Spanish translation yet.
+  if (locale === 'es' && route.startsWith('/solutions/pipedrive/')) return routeFor(locale, '/solutions/pipedrive');
   return routeFor(locale, route);
 }
 

@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import PipedriveFooter from '../components/PipedriveFooter.astro';
 import Footer from '../components/Footer.astro';
 import HomeRibbons from '../components/HomeRibbons.astro';
 import { equivalentLocaleRoute, localeCodes, socialMetadata, type SiteLocale } from '../data/localization';
@@ -10,8 +11,8 @@ interface Props {
   description?: string;
   darkHeader?: boolean;
   brandVariant?: 'default' | 'green';
-  footerVariant?: 'default' | 'home';
-  ribbonVariant?: 'home' | 'services';
+  footerVariant?: 'default' | 'home' | 'pipedrive';
+  ribbonVariant?: 'home' | 'services' | 'contact';
   homepage?: boolean;
   notFound?: boolean;
   lang?: SiteLocale;
@@ -36,6 +37,8 @@ const canonicalPath = Astro.url.pathname === '/' ? '/' : `${Astro.url.pathname.r
 const canonicalUrl = new URL(canonicalPath, site);
 const socialImageUrl = new URL('/og.png', site);
 const sitemapUrl = new URL('/sitemap-index.xml', site);
+const englishPlaybook = /^\/solutions\/pipedrive\/(?:knowledge-base\/[^/]+|workshop)\/$/.test(canonicalPath);
+const pageLocales = englishPlaybook ? ['en'] as const : /^\/(?:sr\/)?solutions\/pipedrive\/(?:pricing|implementation|knowledge-base)\/$/.test(canonicalPath) ? localeCodes.filter(locale => locale !== 'es') : localeCodes;
 const alternateFor = (locale: SiteLocale) => new URL(equivalentLocaleRoute(canonicalPath, locale), site);
 const social = socialMetadata[lang];
 const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
@@ -93,7 +96,7 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <meta property="og:site_name" content="ADL Nexus" />
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:locale" content={social.openGraphLocale} />
-    {localeCodes.filter((locale) => locale !== lang).map((locale) => <meta property="og:locale:alternate" content={socialMetadata[locale].openGraphLocale} />)}
+    {pageLocales.filter((locale) => locale !== lang).map((locale) => <meta property="og:locale:alternate" content={socialMetadata[locale].openGraphLocale} />)}
     <meta property="og:image" content={socialImageUrl.href} />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
@@ -104,15 +107,15 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl.href} />
     <meta name="twitter:image:alt" content={social.imageAlt} />
-    {!notFound && localeCodes.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale).href} />)}
+    {!notFound && pageLocales.map((locale) => <link rel="alternate" hreflang={locale} href={alternateFor(locale).href} />)}
     {!notFound && <link rel="alternate" hreflang="x-default" href={alternateFor('en').href} />}
     {structuredData && <script type="application/ld+json" set:html={structuredData} />}
     <title>{title}</title>
   </head>
-  <body class:list={{ 'homepage': homepage, 'home-ribbon-page': !!ribbonVariant, 'services-ribbon-page': ribbonVariant === 'services' }}>
+  <body class:list={{ 'homepage': homepage, 'home-ribbon-page': !!ribbonVariant, 'services-ribbon-page': ribbonVariant === 'services', 'contact-ribbon-page': ribbonVariant === 'contact' }}>
     <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} homepage={homepage} notFound={notFound} />
     <main><slot /></main>
-    <Footer lang={lang} variant={footerVariant} />
+    {footerVariant === 'pipedrive' ? <PipedriveFooter lang={lang} /> : <Footer lang={lang} variant={footerVariant} />}
     {ribbonVariant && <HomeRibbons variant={ribbonVariant} />}
   </body>
 </html>

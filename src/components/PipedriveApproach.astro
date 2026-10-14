@@ -1,0 +1,60 @@
+---
+import type { PipedriveDetailedCopy } from '../data/pipedrive';
+interface Props { lang: 'en' | 'sr'; detail: PipedriveDetailedCopy; contactHref: string }
+const { lang, detail, contactHref } = Astro.props;
+---
+<section class="approach" id="why-adl-nexus" aria-labelledby="why-adl-title">
+  <div class="container">
+    <!-- Keep the text-only layout until an approved team photograph is supplied. -->
+    <div class="approach-copy">
+      <h2 id="why-adl-title">{detail.why.eyebrow}</h2>
+      <h3>{detail.why.title}</h3>
+      <p class="lead">{detail.why.lead}</p>
+      {detail.why.paragraphs.map(text => <p>{text}</p>)}
+      <p class="partner">{detail.why.closing}</p>
+      <a class="button" href={contactHref}>{lang === 'sr' ? 'Hajde da pričamo' : 'Let’s talk'}</a>
+    </div>
+  </div>
+</section>
+<section class="workflow" id="how-it-works" aria-labelledby="workflow-title">
+  <div class="container">
+    <header><h2 id="workflow-title">{detail.workflow.eyebrow}</h2><p>{detail.workflow.title}</p></header>
+    <ol class="steps">
+      {detail.workflow.items.map((step, i) => <li>
+        <span class="number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{step.title}</h3>
+        <p>{step.text}</p>
+      </li>)}
+    </ol>
+  </div>
+</section>
+<style>
+  section { padding: clamp(3.5rem, 6vw, 6rem) 0; scroll-margin-top: 7rem; }
+  .approach { background: #faf8f1; color: #262626; --focus-color: #1f5b49; border-top: 1px solid #dedfd7; }
+  .approach-copy { max-width: 920px; }
+  h2 { margin: 0 0 1rem; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.2; letter-spacing: -.025em; }
+  .approach h2 { color: #1f5b49; }
+  .approach h3 { margin: 0 0 1.5rem; color: #182420; font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.1; letter-spacing: -.04em; }
+  .approach p { margin: 0 0 1.3rem; font-size: 1.05rem; line-height: 1.65; }
+  .approach .lead { font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.45; }
+  .partner { font-weight: 700; }
+  .button { margin-top: .5rem; color: white; background: #1f5b49; border-color: #1f5b49; }
+  .button:hover, .button:focus-visible { background: #173f34; border-color: #173f34; }
+  .workflow { background: #182420; color: white; }
+  header { text-align: center; margin-bottom: 3rem; }
+  header h2 { color: #aee9b4; }
+  header p { margin: 0; font-size: clamp(1.1rem, 2vw, 1.4rem); }
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; margin: 0; padding: 0; list-style: none; }
+  li { min-width: 0; position: relative; }
+  li:not(:last-child)::after { position: absolute; left: 3.5rem; right: -2.5rem; top: 1.75rem; height: 2px; background: #aee9b4; content: ''; }
+  .number { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 2px solid #aee9b4; border-radius: 50%; color: #aee9b4; font-weight: 750; }
+  .steps h3 { margin: 1.5rem 0 1rem; font-size: clamp(1.4rem, 2vw, 1.8rem); line-height: 1.2; letter-spacing: -.025em; }
+  .steps p { margin: 0; color: #e5ebe7; font-size: 1.05rem; line-height: 1.65; }
+  @media (max-width: 760px) {
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    li { padding-left: 5rem; }
+    .number { position: absolute; left: 0; top: 0; }
+    li:not(:last-child)::after { top: 3.5rem; bottom: -2rem; left: 1.75rem; right: auto; width: 2px; height: auto; }
+    .steps h3 { margin-top: 0; }
+  }
+</style>

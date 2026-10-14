@@ -1,6 +1,3 @@
-export const contactEmails = [
-  'andjelkalz@gmail.com',
-  'danilo.labovic1@gmail.com',
-] as const;
+export const contactEmails = ['info@adlnexus.com'] as const;
 
 export const enquiryRecipients = contactEmails.join(',');

@@ -1,0 +1,31 @@
+---
+import PipedriveLayout from '../../../layouts/PipedriveLayout.astro';
+import PipedriveTrust from '../../../components/PipedriveTrust.astro';
+import PipedriveStories from '../../../components/PipedriveStories.astro';
+import source from '../../../data/pipedrive-handoff.json';
+import english from '../../../data/pipedrive-implementation-en.json';
+import { routeFor } from '../../../data/localization';
+interface Props { lang?: 'en' | 'sr' }
+const {lang='en'}=Astro.props; const sr=lang==='sr';
+const copy: Record<string,string> = sr ? source : english;
+const t=(id:number)=>copy[String(id)];
+const range=(start:number,end:number)=>Array.from({length:end-start+1},(_,i)=>start+i);
+const contact=`${routeFor(lang,'/contact')}?solution=pipedrive#start-a-conversation`;
+const phases=[{title:414,items:[415]},{title:416,items:range(417,423)},{title:424,items:range(425,435)},{title:436,items:range(437,439)},{title:440,items:[441,442]}];
+---
+<PipedriveLayout lang={lang} title={t(395)} eyebrow={sr?'Implementacija i obuka':'Implementation & training'} description={t(396)}>
+<section class="pd-document"><div class="container pd-prose">
+ { (sr?[397,398,399,400,401]:[398,400,401]).map(id=><p>{t(id)}</p>) }
+ <blockquote>{t(402)}</blockquote><a class="button" href={contact}>{t(403)}</a>
+ <h2>{t(406)}</h2><p>{t(407)}</p><p>{t(408)}</p><a class="button" href={contact}>{t(409)}</a>
+</div></section>
+<section class="pd-document process"><div class="container"><p class="eyebrow">{t(412)}</p><h2>{t(413)}</h2><div class="phases">{phases.map(phase=><article class="card"><h3>{t(phase.title)}</h3><ul>{phase.items.map(id=><li>{t(id)}</li>)}</ul></article>)}</div><a class="button" href={contact}>{t(443)}</a></div></section>
+<section class="pd-document"><div class="container pd-prose"><h2>{t(446)}</h2><a class="button" href={routeFor(lang,'/solutions/pipedrive')}>{t(447)}</a>
+<h2>{t(450)}</h2>{[451,452,453].map(id=><p>{t(id)}</p>)}
+<h3>{sr?t(454):source['468']}</h3><ul>{(sr?[455,456,457,458]:[469,470,471,472]).map(id=><li>{source[String(id) as keyof typeof source]}</li>)}</ul>
+<p>{t(459)}</p><p><strong>{t(460)}</strong><br/>{t(461)}</p><p>{t(462)}</p><a class="button" href={contact}>{t(463)}</a>
+</div></section>
+<PipedriveTrust lang={lang} text={sr?source['479']:source['477']}/>
+<PipedriveStories lang={lang} compact/>
+</PipedriveLayout>
+<style>.process{background:#f0e9d6;}.process h2{margin-top:.5rem;}.phases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;margin:2rem 0;}.phases article:last-child{grid-column:1/-1;}.phases ul{padding-left:1.2rem;}.phases li+li{margin-top:.5rem;}@media(max-width:700px){.phases{grid-template-columns:1fr;}}</style>

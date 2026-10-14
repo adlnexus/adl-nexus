@@ -1,0 +1,18 @@
+---
+import PipedriveLayout from '../../../layouts/PipedriveLayout.astro';
+import PipedriveGettingStarted from '../../../components/PipedriveGettingStarted.astro';
+import PipedriveIntegrations from '../../../components/PipedriveIntegrations.astro';
+import PipedriveTrust from '../../../components/PipedriveTrust.astro';
+import PipedriveStories from '../../../components/PipedriveStories.astro';
+import PipedriveFaq from '../../../components/PipedriveFaq.astro';
+import plans from '../../../data/pipedrive-pricing.json';
+import source from '../../../data/pipedrive-handoff.json';
+import { pipedriveTrialHref,pipedriveDetailedCopy } from '../../../data/pipedrive';
+import { routeFor } from '../../../data/localization';
+interface Props { lang?: 'en' | 'sr' } const {lang='en'}=Astro.props;const sr=lang==='sr';
+---
+<PipedriveLayout lang={lang} title={sr?source['251']:'The right plan for every team'} eyebrow={sr?'Cenovnik':'Pricing'} description={sr?source['252']:'All plans include a free 30-day trial. No credit card required. Prices shown are billed annually.'}>
+<section class="pd-document"><div class="container"><div class="pricing-grid">{plans.map(plan=><article class:list={['plan',{popular:plan.name==='Premium'}]}><p class="tag">{plan.name==='Premium'?(sr?'Najpopularniji':'Most popular'):'Pipedrive'}</p><h2>{plan.name}</h2><p class="price">{plan.price} €</p><p>{sr?source['259']:'per user / month, billed annually'}</p><ul>{plan[lang].map(feature=><li>{feature}</li>)}</ul><a class="button" href={pipedriveTrialHref} rel="sponsored">{sr?'Isprobajte besplatno':'Try it free'}</a><div class="disclaimer"><p>{sr?source['255']:'Unlimited access, no credit card required. Used by over 100,000 companies.'}</p><p>{sr?source['256']:'Exact pricing, volume limits, and add-on fees are publicly available on the Pipedrive website. All prices shown are net prices.'}</p><a href="https://www.pipedrive.com/en/pricing">Pipedrive {sr?'cenovnik':'pricing'}</a></div></article>)}</div></div></section>
+<PipedriveGettingStarted lang={lang} pricing/><PipedriveIntegrations detail={pipedriveDetailedCopy[lang]} demoHref={`${routeFor(lang,'/contact')}?solution=pipedrive#start-a-conversation`}/><PipedriveTrust lang={lang} text={sr?source['335']:source['333']}/><PipedriveStories lang={lang}/><PipedriveFaq lang={lang}/>
+</PipedriveLayout>
+<style>.pricing-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;}.plan{display:flex;flex-direction:column;min-width:0;border:1px solid #d6d8cc;border-radius:1rem;padding:1.5rem;background:#fffdf8;}.plan.popular{border:2px solid #1f5b49;}.tag{text-transform:uppercase;font-size:.75rem;font-weight:750;color:#1f5b49;}.plan h2{margin:.5rem 0;}.plan .price{font-size:3rem;line-height:1.1;font-weight:750;color:#1f5b49;margin:1rem 0;}.plan ul{padding-left:1.2rem;margin-bottom:2rem;}.plan li+li{margin-top:.75rem;}.plan .button{margin-top:auto;text-align:center;}.disclaimer{font-size:.8rem;margin-top:1rem;}.disclaimer p{line-height:1.5;}@media(max-width:1100px){.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}@media(max-width:600px){.pricing-grid{grid-template-columns:1fr;}}</style>
