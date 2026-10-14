@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import PipedriveNav from '../components/PipedriveNav.astro';
 import PipedriveFooter from '../components/PipedriveFooter.astro';
 import Footer from '../components/Footer.astro';
 import HomeRibbons from '../components/HomeRibbons.astro';
@@ -113,7 +114,7 @@ const structuredData = canonicalPath === '/' && lang === 'en' ? JSON.stringify([
     <title>{title}</title>
   </head>
   <body class:list={{ 'homepage': homepage, 'home-ribbon-page': !!ribbonVariant, 'services-ribbon-page': ribbonVariant === 'services', 'contact-ribbon-page': ribbonVariant === 'contact' }}>
-    <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} homepage={homepage} notFound={notFound} />
+    {footerVariant === 'pipedrive' ? <PipedriveNav lang={lang} /> : <Header dark={darkHeader} lang={lang} brandVariant={brandVariant} homepage={homepage} notFound={notFound} />}
     <main><slot /></main>
     {footerVariant === 'pipedrive' ? <PipedriveFooter lang={lang} /> : <Footer lang={lang} variant={footerVariant} />}
     {ribbonVariant && <HomeRibbons variant={ribbonVariant} />}

@@ -1,0 +1,18 @@
+{
+  "reviewed": "2026-10-14",
+  "reference": "Owner-supplied viber_image_2026-10-14_12-17-29-499.jpg",
+  "template": "https://floq-creative-a-builder-zjnaqwe9o7oyh3pz.hostingersite.com",
+  "assets": [
+    {
+      "local": "premier-partner.png",
+      "source": "https://assets.zyrosite.com/UB2WVlktR04sh13f/gergoi-posztok-11-4-lN3c2gxi1k0hLpq7.png",
+      "note": "Unmodified original transparent Premier Partner asset, owner explicitly requested use."
+    },
+    {
+      "local": "playbooks/psh-site-materials-2-ufcPDcxzMjJ0719q.png",
+      "source": "https://assets.zyrosite.com/UB2WVlktR04sh13f/psh-site-materials-2-ufcPDcxzMjJ0719q.png",
+      "note": "Existing original transparent laptop and phone composition."
+    }
+  ],
+  "trustBackground": "No matching gold/green wave asset found in template HTML. Static CSS gradients, curved lines and dot pattern approximate the supplied reference without an image dependency."
+}

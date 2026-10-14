@@ -3,11 +3,13 @@ interface Props { lang: 'en' | 'sr' | 'es'; text: string }
 const { lang, text } = Astro.props;
 const value = lang === 'en' ? '100,000' : '100.000';
 const [before, after] = text.split(value);
+const highlighted = lang === 'en' ? 'Trusted' : lang === 'sr' ? 'Više od' : 'Más de';
+const lead = before.replace(highlighted, '');
 ---
 
 <aside class="pd-trust-template" id="pipedrive-trust" data-trust-counter data-locale={lang}>
   <div class="container">
-    <p><span class="sr-only">{text}</span><span aria-hidden="true">{before}<span class="trust-number"><span class="number-space">{value}</span><span class="number-value" data-count>{value}</span></span>{after}</span></p>
+    <p><span class="sr-only">{text}</span><span aria-hidden="true"><strong>{highlighted}</strong>{lead}<span class="trust-number"><span class="number-space">{value}</span><span class="number-value" data-count>{value}</span></span>{after}</span></p>
     <div class="trust-badges">
       <img src="/partners/pipedrive/crmmys-2026.avif" width="375" height="375" alt={lang === 'es' ? 'Premios CRMMY 2026 — Mejor CRM de ventas: Pipedrive' : 'CRMMY Awards 2026 — Best Sales CRM: Pipedrive'} />
       <img src="/partners/pipedrive/sourceforge-winter-2025.avif" width="375" height="381" alt={lang === 'es' ? 'Líder de SourceForge — Invierno de 2025: Pipedrive' : 'SourceForge Leader — Winter 2025: Pipedrive'} />
@@ -36,7 +38,7 @@ const [before, after] = text.split(value);
       }
     };
     const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
+      if (!entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 1)) return;
       observer.disconnect();
       if (motion.matches) { finish(); return; }
       number.textContent = '0';
@@ -48,20 +50,23 @@ const [before, after] = text.split(value);
         frame = requestAnimationFrame(tick);
       };
       frame = requestAnimationFrame(tick);
-    });
+    }, { threshold: 1, rootMargin: '-84px 0px -24px 0px' });
     motion.addEventListener('change', onMotionChange);
-    observer.observe(block);
+    observer.observe(number);
   });
 </script>
 
 <style>
-  .pd-trust-template { padding: 24px 0; background: #182420; color: #fff; text-align: center; }
-  p { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: normal; }
-  .trust-number { display: inline-grid; font-variant-numeric: tabular-nums; }
+  .pd-trust-template { scroll-margin-top:100px;position:relative;isolation:isolate;overflow:hidden;padding:20px 0 16px;background:radial-gradient(ellipse at 12% 80%,#4a684027,transparent 45%),radial-gradient(ellipse at 88% 80%,#8d8c3a30,transparent 45%),#092e24;color:#fff;text-align:center; }
+  .pd-trust-template::before,.pd-trust-template::after{content:'';position:absolute;z-index:-1;pointer-events:none;width:70%;height:240px;border-radius:50%;border-top:1px solid #d5c97480;box-shadow:0 -4px 18px #c9d77b33,0 -1px 2px #f8e8a650;top:75px;transform:rotate(-13deg);left:-8%;background-image:radial-gradient(#d5cf7950 .7px,transparent 1px);background-size:10px 12px;}
+  .pd-trust-template::after{left:auto;right:-8%;transform:rotate(13deg);}
+  strong{color:#edd16f;}
+  p { margin: 0; font-size: clamp(1.25rem,1.8vw,1.8rem); font-weight: 700; line-height: 1.3; letter-spacing: normal; }
+  .trust-number { font-size:1.4em;color:#d4f3ce;text-shadow:0 0 14px #b8efad66;display: inline-grid; font-variant-numeric: tabular-nums; }
   .trust-number > span { grid-area: 1 / 1; }
   .number-space { visibility: hidden; }
   .number-value { text-align: right; }
-  .trust-badges { display: flex; justify-content: center; align-items: center; gap: 38px; margin-top: 20px; }
+  .trust-badges { display: flex; justify-content: center; align-items: center; gap: 38px; margin-top: 12px; }
   .trust-badges img { width: 72px; height: auto; }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   @media (max-width: 480px) {
