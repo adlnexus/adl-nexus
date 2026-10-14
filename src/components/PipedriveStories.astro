@@ -10,7 +10,7 @@ const es = lang === 'es';
  <div class="container">
   <header><p class="eyebrow">{es ? 'Experiencias de clientes de Pipedrive' : sr ? 'Iskustva Pipedrive korisnika' : 'Pipedrive customer stories'}</p><h2 id="stories-title">{es ? 'Resultados reales de empresas reales.' : sr ? 'Stvarni rezultati stvarnih kompanija.' : 'Real results from real businesses.'}</h2></header>
   <ul id="stories-track" class="track" tabindex="0" aria-label={es ? 'Experiencias de clientes: usa las flechas del teclado para desplazarte' : sr ? 'Iskustva korisnika — koristite strelice za listanje' : 'Customer stories — use arrow keys to browse'}>{entries.map(([category, quote, name, role, metrics]) => <li><article><p class="eyebrow">{category}</p>{Array.isArray(metrics) && metrics.length > 0 && <dl>{metrics.map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}<blockquote><p>{quote}</p></blockquote><p class="person"><strong>{name}</strong><span>{role}</span></p></article></li>)}</ul>
-  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={es ? 'Experiencia anterior' : sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={es ? 'Siguiente experiencia' : sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" data-pause-toggle aria-pressed="false">{es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}</button></div>
+  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={es ? 'Experiencia anterior' : sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={es ? 'Siguiente experiencia' : sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" data-pause-toggle aria-controls="stories-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}><span aria-hidden="true" data-playback-icon>⏸</span></button></div>
   <p class="trust">{es ? 'Más de 100.000 empresas en 179 países utilizan Pipedrive' : sr ? 'Više od 100.000 kompanija u 179 zemalja koristi Pipedrive' : 'Used by over 100,000 companies in 179 countries'}</p>
   <ul class="ratings" aria-label={es ? 'Valoraciones de los usuarios' : sr ? 'Ocene korisnika' : 'Customer ratings'}>{ratings.map(([name,score]) => <li><strong>{name}</strong><span>{score}/5</span><span class="stars" aria-hidden="true">★★★★★</span></li>)}</ul>
  </div>
@@ -34,7 +34,9 @@ const es = lang === 'es';
   };
   const sync = () => {
    clearTimeout(timer);
-   toggle.textContent = paused || motion.matches ? root.dataset.play! : root.dataset.pause!;
+   const label = paused || motion.matches ? root.dataset.play! : root.dataset.pause!;
+   toggle.setAttribute('aria-label',label); toggle.title = label;
+   toggle.querySelector('[data-playback-icon]')!.textContent = paused || motion.matches ? '▶' : '⏸';
    toggle.setAttribute('aria-pressed',String(paused || motion.matches));
    toggle.disabled = motion.matches;
    if (max() > 0 && !paused && !motion.matches && !hovering && !focused && visible && !document.hidden) timer = setTimeout(()=>{ go(target+1); sync(); },6000);
@@ -47,12 +49,15 @@ const es = lang === 'es';
   root.addEventListener('focusin',()=>{focused=true;sync();});root.addEventListener('focusout',event=>{focused=event.relatedTarget instanceof Node && root.contains(event.relatedTarget);sync();});
   track.addEventListener('scroll',update,{passive:true});track.addEventListener('scrollend',()=>{target=Math.round(track.scrollLeft/stride());update();});
   document.addEventListener('visibilitychange',sync);motion.addEventListener('change',()=>{go(target,false,true);sync();});
-  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync();},{threshold:.25}).observe(root);
+  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting && entry.intersectionRatio >= .25;sync();},{threshold:.25}).observe(root);
   new ResizeObserver(()=>{target=Math.min(target,Math.ceil(max()/stride()));go(target,false,true);update();sync();}).observe(track);
   root.querySelector<HTMLElement>('[data-controls]')!.hidden=false;update();sync();
  });
 </script>
 <style>
+.track{scrollbar-width:none;}
+[data-pause-toggle]{width:44px;height:44px;padding:0;font-size:1rem;display:grid;place-items:center;}
+.track::-webkit-scrollbar{display:none;}
 .stories { padding:clamp(3.5rem,6vw,6rem) 0; background:#faf8f1;color:#262626;--focus-color:#1f5b49;scroll-margin-top:7rem; }
 header { text-align:center;margin-bottom:2.5rem; }.eyebrow { color:#1f5b49;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;font-weight:750; }
 h2 { margin:0;color:#1f5b49;font-size:clamp(2rem,3.5vw,3.5rem);letter-spacing:-.04em;line-height:1.12; }

@@ -6,7 +6,7 @@ const { lang, copy } = Astro.props;
 const sr = lang === 'sr';
 const es = lang === 'es';
 ---
-<section id="pipedrive-industries" class="industries" aria-labelledby="industry-title" data-industries>
+<section id="pipedrive-industries" class="industries" aria-labelledby="industry-title" data-industries data-pause={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'} data-play={es ? 'Reanudar' : sr ? 'Pokreni' : 'Play'}>
   <div class="container heading"><p class="eyebrow">{copy.eyebrow}</p><h2 id="industry-title">{copy.title}</h2><p>{copy.lead}</p></div>
   <ul class="track" id="industry-track" data-track aria-label={es ? 'Sectores: usa las flechas del teclado para desplazarte' : sr ? 'Industrije — koristite strelice za listanje' : 'Industries — use arrow keys to browse'} tabindex="0">
     {pipedriveIndustries.map((industry, i) => <li data-card>
@@ -19,8 +19,9 @@ const es = lang === 'es';
   </ul>
   <div class="controls" data-controls hidden>
     <button type="button" data-prev aria-controls="industry-track" aria-label={es ? 'Sector anterior' : sr ? 'Prethodna industrija' : 'Previous industry'}>←</button>
-    <span data-status aria-live="polite" aria-atomic="true">1 / 12</span>
+    <span data-status aria-live="off" aria-atomic="true">1 / 12</span>
     <button type="button" data-next aria-controls="industry-track" aria-label={es ? 'Siguiente sector' : sr ? 'Sledeća industrija' : 'Next industry'}>→</button>
+    <button type="button" data-pause-toggle aria-controls="industry-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}><span aria-hidden="true" data-playback-icon>⏸</span></button>
   </div>
 </section>
 <script>
@@ -31,6 +32,23 @@ const es = lang === 'es';
     const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
     const status = root.querySelector<HTMLElement>('[data-status]')!;
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const toggle = root.querySelector<HTMLButtonElement>('[data-pause-toggle]')!;
+    let paused = false, hovering = false, focused = false, visible = false, direction = 1;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const sync = () => {
+      clearTimeout(timer);
+      const stopped = paused || motion.matches;
+      const label = stopped ? root.dataset.play! : root.dataset.pause!;
+      toggle.setAttribute('aria-label', label); toggle.title = label;
+      toggle.setAttribute('aria-pressed', String(stopped)); toggle.disabled = motion.matches;
+      toggle.querySelector('[data-playback-icon]')!.textContent = stopped ? '▶' : '⏸';
+      if (!stopped && !hovering && !focused && visible && !document.hidden) timer = setTimeout(() => {
+        if (current === cards.length - 1) direction = -1;
+        if (current === 0) direction = 1;
+        go(current + direction); sync();
+      }, 6000);
+    };
+    const manual = () => { paused = true; status.setAttribute('aria-live', 'polite'); sync(); };
     let current = 0;
     let frame = 0;
     const update = () => {
@@ -46,21 +64,35 @@ const es = lang === 'es';
       track.scrollTo({ left: cards[target].offsetLeft - (track.clientWidth - cards[target].offsetWidth) / 2, behavior: motion.matches ? 'instant' : 'smooth' });
       if (focus) cards[target].querySelector('a')?.focus({ preventScroll: true });
     };
-    prev.addEventListener('click', () => go(current - 1));
-    next.addEventListener('click', () => go(current + 1));
+    prev.addEventListener('click', () => { manual(); go(current - 1); });
+    next.addEventListener('click', () => { manual(); go(current + 1); });
     track.addEventListener('keydown', event => {
       const keys: Record<string, number> = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: cards.length - 1 };
       if (!(event.key in keys)) return;
-      event.preventDefault(); go(keys[event.key], true);
+      event.preventDefault(); manual(); go(keys[event.key], true);
     });
     track.addEventListener('scroll', () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); }, { passive: true });
     new ResizeObserver(() => { track.scrollTo({left: cards[current].offsetLeft - (track.clientWidth - cards[current].offsetWidth) / 2, behavior: 'instant'}); update(); }).observe(track);
+    toggle.addEventListener('click', () => { paused = !paused; status.setAttribute('aria-live', paused ? 'polite' : 'off'); sync(); });
+    root.addEventListener('pointerenter', () => { hovering = true; sync(); });
+    root.addEventListener('pointerleave', () => { hovering = false; sync(); });
+    root.addEventListener('focusin', () => { focused = true; sync(); });
+    root.addEventListener('focusout', event => { focused = event.relatedTarget instanceof Node && root.contains(event.relatedTarget); sync(); });
+    track.addEventListener('pointerdown', manual);
+    track.addEventListener('wheel', manual, { passive: true });
+    document.addEventListener('visibilitychange', sync);
+    motion.addEventListener('change', () => { if (motion.matches) go(current); sync(); });
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting && entry.intersectionRatio >= .25; sync(); }, { threshold: .25 }).observe(track);
     root.classList.add('enhanced');
     root.querySelector<HTMLElement>('[data-controls]')!.hidden = false;
-    update();
+    update(); sync();
   });
 </script>
 <style>
+.track{scrollbar-width:none;}
+[data-pause-toggle]{font-size:1rem;}
+.track:focus-visible{outline:3px solid #1f5b49;outline-offset:-3px;}
+.track::-webkit-scrollbar{display:none;}
   .industries { padding: clamp(3.5rem, 6vw, 6rem) 0; background: #f0e9d6; color: #182420; --focus-color: #1f5b49; scroll-margin-top: 7rem; }
   .heading { text-align: center; }
   .eyebrow { margin: 0 0 1rem; font-weight: 750; color: #182420; }
