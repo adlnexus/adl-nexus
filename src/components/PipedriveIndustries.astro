@@ -1,4 +1,5 @@
 ---
+import PipedriveCarouselControls from './PipedriveCarouselControls.astro';
 import type { PipedriveDetailedCopy } from '../data/pipedrive';
 import { pipedriveIndustries } from '../data/pipedrive-industries';
 interface Props { lang: 'en' | 'sr' | 'es'; copy: PipedriveDetailedCopy['audiences'] }
@@ -17,90 +18,11 @@ const es = lang === 'es';
       </a>
     </li>)}
   </ul>
-  <div class="controls" data-controls hidden>
-    <button type="button" data-prev aria-controls="industry-track" aria-label={es ? 'Sector anterior' : sr ? 'Prethodna industrija' : 'Previous industry'}>←</button>
-    <span data-status aria-live="off" aria-atomic="true">1 / 12</span>
-    <button type="button" data-next aria-controls="industry-track" aria-label={es ? 'Siguiente sector' : sr ? 'Sledeća industrija' : 'Next industry'}>→</button>
-    <button type="button" class="keyboard-playback" data-pause-toggle aria-controls="industry-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}>{es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}</button>
-  </div>
+  <PipedriveCarouselControls lang={lang} trackId="industry-track" centered={true} />
 </section>
-<script>
-  document.querySelectorAll<HTMLElement>('[data-industries]').forEach(root => {
-    const track = root.querySelector<HTMLElement>('[data-track]')!;
-    const cards = [...root.querySelectorAll<HTMLElement>('[data-card]')];
-    const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
-    const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
-    const status = root.querySelector<HTMLElement>('[data-status]')!;
-    const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const hoverDevice = matchMedia('(hover: hover) and (pointer: fine)');
-    const toggle = root.querySelector<HTMLButtonElement>('[data-pause-toggle]')!;
-    let paused = false, hovering = false, focused = false, touching = false, visible = false, direction = 1;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const sync = () => {
-      clearTimeout(timer);
-      const stopped = paused || motion.matches;
-      const label = stopped ? root.dataset.play! : root.dataset.pause!;
-      toggle.setAttribute('aria-label', label); toggle.title = label;
-      toggle.setAttribute('aria-pressed', String(stopped)); toggle.disabled = motion.matches;
-      toggle.textContent = label;
-      if (!stopped && !hovering && !focused && !touching && visible && !document.hidden) timer = setTimeout(() => {
-        if (current === cards.length - 1) direction = -1;
-        if (current === 0) direction = 1;
-        go(current + direction); sync();
-      }, 6000);
-    };
-    const manual = () => { status.setAttribute('aria-live', 'polite'); sync(); };
-    let current = 0;
-    let frame = 0;
-    const update = () => {
-      const center = track.scrollLeft + track.clientWidth / 2;
-      current = cards.reduce((best, card, i) => Math.abs(card.offsetLeft + card.offsetWidth / 2 - center) < Math.abs(cards[best].offsetLeft + cards[best].offsetWidth / 2 - center) ? i : best, 0);
-      cards.forEach((card, i) => card.classList.toggle('active', i === current));
-      status.textContent = `${current + 1} / ${cards.length}`;
-      prev.disabled = current === 0;
-      next.disabled = current === cards.length - 1;
-    };
-    const go = (index: number, focus = false) => {
-      const target = Math.max(0, Math.min(cards.length - 1, index));
-      track.scrollTo({ left: cards[target].offsetLeft - (track.clientWidth - cards[target].offsetWidth) / 2, behavior: motion.matches ? 'instant' : 'smooth' });
-      if (focus) cards[target].querySelector('a')?.focus({ preventScroll: true });
-    };
-    prev.addEventListener('click', () => { manual(); go(current - 1); });
-    next.addEventListener('click', () => { manual(); go(current + 1); });
-    track.addEventListener('keydown', event => {
-      const keys: Record<string, number> = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: cards.length - 1 };
-      if (!(event.key in keys)) return;
-      event.preventDefault(); manual(); go(keys[event.key], true);
-    });
-    track.addEventListener('scroll', () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); }, { passive: true });
-    track.addEventListener('scrollend', sync);
-    new ResizeObserver(() => { track.scrollTo({left: cards[current].offsetLeft - (track.clientWidth - cards[current].offsetWidth) / 2, behavior: 'instant'}); update(); }).observe(track);
-    toggle.addEventListener('click', () => { paused = !paused; status.setAttribute('aria-live', paused ? 'polite' : 'off'); sync(); });
-  // Touch-generated pointerenter and pointer focus must not latch hover/focus pause.
-  root.addEventListener('pointerenter', event => { hovering = hoverDevice.matches && event.pointerType === 'mouse'; sync(); });
-  root.addEventListener('pointerleave', () => { hovering = false; sync(); });
-  root.addEventListener('keydown', () => { focused = true; sync(); });
-  root.addEventListener('focusin', event => { focused = event.target instanceof Element && event.target.matches(':focus-visible'); sync(); });
-  root.addEventListener('focusout', event => { focused = event.relatedTarget instanceof Element && root.contains(event.relatedTarget) && event.relatedTarget.matches(':focus-visible'); sync(); });
-  root.addEventListener('pointerdown', event => { focused = false; touching = event.pointerType !== 'mouse'; sync(); });
-  const release = () => { if (touching) { touching = false; sync(); } };
-  window.addEventListener('pointerup', release);
-  window.addEventListener('pointercancel', release);
-  track.addEventListener('wheel', () => sync(), { passive: true });
-  hoverDevice.addEventListener('change', () => { if (!hoverDevice.matches) hovering = false; sync(); });
-    document.addEventListener('visibilitychange', sync);
-    motion.addEventListener('change', () => { if (motion.matches) go(current); sync(); });
-    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting && entry.intersectionRatio >= .25; sync(); }, { threshold: .25 }).observe(track);
-    root.classList.add('enhanced');
-    root.querySelector<HTMLElement>('[data-controls]')!.hidden = false;
-    update(); sync();
-  });
-</script>
 <style>
 .track{scrollbar-width:none;}
-.controls{position:relative;}
-.keyboard-playback:not(:focus-visible){position:absolute;width:1px;height:1px;min-width:0;min-height:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
-.keyboard-playback:focus-visible{width:auto;min-height:44px;padding:.6rem 1rem;font-size:1rem;position:absolute;top:calc(100% + 8px);z-index:2;}
+
 .track:focus-visible{outline:3px solid #1f5b49;outline-offset:-3px;}
 .track::-webkit-scrollbar{display:none;}
   .industries { padding: clamp(3.5rem, 6vw, 6rem) 0; background: #f0e9d6; color: #182420; --focus-color: #1f5b49; scroll-margin-top: 7rem; }
@@ -117,12 +39,7 @@ const es = lang === 'es';
   .badge { position: absolute; right: 0; bottom: 0; width: 40%; height: 20%; display: grid; place-items: center; padding: .2rem; border-radius: .9rem 0 1rem 0; background: #1f5b49; color: #fff; font-size: clamp(.65rem, 1.3vw, 1rem); font-weight: 750; }
   .enhanced li { transform: scale(.94); transition: transform .2s ease; }
   .enhanced li.active, .enhanced li:focus-within { transform: scale(1); }
-  .controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
-  .controls[hidden] { display: none; }
-  button { width: 48px; height: 48px; border: 1px solid #1f5b49; border-radius: 50%; color: #1f5b49; background: white; font-size: 1.5rem; cursor: pointer; }
-  button:hover:not(:disabled) { background: #1f5b49; color: white; }
-  button:disabled { opacity: .4; cursor: default; }
-  [data-status] { min-width: 5ch; text-align: center; font-variant-numeric: tabular-nums; }
+
   @media (max-width: 700px) { .track { --card-width: 84vw; gap: .6rem; } h3 { inset: 25% 3% auto; padding: .5rem; font-size: 1rem; } }
   @media (prefers-reduced-motion: reduce) { .enhanced li { transition: none; } }
 </style>

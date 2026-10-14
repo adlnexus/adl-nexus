@@ -1,0 +1,31 @@
+---
+interface Props { lang: 'en' | 'sr' | 'es'; trackId: string; centered?: boolean }
+const { lang, trackId, centered = false } = Astro.props;
+const labels = {
+ en: { show: 'Show', pause: 'Pause automatic slides', play: 'Resume automatic slides', navigation: 'Choose a slide' },
+ sr: { show: 'Prikaži', pause: 'Pauziraj automatsko listanje', play: 'Nastavi automatsko listanje', navigation: 'Izaberite slajd' },
+ es: { show: 'Mostrar', pause: 'Pausar los cambios automáticos', play: 'Reanudar los cambios automáticos', navigation: 'Elegir una diapositiva' },
+}[lang];
+---
+<div class="carousel-controls" data-carousel-controls data-track-id={trackId} data-centered={String(centered)} data-show={labels.show} data-pause={labels.pause} data-play={labels.play} hidden>
+ <div class="dots" role="group" aria-label={labels.navigation}></div>
+ <button class="keyboard-playback" type="button" aria-controls={trackId} aria-pressed="false">{labels.pause}</button>
+</div>
+<script>
+ import { initPipedriveCarousels } from '../scripts/pipedrive-carousels';
+ initPipedriveCarousels();
+</script>
+<style>
+.carousel-controls { position:relative; margin:1rem auto 2rem; max-width:100%; }
+.carousel-controls[hidden] { display:none; }
+.dots { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; }
+.dots :global(button) { display:grid; place-items:center; width:26px; height:44px; padding:0; border:0; border-radius:6px; background:transparent; cursor:pointer; }
+.dots :global(button::before) { content:''; display:block; width:8px; height:8px; border-radius:99px; background:#64786f; transition:width .2s ease, background-color .2s ease; }
+.dots :global(button[aria-current="true"]) { width:42px; }
+.dots :global(button[aria-current="true"]::before) { width:30px; background:#1f5b49; }
+.dots :global(button:hover::before) { background:#1f5b49; }
+.dots :global(button:focus-visible), .keyboard-playback:focus-visible { outline:3px solid #1f5b49; outline-offset:1px; }
+.keyboard-playback { position:absolute; top:100%; left:50%; transform:translateX(-50%); z-index:2; padding:.6rem 1rem; min-height:44px; border:1px solid #1f5b49; border-radius:2rem; background:white; color:#1f5b49; font:inherit; cursor:pointer; }
+.keyboard-playback:not(:focus-visible) { width:1px; height:1px; min-height:0; padding:0; border:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@media(prefers-reduced-motion:reduce) { .dots :global(button::before) { transition:none; } }
+</style>

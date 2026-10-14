@@ -1,4 +1,5 @@
 ---
+import PipedriveCarouselControls from './PipedriveCarouselControls.astro';
 import stories from '../data/pipedrive-stories.json';
 interface Props { lang: 'en' | 'sr' | 'es'; compact?: boolean }
 const { lang, compact = false } = Astro.props;
@@ -10,66 +11,14 @@ const es = lang === 'es';
  <div class="container">
   <header><p class="eyebrow">{es ? 'Experiencias de clientes de Pipedrive' : sr ? 'Iskustva Pipedrive korisnika' : 'Pipedrive customer stories'}</p><h2 id="stories-title">{es ? 'Resultados reales de empresas reales.' : sr ? 'Stvarni rezultati stvarnih kompanija.' : 'Real results from real businesses.'}</h2></header>
   <ul id="stories-track" class="track" tabindex="0" aria-label={es ? 'Experiencias de clientes: usa las flechas del teclado para desplazarte' : sr ? 'Iskustva korisnika — koristite strelice za listanje' : 'Customer stories — use arrow keys to browse'}>{entries.map(([category, quote, name, role, metrics]) => <li><article><p class="eyebrow">{category}</p>{Array.isArray(metrics) && metrics.length > 0 && <dl>{metrics.map(([label,value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}<blockquote><p>{quote}</p></blockquote><p class="person"><strong>{name}</strong><span>{role}</span></p></article></li>)}</ul>
-  <div class="controls" data-controls hidden><button type="button" data-prev aria-controls="stories-track" aria-label={es ? 'Experiencia anterior' : sr ? 'Prethodno iskustvo' : 'Previous story'}>←</button><span data-status aria-live="off"></span><button type="button" data-next aria-controls="stories-track" aria-label={es ? 'Siguiente experiencia' : sr ? 'Sledeće iskustvo' : 'Next story'}>→</button><button type="button" class="keyboard-playback" data-pause-toggle aria-controls="stories-track" aria-pressed="false" aria-label={es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}>{es ? 'Pausar' : sr ? 'Pauziraj' : 'Pause'}</button></div>
+  <PipedriveCarouselControls lang={lang} trackId="stories-track" centered={false} />
   <p class="trust">{es ? 'Más de 100.000 empresas en 179 países utilizan Pipedrive' : sr ? 'Više od 100.000 kompanija u 179 zemalja koristi Pipedrive' : 'Used by over 100,000 companies in 179 countries'}</p>
   <ul class="ratings" aria-label={es ? 'Valoraciones de los usuarios' : sr ? 'Ocene korisnika' : 'Customer ratings'}>{ratings.map(([name,score]) => <li><strong>{name}</strong><span>{score}/5</span><span class="stars" aria-hidden="true">★★★★★</span></li>)}</ul>
  </div>
 </section>
-<script>
- document.querySelectorAll<HTMLElement>('[data-stories]').forEach(root => {
-  const track = root.querySelector<HTMLElement>('.track')!;
-  const cards = [...track.querySelectorAll<HTMLElement>('li')];
-  const status = root.querySelector<HTMLElement>('[data-status]')!;
-  const toggle = root.querySelector<HTMLButtonElement>('[data-pause-toggle]')!;
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const hoverDevice = matchMedia('(hover: hover) and (pointer: fine)');
-  let paused = false, hovering = false, focused = false, touching = false, visible = false, target = 0;
-  let timer: ReturnType<typeof setTimeout> | undefined;
-  const stride = () => cards[1].offsetLeft - cards[0].offsetLeft;
-  const max = () => Math.max(0, track.scrollWidth - track.clientWidth);
-  const update = () => { const first = Math.round(track.scrollLeft / stride()); const count = Math.max(1, Math.floor((track.clientWidth + stride() - cards[0].offsetWidth + 1) / stride())); status.textContent = `${first + 1}–${Math.min(cards.length,first + count)} / ${cards.length}`; };
-  const go = (index: number, manual = false, instant = false) => {
-   target = index < 0 ? Math.ceil(max()/stride()) : index > Math.ceil(max()/stride()) ? 0 : index;
-   if (manual) { status.setAttribute('aria-live','polite'); sync(); }
-   track.scrollTo({left: Math.min(max(),target*stride()),behavior: motion.matches || instant ? 'instant' : 'smooth'});
-  };
-  const sync = () => {
-   clearTimeout(timer);
-   const label = paused || motion.matches ? root.dataset.play! : root.dataset.pause!;
-   toggle.setAttribute('aria-label',label); toggle.title = label;
-   toggle.textContent = label;
-   toggle.setAttribute('aria-pressed',String(paused || motion.matches));
-   toggle.disabled = motion.matches;
-   if (max() > 0 && !paused && !motion.matches && !hovering && !focused && !touching && visible && !document.hidden) timer = setTimeout(()=>{ go(target+1); sync(); },6000);
-  };
-  root.querySelector('[data-prev]')!.addEventListener('click',()=>go(target-1,true));
-  root.querySelector('[data-next]')!.addEventListener('click',()=>go(target+1,true));
-  toggle.addEventListener('click',()=>{ paused=!paused;status.setAttribute('aria-live',paused?'polite':'off');sync(); });
-  track.addEventListener('keydown',event=>{const keys:Record<string,number>={ArrowLeft:target-1,ArrowRight:target+1,Home:0,End:Math.ceil(max()/stride())};if(!(event.key in keys))return;event.preventDefault();go(keys[event.key],true);});
-  // Touch-generated pointerenter and pointer focus must not latch hover/focus pause.
-  root.addEventListener('pointerenter', event => { hovering = hoverDevice.matches && event.pointerType === 'mouse'; sync(); });
-  root.addEventListener('pointerleave', () => { hovering = false; sync(); });
-  root.addEventListener('keydown', () => { focused = true; sync(); });
-  root.addEventListener('focusin', event => { focused = event.target instanceof Element && event.target.matches(':focus-visible'); sync(); });
-  root.addEventListener('focusout', event => { focused = event.relatedTarget instanceof Element && root.contains(event.relatedTarget) && event.relatedTarget.matches(':focus-visible'); sync(); });
-  root.addEventListener('pointerdown', event => { focused = false; touching = event.pointerType !== 'mouse'; sync(); });
-  const release = () => { if (touching) { touching = false; sync(); } };
-  window.addEventListener('pointerup', release);
-  window.addEventListener('pointercancel', release);
-  track.addEventListener('wheel', () => sync(), { passive: true });
-  hoverDevice.addEventListener('change', () => { if (!hoverDevice.matches) hovering = false; sync(); });
-  track.addEventListener('scroll',update,{passive:true});track.addEventListener('scrollend',()=>{target=Math.round(track.scrollLeft/stride());update();sync();});
-  document.addEventListener('visibilitychange',sync);motion.addEventListener('change',()=>{go(target,false,true);sync();});
-  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting && entry.intersectionRatio >= .25;sync();},{threshold:.25}).observe(track);
-  new ResizeObserver(()=>{target=Math.min(target,Math.ceil(max()/stride()));go(target,false,true);update();sync();}).observe(track);
-  root.querySelector<HTMLElement>('[data-controls]')!.hidden=false;update();sync();
- });
-</script>
 <style>
 .track{scrollbar-width:none;}
-.controls{position:relative;}
-.keyboard-playback:not(:focus-visible){position:absolute;width:1px;height:1px;min-width:0;min-height:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
-.keyboard-playback:focus-visible{width:auto;min-height:44px;padding:.6rem 1rem;font-size:1rem;position:absolute;top:calc(100% + 8px);z-index:2;}
+
 .track::-webkit-scrollbar{display:none;}
 .stories { padding:clamp(3.5rem,6vw,6rem) 0; background:#faf8f1;color:#262626;--focus-color:#1f5b49;scroll-margin-top:7rem; }
 header { text-align:center;margin-bottom:2.5rem; }.eyebrow { color:#1f5b49;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;font-weight:750; }
@@ -79,7 +28,7 @@ h2 { margin:0;color:#1f5b49;font-size:clamp(2rem,3.5vw,3.5rem);letter-spacing:-.
 article { display:flex;flex-direction:column;height:100%;padding:1.5rem;border:1px solid #dedbd0;border-radius:1rem;background:#fffdf8; }
 dl { display:grid;grid-template-columns:1fr 1fr;border:1px solid #dedbd0;border-radius:.5rem;margin:0 0 1rem; }dl div { padding:.7rem; }dt { font-size:.75rem;line-height:1.4; }dd { margin:.4rem 0 0;font-size:1.6rem;font-weight:750;color:#1f5b49; }
 blockquote { margin:0 0 1.5rem;line-height:1.65; }blockquote p { margin:0; }.person { margin:auto 0 0;display:grid;gap:.35rem;line-height:1.5; }.person span { font-size:.9rem;color:#555; }
-.controls { display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;margin:1rem 0 2rem; }.controls[hidden] { display:none; }button { min-height:44px;min-width:44px;border:1px solid #1f5b49;border-radius:2rem;background:white;color:#1f5b49;cursor:pointer;padding:.6rem 1rem;font-weight:700; }button:hover { background:#f0e9d6; }button:disabled { opacity:.5;cursor:default; }
+
 .trust { text-align:center;font-weight:700;color:#1f5b49; }.ratings { display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;list-style:none;padding:1.5rem 0;margin:0; }.ratings li { display:grid;gap:.5rem;text-align:center; }.stars { color:#a65b00;letter-spacing:.15em; }
 @media(max-width:1000px) { .track { grid-auto-columns:calc((100% - 1rem)/2); } }
 @media(max-width:650px) { .track { grid-auto-columns:92%; }.ratings { grid-template-columns:repeat(2,1fr); } }
