@@ -1,0 +1,12 @@
+// Static-assets-only Worker: Cloudflare Workers Builds runs `npm run build`,
+// then `npx wrangler deploy` uploads `dist/`. Keeping this file stops
+// Wrangler's auto-setup from converting the site to the Astro SSR adapter.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "adl-nexus",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
