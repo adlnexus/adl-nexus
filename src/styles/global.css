@@ -18,6 +18,9 @@
   --headline-accent: #e65018;
   --accent-on-dark: #ffb16e;
   --accent-line: rgba(223, 89, 46, .24);
+  --trial-fill: #ea9a00;
+  --trial-border: #ea9a00;
+  --trial-active: #d98e00;
   --header-cta-fill: linear-gradient(105deg, #c44b19 0%, #c33f28 48%, #b52820 100%);
   --header-cta-hover: linear-gradient(105deg, #ac3c14 0%, #b33220 48%, #9d221b 100%);
   --cta-fill: linear-gradient(105deg, #ff8a3d 0%, #f45d3e 48%, #d32f23 100%);
@@ -56,8 +59,11 @@ img { display: block; max-width: 100%; }
 .lead { max-width: 650px; color: var(--muted); font-size: clamp(1.05rem, 1.55vw, 1.32rem); line-height: 1.55; }
 .accent { color: var(--accent); }
 .button { display: inline-flex; min-height: 3.35rem; align-items: center; justify-content: center; gap: 1rem; padding: .85rem 1.25rem; border: 1px solid var(--ink); border-radius: var(--radius); background: transparent; color: var(--ink); font-size: .78rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; transition: background .2s ease, color .2s ease, border-color .2s ease; }
-.button::after { content: "↗"; font-size: 1rem; }
 .button:hover, .button:focus-visible { background: var(--ink); color: var(--white); }
+/* One Pipedrive free-trial treatment across every Pipedrive page and locale. */
+a.button.pd-trial-cta { background: var(--trial-fill); border-color: var(--trial-border); color: var(--ink); font-size: 1rem; }
+a.button.pd-demo-cta { font-size: 1rem; }
+a.button.pd-trial-cta:hover, a.button.pd-trial-cta:focus-visible { background: var(--trial-active); border-color: var(--trial-active); color: var(--ink); }
 .button--primary { border-color: transparent; background: var(--cta-fill); color: var(--white); box-shadow: var(--cta-shadow); }
 .button--primary:hover, .button--primary:focus-visible { border-color: transparent; background: var(--cta-hover); color: var(--white); }
 .text-link { display: inline-flex; align-items: center; gap: .6rem; padding-block: .3rem; border-bottom: 1px solid currentColor; font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }

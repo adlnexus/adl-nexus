@@ -11,7 +11,7 @@ const { detail, demoHref } = Astro.props;
     <ul>{detail.integrations.points.map(point => <li>{point}</li>)}</ul>
     <img class="logos" src="/partners/pipedrive/integrations.avif" width="1440" height="650" loading="lazy" alt="Slack, Zoom, Gmail, Zapier, Asana, Trello, Microsoft Teams, HubSpot, Intercom, PandaDoc, Google Drive" />
     <p class="closing">{detail.integrations.closing}</p>
-    <div class="actions"><a class="button demo" href={demoHref}>{detail.hero.demo}</a><a class="button trial pd-trial-cta" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a></div>
+    <div class="actions"><a class="button demo pd-demo-cta" href={demoHref}>{detail.hero.demo}</a><a class="button trial pd-trial-cta" href={pipedriveTrialHref} target="_blank" rel="sponsored noopener noreferrer">{detail.hero.trial}</a></div>
   </div>
 </section>
 <style>

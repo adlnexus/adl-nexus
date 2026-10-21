@@ -56,7 +56,7 @@ const pageDescription = detail.description;
 </BaseLayout>
 
 <style>
-.pd-page :global(.button::after){content:none;}
+
 .pd-page{background:#faf8f1;color:#192435;--focus-color:#1f5b49;}
 .pd-hero{background:linear-gradient(110deg,#faf9f4,#f3eddd);padding:40px 0 12px;}
 .pd-hero-grid{width:92%;max-width:1472px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.03fr);gap:24px;align-items:end;}
@@ -65,11 +65,7 @@ h1{font-size:clamp(3rem,4.25vw,4.5rem);line-height:1.12;letter-spacing:-.045em;c
 .pd-support{font-size:clamp(1.25rem,1.85vw,1.85rem);font-weight:750;line-height:1.25;margin:0;letter-spacing:-.025em;}
 .pd-actions{display:flex;gap:clamp(16px,2.3vw,36px);align-items:flex-start;margin-top:40px;}
 .pd-hero .button{min-height:58px;border:0;border-radius:999px;font-size:clamp(1.2rem,1.4vw,1.4rem);font-weight:750;letter-spacing:-.02em;text-transform:none;padding:14px 25px;white-space:normal;text-align:center;}
-.pd-hero .button::after{content:none;}.pd-outline{background:#1b5a43;color:#fff;}.pd-outline:hover{background:#12412f;color:#fff;}
-/* One trial treatment across the landing page and all supported locales. */
-.pd-page{--trial-fill:#EA9A00;--trial-border:#EA9A00;--trial-active:#d98e00;}
-.pd-page :global(a.button.pd-trial-cta){background:var(--trial-fill);border-color:var(--trial-border);color:#1A171B;font-size:1rem;}
-.pd-page :global(.button.pd-trial-cta:hover),.pd-page :global(.button.pd-trial-cta:focus-visible){background:var(--trial-active);border-color:var(--trial-active);color:#1A171B;}
+.pd-outline{background:#1b5a43;color:#fff;}.pd-outline:hover{background:#12412f;color:#fff;}
 .pd-actions>.button{flex:1;}.pd-trial-wrap{display:grid;gap:7px;flex:1.3;}.pd-trial-wrap .button{width:100%;}.pd-trial-wrap small{text-align:center;font-size:clamp(.8rem,1vw,1rem);font-weight:600;}
 .pd-product-visual{position:relative;min-width:0;padding-top:90px;align-self:end;}.product{display:block;width:112%;max-width:none;height:auto;margin-left:-7%;}.partner{position:absolute;width:39%;height:auto;top:-80px;right:-7%;filter:drop-shadow(0 6px 14px #142e3344);}
 @media(min-width:1600px){.pd-hero{padding-top:40px;}}

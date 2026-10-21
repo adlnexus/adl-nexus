@@ -13,7 +13,7 @@ const es = lang === 'es';
       {copy.items.map(item => <li><article><h3>{item.title}</h3><p>{item.text}</p></article></li>)}
     </ul>
     <PipedriveCarouselControls lang={lang} trackId="feature-track" centered={false} />
-    <div class="actions"><a class="button" href={demoHref}>{demoLabel}</a></div>
+    <div class="actions"><a class="button pd-demo-cta" href={demoHref}>{demoLabel}</a></div>
   </div>
 </section>
 <style>
