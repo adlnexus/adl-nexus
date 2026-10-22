@@ -45,7 +45,7 @@ for (const slug of playbookSlugs) {
   if (!knownRoutes.has(`/solutions/pipedrive/knowledge-base/${slug}/`)) errors.push(`Missing industry playbook: ${slug}`);
 }
 
-if (htmlFiles.length !== 41) errors.push(`Expected 40 content pages and one 404 page, found ${htmlFiles.length}.`);
+if (htmlFiles.length !== 44) errors.push(`Expected 43 content pages and one 404 page, found ${htmlFiles.length}.`);
 if (!existsSync(join(outputDirectory, '404.html'))) errors.push('Missing static 404.html.');
 if (existsSync(join(outputDirectory, 'de')) || existsSync(join(outputDirectory, 'ru'))) errors.push('Removed locale output still exists.');
 
@@ -107,7 +107,7 @@ if (!existsSync(sitemapPath)) errors.push('Missing sitemap-0.xml.');
 if (existsSync(sitemapPath)) {
   const sitemap = readFileSync(sitemapPath, 'utf8');
   const sitemapEntries = sitemap.match(/<url>/g) ?? [];
-  if (sitemapEntries.length !== 37) errors.push(`Expected 37 indexable sitemap entries, found ${sitemapEntries.length}.`);
+  if (sitemapEntries.length !== 40) errors.push(`Expected 40 indexable sitemap entries, found ${sitemapEntries.length}.`);
   if (/\/(de|ru)\/|\/404/.test(sitemap)) errors.push('Sitemap contains a removed locale or 404 page.');
   if (sitemap.includes('/insights/')) errors.push('Draft Insights routes must not appear in the sitemap.');
   if ([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].some((match) => !match[1].startsWith(`${productionOrigin}/`))) {
@@ -135,4 +135,4 @@ if (errors.length) {
   throw new Error(`SEO verification failed:\n- ${errors.join('\n- ')}`);
 }
 
-console.log(`SEO verification passed for 40 content pages, one 404 page and 37 sitemap entries.`);
+console.log(`SEO verification passed for 43 content pages, one 404 page and 40 sitemap entries.`);

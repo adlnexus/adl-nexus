@@ -5,13 +5,14 @@ import InsightsPage from '../insights.astro';
 import ServicesPage from '../services.astro';
 import LearniePage from '../solutions/learnie.astro';
 import PipedrivePage from '../solutions/pipedrive.astro';
+import PrivacyPolicyPage from '../privacy-policy.astro';
 import { localizedLandingCodes, type LocalizedLandingCode } from '../../data/localization';
 
-const localizedRoutes = ['services', 'about', 'insights', 'contact', 'solutions/pipedrive', 'solutions/learnie'] as const;
+const localizedRoutes = ['services', 'about', 'insights', 'contact', 'solutions/pipedrive', 'solutions/learnie', 'privacy-policy'] as const;
 type LocalizedRoute = (typeof localizedRoutes)[number];
 
 export function getStaticPaths() {
-  const localizedRoutes = ['services', 'about', 'insights', 'contact', 'solutions/pipedrive', 'solutions/learnie'] as const;
+  const localizedRoutes = ['services', 'about', 'insights', 'contact', 'solutions/pipedrive', 'solutions/learnie', 'privacy-policy'] as const;
   return localizedLandingCodes.flatMap((lang) => localizedRoutes.map((slug) => ({ params: { lang, slug }, props: { lang, slug } })));
 }
 
@@ -24,6 +25,7 @@ const pages = {
   contact: ContactPage,
   'solutions/pipedrive': PipedrivePage,
   'solutions/learnie': LearniePage,
+  'privacy-policy': PrivacyPolicyPage,
 };
 const Page = pages[slug];
 ---

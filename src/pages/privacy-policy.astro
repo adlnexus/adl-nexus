@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { privacyPolicyCopy } from '../data/privacy-policy';
+import type { SiteLocale } from '../data/localization';
+interface Props { lang?: SiteLocale }
+const { lang = 'en' } = Astro.props;
+const copy = privacyPolicyCopy[lang];
+
+const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// Copy is plain text; link the website and privacy address wherever they appear.
+const linkify = (text: string) => escapeHtml(text)
+  .split('https://adlnexus.com').join('<a href="https://adlnexus.com">https://adlnexus.com</a>')
+  .split('privacy@adlnexus.com').join('<a href="mailto:privacy@adlnexus.com">privacy@adlnexus.com</a>');
+const rightNumber = (index: number) => String(index + 1).padStart(2, '0');
+---
+<BaseLayout lang={lang} title={copy.title} description={copy.description}>
+  <section class="privacy-hero">
+    <div class="container"><h1>{copy.heading[0]} <span class="accent">{copy.heading[1]}</span></h1></div>
+  </section>
+
+  <div class="privacy-body container">
+    <nav class="privacy-toc" aria-label={copy.tocLabel}>
+      <p class="eyebrow">{copy.tocLabel}</p>
+      <ol>{copy.sections.map((section) => <li><a href={`#${section.id}`}>{section.toc}</a></li>)}</ol>
+    </nav>
+
+    <article class="privacy-prose">
+      {copy.sections.map((section) => (
+        <section id={section.id}>
+          <h2>{section.title}</h2>
+          {section.blocks.map((block) => {
+            switch (block.type) {
+              case 'p': return <p set:html={linkify(block.text)} />;
+              case 'h3': return <h3>{block.text}</h3>;
+              case 'list': return <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
+              case 'statement': return <p class="privacy-statement">{block.text}</p>;
+              case 'facts': return <dl class="privacy-card privacy-facts">{block.rows.map(([label, value]) => <div><dt>{label}</dt><dd set:html={linkify(value)} /></div>)}</dl>;
+              case 'table': return (
+                <div class="privacy-card privacy-table">
+                  <table>
+                    <thead><tr><th scope="col">{block.head[0]}</th><th scope="col">{block.head[1]}</th></tr></thead>
+                    <tbody>{block.rows.map(([purpose, basis]) => <tr><td>{purpose}</td><td>{basis}</td></tr>)}</tbody>
+                  </table>
+                </div>
+              );
+              case 'providers': return (
+                <div class="privacy-providers">{block.items.map((provider) => (
+                  <div class="privacy-card"><h3>{provider.name}</h3>{provider.text.map((text) => <p>{text}</p>)}<a href={provider.link.href}>{provider.link.label}</a></div>
+                ))}</div>
+              );
+              case 'callout': return <div class="privacy-callout"><h3>{block.title}</h3>{block.text.map((text) => <p>{text}</p>)}</div>;
+              case 'rights': return <ol class="privacy-rights">{block.items.map((right, index) => <li><span>{rightNumber(index)}</span>{right}</li>)}</ol>;
+            }
+          })}
+        </section>
+      ))}
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy-hero { padding: calc(7.5rem + clamp(2.5rem, 6vh, 5rem)) 0 clamp(3.5rem, 7vw, 6rem); background: var(--hero-surface); }
+  .privacy-hero h1 { margin: 0; font-size: clamp(2.4rem, 7vw, 6.4rem); font-weight: 760; letter-spacing: -.065em; line-height: .92; text-align: center; text-wrap: balance; }
+  /* One line wherever it fits; longer translations may wrap on phones. */
+  @media (min-width: 640px) { .privacy-hero h1 { white-space: nowrap; } }
+
+  .privacy-body { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(2.5rem, 6vw, 6rem); padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(5rem, 10vw, 8rem); }
+  .privacy-toc { flex: 1 1 240px; max-width: 300px; padding: 1.75rem; border-radius: 20px; background: var(--cream); }
+  .privacy-toc ol { display: flex; flex-direction: column; gap: .625rem; margin: 0; padding: 0; list-style: none; font-size: .875rem; line-height: 1.4; }
+  .privacy-toc a { color: var(--muted); }
+  .privacy-toc a:hover { color: var(--ink); }
+  /* Contents stay beside the policy while scrolling; stacked layouts keep them in flow. */
+  @media (min-width: 1000px) { .privacy-toc { position: sticky; top: 136px; max-height: calc(100vh - 160px); overflow-y: auto; } }
+  @media (max-width: 999px) { .privacy-toc { max-width: none; } }
+
+  .privacy-prose { flex: 999 1 560px; min-width: 0; max-width: 780px; display: flex; flex-direction: column; gap: 4rem; color: #3a3539; font-size: 1.0625rem; line-height: 1.75; }
+  /* Clear the fixed header when jumping from the contents list. */
+  .privacy-prose section { scroll-margin-top: 136px; }
+  .privacy-prose h2 { margin: 0 0 1.5rem; color: var(--ink); font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 760; letter-spacing: -.045em; line-height: 1.05; }
+  .privacy-prose h3 { margin: 1rem 0 .75rem; color: var(--ink); font-size: 1.3125rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; }
+  .privacy-prose h2 + h3 { margin-top: 0; }
+  .privacy-prose p { margin: 0 0 1.1rem; }
+  .privacy-prose section > :last-child { margin-bottom: 0; }
+  .privacy-prose ul { margin: 0 0 1.25rem; padding-left: 1.25rem; }
+  .privacy-prose ul li { margin: 0 0 .45rem; padding-left: .35rem; }
+  .privacy-prose ul li::marker { color: var(--accent); }
+  /* :global reaches the links linkify() injects. */
+  .privacy-prose :global(a) { color: var(--accent); text-decoration: underline; text-underline-offset: .2em; }
+  .privacy-prose :global(a:hover) { color: var(--accent-dark); }
+
+  .privacy-card { border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
+  .privacy-facts { margin: 0 0 1.5rem; padding: .5rem 1.75rem; font-size: 1rem; line-height: 1.5; }
+  .privacy-facts div { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; padding: 1rem 0; border-bottom: 1px solid rgba(26, 23, 27, .1); }
+  .privacy-facts div:last-child { border-bottom: 0; }
+  .privacy-facts dt { flex: 0 0 200px; color: var(--muted); }
+  .privacy-facts dd { flex: 1 1 260px; margin: 0; color: var(--ink); font-weight: 600; }
+
+  .privacy-table { margin: 0 0 1.5rem; overflow-x: auto; }
+  .privacy-table table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: .9375rem; line-height: 1.55; text-align: left; }
+  .privacy-table th { width: 50%; padding: 1rem 1.5rem; background: var(--cream); color: var(--muted); font-size: .6875rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .privacy-table th + th { width: auto; }
+  .privacy-table td { padding: 1.125rem 1.5rem; border-top: 1px solid rgba(26, 23, 27, .1); vertical-align: top; }
+  .privacy-table td:first-child { color: var(--ink); font-weight: 600; }
+
+  .privacy-providers { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 0 0 1.5rem; }
+  .privacy-providers .privacy-card { display: flex; flex-direction: column; gap: .75rem; padding: 1.75rem; font-size: .9375rem; line-height: 1.65; }
+  .privacy-providers h3, .privacy-providers p { margin: 0; }
+  .privacy-providers a { margin-top: auto; font-weight: 600; overflow-wrap: anywhere; }
+
+  .privacy-callout { margin-top: 1rem; padding: 1.75rem; border-radius: 20px; background: var(--warm-surface); }
+  .privacy-callout h3 { margin-top: 0; }
+  .privacy-callout > :last-child { margin-bottom: 0; }
+
+  .privacy-statement { color: var(--accent); font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 760; letter-spacing: -.04em; line-height: 1.1; }
+
+  .privacy-rights { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin: .5rem 0 1.75rem; padding: 0; list-style: none; font-size: .9375rem; line-height: 1.5; }
+  .privacy-rights li { display: flex; align-items: baseline; gap: .875rem; padding: 1.125rem 1.25rem; border: 1px solid var(--line); border-radius: 12px; background: var(--white); color: var(--ink); }
+  .privacy-rights span { color: var(--accent); font-size: .75rem; font-weight: 800; }
+</style>
