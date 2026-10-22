@@ -33,7 +33,7 @@ export type LocalizedPageCopy = {
   };
   contact: {
     title: string; description: string; eyebrow: string; heroFirst: string; heroAccent: string; lead: string;
-    start: string; brief: string; response: string; email: string; based: string; location: string;
+    start: string; brief: string; response: string; email: string;
     fields: { name: string; company: string; workEmail: string; topic: string; message: string };
     topics: [string, string, string, string]; submit: string; note: string; subject: string;
   };
@@ -95,7 +95,7 @@ export const localizedPagesCopy: Record<LocalizedLandingCode, LocalizedPageCopy>
     contact: {
       title: 'Kontakt — ADL Nexus', description: 'Započnite razgovor sa ADL Nexusom o softveru, tržištu ili komercijalnom rastu.',
       eyebrow: 'Kontakt', heroFirst: 'Pronađimo', heroAccent: 'pravi sledeći korak.', lead: 'Recite nam više o softverskom izazovu, tržišnoj prilici ili komercijalnom cilju.',
-      start: 'Započnimo razgovor', brief: 'Kratak opis je dovoljan.', response: 'Odgovorićemo pitanjima koja su važna i predložiti fokusiran prvi razgovor.', email: 'Email', based: 'Lokacija', location: 'Beograd · radimo međunarodno',
+      start: 'Započnimo razgovor', brief: 'Kratak opis je dovoljan.', response: 'Odgovorićemo pitanjima koja su važna i predložiti fokusiran prvi razgovor.', email: 'Email',
       fields: { name: 'Ime', company: 'Kompanija', workEmail: 'Poslovni email', topic: 'Zanima me', message: 'Na čemu radite?' },
       topics: ['Opšti razgovor', 'Pipedrive demo', 'Learnie demo', 'Ulazak na tržište i prodajno zastupanje'], submit: 'Pripremi email', note: 'Slanje otvara vašu email aplikaciju sa pripremljenom porukom. Sajt ne čuva podatke.', subject: 'ADL Nexus upit',
     },
@@ -163,7 +163,7 @@ export const localizedPagesCopy: Record<LocalizedLandingCode, LocalizedPageCopy>
     },
     contact: {
       title: 'Contacto — ADL Nexus', description: 'Inicia una conversación con ADL Nexus sobre software, mercados o crecimiento comercial.', eyebrow: 'Contacto', heroFirst: 'Encontremos', heroAccent: 'el siguiente paso adecuado.', lead: 'Cuéntanos el reto de software, la oportunidad de mercado o el objetivo comercial en el que trabajas.',
-      start: 'Empecemos a hablar', brief: 'Una breve descripción es suficiente.', response: 'Responderemos con las preguntas importantes y propondremos una primera conversación enfocada.', email: 'Correo', based: 'Ubicación', location: 'Belgrado · trabajamos internacionalmente',
+      start: 'Empecemos a hablar', brief: 'Una breve descripción es suficiente.', response: 'Responderemos con las preguntas importantes y propondremos una primera conversación enfocada.', email: 'Correo',
       fields: { name: 'Nombre', company: 'Empresa', workEmail: 'Correo profesional', topic: 'Me interesa', message: '¿En qué estás trabajando?' }, topics: ['Una conversación general', 'Una demo de Pipedrive', 'Una demo de Learnie', 'Entrada en mercados y representación comercial'], submit: 'Preparar correo', note: 'Al enviar se abre tu aplicación de correo con el mensaje preparado. Este sitio no almacena datos.', subject: 'Consulta a ADL Nexus',
     },
     pipedrive: {

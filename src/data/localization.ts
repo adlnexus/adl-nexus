@@ -34,7 +34,7 @@ export const uiCopy = {
     navLabel: 'Main navigation',
     footer: {
       tagline: 'One trusted partner for the right software and the right markets.',
-      explore: 'Explore', company: 'Company', contact: 'Contact', location: 'Belgrade · working internationally',
+      explore: 'Explore', contact: 'Contact', privacy: 'Privacy Policy',
       closing: 'Built for long-term partnerships.',
     },
   },
@@ -47,7 +47,7 @@ export const uiCopy = {
     navLabel: 'Glavna navigacija',
     footer: {
       tagline: 'Jedan pouzdan partner za pravi softver i prava tržišta.',
-      explore: 'Istražite', company: 'Kompanija', contact: 'Kontakt', location: 'Beograd · radimo međunarodno',
+      explore: 'Istražite', contact: 'Kontakt', privacy: 'Politika privatnosti',
       closing: 'Gradimo dugoročna partnerstva.',
     },
   },
@@ -60,7 +60,7 @@ export const uiCopy = {
     navLabel: 'Navegación principal',
     footer: {
       tagline: 'Un socio de confianza para el software y los mercados adecuados.',
-      explore: 'Explorar', company: 'Empresa', contact: 'Contacto', location: 'Belgrado · trabajamos internacionalmente',
+      explore: 'Explorar', contact: 'Contacto', privacy: 'Política de privacidad',
       closing: 'Creamos relaciones a largo plazo.',
     },
   },
@@ -71,7 +71,7 @@ export const uiCopy = {
   languageLabel: string;
   menuLabel: string;
   navLabel: string;
-  footer: { tagline: string; explore: string; company: string; contact: string; location: string; closing: string };
+  footer: { tagline: string; explore: string; contact: string; privacy: string; closing: string };
 }>;
 
 export const landingCopy = {
